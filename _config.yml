@@ -1,7 +1,7 @@
 # Site
 name: "전성후의 블로그"
 title: "전성후의 블로그"
-description: "test."
+description: "개발과 일상을 기록하는 공간입니다."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: ""

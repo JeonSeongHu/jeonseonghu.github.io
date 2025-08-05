@@ -64,7 +64,7 @@ section.recent-posts {
 }
 
 .section-title h2 {
-    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    /* border-bottom: 1px solid rgba(0, 0, 0, .125); */
     margin-bottom: 25px;
     font-weight: 700;
     font-size: 1.4rem;
@@ -80,13 +80,22 @@ section.recent-posts {
 
 .article-post ol,
 .article-post ul {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.3rem;
+    line-height: 1.5rem;
+}
+
+.article-post ol li,
+.article-post ul li {
+    margin-bottom: 0.75rem;
 }
 
 .article-post ol ol,
-.article-post ul ul {
+.article-post ul ul,
+.article-post ol ul,
+.article-post ul ol {
     list-style: disc;
-    margin-bottom: 0rem;
+    margin-top: -0.75rem;
+    margin-bottom: 0.75rem;
 }
 
 @media (min-width:576px) {
@@ -330,9 +339,10 @@ span.post-read-more a:hover {
 }
 
 .article-post {
-    font-family: Merriweather;
+    font-family: 'GowunBatang-Regular', serif;
     font-size: 1.1rem;
-    line-height: 1.84;
+    line-height: 1.7;
+    font-weight: 400;
     color: rgba(0, 0, 0, .8);
 }
 
@@ -345,7 +355,7 @@ blockquote {
 
 .article-post p,
 .article-post blockquote {
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1.0rem 0;
 }
 
 .featured-image {
@@ -525,8 +535,8 @@ ul.tags li a:hover {
 }
 
 .btn.follow {
-    border-color: #02B875;
-    color: #1C9963;
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
     padding: 3px 10px;
     text-align: center;
     border-radius: 999em;
@@ -535,8 +545,8 @@ ul.tags li a:hover {
 }
 
 .btn.subscribe {
-    background-color: #1C9963;
-    border-color: #1C9963;
+    background-color: var(--primary-orange);
+    border-color: var(--primary-orange);
     color: rgba(255, 255, 255, 1);
     fill: rgba(255, 255, 255, 1);
     border-radius: 30px;
@@ -581,8 +591,8 @@ ul.tags li a:hover {
 }
 
 .alertbar input[type="submit"] {
-    background-color: #1C9963;
-    border: 1px solid #1C9963;
+    background-color: var(--primary-orange);
+    border: 1px solid var(--primary-orange);
     color: rgba(255, 255, 255, 1);
     fill: rgba(255, 255, 255, 1);
     font-size: 0.85rem;
@@ -717,6 +727,21 @@ h6 {
 
 .layout-page .article-post p {
     margin-bottom: 1rem;
+}
+
+.layout-page .article-post h4 {
+    margin-top: 1.75rem;
+    margin-bottom: 1.0rem;
+}
+
+.layout-page .article-post h5 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.layout-page .article-post ul li,
+.layout-page .article-post ol li {
+    margin-bottom: 0.75rem;
 }
 
 img {

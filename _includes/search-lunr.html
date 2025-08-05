@@ -1,21 +1,292 @@
-<script src="{{site.baseurl}}/assets/js/lunr.js"></script>
-
+<script src="{{site.baseurl}}/assets/js/fuse.min.js" charset="utf-8"></script>
 
 <style>
-    .lunrsearchresult .title {color: #d9230f;}
-    .lunrsearchresult .url {color: silver;}
-    .lunrsearchresult a {display: block; color: #777;}
-    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
-    .lunrsearchresult a:hover .title {text-decoration: underline;}
+/* ============================================
+   FUSE.JS MODERN SEARCH STYLING
+   ============================================ */
+
+/* Search Results Modal - High z-index to appear above all content */
+#lunrsearchresults {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    display: none !important;
+}
+
+#lunrsearchresults.show {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#lunrsearchresults .modal-dialog {
+    max-width: 90vw;
+    width: 800px;
+    margin: 2rem auto;
+    z-index: 10000 !important;
+    position: relative;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+#lunrsearchresults .modal-content {
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+    background: var(--bg-white);
+    position: relative;
+    z-index: 10001 !important;
+}
+
+#lunrsearchresults .modal-header {
+    background: var(--primary-orange) !important;
+    color: white !important;
+    border-radius: 16px 16px 0 0 !important;
+    border-bottom: none !important;
+    padding: 1.5rem 2rem;
+}
+
+#lunrsearchresults .modal-title {
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+#lunrsearchresults .close {
+    color: white !important;
+    opacity: 0.9;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-shadow: none;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 10002 !important;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#lunrsearchresults .close:hover {
+    opacity: 1;
+    color: white !important;
+}
+
+#lunrsearchresults .modal-body {
+    padding: 0;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#lunrsearchresults .modal-footer {
+    border-top: 1px solid var(--border-light) !important;
+    background: var(--bg-light);
+    border-radius: 0 0 16px 16px !important;
+    padding: 1rem 2rem;
+}
+
+/* Search Results List */
+.lunrsearchresult {
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.lunrsearchresult:last-child {
+    border-bottom: none;
+}
+
+.lunrsearchresult a {
+    display: block !important;
+    padding: 1.5rem 2rem !important;
+    color: var(--text-dark) !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.lunrsearchresult a:hover,
+.lunrsearchresult a:focus {
+    background: rgba(255, 87, 34, 0.05) !important;
+    text-decoration: none !important;
+    transform: translateX(5px);
+}
+
+.lunrsearchresult .title {
+    color: var(--text-dark) !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem;
+    display: block;
+    line-height: 1.4;
+}
+
+.lunrsearchresult a:hover .title {
+    color: var(--primary-orange) !important;
+    text-decoration: none !important;
+}
+
+.lunrsearchresult .match-score {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    background: rgba(255, 87, 34, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem !important;
+    font-weight: 600;
+    color: var(--primary-orange) !important;
+}
+
+.lunrsearchresult .body {
+    color: var(--text-medium) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.lunrsearchresult .url {
+    color: var(--text-light) !important;
+    font-size: 0.8rem !important;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.lunrsearchresult .tags {
+    color: var(--text-light) !important;
+    font-size: 0.7rem !important;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Search Form Navigation Integration */
+.search-nav-item {
+    display: flex !important;
+    align-items: center !important;
+    margin-left: 1rem !important;
+}
+
+.bd-search {
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Search Input Styling */
+#lunrsearch {
+    border: 2px solid var(--border-light) !important;
+    border-radius: 25px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease !important;
+    background: var(--bg-white) !important;
+    color: var(--text-dark) !important;
+    width: 200px;
+    height: 38px;
+}
+
+#lunrsearch:focus {
+    outline: none !important;
+    border-color: var(--primary-orange) !important;
+    box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1) !important;
+    background: var(--bg-white) !important;
+}
+
+#lunrsearch::placeholder {
+    color: var(--text-light) !important;
+    font-style: italic;
+}
+
+/* Close Button Styling */
+.btn-close-search {
+    background: var(--primary-orange) !important;
+    border: 2px solid var(--primary-orange) !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-close-search:hover {
+    background: var(--primary-orange-hover) !important;
+    border-color: var(--primary-orange-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+/* Highlight Styling */
+mark {
+    background-color: rgba(255, 87, 34, 0.2) !important;
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* Prevent body scrolling when modal is open */
+body.modal-open {
+    overflow: hidden !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #lunrsearch {
+        width: 160px;
+        font-size: 0.85rem !important;
+    }
+    
+    #lunrsearchresults .modal-dialog {
+        margin: 1rem;
+        max-width: calc(100vw - 2rem);
+        width: calc(100vw - 2rem);
+        max-height: calc(100vh - 2rem);
+    }
+    
+    .lunrsearchresult a {
+        padding: 1rem 1.5rem !important;
+    }
+    
+    .lunrsearchresult .title {
+        font-size: 1rem !important;
+    }
+    
+    .lunrsearchresult .match-score {
+        position: static;
+        display: inline-block;
+        margin-left: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #lunrsearch {
+        width: 140px;
+    }
+    
+    #lunrsearchresults .modal-header,
+    #lunrsearchresults .modal-footer {
+        padding: 1rem 1.5rem;
+    }
+    
+    .search-nav-item {
+        margin-left: 0.5rem !important;
+    }
+}
 </style>
 
-
-<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
-    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
-</form>
+<li class="nav-item search-nav-item">
+    <form class="bd-search" onSubmit="return fuseSearch(document.getElementById('lunrsearch').value);">
+        <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="검색..."/>
+    </form>
+</li>
 
 <div id="lunrsearchresults">
     <ul></ul>
 </div>
 
-<script src="{{site.baseurl}}/assets/js/lunrsearchengine.js"></script>
+<script src="{{site.baseurl}}/assets/js/search-fuse.js" charset="utf-8"></script>

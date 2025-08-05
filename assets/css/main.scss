@@ -3,13 +3,1008 @@
 # Change this file for any custom CSS.
 ---
 
+/* ============================================
+   MODERN MINIMAL DESIGN OVERRIDES
+   Based on the provided portfolio design
+   ============================================ */
+
+/* CSS Variables for Design System */
+:root {
+    --primary-orange: #ff5722;
+    --primary-orange-hover: #e64a19;
+    --text-dark: #1a1a1a;
+    --text-medium: #666666;
+    --text-light: #999999;
+    --bg-white: #ffffff;
+    --bg-light: #fafafa;
+    --border-light: rgba(0, 0, 0, 0.08);
+    --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   GLOBAL OVERRIDES
+   ============================================ */
+
+/* Links */
+a {
+    color: var(--primary-orange) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-orange-hover) !important;
+    text-decoration: none;
+}
+
+/* Typography */
+body {
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--bg-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* ============================================
+   NAVIGATION STYLING
+   ============================================ */
+
+.mediumnavigation {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) !important;
+    // border-bottom: 1px solid var(--border-light);
+}
+
+.navbar-brand {
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+    color: var(--text-dark) !important;
+    letter-spacing: -0.5px;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500 !important;
+    color: var(--text-medium) !important;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.2rem !important;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-orange) !important;
+    background: rgba(255, 87, 34, 0.05);
+    border-radius: 6px;
+}
+
+/* ============================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ============================================ */
+
+.btn-primary {
+    background: var(--primary-orange) !important;
+    border: 2px solid var(--primary-orange) !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-subtle);
+}
+
+.btn-primary:hover {
+    background: var(--primary-orange-hover) !important;
+    border-color: var(--primary-orange-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-outline-primary {
+    background: transparent !important;
+    border: 2px solid var(--primary-orange) !important;
+    color: var(--primary-orange) !important;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-orange) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* ============================================
+   CARDS & CONTENT BLOCKS
+   ============================================ */
+
+.card {
+    border: 1px solid #000000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+}
+
+.card:hover {
+    box-shadow: none !important;
+    transform: translateY(-2px);
+    border-color: #333333 !important;
+}
+
+.card-header {
+    background: var(--bg-light) !important;
+    // border-bottom: 1px solid var(--border-light) !important;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ============================================
+   ARTICLE & POST STYLING
+   ============================================ */
+
+.article-post {
+    font-family: 'GowunBatang-Regular', serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.article-post h1, .article-post h2, .article-post h3, 
+.article-post h4, .article-post h5, .article-post h6 {
+    font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-post h2 {
+    font-size: 1.75rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-post blockquote {
+    border-left: 4px solid var(--primary-orange);
+    background: rgba(255, 87, 34, 0.03);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--text-medium);
+}
+
+/* ============================================
+   FEATURED CONTENT
+   ============================================ */
+
+.featured-box {
+    background: var(--primary-orange);
+    color: white;
+    padding: 3rem 0;
+    margin: 2rem 0;
+    box-shadow: var(--shadow-medium);
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.featured-box .page-title {
+    color: white !important;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-top: 0rem;
+    margin-bottom: 1.5rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
+    position: relative;
+}
+
+
+.featured-box .page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 2rem;
+    width: 60px;
+    height: 3px;
+    background: white;
+}
+
+.featured-box p {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    font-size: 1.1rem;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+.featured-box p:last-child {
+    margin-bottom: 0;
+}
+
+.featured-box h3 {
+    color: white !important;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    max-width: 1200px;
+    margin: 0 auto 1rem auto;
+    padding: 0 2rem;
+}
+
+/* ============================================
+   SECTION TITLES
+   ============================================ */
+
+.section-title h2 {
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    color: var(--text-dark) !important;
+    // border-bottom: 3px solid var(--primary-orange) !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 2rem !important;
+    display: inline-block;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    background: var(--bg-light) !important;
+    border-top: 1px solid var(--border-light);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    color: var(--text-medium);
+}
+
+.footer a {
+    color: var(--text-medium) !important;
+    font-weight: 500;
+}
+
+.footer a:hover {
+    color: var(--primary-orange) !important;
+}
+
 /* We need to add display:inline in order to align the '>>' of the 'read more' link */
 .post-excerpt p {
 	display:inline;
 }
 
+/* Timeline Styles for About Me page */
+.timeline {
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 5px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-orange), rgba(255, 87, 34, 0.3));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--primary-orange);
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.2);
+    justify-self: center;
+    margin-top: 0.2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-content {
+    padding-top: 0;
+}
+
+.timeline-item.current .timeline-dot {
+    background: var(--primary-orange-hover);
+    box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3), 0 0 15px rgba(255, 87, 34, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3), 0 0 15px rgba(255, 87, 34, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(255, 87, 34, 0.2), 0 0 20px rgba(255, 87, 34, 0.6); }
+    100% { box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3), 0 0 15px rgba(255, 87, 34, 0.4); }
+}
+
+.timeline-date {
+    display: inline-block;
+    background: rgba(255, 87, 34, 0.1);
+    color: var(--primary-orange);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(0, 171, 107, 0.2);
+}
+
+.timeline-title {
+    font-weight: 700;
+    color: rgba(0, 0, 0, .8);
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.timeline-subtitle {
+    color: rgba(0, 0, 0, .6);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.timeline-description {
+    color: rgba(0, 0, 0, .7);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Awards & Achievements Styles */
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.achievement-card {
+    background: #fff;
+    border: 1px solid #000000;
+    border-radius: 0;
+    padding: 1.2rem;
+    transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 7px;
+    background: linear-gradient(90deg, var(--primary-orange)  , var(--primary-orange-hover));
+}
+
+.achievement-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-orange-hover);
+}
+
+.achievement-title {
+    font-weight: 700;
+    color: rgba(0, 0, 0, .8);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.achievement-org {
+    color: rgba(0, 0, 0, .6);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.achievement-desc {
+    color: rgba(0, 0, 0, .7);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Clean Table Styling */
+.article-post table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.article-post table thead {
+    background-color: rgba(0, 0, 0, .02);
+    // border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.article-post table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .8);
+    font-size: 0.9rem;
+    border-right: 1px solid rgba(0, 0, 0, .08);
+}
+
+.article-post table th:last-child {
+    border-right: none;
+}
+
+.article-post table td {
+    padding: 12px 16px;
+    // border-bottom: 1px solid rgba(0, 0, 0, .08);
+    border-right: 1px solid rgba(0, 0, 0, .05);
+    color: rgba(0, 0, 0, .8);
+    line-height: 1.5;
+}
+
+.article-post table td:last-child {
+    border-right: none;
+}
+
+.article-post table tbody tr:hover {
+    background-color: rgba(0, 0, 0, .02);
+    transition: background-color 0.2s ease;
+}
+
+.article-post table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 작은 화면에서의 테이블 반응형 */
+@media (max-width: 768px) {
+    .article-post table {
+        font-size: 0.85rem;
+    }
+    
+    .article-post table th,
+    .article-post table td {
+        padding: 10px 12px;
+    }
+    
+    .article-post table th {
+        font-size: 0.8rem;
+    }
+}
+
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import
-	"syntax",
-    "starsnonscss"
-;
+@import "syntax";
+@import "starsnonscss";
+
+/* ============================================
+   POST CARDS & LAYOUT - UNIFIED STYLE
+   ============================================ */
+
+.mb-30px {
+    margin-bottom: 30px !important;
+}
+
+/* Regular post cards (standalone) */
+.card {
+    border: 1px solid #000000 !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: var(--bg-white);
+    box-shadow: none !important;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 7px;
+    background: linear-gradient(90deg, var(--primary-orange), var(--primary-orange-hover));
+    z-index: 1;
+}
+
+/* Featured post cards (container only) */
+.listfeaturedtag {
+    border: 1px solid #000000 !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: var(--bg-white);
+    box-shadow: none !important;
+    position: relative;
+}
+
+.listfeaturedtag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 7px;
+    background: linear-gradient(90deg, var(--primary-orange), var(--primary-orange-hover));
+    z-index: 1;
+}
+
+/* Remove borders from inner cards in featured posts */
+.listfeaturedtag .card {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Remove ::before from inner cards in featured posts */
+.listfeaturedtag .card::before {
+    display: none !important;
+}
+
+/* Hover effects - separate for regular and featured */
+.card:hover {
+    box-shadow: none !important;
+    transform: translateY(-3px);
+    border-color: var(--primary-orange-hover) !important;
+}
+
+.listfeaturedtag:hover {
+    box-shadow: none !important;
+    transform: translateY(-3px);
+    border-color: var(--primary-orange-hover) !important;
+}
+
+/* No hover effect for inner cards in featured posts */
+.listfeaturedtag .card:hover {
+    box-shadow: none !important;
+    transform: none !important;
+    border: none !important;
+}
+
+/* Featured post specific adjustments */
+.listfeaturedtag {
+    /* Make featured posts look like regular cards */
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+.listfeaturedtag .row {
+    flex-direction: column !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+.listfeaturedtag .col-12.col-md-12.col-lg-5,
+.listfeaturedtag .col-12.col-md-12.col-lg-7 {
+    flex: none !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+.listfeaturedtag .wrapthumbnail,
+.maxthumb {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.listfeaturedtag .wrapthumbnail img,
+.maxthumb img {
+    transition: transform 0.4s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listfeaturedtag:hover .wrapthumbnail img,
+.card:hover .maxthumb img {
+    transform: scale(1.05);
+}
+
+/* Card title styling */
+.listfeaturedtag h2.card-title,
+.card h2.card-title {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: var(--text-dark) !important;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+.listfeaturedtag h2.card-title a,
+.card h2.card-title a {
+    color: var(--text-dark) !important;
+    text-decoration: none;
+}
+
+.listfeaturedtag h2.card-title a:hover,
+.card h2.card-title a:hover {
+    color: var(--primary-orange) !important;
+}
+
+/* Card text styling */
+.listfeaturedtag .card-text,
+.card .card-text {
+    color: var(--text-medium) !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Card footer styling */
+.listfeaturedtag .card-footer,
+.card .card-footer {
+    background: transparent !important;
+    border-top: 1px solid var(--border-light) !important;
+    padding: 1rem 1.5rem;
+    margin-top: auto;
+}
+
+.listfeaturedtag .card-footer small,
+.card .card-footer small {
+    color: var(--text-light) !important;
+    font-weight: 500;
+}
+
+/* Author meta styling */
+.author-thumb {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-meta {
+    font-size: 0.85rem;
+    color: var(--text-medium);
+}
+
+.post-date {
+    color: var(--text-light) !important;
+    font-size: 0.8rem;
+}
+
+.post-read-more svg {
+    fill: var(--primary-orange);
+    transition: all 0.3s ease;
+}
+
+.post-read-more:hover svg {
+    fill: var(--primary-orange-hover);
+    transform: scale(1.1);
+}
+
+/* Ensure both card types have same layout structure */
+.listfeaturedtag .card-group,
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.listfeaturedtag .card-body,
+.card .card-body {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+/* ============================================
+   TAGS & CATEGORIES
+   ============================================ */
+
+.tags a {
+    background: rgba(255, 87, 34, 0.1) !important;
+    color: var(--primary-orange) !important;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 87, 34, 0.2);
+}
+
+.tags a:hover {
+    background: var(--primary-orange) !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+.catbloc {
+    color: var(--text-medium) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+
+.pagination {
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.page-link {
+    color: var(--text-medium) !important;
+    border: 1px solid var(--border-light) !important;
+    padding: 0.75rem 1.25rem;
+    margin: 0 0.25rem;
+    border-radius: 8px !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+}
+
+.page-link:hover {
+    color: var(--primary-orange) !important;
+    background: rgba(255, 87, 34, 0.05) !important;
+    border-color: rgba(255, 87, 34, 0.2) !important;
+    transform: translateY(-1px);
+}
+
+.page-item.active .page-link {
+    background: var(--primary-orange) !important;
+    border-color: var(--primary-orange) !important;
+    color: white !important;
+    box-shadow: var(--shadow-subtle);
+}
+
+/* ============================================
+   SEARCH & FORMS
+   ============================================ */
+
+.form-control {
+    border: 2px solid var(--border-light) !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+}
+
+.form-control:focus {
+    border-color: var(--primary-orange) !important;
+    box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1) !important;
+    background: var(--bg-white);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 95%;
+    }
+    
+    .section-title h2 {
+        font-size: 1.75rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-box {
+        padding: 2rem 1.5rem;
+    }
+    
+    .featured-box h3 {
+        font-size: 1.3rem;
+    }
+    
+    .listfeaturedtag {
+        margin-bottom: 2rem;
+    }
+    
+    .listfeaturedtag .wrapthumbnail {
+        height: 180px;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.6rem 1rem !important;
+    }
+    
+    .section-title h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .article-post h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-primary, .btn-outline-primary {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .featured-box {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .featured-box h3 {
+        font-size: 1.2rem;
+    }
+    
+    .featured-box p {
+        font-size: 1rem;
+    }
+    
+    .listfeaturedtag .wrapthumbnail {
+        height: 160px;
+    }
+}
+
+/* ============================================
+   ANIMATIONS & INTERACTIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+    outline: 2px solid var(--primary-orange);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   PAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Hide lead section-title on About page only */
+body:has(.about-content-wrapper) .lead,
+body:has(.about-content-wrapper) .section-title,
+.about-content-wrapper .lead,
+.about-content-wrapper .section-title,
+.about-page-custom .lead,
+.about-page-custom .section-title {
+    display: none !important;
+}
+
+/* Hide any duplicate titles after featured-box */
+.featured-box + .lead,
+.featured-box + .section-title,
+.featured-box ~ .lead,
+.featured-box ~ .section-title {
+    display: none !important;
+}
+
+/* Hide page header elements on About page */
+.page-header,
+.page-title:not(.featured-box .page-title) {
+    display: none !important;
+}
+
+/* ============================================
+   FULL WIDTH SECTIONS (EXPLORE & FOOTER)
+   ============================================ */
+
+/* Full width sections that break out of container */
+.fullwidth-section {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+}
+
+/* Explore section adjustments */
+.jumbotron.fortags {
+    min-height: 120px !important; /* Reduced from default */
+    padding: 2rem 0 !important; /* Reduced padding */
+    margin-bottom: 2rem !important;
+    background: var(--bg-light) !important;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.jumbotron.fortags h2 {
+    font-size: 1.5rem !important; /* Smaller title */
+    margin: 0 !important;
+    color: var(--text-dark) !important;
+}
+
+.jumbotron.fortags .col-md-8 {
+    padding: 1rem !important; /* Reduced from p-5 */
+}
+
+.jumbotron.fortags a {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    margin: 0.2rem;
+    background: rgba(255, 87, 34, 0.1);
+    color: var(--primary-orange) !important;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 87, 34, 0.2);
+}
+
+.jumbotron.fortags a:hover {
+    background: var(--primary-orange) !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+/* Footer full width styling */
+.footer.fullwidth-section {
+    margin-top: 0 !important;
+    padding: 1.5rem 0 !important; /* Consistent padding */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .jumbotron.fortags {
+        min-height: 100px !important;
+        padding: 1.5rem 0 !important;
+    }
+    
+    .jumbotron.fortags .d-md-flex {
+        flex-direction: column !important;
+    }
+    
+    .jumbotron.fortags .col-md-4,
+    .jumbotron.fortags .col-md-8 {
+        max-width: 100% !important;
+        padding: 0.5rem !important;
+    }
+    
+    .jumbotron.fortags h2 {
+        font-size: 1.3rem !important;
+        margin-bottom: 1rem !important;
+    }
+}
