@@ -7,28 +7,83 @@ post_class: post-template
 
 <!-- Begin Article
 ================================================== -->
-<div class="container">
-    <div class="row">
-
-        <!-- Post Share -->
-        <div class="col-md-2 pl-0">
-            {% include share.html %}
+<!-- Fixed Left Sidebar -->
+<div class="post-sidebar-fixed d-none d-md-block">
+    <!-- Blog Title & Description -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple blog-header">
+            <h5 class="blog-title">{{ site.title }}</h5>
+            <p class="blog-description">{{ site.description }}</p>
+            <a href="/" class="sidebar-link">← Back to Home</a>
         </div>
+    </div>
 
-        <!-- Post -->
-        {% assign author = site.authors[page.author] %}
+    <!-- Share Buttons -->
+    <div class="sidebar-section">
+        {% include share.html %}
+    </div>
 
-        <div class="col-md-9 flex-first flex-md-unordered">
-            <div class="mainheading">
+    <!-- About Me -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple">
+            <h6 class="sidebar-title-simple">About Me</h6>
+            <p class="sidebar-text">AI 연구와 개발 경험을 공유합니다.</p>
+            <a href="/about-me" class="sidebar-link">더 알아보기</a>
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple">
+            <h6 class="sidebar-title-simple">Categories</h6>
+            <div class="sidebar-list">
+                {% assign categories = site.categories | sort %}
+                {% for category in categories limit:4 %}
+                <div class="sidebar-list-item">
+                    <a href="/category/{{ category[0] | slugify }}/" class="sidebar-link">
+                        {{ category[0] }} ({{ category[1].size }})
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="/categories" class="sidebar-link-small">모든 카테고리</a>
+        </div>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple">
+            <h6 class="sidebar-title-simple">Recent Posts</h6>
+            <div class="sidebar-list">
+                {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
+                {% for post in recent_posts limit:3 %}
+                <div class="sidebar-list-item">
+                    <a href="{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
+                    <small class="sidebar-date">{{ post.date | date: "%m/%d" }}</small>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Container -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <!-- Post -->
+            {% assign author = site.authors[page.author] %}
+            <div class="post-content">
+                <div class="mainheading">
 
                 <!-- Author Box -->
                 {% if page.author %}
                 <div class="row post-top-meta">
                     <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
                         {% if author.avatar %}
-                        <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
+                        <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}" onerror="this.style.display='none';">
                         {% else %}
-                        <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
+                        <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}" onerror="this.style.display='none';">
                         {% endif %}
                     </div>
                     <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
@@ -52,13 +107,13 @@ post_class: post-template
 
             <!-- Post Featured Image -->
             {% if page.image %}
-
-            {% if site.lazyimages == "enabled" %}
-            <img class="featured-image img-fluid lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-            {% else %}
-            <img class="featured-image img-fluid" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-            {% endif %}
-
+            <div class="post-featured-image">
+                {% if site.lazyimages == "enabled" %}
+                <img class="featured-image img-fluid lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}" onerror="this.style.display='none';">
+                {% else %}
+                <img class="featured-image img-fluid" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}" onerror="this.style.display='none';">
+                {% endif %}
+            </div>
             {% endif %}
             <!-- End Featured Image -->
 
@@ -101,7 +156,7 @@ post_class: post-template
                     {% assign sortedCategories = page.categories | sort %}
                     {% for category in sortedCategories %}
                     <li>
-                        <a class="smoothscroll" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
+                        <a href="{{site.baseurl}}/category/{{ category | slugify }}/">{{ category }}</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -124,18 +179,84 @@ post_class: post-template
             <!-- Prev/Next -->
             <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
             {% if page.previous.url %}
-            <a class="prev d-block col-md-6" href="{{ site.baseurl }}/{{page.previous.url}}"> &laquo; {{page.previous.title}}</a>
+            <a class="prev d-block col-md-6" href="{{ site.baseurl }}{{page.previous.url}}"> &laquo; {{page.previous.title}}</a>
             {% endif %}
             {% if page.next.url %}
-            <a class="next d-block col-md-6 text-lg-right" href="{{ site.baseurl }}/{{page.next.url}}">{{page.next.title}} &raquo; </a>
+            <a class="next d-block col-md-6 text-lg-right" href="{{ site.baseurl }}{{page.next.url}}">{{page.next.title}} &raquo; </a>
             {% endif %}
             <div class="clearfix"></div>
             </div>
             <!-- End Categories -->
 
+            </div>
+            <!-- End Post -->
         </div>
-        <!-- End Post -->
+    </div>
+</div>
 
+<!-- Mobile Sidebar (only visible on mobile) -->
+<div class="post-sidebar-mobile d-block d-md-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Blog Title & Description -->
+                <div class="sidebar-section">
+                    <div class="sidebar-card-simple blog-header">
+                        <h5 class="blog-title">{{ site.title }}</h5>
+                        <p class="blog-description">{{ site.description }}</p>
+                        <a href="/" class="sidebar-link">← Back to Home</a>
+                    </div>
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="sidebar-section">
+                    {% include share.html %}
+                </div>
+
+                <!-- About Me -->
+                <div class="sidebar-section">
+                    <div class="sidebar-card-simple">
+                        <h6 class="sidebar-title-simple">About Me</h6>
+                        <p class="sidebar-text">AI 연구와 개발 경험을 공유합니다.</p>
+                        <a href="/about-me" class="sidebar-link">더 알아보기</a>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="sidebar-section">
+                    <div class="sidebar-card-simple">
+                        <h6 class="sidebar-title-simple">Categories</h6>
+                        <div class="sidebar-list">
+                            {% assign categories = site.categories | sort %}
+                            {% for category in categories limit:4 %}
+                            <div class="sidebar-list-item">
+                                <a href="/category/{{ category[0] | slugify }}/" class="sidebar-link">
+                                    {{ category[0] }} ({{ category[1].size }})
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a href="/categories" class="sidebar-link-small">모든 카테고리</a>
+                    </div>
+                </div>
+
+                <!-- Recent Posts -->
+                <div class="sidebar-section">
+                    <div class="sidebar-card-simple">
+                        <h6 class="sidebar-title-simple">Recent Posts</h6>
+                        <div class="sidebar-list">
+                            {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
+                            {% for post in recent_posts limit:3 %}
+                            <div class="sidebar-list-item">
+                                <a href="{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
+                                <small class="sidebar-date">{{ post.date | date: "%m/%d" }}</small>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- End Article
@@ -147,7 +268,7 @@ post_class: post-template
     <div class="container">
         <div id="comments" class="row justify-content-center mb-5">
             <div class="col-md-8">
-                {% include disqus.html %}
+                {% include utterances.html %}
             </div>
         </div>
     </div>
@@ -180,3 +301,51 @@ https://search.google.com/structured-data/testing-tool/u/0/
 }
 </script>
 {% endif %}
+
+<!-- Sidebar visibility control -->
+<script>
+// 페이지 완전 로딩 후 사이드바 제어
+window.addEventListener('load', function() {
+    const sidebar = document.querySelector('.post-sidebar-fixed');
+    if (!sidebar) return;
+    
+    // 초기 로딩 지연 후 사이드바 표시
+    setTimeout(function() {
+        // 처음에는 사이드바를 보여줌
+        sidebar.classList.remove('hidden');
+        
+        function checkSidebarVisibility() {
+            const footer = document.querySelector('.footer');
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            let hidesSidebar = false;
+            
+            // 페이지 하단 근처에서만 푸터 체크 (스크롤이 85% 이상일 때)
+            const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
+            
+            if (scrollPercentage > 0.85 && footer) {
+                const footerRect = footer.getBoundingClientRect();
+                if (footerRect.top < windowHeight - 50) { // 푸터가 화면 하단 50px 이내에 올 때만
+                    hidesSidebar = true;
+                }
+            }
+            
+            // Toggle sidebar visibility
+            if (hidesSidebar) {
+                sidebar.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('hidden');
+            }
+        }
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkSidebarVisibility);
+        
+        // Initial check - 로딩 완료 후에는 기본적으로 사이드바 표시
+        sidebar.classList.remove('hidden');
+        
+    }, 800); // 800ms 후에 시작 (충분한 로딩 시간 확보)
+});
+</script>

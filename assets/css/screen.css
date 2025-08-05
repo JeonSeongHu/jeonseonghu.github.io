@@ -535,8 +535,8 @@ ul.tags li a:hover {
 }
 
 .btn.follow {
-    border-color: var(--primary-orange);
-    color: var(--primary-orange);
+    border-color: var(--primary);
+    color: var(--primary);
     padding: 3px 10px;
     text-align: center;
     border-radius: 999em;
@@ -545,8 +545,8 @@ ul.tags li a:hover {
 }
 
 .btn.subscribe {
-    background-color: var(--primary-orange);
-    border-color: var(--primary-orange);
+    background-color: var(--primary);
+    border-color: var(--primary);
     color: rgba(255, 255, 255, 1);
     fill: rgba(255, 255, 255, 1);
     border-radius: 30px;
@@ -591,8 +591,8 @@ ul.tags li a:hover {
 }
 
 .alertbar input[type="submit"] {
-    background-color: var(--primary-orange);
-    border: 1px solid var(--primary-orange);
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
     color: rgba(255, 255, 255, 1);
     fill: rgba(255, 255, 255, 1);
     font-size: 0.85rem;
@@ -787,54 +787,9 @@ iframe {
     max-width: 100%;
 }
 
-.transpdark {
-    background: rgba(0, 0, 0, 0.75);
-    color: #fff;
-}
 
-@media (min-width:768px) {
-    .jumbotron.fortags {
-        margin-bottom: -50px;
-        margin-top: 3rem;
-        padding: 0;
-        height: 350px;
-        border-radius: 0;
-        background-image: url(../images/jumbotron.jpg);
-        background-size: cover;
-    }
 
-    .jumbotron.fortags .col-md-4 {
-        background: rgba(0, 0, 0, 0.75);
-        color: #fff;
-    }
 
-    .jumbotron.fortags .row {
-        margin: 0;
-    }
-}
-
-.jumbotron.fortags {
-    margin-top: 3rem;
-    padding: 0;
-    border-radius: 0;
-    background-image: url(../images/jumbotron.jpg);
-    background-size: cover;
-}
-
-.jumbotron.fortags a {
-    padding: 5px 10px 7px;
-    background: #222;
-    border-radius: 30px;
-    color: #fff;
-    font-weight: 500;
-    text-transform: lowercase;
-    font-size: 0.8rem;
-    display: inline-block;
-}
-
-.layout-page .jumbotron.fortags {
-    display: none;
-}
 
 .mb-30px {
     margin-bottom: 30px;

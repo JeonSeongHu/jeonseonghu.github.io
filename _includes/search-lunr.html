@@ -35,7 +35,6 @@
 
 #lunrsearchresults .modal-content {
     border: none !important;
-    border-radius: 16px !important;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
     background: var(--bg-white);
     position: relative;
@@ -43,9 +42,8 @@
 }
 
 #lunrsearchresults .modal-header {
-    background: var(--primary-orange) !important;
+    background: var(--primary) !important;
     color: white !important;
-    border-radius: 16px 16px 0 0 !important;
     border-bottom: none !important;
     padding: 1.5rem 2rem;
 }
@@ -85,7 +83,6 @@
 #lunrsearchresults .modal-footer {
     border-top: 1px solid var(--border-light) !important;
     background: var(--bg-light);
-    border-radius: 0 0 16px 16px !important;
     padding: 1rem 2rem;
 }
 
@@ -110,9 +107,8 @@
 
 .lunrsearchresult a:hover,
 .lunrsearchresult a:focus {
-    background: rgba(255, 87, 34, 0.05) !important;
+    background: var(--light-primary) !important;
     text-decoration: none !important;
-    transform: translateX(5px);
 }
 
 .lunrsearchresult .title {
@@ -125,7 +121,7 @@
 }
 
 .lunrsearchresult a:hover .title {
-    color: var(--primary-orange) !important;
+    color: var(--primary) !important;
     text-decoration: none !important;
 }
 
@@ -133,12 +129,11 @@
     position: absolute;
     top: 1.5rem;
     right: 2rem;
-    background: rgba(255, 87, 34, 0.1);
+    background: var(--light-primary);
     padding: 0.2rem 0.6rem;
-    border-radius: 12px;
     font-size: 0.75rem !important;
     font-weight: 600;
-    color: var(--primary-orange) !important;
+    color: var(--primary) !important;
 }
 
 .lunrsearchresult .body {
@@ -178,8 +173,7 @@
 
 /* Search Input Styling */
 #lunrsearch {
-    border: 2px solid var(--border-light) !important;
-    border-radius: 25px !important;
+    border: 1px solid var(--border-light) !important;
     padding: 0.5rem 1rem !important;
     font-size: 0.9rem !important;
     transition: all 0.3s ease !important;
@@ -191,8 +185,8 @@
 
 #lunrsearch:focus {
     outline: none !important;
-    border-color: var(--primary-orange) !important;
-    box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px var(--light-primary) !important;
     background: var(--bg-white) !important;
 }
 
@@ -203,29 +197,27 @@
 
 /* Close Button Styling */
 .btn-close-search {
-    background: var(--primary-orange) !important;
-    border: 2px solid var(--primary-orange) !important;
+    background: var(--primary) !important;
+    border: 1px solid var(--primary) !important;
     color: white !important;
     font-weight: 600;
     padding: 0.6rem 1.5rem;
-    border-radius: 25px;
     font-size: 0.9rem;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .btn-close-search:hover {
-    background: var(--primary-orange-hover) !important;
-    border-color: var(--primary-orange-hover) !important;
+    background: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+    box-shadow: 0 4px 12px var(--light-primary);
 }
 
 /* Highlight Styling */
 mark {
-    background-color: rgba(255, 87, 34, 0.2) !important;
+    background-color: var(--light-primary) !important;
     padding: 1px 3px;
-    border-radius: 3px;
     font-weight: 600;
 }
 
@@ -280,7 +272,7 @@ body.modal-open {
 </style>
 
 <li class="nav-item search-nav-item">
-    <form class="bd-search" onSubmit="return fuseSearch(document.getElementById('lunrsearch').value);">
+    <form class="bd-search" onSubmit="fuseSearch(document.getElementById('lunrsearch').value, event); return false;">
         <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="검색..."/>
     </form>
 </li>

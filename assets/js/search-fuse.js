@@ -71,28 +71,19 @@ function displaySearchResults(results, searchTerm) {
         const item = result.item;
         const score = (1 - result.score) * 100; // 점수를 백분율로 변환
         
-        // 매치된 텍스트 하이라이트
-        let highlightedTitle = item.title;
-        let highlightedExcerpt = item.excerpt || item.content.substring(0, 150) + '...';
-        
-        if (result.matches) {
-            result.matches.forEach(match => {
-                if (match.key === 'title') {
-                    highlightedTitle = highlightText(item.title, match.indices);
-                } else if (match.key === 'content' || match.key === 'excerpt') {
-                    highlightedExcerpt = highlightText(highlightedExcerpt, match.indices);
-                }
-            });
-        }
+        // 간단한 검색어 하이라이트 적용
+        const highlightedTitle = simpleHighlight(item.title, searchTerm);
+        const excerptText = item.excerpt || item.content.substring(0, 150) + '...';
+        const highlightedExcerpt = simpleHighlight(excerptText, searchTerm);
         
         return `
             <li class='lunrsearchresult'>
                 <a href='${item.url}'>
                     <span class='title'>${highlightedTitle}</span>
-                    <span class='match-score' style='color: var(--primary-orange); font-size: 0.8rem; font-weight: 600;'>${Math.round(score)}% 일치</span>
-                    <br>
+                    <span class='match-score' style='color: var(--primary); font-size: 0.8rem; font-weight: 600;'>${Math.round(score)}% 일치</span>
+                    
                     <span class='body'>${highlightedExcerpt}</span>
-                    <br>
+                    
                     <span class='url'>${item.url}</span>
                     ${item.tags.length > 0 ? `<br><span class='tags' style='font-size: 0.7rem; opacity: 0.7;'>태그: ${item.tags.join(', ')}</span>` : ''}
                 </a>
@@ -112,7 +103,7 @@ function highlightText(text, indices) {
     
     indices.forEach(([start, end]) => {
         result += text.slice(lastIndex, start);
-        result += `<mark style="background-color: rgba(255, 87, 34, 0.2); padding: 1px 3px; border-radius: 3px;">${text.slice(start, end + 1)}</mark>`;
+        result += `<mark style="background-color: rgba(58, 64, 231, 0.2); padding: 1px 3px; border-radius: 3px;">${text.slice(start, end + 1)}</mark>`;
         lastIndex = end + 1;
     });
     
@@ -120,8 +111,21 @@ function highlightText(text, indices) {
     return result;
 }
 
+// 간단한 검색어 하이라이트 함수
+function simpleHighlight(text, searchTerm) {
+    if (!searchTerm || searchTerm.length < 2) return text;
+    
+    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<mark style="background-color: rgba(58, 64, 231, 0.2); padding: 1px 3px; border-radius: 3px;">$1</mark>');
+}
+
 // 검색 실행
-function fuseSearch(searchTerm) {
+function fuseSearch(searchTerm, event) {
+    // 기본 동작 방지 (form submit, page reload 등)
+    if (event && event.preventDefault) {
+        event.preventDefault();
+    }
+    
     if (!searchTerm || searchTerm.trim().length < 2) {
         alert('검색어는 2글자 이상 입력해주세요.');
         return false;
@@ -149,6 +153,21 @@ function fuseSearch(searchTerm) {
         </div>
     `;
     
+    // 모달 이벤트 설정 (모달 생성 후)
+    setTimeout(() => {
+        // 배경 클릭으로 모달 닫기
+        $("#lunrsearchresults").off('click').on('click', function(e) {
+            if (e.target === this) {
+                closeFuseSearchModal();
+            }
+        });
+        
+        // 모달 다이얼로그 클릭 시 이벤트 전파 방지
+        $("#resultsmodal").off('click').on('click', function(e) {
+            e.stopPropagation();
+        });
+    }, 100);
+    
     // 검색 실행
     const results = executeSearch(searchTerm.trim());
     displaySearchResults(results, searchTerm);
@@ -167,16 +186,9 @@ function closeFuseSearchModal() {
 document.addEventListener('DOMContentLoaded', function() {
     loadSearchData();
     
-    // ESC 키로 모달 닫기
+    // ESC 키로 모달 닫기 (전역 이벤트)
     $(document).on('keydown', function(e) {
         if (e.key === 'Escape' && $('#lunrsearchresults').hasClass('show')) {
-            closeFuseSearchModal();
-        }
-    });
-    
-    // 배경 클릭으로 모달 닫기
-    $("#lunrsearchresults").on('click', function(e) {
-        if (e.target === this) {
             closeFuseSearchModal();
         }
     });

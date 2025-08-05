@@ -115,12 +115,14 @@ ga('send', 'pageview');
 
 <!-- Site Title
 ================================================== -->
+{% unless page.layout == 'post' %}
 <div class="mainheading">
     <h1 class="sitetitle">{{ site.name }}</h1>
     <p class="lead">
         {{ site.description }}
     </p>
 </div>
+{% endunless %}
 
 <!-- Content
 ================================================== -->
@@ -152,7 +154,7 @@ ga('send', 'pageview');
 </div> <!-- /.site-content -->
 
 <div class="jumbotron fortags fullwidth-section">
-	<div class="d-md-flex h-100">
+	<div class="d-md-flex">
 		<div class="col-md-4 transpdark align-self-center text-center h-100">
             <div class="d-md-flex align-items-center justify-content-center h-100">
                 <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>

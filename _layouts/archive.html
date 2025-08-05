@@ -3,19 +3,72 @@ layout: default
 title: Archive
 ---
 
+<!-- Featured Section for Category -->
+<div class="featured-box">
+    <h1 class="page-title">{{ page.title | capitalize }}</h1>
+    <p>Explore all posts in the <strong>{{ page.title }}</strong> category</p>
+</div>
+
 <!-- Begin List Posts
 ================================================== -->
 <section class="recent-posts">
-<div class="section-title">
-    <h2>Archive of posts with <span>{{ page.type }} '{{ page.title }}'</span></h2>
-</div>
 <div class="row listrecent">
 
+{% assign post_count = page.posts | size %}
+<div class="col-12 mb-4">
+    <p class="text-muted">
+        <i class="fas fa-archive" style="color: var(--primary);"></i> 
+        {{ post_count }} post{% if post_count != 1 %}s{% endif %} found in this category
+    </p>
+</div>
+
 {% for post in page.posts %}
-
     {% include postbox.html %}
-
 {% endfor %}
 
 </div>
+
+{% if page.posts.size == 0 %}
+<div class="col-12 text-center mt-5">
+    <div class="card border-0 bg-light">
+        <div class="card-body py-5">
+            <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+            <h4 class="text-muted">No posts found</h4>
+            <p class="text-muted">There are no posts in this category yet.</p>
+            <a href="/" class="btn btn-primary">← Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+</section>
+
+<!-- Navigation for Other Categories -->
+<section class="other-categories mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="fas fa-tags" style="color: var(--primary);"></i> 
+                Explore Other Categories
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                {% assign categories = site.categories | sort %}
+                {% for category in categories %}
+                    {% unless category[0] == page.title %}
+                    <div class="col-md-6 col-lg-4 mb-2">
+                        <a href="/category/{{ category[0] | slugify }}/" class="text-decoration-none">
+                            <div class="p-2 border rounded hover-shadow">
+                                <i class="fas fa-folder" style="color: var(--primary);"></i>
+                                {{ category[0] | capitalize }}
+                                <span class="badge badge-secondary ml-2">{{ category[1].size }}</span>
+                            </div>
+                        </a>
+                    </div>
+                    {% endunless %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </section>
