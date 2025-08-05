@@ -58,7 +58,7 @@ title: Archive
                 {% for category in categories %}
                     {% unless category[0] == page.title %}
                     <div class="col-md-6 col-lg-4 mb-2">
-                        <a href="/category/{{ category[0] | slugify }}/" class="text-decoration-none">
+                        <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="text-decoration-none">
                             <div class="p-2 border rounded hover-shadow">
                                 <i class="fas fa-folder" style="color: var(--primary);"></i>
                                 {{ category[0] | capitalize }}

@@ -45,6 +45,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     background-color: var(--bg-white);
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -93,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
     background: var(--primary) !important;
-    border: 2px solid var(--primary) !important;
+    border: 1px solid var(--primary) !important;
     color: white !important;
     font-weight: 600;
     padding: 0.75rem 2rem;
@@ -112,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-outline-primary {
     background: transparent !important;
-    border: 2px solid var(--primary) !important;
+    border: 1px solid var(--primary) !important;
     color: var(--primary) !important;
     font-weight: 600;
     padding: 0.75rem 2rem;
@@ -1329,6 +1330,11 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .featured-box {
         padding: 2rem 1.5rem;
+        width: 100% !important;
+        left: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        position: static !important;
     }
     
     .featured-box h3 {
@@ -1365,6 +1371,24 @@ h1, h2, h3, h4, h5, h6 {
     .featured-box {
         padding: 1.5rem 1rem;
         margin: 1.5rem 0;
+        width: 100% !important;
+        left: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        position: static !important;
+    }
+    
+    .featured-box .page-title {
+        font-size: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .featured-box .page-title::after {
+        left: 1rem;
+    }
+    
+    .featured-box p {
+        padding: 0 1rem;
     }
     
     .featured-box h3 {
@@ -1377,6 +1401,39 @@ h1, h2, h3, h4, h5, h6 {
     
     .listfeaturedtag .wrapthumbnail {
         height: 160px;
+    }
+}
+
+/* 매우 작은 화면을 위한 추가 처리 */
+@media (max-width: 480px) {
+    .featured-box {
+        padding: 1rem 0.5rem !important;
+        margin: 1rem 0 !important;
+    }
+    
+    .featured-box .page-title {
+        font-size: 1.75rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .featured-box .page-title::after {
+        left: 0.5rem !important;
+    }
+    
+    .featured-box p {
+        padding: 0 0.5rem !important;
+        font-size: 0.95rem !important;
+    }
+}
+
+/* 아주 작은 화면 (320px 이하) */
+@media (max-width: 320px) {
+    .featured-box .page-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .featured-box p {
+        font-size: 0.9rem !important;
     }
 }
 

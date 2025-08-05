@@ -40,7 +40,7 @@ post_class: post-template
                 {% assign categories = site.categories | sort %}
                 {% for category in categories limit:4 %}
                 <div class="sidebar-list-item">
-                    <a href="/category/{{ category[0] | slugify }}/" class="sidebar-link">
+                    <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="sidebar-link">
                         {{ category[0] }} ({{ category[1].size }})
                     </a>
                 </div>
@@ -230,7 +230,7 @@ post_class: post-template
                             {% assign categories = site.categories | sort %}
                             {% for category in categories limit:4 %}
                             <div class="sidebar-list-item">
-                                <a href="/category/{{ category[0] | slugify }}/" class="sidebar-link">
+                                <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="sidebar-link">
                                     {{ category[0] }} ({{ category[1].size }})
                                 </a>
                             </div>
