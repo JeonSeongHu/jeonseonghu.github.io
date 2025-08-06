@@ -1,0 +1,14 @@
+{
+  "name": "jekyll-image-paste",
+  "version": "1.0.0",
+  "description": "Automatically paste clipboard images to Jekyll blog",
+  "scripts": {
+    "paste": "node paste-image.js"
+  },
+  "dependencies": {
+    "clipboardy": "^3.0.0"
+  },
+  "devDependencies": {},
+  "keywords": ["jekyll", "markdown", "image", "clipboard"],
+  "author": "jeonseonghu"
+} 

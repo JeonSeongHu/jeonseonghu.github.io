@@ -1,0 +1,8 @@
+[
+    {
+        "key": "ctrl+alt+v",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Paste Image",
+        "when": "editorTextFocus"
+    }
+] 
