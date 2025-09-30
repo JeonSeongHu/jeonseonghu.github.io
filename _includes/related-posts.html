@@ -1,0 +1,47 @@
+{% assign max_related = include.limit | default: 3 %}
+{% assign count = 0 %}
+
+<div class="related-posts mt-5">
+  <div class="section-title">
+    <h2><span>{% if site.active_lang == 'en' %}Related Posts{% else %}관련 글{% endif %}</span></h2>
+  </div>
+
+  <ul class="related-posts-list">
+    {% assign sorted = site.posts | sort: "date" | reverse %}
+    {% if page.series %}
+      {% for p in sorted %}
+        {% if p.url != page.url and p.series == page.series and count < max_related %}
+          <li>
+            <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+            <small>{{ p.date | date: "%Y.%m.%d" }}</small>
+          </li>
+          {% assign count = count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% elsif page.tags %}
+      {% for p in sorted %}
+        {% if p.url != page.url and p.tags and page.tags %}
+          {% assign matched = false %}
+          {% for t in page.tags %}
+            {% if p.tags contains t %}
+              {% assign matched = true %}
+            {% endif %}
+          {% endfor %}
+          {% if matched and count < max_related %}
+            <li>
+              <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+              <small>{{ p.date | date: "%Y.%m.%d" }}</small>
+            </li>
+            {% assign count = count | plus: 1 %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+
+  {% if page.series %}
+    <div class="series-note text-muted small">{% if site.active_lang == 'en' %}Series{% else %}시리즈{% endif %}: {{ page.series }}</div>
+  {% endif %}
+</div>
+
+

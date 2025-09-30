@@ -1,0 +1,36 @@
+{% if page.series %}
+  {% assign series_posts = site.posts | where: "series", page.series | sort: "date" %}
+  {% if series_posts.size > 1 %}
+  <div class="series-list mt-4 mb-4">
+    <div class="section-title">
+      <h2><span>{% if site.active_lang == 'en' %}Series{% else %}시리즈 모음{% endif %}</span></h2>
+    </div>
+    <ol class="list-unstyled pl-3">
+      {% for sp in series_posts %}
+        <li class="mb-2 {% if sp.url == page.url %}font-weight-bold{% endif %}">
+          {% if sp.url == page.url %}
+            <span>• {{ sp.title }}</span>
+          {% else %}
+            <a href="{{ site.baseurl }}{{ sp.url }}">{{ sp.title }}</a>
+          {% endif %}
+          <small class="text-muted ml-2">{{ sp.date | date: "%Y.%m.%d" }}</small>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+  {% endif %}
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,6 +21,7 @@
     --border-light: rgba(0, 0, 0, 0.08);
     --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.04);
     --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --radius: 0;
 }
 
 /* ============================================
@@ -98,10 +99,10 @@ h1, h2, h3, h4, h5, h6 {
     color: white !important;
     font-weight: 600;
     padding: 0.75rem 2rem;
-    // border-radius: 8px;
+    border-radius: var(--radius);
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    box-shadow: var(--shadow-subtle);
+    box-shadow: none;
 }
 
 .btn-primary:hover {
@@ -117,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary) !important;
     font-weight: 600;
     padding: 0.75rem 2rem;
-    // border-radius: 8px;
+    border-radius: var(--radius);
     font-size: 0.95rem;
     transition: all 0.3s ease;
 }
@@ -183,6 +184,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .modal-header {
     border-radius: 0 !important;
+    background-color: white !important; /* 상단 바 하얀색 */
+    padding: 0.75rem 1rem !important; /* 세로 길이 축소 */
 }
 
 .article-post blockquote {
@@ -190,7 +193,7 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(58, 64, 231, 0.03);
     padding: 1.5rem 2rem;
     margin: 2rem 0;
-    // border-radius: 0 8px 8px 0;
+    border-radius: 0;
     font-style: italic;
     color: var(--text-medium);
 }
@@ -200,11 +203,11 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 
 .featured-box {
-    background: var(--primary);
-    color: white;
+    background: transparent; /* 파란 배경 제거 */
+    color: inherit; /* 페이지 기본 텍스트 색상 사용 */
     padding: 3rem 0;
     margin: 2rem 0;
-    box-shadow: var(--shadow-medium);
+    box-shadow: none; /* 그림자 제거하여 깔끔하게 */
     width: 100vw;
     position: relative;
     left: 50%;
@@ -214,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .featured-box .page-title {
-    color: white !important;
+    color: inherit !important; /* 제목 색상을 상속하여 페이지 기본 색과 일치 */
     font-weight: 800;
     font-size: 2.5rem;
     margin-top: 0rem;
@@ -234,7 +237,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 2rem;
     width: 60px;
     height: 3px;
-    background: white;
+    background: currentColor; /* 언더라인을 제목 색상과 동일하게 */
 }
 
 .featured-box p {
@@ -251,7 +254,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .featured-box h3 {
-    color: white !important;
+    color: inherit !important; /* h3도 페이지 기본 색상으로 */
     font-weight: 800;
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -286,6 +289,137 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-medium);
 }
 
+/* Reading progress bar */
+#read-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--primary);
+    z-index: 2000;
+    transition: width 0.15s ease-out;
+}
+
+/* Series & Related */
+.series-list ol { counter-reset: item; }
+.series-list li { line-height: 1.5; }
+.related-posts .section-title h2 { font-size: 1.1rem !important; }
+.article-divider {
+    margin: 2.5rem 0;
+    border: 0;
+    border-top: 1px solid var(--border-light);
+}
+
+/* Tighter, smaller typography for series & related sections */
+.series-list .section-title h2,
+.related-posts .section-title h2 {
+    font-size: 1.0rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.series-list ol {
+    padding-left: 1rem;
+}
+.series-list li {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+.series-list small { font-size: 0.7rem; }
+
+.listrecent .card h2.card-title {
+    font-size: 1.0rem !important;
+}
+.listrecent .card .card-text {
+    font-size: 0.85rem !important;
+}
+.listrecent .card .author-thumb { width: 24px; height: 24px; }
+.listrecent .card .post-date { font-size: 0.7rem !important; }
+.listrecent .card .card-body { padding: 1rem !important; }
+.listrecent .card .card-footer { padding: 0.75rem 1rem !important; }
+
+/* Related posts as compact list */
+.related-posts-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.25rem 0 0.5rem 0;
+}
+.related-posts-list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+    border-top: 1px dashed var(--border-light);
+}
+.related-posts-list li:first-child { border-top: 0; }
+.related-posts-list a { color: var(--text-dark) !important; font-size: 0.9rem; }
+.related-posts-list a:hover { color: var(--primary) !important; }
+.related-posts-list small { color: var(--text-light); font-size: 0.75rem; white-space: nowrap; }
+
+/* Title categories under title */
+.title-categories.tags {
+    margin-top: 0.25rem !important;
+}
+.title-categories.tags li a {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+}
+
+/* Inline follow menu */
+.follow-inline .btn { border-radius: var(--radius) !important; }
+
+/* Smooth inline follow menu */
+#followMenu {
+    display: inline-flex;
+    gap: 0.4rem;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity .18s ease, transform .18s ease;
+    pointer-events: none;
+}
+#followMenu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#followMenu .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    border-radius: 0 !important;
+}
+
+/* square follow trigger */
+#followToggle {
+    border-radius: 0 !important;
+}
+
+/* Code block enhancements */
+pre { position: relative; }
+.code-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    color: var(--text-medium);
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    cursor: pointer;
+}
+.code-lang-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: var(--light-primary);
+    color: var(--primary);
+    border: 1px solid rgba(58,64,231,0.2);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+}
+
 .footer a {
     color: var(--text-medium) !important;
     font-weight: 500;
@@ -304,6 +438,277 @@ h1, h2, h3, h4, h5, h6 {
 .timeline {
     margin: 1.5rem 0;
     position: relative;
+}
+
+/* Layout helpers for About page */
+
+/* Hide site title on About page */
+body.about-page-custom .mainheading {
+    display: none !important;
+}
+
+/* featured-box not used in about page anymore */
+
+.about-content-wrapper {
+    margin-left: 280px; /* reserve space for fixed sidebar */
+    padding: 0 0.5rem 0 0.3rem; /* 좌우 여백 더욱 축소 */
+    margin-top: 6rem; /* About Me 위 공백 대폭 증가 */
+    margin-right: 0.5rem; /* 오른쪽 여백 더욱 최소화 */
+}
+
+.about-content-wrapper .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.about-content-wrapper .row {
+    display: block;
+    max-width: 100%;
+}
+
+/* About page specific typography */
+body.about-page-custom .about-main {
+    font-size: 0.9rem; /* 기본 폰트 크기 약간 증가 */
+    width: 100%;
+}
+
+body.about-page-custom .about-main h1 {
+    font-size: 1.8rem; /* 제목 크기 약간 증가 */
+    margin-bottom: 0.9rem;
+}
+
+body.about-page-custom .about-main h4 {
+    font-size: 1.35rem; /* h4 크기 증가 */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+body.about-page-custom .about-main h4:first-child {
+    margin-top: 0; /* 첫 번째 h4(About Me)는 상단 여백 제거 */
+}
+
+body.about-page-custom .about-main p {
+    margin-bottom: 0.7rem; /* 문단 여백 약간 증가 */
+    line-height: 1.6;
+}
+
+body.about-page-custom .about-main .timeline {
+    margin: 1rem 0; /* 타임라인 여백 축소 */
+}
+
+body.about-page-custom .about-main .timeline-item {
+    margin-bottom: 1.2rem; /* 타임라인 아이템 간격 더욱 줄임 */
+}
+
+body.about-page-custom .about-main .timeline-title {
+    font-size: 0.95rem; /* 타임라인 제목 크기 약간 증가 */
+    margin-bottom: 0.25rem;
+}
+
+body.about-page-custom .about-main .timeline-subtitle {
+    font-size: 0.8rem; /* 타임라인 부제목 크기 약간 증가 */
+    margin-bottom: 0.35rem;
+}
+
+body.about-page-custom .about-main .timeline-description {
+    font-size: 0.85rem; /* 타임라인 설명 크기 약간 증가 */
+    line-height: 1.5;
+}
+
+body.about-page-custom .about-main .timeline-date {
+    font-size: 0.75rem; /* 날짜 크기 약간 증가 */
+    padding: 0.18rem 0.55rem;
+}
+
+body.about-page-custom .about-main .achievement-grid {
+    gap: 1rem; /* 그리드 간격 축소 */
+    margin: 1rem 0;
+}
+
+body.about-page-custom .about-main .achievement-card {
+    padding: 0.8rem; /* 패딩 균일하게 */
+    padding-top: 10rem; /* 상단 이미지 영역만큼 패딩 (2배 증가) */
+    border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
+    background: #fff !important; /* 텍스트 영역은 완전히 흰색 */
+    position: relative;
+}
+
+body.about-page-custom .about-main .achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 9rem; /* 이미지 영역 높이 (2배 증가) */
+    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80');
+    background-size: cover;
+    background-position: center 30%;
+    border-radius: var(--radius) var(--radius) 0 0; /* 상단 모서리만 둥글게 */
+    z-index: 0;
+}
+
+body.about-page-custom .about-main .achievement-card:hover {
+    border-color: var(--primary-hover) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+body.about-page-custom .about-main .achievement-title {
+    font-size: 0.9rem; /* 업적 제목 크기 약간 증가 */
+    line-height: 1.3rem;
+    position: relative;
+    z-index: 1;
+}
+
+body.about-page-custom .about-main .achievement-org {
+    font-size: 0.8rem; /* 조직명 크기 약간 증가 */
+    position: relative;
+    z-index: 1;
+}
+
+body.about-page-custom .about-main .achievement-desc {
+    font-size: 0.85rem; /* 설명 크기 약간 증가 */
+    position: relative;
+    z-index: 1;
+}
+
+body.about-page-custom .about-main .contact-grid {
+    gap: 0.8rem; /* 연락처 그리드 간격 축소 */
+    margin: 1rem 0;
+}
+
+body.about-page-custom .about-main .contact-card {
+    padding: 0.8rem; /* 연락처 카드 패딩 축소 */
+}
+
+/* Apply same style as post-sidebar-fixed */
+.profile-left {
+    position: fixed;
+    left: 120px; /* 약간 오른쪽으로 이동 */
+    top: 160px; /* 사이드바 시작 위치를 아래로 */
+    width: 200px;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    z-index: 100;
+    padding-right: 15px;
+}
+
+
+
+.profile-left::-webkit-scrollbar {
+    width: 3px;
+}
+
+.profile-left::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.profile-left::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 3px;
+}
+
+.profile-left::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
+}
+
+.profile-left .sidebar-section {
+    margin-bottom: 1.2rem;
+}
+
+.profile-left h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-top: 0.5rem !important; /* article-post h3 스타일 상속 방지 */
+    margin-bottom: 0.3rem;
+}
+
+.profile-left p,
+.profile-left li {
+    font-size: 0.7rem;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+}
+
+.profile-left ul {
+    margin-top: 0.5rem;
+    text-align: left;
+    padding-left: 0;
+}
+
+.profile-left .img-fluid {
+    width: 160px;
+    height: 160px;
+}
+
+.profile-left .sidebar-link {
+    font-size: 0.7rem;
+    color: var(--text-dark) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.profile-left .sidebar-link:hover {
+    color: var(--primary) !important;
+}
+
+/* Social Icons */
+.profile-left .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.profile-left .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    color: var(--text-medium) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.profile-left .social-icon:hover {
+    background: var(--primary);
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.profile-left .profile-placeholder {
+    display: block;
+    margin: 0 auto;
+}
+
+.about-main {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .about-content-wrapper {
+        margin-left: 0;
+        padding: 0 1rem; /* 모바일에서도 좌우 여백 축소 */
+        margin-top: 4rem; /* 모바일에서는 약간 줄임 */
+    }
+    
+    .profile-left {
+        display: none !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .about-content-wrapper {
+        margin-left: 0;
+        padding: 0 0.8rem; /* 더 작은 화면에서도 여백 최소화 */
+        margin-top: 3rem; /* 더 작은 화면에서는 더 줄임 */
+    }
 }
 
 .timeline::before {
@@ -396,23 +801,28 @@ h1, h2, h3, h4, h5, h6 {
 
 .achievement-card {
     background: #fff;
-    border: 1px solid #000000;
-    border-radius: 0;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
     padding: 1.2rem;
+    padding-top: 10rem; /* 상단 이미지 영역만큼 패딩 (2배 증가) */
     transition: transform 0.2s ease;
     position: relative;
     overflow: hidden;
 }
 
-// .achievement-card::before {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     height: 7px;
-//     background: linear-gradient(90deg, var(--primary)  , var(--primary-hover));
-// }
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 9rem; /* 이미지 영역 높이 (2배 증가) */
+    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80');
+    background-size: cover;
+    background-position: center 30%;
+    border-radius: var(--radius) var(--radius) 0 0;
+    z-index: 0;
+}
 
 .achievement-card:hover {
     transform: translateY(-2px);
@@ -425,6 +835,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.5rem;
     line-height: 1.3rem;
     font-size: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .achievement-org {
@@ -432,9 +844,13 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.85rem;
     line-height: 1.3rem;
     margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .achievement-desc {
+    position: relative;
+    z-index: 1;
     color: rgba(0, 0, 0, .7);
     font-size: 0.9rem;
     line-height: 1.4;
@@ -458,8 +874,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-card {
     background: #fff;
-    border: 1px solid #000000;
-    border-radius: 0;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
     padding: 1rem;
     transition: all 0.3s ease;
     position: relative;
@@ -530,8 +946,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Category Pages Styles */
 .categories-overview .card {
-    border: 1px solid #000000 !important;
-    border-radius: 0 !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: var(--radius) !important;
     transition: all 0.3s ease;
     overflow: hidden;
     background: var(--bg-white);
@@ -580,11 +996,13 @@ h1, h2, h3, h4, h5, h6 {
 .badge-primary {
     background-color: var(--primary) !important;
     color: white !important;
+    border-radius: var(--radius) !important;
 }
 
 .badge-secondary {
     background-color: var(--text-medium) !important;
     color: white !important;
+    border-radius: var(--radius) !important;
 }
 
 .category-posts ul li a {
@@ -653,25 +1071,74 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Fixed sidebar specific styling */
 .post-sidebar-fixed .sidebar-section {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.2rem; /* profile-left와 동일 */
 }
 
 .post-sidebar-fixed .sidebar-title-simple {
     font-size: 0.75rem;
     margin-bottom: 0.5rem;
+    font-weight: 700; /* profile-left h3와 유사하게 */
 }
 
 .post-sidebar-fixed .sidebar-text {
-    font-size: 0.7rem;
-    margin-bottom: 0.4rem;
+    font-size: 0.7rem; /* profile-left p, li와 동일 */
+    line-height: 1.4; /* profile-left와 동일 */
+    margin-bottom: 0.4rem; /* profile-left와 동일 */
 }
 
 .post-sidebar-fixed .sidebar-link {
-    font-size: 0.7rem;
+    font-size: 0.7rem; /* profile-left와 동일 */
+    color: var(--text-dark) !important; /* profile-left와 동일 */
+    text-decoration: none;
+    transition: color 0.3s ease; /* profile-left와 동일 */
+}
+
+.post-sidebar-fixed .sidebar-link:hover {
+    color: var(--primary) !important; /* profile-left와 동일 */
 }
 
 .post-sidebar-fixed .sidebar-link-small {
     font-size: 0.65rem;
+}
+
+/* Share buttons - social-icon 스타일과 동일하게 */
+.post-sidebar-fixed .share p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.post-sidebar-fixed .share ul {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.post-sidebar-fixed .share ul li {
+    margin: 0 !important;
+}
+
+.post-sidebar-fixed .share ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    color: var(--text-medium) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.post-sidebar-fixed .share ul li a:hover {
+    background: var(--primary);
+    color: white !important;
+    transform: translateY(-2px);
 }
 
 /* Blog header in sidebar */
@@ -698,11 +1165,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-sidebar-fixed .blog-title {
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* profile-left h3와 동일 */
+    font-weight: 700; /* profile-left h3와 동일 */
 }
 
 .post-sidebar-fixed .blog-description {
-    font-size: 0.7rem;
+    font-size: 0.7rem; /* profile-left p와 동일 */
+    line-height: 1.4; /* profile-left와 동일 */
 }
 
 .sidebar-card-simple {
@@ -785,10 +1254,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Fixed Left Sidebar - only on post pages */
 .post-sidebar-fixed {
     position: fixed;
-    left: 80px;
-    top: 100px;
+    left: 120px; /* profile-left와 동일하게 약간 오른쪽으로 */
+    top: 160px; /* profile-left와 동일하게 */
     width: 200px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 160px); /* profile-left와 동일하게 */
     overflow-y: auto;
     z-index: 100;
     padding-right: 15px;
@@ -825,14 +1294,73 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid var(--border-light);
 }
 
-/* Hide on smaller screens */
-@media (max-width: 1200px) {
-    .post-sidebar-fixed {
-        display: none !important;
+/* Post page에서 사이드바 겹침 방지 */
+@media (min-width: 1371px) {
+    body:has(.post-sidebar-fixed) .container .row {
+        margin-left: 310px; /* 본문을 왼쪽으로 이동 */
+    }
+    
+    body:has(.post-sidebar-fixed) .container {
+        max-width: 100%;
     }
 }
 
+/* Hide on smaller screens */
+@media (max-width: 1370px) {
+    .post-sidebar-fixed {
+        display: none !important;
+    }
+    
+    body:has(.post-sidebar-fixed) .container .row {
+        margin-left: auto;
+    }
+}
 
+/* PageNavigation 스타일 */
+.PageNavigation {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.PageNavigation a {
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 1rem;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+}
+
+.PageNavigation a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.PageNavigation .prev {
+    text-align: left;
+}
+
+.PageNavigation .next {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .PageNavigation {
+        flex-direction: column;
+    }
+    
+    .PageNavigation a {
+        width: 100%;
+        text-align: center !important;
+    }
+}
 
 
 
@@ -1038,7 +1566,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Featured post cards (container only) */
 .listfeaturedtag {
-    border: 1px solid var(--primary) !important;
+    border: 1px solid var(--border-light) !important;
     border-radius: 0 !important;
     transition: all 0.3s ease;
     overflow: hidden;
@@ -1238,7 +1766,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--light-primary) !important;
     color: var(--primary) !important;
     padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+    border-radius: var(--radius);
     font-size: 0.8rem;
     font-weight: 600;
     text-decoration: none;
@@ -1274,7 +1802,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--border-light) !important;
     padding: 0.75rem 1.25rem;
     margin: 0 0.25rem;
-    border-radius: 8px !important;
+    border-radius: var(--radius) !important;
     font-weight: 500;
     transition: all 0.3s ease;
     background: var(--bg-white);
@@ -1300,7 +1828,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-control {
     border: 2px solid var(--border-light) !important;
-    border-radius: 8px !important;
+    border-radius: var(--radius) !important;
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
     transition: all 0.3s ease;

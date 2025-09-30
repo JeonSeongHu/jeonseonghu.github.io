@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,7 +27,7 @@
     }
 </style>
 
-<title>{{ page.title }} | {{site.name}}</title>
+<title>{% if site.active_lang == 'en' %}{{ page.title }} | {{site.name}}{% else %}{{ page.title }} | {{site.name}}{% endif %}</title>
 
 {% seo %}
 
@@ -54,7 +54,9 @@ ga('send', 'pageview');
 {% endif %}
 
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
-<body class="{{layout}}">
+<body class="{{layout}} {% if page.custom_css_class %}{{ page.custom_css_class }}{% endif %}">
+    <!-- Reading progress bar -->
+    <div id="read-progress" aria-hidden="true"></div>
 	<!-- defer loading of font and font awesome -->
 	<noscript id="deferred-styles">
 		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
@@ -64,7 +66,7 @@ ga('send', 'pageview');
 
 <!-- Begin Menu Navigation
 ================================================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down" style="border-bottom:1px solid var(--border-light);box-shadow:none;">
 
     <div class="container pr-0">
 
@@ -89,15 +91,28 @@ ga('send', 'pageview');
                 {% else %}
                 <li class="nav-item">
                 {% endif %}
-                <a class="nav-link" href="{{ site.baseurl }}/index.html">Blog</a>
+                <a class="nav-link" href="{{ site.baseurl }}/{% if site.active_lang == 'en' %}en/{% endif %}">{% if site.active_lang == 'en' %}Blog{% else %}블로그{% endif %}</a>
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="{{ site.baseurl }}/about-me">About Me</a>
+                <a class="nav-link" href="{{ site.baseurl }}/{% if site.active_lang == 'en' %}en/{% endif %}about-me">{% if site.active_lang == 'en' %}About{% else %}소개{% endif %}</a>
                 </li>
 
                 {% include search-lunr.html %}
 
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {% if site.active_lang == 'en' %}English{% else %}한국어{% endif %}
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="langDropdown">
+                    {% if site.active_lang != 'ko' %}
+                    <a class="dropdown-item" href="{{ site.baseurl }}{{ page.url | replace_first: '/en', '' }}">한국어</a>
+                    {% endif %}
+                    {% if site.active_lang != 'en' %}
+                    <a class="dropdown-item" href="{{ site.baseurl }}/en{{ page.url }}">English</a>
+                    {% endif %}
+                  </div>
+                </li>
             </ul>
 
         <!-- End Menu -->
@@ -157,18 +172,18 @@ ga('send', 'pageview');
 	<div class="d-md-flex">
 		<div class="col-md-4 transpdark align-self-center text-center h-100">
             <div class="d-md-flex align-items-center justify-content-center h-100">
-                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">탐색 <span class="d-none d-md-inline">→</span></h2>
             </div>
 		</div>
 		<div class="col-md-8 p-3 align-self-center text-center">
             {% assign categories_list = site.categories %}
             {% if categories_list.first[0] == null %}
                 {% for category in categories_list %}
-                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">{{ category | camelcase }} ({{ site.tags[category].size }})</a>
+                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">{{ category | strip }} ({{ site.tags[category].size }})</a>
                 {% endfor %}
             {% else %}
                 {% for category in categories_list %}
-                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | camelcase }} ({{ category[1].size }})</a>
+                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | strip }} ({{ category[1].size }})</a>
                 {% endfor %}
             {% endif %}
             {% assign categories_list = nil %}

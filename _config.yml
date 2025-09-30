@@ -17,6 +17,7 @@ authors:
   jeonseonghu:
     name: Seonghu Jeon
     display_name: Seonghu Jeon
+    avatar: assets/images/seonghu_jeungsa.png
     gravatar: 
     email: 
     web: https://jeonseonghu.github.io
@@ -30,6 +31,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
+  - jekyll-polyglot
     
 # Archives
 jekyll-archives:
@@ -62,3 +64,15 @@ adsense-data-ad-slot: "1363087678"
 lazyimages: "disabled"
 
 exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, vendor, _site, node_modules, .sass-cache, .jekyll-cache, .jekyll-metadata]
+
+# Internationalization (jekyll-polyglot)
+languages: ["ko", "en"]
+default_lang: "ko"
+exclude_from_localization:
+  - assets
+  - vendor
+  - node_modules
+  - _site
+  - feed.xml
+  - start.sh
+  - docker-compose.yml

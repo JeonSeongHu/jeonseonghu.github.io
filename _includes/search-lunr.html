@@ -42,21 +42,21 @@
 }
 
 #lunrsearchresults .modal-header {
-    background: var(--primary) !important;
-    color: white !important;
-    border-bottom: none !important;
-    padding: 1.5rem 2rem;
+    background: white !important; /* 하얀색 배경 */
+    color: var(--text-dark) !important; /* 어두운 텍스트 */
+    border-bottom: 1px solid #e9ecef !important; /* 연한 하단 테두리 */
+    padding: 0.75rem 1.5rem; /* 세로 길이 축소 */
 }
 
 #lunrsearchresults .modal-title {
-    color: white !important;
+    color: var(--text-dark) !important; /* 어두운 텍스트 */
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.1rem; /* 제목 크기 약간 축소 */
 }
 
 #lunrsearchresults .close {
-    color: white !important;
-    opacity: 0.9;
+    color: var(--text-dark) !important; /* 어두운 색으로 변경 */
+    opacity: 0.7;
     font-size: 1.5rem;
     font-weight: 300;
     text-shadow: none;
@@ -273,7 +273,7 @@ body.modal-open {
 
 <li class="nav-item search-nav-item">
     <form class="bd-search" onSubmit="fuseSearch(document.getElementById('lunrsearch').value, event); return false;">
-        <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="검색..."/>
+        <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="{% if site.active_lang == 'en' %}Search...{% else %}검색...{% endif %}"/>
     </form>
 </li>
 

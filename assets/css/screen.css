@@ -11,13 +11,14 @@ License: https://www.wowthemes.net/freebies-license/
     padding: 1rem 0rem;
 }
 
+/* Use design system colors from main.scss */
 a {
-    color: #00ab6b;
+    color: var(--primary);
     transition: all 0.2s;
 }
 
 a:hover {
-    color: #038252;
+    color: var(--primary-hover);
     text-decoration: none;
 }
 
@@ -35,7 +36,7 @@ pre {
     border-radius: 0px;
     line-height: 1.6;
     color: #333;
-    margin-bottom: -rem;
+    margin-bottom: 1rem;
 }
 
 .mediumnavigation {

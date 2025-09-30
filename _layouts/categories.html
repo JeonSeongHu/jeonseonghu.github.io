@@ -7,7 +7,7 @@ permalink: "/categories.html"
 <!-- Featured Section -->
 <div class="featured-box">
     <h1 class="page-title">Categories</h1>
-    <p>Browse all posts organized by topics and categories</p>
+    <p>Explore all posts categorized by topics and categories.</p>
 </div>
 
 <!-- Category Cards Overview -->
@@ -21,32 +21,32 @@ permalink: "/categories.html"
                     <div class="category-header mb-3">
                         <h5 class="card-title">
                             <i class="fas fa-folder-open" style="color: var(--primary);"></i>
-                            {{ category[0] | capitalize }}
+                             {{ category[0] }}
                         </h5>
                         <span class="badge badge-primary">{{ category[1].size }} posts</span>
                     </div>
                     
                     <div class="category-posts mb-3 flex-grow-1">
-                        <small class="text-muted">Latest posts:</small>
+                        <small class="text-muted">Recent Posts</small>
                         <ul class="list-unstyled mt-2">
                             {% for post in category[1] limit:3 %}
                             <li class="mb-1">
                                 <small>
-                                    <a href="{{ post.url }}" class="text-decoration-none">
+                            <a href="{{ site.baseurl }}{{ post.url }}" class="text-decoration-none">
                                         {{ post.title | truncate: 40 }}
                                     </a>
                                 </small>
                             </li>
                             {% endfor %}
                             {% if category[1].size > 3 %}
-                            <li><small class="text-muted">and {{ category[1].size | minus: 3 }} more...</small></li>
+                            <li><small class="text-muted">+ {{ category[1].size | minus: 3 }} more</small></li>
                             {% endif %}
                         </ul>
                     </div>
                     
                     <div class="mt-auto">
                         <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="btn btn-outline-primary btn-sm">
-                            View All Posts <i class="fas fa-arrow-right"></i>
+                            View All <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ permalink: "/categories.html"
                 <div class="section-title mt-4">
                     <h3 id="{{ category[0] | replace: " ","-" }}">
                         <i class="fas fa-tag" style="color: var(--primary);"></i>
-                        {{ category[0] | capitalize }}
+                        {{ category[0] }}
                         <small class="text-muted">({{ category[1].size }} posts)</small>
                     </h3>
                     <hr>

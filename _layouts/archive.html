@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Archive
+title: 아카이브
 ---
 
 <!-- Featured Section for Category -->
 <div class="featured-box">
-    <h1 class="page-title">{{ page.title | capitalize }}</h1>
-    <p>Explore all posts in the <strong>{{ page.title }}</strong> category</p>
+    <h1 class="page-title">{{ page.title }}</h1>
+    <p><strong>{{ page.title }}</strong> 카테고리의 글 모음</p>
 </div>
 
 <!-- Begin List Posts
@@ -18,7 +18,7 @@ title: Archive
 <div class="col-12 mb-4">
     <p class="text-muted">
         <i class="fas fa-archive" style="color: var(--primary);"></i> 
-        {{ post_count }} post{% if post_count != 1 %}s{% endif %} found in this category
+        총 {{ post_count }}개 글
     </p>
 </div>
 
@@ -33,9 +33,9 @@ title: Archive
     <div class="card border-0 bg-light">
         <div class="card-body py-5">
             <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
-            <h4 class="text-muted">No posts found</h4>
-            <p class="text-muted">There are no posts in this category yet.</p>
-            <a href="/" class="btn btn-primary">← Back to Home</a>
+            <h4 class="text-muted">게시물이 없습니다</h4>
+            <p class="text-muted">해당 카테고리에 아직 게시물이 없습니다.</p>
+            <a href="{{ site.baseurl }}/" class="btn btn-primary">← 홈으로</a>
         </div>
     </div>
 </div>
@@ -49,7 +49,7 @@ title: Archive
         <div class="card-header">
             <h5 class="mb-0">
                 <i class="fas fa-tags" style="color: var(--primary);"></i> 
-                Explore Other Categories
+                다른 카테고리 보기
             </h5>
         </div>
         <div class="card-body">
@@ -61,7 +61,7 @@ title: Archive
                         <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="text-decoration-none">
                             <div class="p-2 border rounded hover-shadow">
                                 <i class="fas fa-folder" style="color: var(--primary);"></i>
-                                {{ category[0] | capitalize }}
+                                {{ category[0] }}
                                 <span class="badge badge-secondary ml-2">{{ category[1].size }}</span>
                             </div>
                         </a>

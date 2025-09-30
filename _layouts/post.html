@@ -12,9 +12,10 @@ post_class: post-template
     <!-- Blog Title & Description -->
     <div class="sidebar-section">
         <div class="sidebar-card-simple blog-header">
+            <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}" alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: contain;">
             <h5 class="blog-title">{{ site.title }}</h5>
             <p class="blog-description">{{ site.description }}</p>
-            <a href="/" class="sidebar-link">← Back to Home</a>
+            <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
         </div>
     </div>
 
@@ -27,8 +28,8 @@ post_class: post-template
     <div class="sidebar-section">
         <div class="sidebar-card-simple">
             <h6 class="sidebar-title-simple">About Me</h6>
-            <p class="sidebar-text">AI 연구와 개발 경험을 공유합니다.</p>
-            <a href="/about-me" class="sidebar-link">더 알아보기</a>
+            <p class="sidebar-text">Share my research and development experiences.</p>
+            <a href="{{ site.baseurl }}/about-me" class="sidebar-link">Learn More</a>
         </div>
     </div>
 
@@ -46,7 +47,7 @@ post_class: post-template
                 </div>
                 {% endfor %}
             </div>
-            <a href="/categories" class="sidebar-link-small">모든 카테고리</a>
+            <a href="{{ site.baseurl }}/categories" class="sidebar-link-small">All Categories</a>
         </div>
     </div>
 
@@ -58,8 +59,8 @@ post_class: post-template
                 {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
                 {% for post in recent_posts limit:3 %}
                 <div class="sidebar-list-item">
-                    <a href="{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
-                    <small class="sidebar-date">{{ post.date | date: "%m/%d" }}</small>
+                    <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
+                    <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
                 </div>
                 {% endfor %}
             </div>
@@ -76,8 +77,8 @@ post_class: post-template
             <div class="post-content">
                 <div class="mainheading">
 
-                <!-- Author Box -->
-                {% if page.author %}
+                <!-- Author Box - 숨김 처리 -->
+                {% if false %}
                 <div class="row post-top-meta">
                     <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
                         {% if author.avatar %}
@@ -87,7 +88,13 @@ post_class: post-template
                         {% endif %}
                     </div>
                     <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
-                        <a target="_blank" class="link-dark" href="{{ author.web }}">{{ author.display_name }}</a><a target="_blank" href="{{ author.twitter }}" class="btn follow">Follow</a>
+                        <a target="_blank" class="link-dark" href="{{ author.web }}">{{ author.display_name }}</a>
+                        <a href="#" class="btn follow ml-1" id="followToggle">Follow</a>
+                        <span id="followMenu" class="follow-inline ml-2">
+                            {% assign about = site.pages | where: "permalink", "/about-me" | first %}
+                            <a {% unless about.github %}style="display:none"{% endunless %} target="_blank" href="{{ about.github }}" class="btn btn-outline-primary btn-sm mr-1">GitHub</a>
+                            <a {% unless about.linkedin %}style="display:none"{% endunless %} target="_blank" href="{{ about.linkedin }}" class="btn btn-outline-primary btn-sm">LinkedIn</a>
+                        </span>
                         <br>
                         <span class="author-description">{{ author.description }}</span>
                     </div>
@@ -96,6 +103,32 @@ post_class: post-template
 
                 <!-- Post Title -->
                 <h1 class="posttitle">{{ page.title }}</h1>
+                {% if page.categories %}
+                <ul class="title-categories tags mt-2 mb-0">
+                    {% assign titleCats = page.categories | sort %}
+                    {% for category in titleCats %}
+                    <li><a href="{{site.baseurl}}/category/{{ category | slugify }}/">{{ category }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <!-- Inline follow menu script -->
+                <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                  var btn = document.getElementById('followToggle');
+                  var menu = document.getElementById('followMenu');
+                  if (!btn || !menu) return;
+                  btn.addEventListener('click', function(e){
+                    e.preventDefault();
+                    menu.classList.toggle('open');
+                  });
+                  document.addEventListener('click', function(e){
+                    if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== btn){
+                      menu.classList.remove('open');
+                    }
+                  });
+                });
+                </script>
 
             </div>
 
@@ -125,13 +158,17 @@ post_class: post-template
                         <p><em>{{page.beforetoc}}</em></p>
                     {% endif %}
                     <div class="toc mt-4 mb-4 lead">
-                        <h3 class="font-weight-bold">Summary</h3>
+                        <h3 class="font-weight-bold">Table of Contents</h3>
                         {% include toc.html html=content %}
                     </div>
                 {% endif %}
                 <!-- End Toc -->
                 {{content}}
             </div>
+
+            <hr class="article-divider" />
+
+            {% include series-list.html %}
 
             <!-- Rating -->
             {% if page.rating %}
@@ -143,25 +180,14 @@ post_class: post-template
             <!-- Post Date -->
             <p>
             <small>
-                <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>           
+                <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date: "%Y.%m.%d" }}</time></span>
                 {% if page.last_modified_at %}
-                (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
+                (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%Y.%m.%d" }}</time>)
                 {% endif %}
                 </small>
             </p>
 
-            <!-- Post Categories -->
-            <div class="after-post-cats">
-                <ul class="tags mb-4">
-                    {% assign sortedCategories = page.categories | sort %}
-                    {% for category in sortedCategories %}
-                    <li>
-                        <a href="{{site.baseurl}}/category/{{ category | slugify }}/">{{ category }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <!-- End Categories -->
+            <!-- Post Categories (moved to under title) -->
 
             <!-- Post Tags -->
             <div class="after-post-tags">
@@ -204,7 +230,7 @@ post_class: post-template
                     <div class="sidebar-card-simple blog-header">
                         <h5 class="blog-title">{{ site.title }}</h5>
                         <p class="blog-description">{{ site.description }}</p>
-                        <a href="/" class="sidebar-link">← Back to Home</a>
+                        <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
                     </div>
                 </div>
 
@@ -217,15 +243,15 @@ post_class: post-template
                 <div class="sidebar-section">
                     <div class="sidebar-card-simple">
                         <h6 class="sidebar-title-simple">About Me</h6>
-                        <p class="sidebar-text">AI 연구와 개발 경험을 공유합니다.</p>
-                        <a href="/about-me" class="sidebar-link">더 알아보기</a>
+                        <p class="sidebar-text">Share my research and development experiences.</p>
+                        <a href="{{ site.baseurl }}/about-me" class="sidebar-link">Learn More</a>
                     </div>
                 </div>
 
                 <!-- Categories -->
                 <div class="sidebar-section">
                     <div class="sidebar-card-simple">
-                        <h6 class="sidebar-title-simple">Categories</h6>
+                            <h6 class="sidebar-title-simple">Categories</h6>
                         <div class="sidebar-list">
                             {% assign categories = site.categories | sort %}
                             {% for category in categories limit:4 %}
@@ -236,20 +262,20 @@ post_class: post-template
                             </div>
                             {% endfor %}
                         </div>
-                        <a href="/categories" class="sidebar-link-small">모든 카테고리</a>
+                        <a href="{{ site.baseurl }}/categories" class="sidebar-link-small">All Categories</a>
                     </div>
                 </div>
 
                 <!-- Recent Posts -->
                 <div class="sidebar-section">
                     <div class="sidebar-card-simple">
-                        <h6 class="sidebar-title-simple">Recent Posts</h6>
+                            <h6 class="sidebar-title-simple">Recent Posts</h6>
                         <div class="sidebar-list">
                             {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
                             {% for post in recent_posts limit:3 %}
                             <div class="sidebar-list-item">
-                                <a href="{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
-                                <small class="sidebar-date">{{ post.date | date: "%m/%d" }}</small>
+                                <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
+                                <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
                             </div>
                             {% endfor %}
                         </div>
@@ -300,6 +326,8 @@ https://search.google.com/structured-data/testing-tool/u/0/
   }
 }
 </script>
+<script src="{{ site.baseurl }}/assets/js/reading.js"></script>
+<script src="{{ site.baseurl }}/assets/js/codeblocks.js"></script>
 {% endif %}
 
 <!-- Sidebar visibility control -->
