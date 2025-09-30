@@ -55,62 +55,62 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 		<h4>Experience</h4>
 		<div class="timeline">
 		    <div class="timeline-item current">
-		            <div class="timeline-dot"></div>
-		            <div class="timeline-content">
-		                <div class="timeline-date">Mar 2026 - </div>
-		                <div class="timeline-title">KAIST CVLAB</div>
-		                <div class="timeline-subtitle">M.S. Student</div>
-		                <div class="timeline-description">Research on Motion customization, 3D Gaussian splatting, and Novel View Synthesis</div>
-		            </div>
-		        </div>
-		    <div class="timeline-item current">
 		        <div class="timeline-dot"></div>
 		        <div class="timeline-content">
-		            <div class="timeline-date">Dec 2023 - Feb 2026</div>
-		            <div class="timeline-title">KAIST CVLAB</div>
-		            <div class="timeline-subtitle">Undergraduate Research Intern</div>
-		            <div class="timeline-description">Research on Motion customization, 3D Gaussian splatting, and Novel View Synthesis</div>
+		            <span class="timeline-date">Mar 2026 - Present</span>
+		            <span class="timeline-title">KAIST CVLAB</span>
+		            <span class="timeline-separator">·</span>
+		            <span class="timeline-subtitle">M.S. Student</span>
 		        </div>
 		    </div>
 		    <div class="timeline-item current">
 		        <div class="timeline-dot"></div>
 		        <div class="timeline-content">
-		            <div class="timeline-date">Mar 2022 - Feb 2026</div>
-		            <div class="timeline-title">Korea University</div>
-		            <div class="timeline-subtitle">Bachelor of Computer Science and Engineering (GPA: 4.46/4.5)</div>
-		            <div class="timeline-description">128 credits completed by the 6th semester</div>
+		            <span class="timeline-date">Dec 2023 - Feb 2026</span>
+		            <span class="timeline-title">KAIST CVLAB</span>
+		            <span class="timeline-separator">·</span>
+		            <span class="timeline-subtitle">Undergraduate Research Intern</span>
+		        </div>
+		    </div>
+		    <div class="timeline-item current">
+		        <div class="timeline-dot"></div>
+		        <div class="timeline-content">
+		            <span class="timeline-date">Mar 2022 - Feb 2026</span>
+		            <span class="timeline-title">Korea University</span>
+		            <span class="timeline-separator">·</span>
+		            <span class="timeline-subtitle">B.S. Computer Science and Engineering (GPA: 4.46/4.5)</span>
 		        </div>
 		    </div>
 		</div>
 
 		<h4>Extracurricular Activities</h4>
 		<div class="achievement-grid">
-		    <div class="achievement-card">
+		    <div class="achievement-card" style="--bg-image: url('{{ site.baseurl }}/assets/images/about-me/gdg.png')">
 		        <div class="achievement-title">Google Developer Groups on Campus, Korea University</div>
-		        <div class="achievement-org">DevRel Lead & AI Core Member | Jul 2024 - Jun 2025</div>
-		        <div class="achievement-desc">Provided Basic AI Lecture for Junior Members</div>
+		        <div class="achievement-org">DevRel Lead & AI Core | Sep 2022 - Jun 2025</div>
+		        <!-- <div class="achievement-desc">Provided Basic AI Lecture for Junior Members</div> -->
 		    </div>
-		    <div class="achievement-card">
+		    <div class="achievement-card" style="--bg-image: url('{{ site.baseurl }}/assets/images/about-me/aiku.png')">
 		        <div class="achievement-title">AIKU - Korea University AI Society</div>
-		        <div class="achievement-org">Lead | Dec 2023 - Jun 2024</div>
-		        <div class="achievement-desc">Hosted Datathons and Provided Basic AI Lecture</div>
+		        <div class="achievement-org">Lead, Senior | Jul 2022 - Dec 2025</div>
+		        <!-- <div class="achievement-desc">Hosted Datathons and Provided Basic AI Lecture</div> -->
 		    </div>
-		    <div class="achievement-card">
-		        <div class="achievement-title">고려대학교 제54대 총학생회</div>
-		        <div class="achievement-org">홍보소통국원 | 2024</div>
+		    <div class="achievement-card" style="--bg-image: url('{{ site.baseurl }}/assets/images/about-me/나날.png')">
+		        <div class="achievement-title">54th Student Council, Korea University</div>
+		        <div class="achievement-org">Public Relations & Communication Department | 2024</div>
 		        <div class="achievement-desc"></div>
 		    </div>
-		    <div class="achievement-card">
-		        <div class="achievement-title">고려대학교 제9대 정보대학 학생회</div>
-		        <div class="achievement-org">소통복지국원 | 2024</div>
+		    <div class="achievement-card" style="--bg-image: url('{{ site.baseurl }}/assets/images/about-me/이음.png')">
+		        <div class="achievement-title">9th Student Council of College of Informatics, Korea University</div>
+		        <div class="achievement-org">Communication & Welfare Department | 2024</div>
 		        <div class="achievement-desc"></div>
 		    </div>
 		</div>
 
 		<h4>Paper</h4>
-		<div class="achievement-grid">
-		    <div class="achievement-card">
-		        <div class="achievement-title">ReMoTE: A Benchmark for Object Motion Transfer</div>
+		<div class="achievement-grid paper-grid">
+		    <div class="achievement-card paper-card">
+		        <div class="achievement-title"><a href="https://ieeexplore.ieee.org/abstract/document/11137589/?casa_token=5o_frcElfd4AAAAA:FJCw5F4WR17cM7YB4q1Whh_4mWxyvzZFtT-_QMKpEtJ76ojiHc9SfS9Vw7z04GyEHauM6VamXQs" target="_blank" rel="noopener noreferrer">ReMoTE: A Benchmark for Object Motion Transfer</a></div>
 		        <div class="achievement-org">Seonghu Jeon, Jinhyuk Choi, Junghyun Hwang, Seungryong Kim†</div>
 		        <div class="achievement-desc">ITC-CSCC, 2025</div>
 		    </div>

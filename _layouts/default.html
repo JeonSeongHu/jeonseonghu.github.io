@@ -91,11 +91,11 @@ ga('send', 'pageview');
                 {% else %}
                 <li class="nav-item">
                 {% endif %}
-                <a class="nav-link" href="{{ site.baseurl }}/{% if site.active_lang == 'en' %}en/{% endif %}">{% if site.active_lang == 'en' %}Blog{% else %}블로그{% endif %}</a>
+                <a class="nav-link" href="{{ site.baseurl }}/">Blog</a>
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="{{ site.baseurl }}/{% if site.active_lang == 'en' %}en/{% endif %}about-me">{% if site.active_lang == 'en' %}About{% else %}소개{% endif %}</a>
+                <a class="nav-link" href="{{ site.baseurl }}/about-me">About</a>
                 </li>
 
                 {% include search-lunr.html %}
