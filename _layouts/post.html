@@ -7,66 +7,63 @@ post_class: post-template
 
 <!-- Begin Article
 ================================================== -->
-<!-- Fixed Left Sidebar -->
-<div class="post-sidebar-fixed d-none d-md-block">
-    <!-- Blog Title & Description -->
-    <div class="sidebar-section">
-        <div class="sidebar-card-simple blog-header">
-            <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}" alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid rounded-circle mb-2" style="width: 120px; height: 120px; object-fit: contain;">
-            <h5 class="blog-title">{{ site.title }}</h5>
-            <p class="blog-description">{{ site.description }}</p>
-            <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
-        </div>
-    </div>
-
-    <!-- Share Buttons -->
-    <div class="sidebar-section">
-        {% include share.html %}
-    </div>
-
-    <!-- About Me -->
-    <div class="sidebar-section">
-        <div class="sidebar-card-simple">
-            <h6 class="sidebar-title-simple">About Me</h6>
-            <p class="sidebar-text">Exploring 3D vision, deep learning, and computer vision through research.</p>
-            <a href="{{ site.baseurl }}/about-me" class="sidebar-link">View Profile →</a>
-        </div>
-    </div>
-
-    <!-- Categories -->
-    <div class="sidebar-section">
-        <div class="sidebar-card-simple">
-            <h6 class="sidebar-title-simple">Categories</h6>
-            <div class="sidebar-list">
-                {% assign categories = site.categories | sort %}
-                {% for category in categories limit:4 %}
-                <div class="sidebar-list-item">
-                    <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="sidebar-link">
-                        {{ category[0] }} ({{ category[1].size }})
-                    </a>
-                </div>
-                {% endfor %}
+    <!-- Fixed Left Sidebar -->
+    <div class="post-sidebar-fixed d-none d-md-block">
+        <!-- Home Link -->
+        <div class="sidebar-section">
+            <div class="sidebar-card-simple border-bottom-0 pb-2">
+                <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
             </div>
-            <a href="{{ site.baseurl }}/categories" class="sidebar-link-small">All Categories</a>
         </div>
-    </div>
 
-    <!-- Recent Posts -->
-    <div class="sidebar-section">
-        <div class="sidebar-card-simple">
-            <h6 class="sidebar-title-simple">Recent Posts</h6>
-            <div class="sidebar-list">
-                {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
-                {% for post in recent_posts limit:3 %}
-                <div class="sidebar-list-item">
-                    <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
-                    <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
+        <hr style="margin: 0 0 1.5rem 0; border-top: 1px solid var(--border-light);">
+
+        <!-- Profile -->
+        <div class="sidebar-section">
+            <div class="sidebar-card-simple d-flex align-items-start">
+                <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}" alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid mr-3" style="width: 100px; height: 100px; object-fit: cover; min-width: 100px;">
+                <div class="text-left">
+                    <h5 class="blog-title mb-1">@jeonseonghu</h5>
+                    <p class="sidebar-text mb-2">Exploring 3D vision, deep learning, and computer vision through research.</p>
+                    <a href="{{ site.baseurl }}/about-me" class="sidebar-link">View Profile →</a>
                 </div>
-                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-section">
+            <div class="sidebar-card-simple">
+                <h6 class="sidebar-title-simple">Categories</h6>
+                <div class="sidebar-list">
+                    {% assign categories = site.categories | sort %}
+                    {% for category in categories limit:4 %}
+                    <div class="sidebar-list-item">
+                        <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="sidebar-link">
+                            {{ category[0] }} ({{ category[1].size }})
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="{{ site.baseurl }}/categories" class="sidebar-link-small">All Categories</a>
+            </div>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="sidebar-section">
+            <div class="sidebar-card-simple">
+                <h6 class="sidebar-title-simple">Recent Posts</h6>
+                <div class="sidebar-list">
+                    {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
+                    {% for post in recent_posts limit:3 %}
+                    <div class="sidebar-list-item">
+                        <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
+                        <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <!-- Main Content Container -->
 <div class="container">

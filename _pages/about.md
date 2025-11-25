@@ -35,28 +35,30 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 		<!-- Experience Section in Sidebar -->
 		<div class="sidebar-section mt-4">
 			<ul class="list-unstyled sidebar-experience-list">
-				<li class="experience-row">
-					<div class="exp-content">
-						<div class="fw-bold">M.S. Student</div>
-						<div class="small text-muted">with Seungryong Kim</div>
-						<div class="small text-muted">@ KAIST CVLAB</div>
+				<li class="sidebar-experience-item">
+					<div class="d-flex justify-content-between align-items-start">
+						<span class="fw-bold">M.S. Student</span>
+						<span class="exp-date small text-muted text-nowrap">Mar. 2026 - Present</span>
 					</div>
-					<div class="exp-date">Mar. 2026 - Present</div>
+					<div class="small text-muted mt-1">with Seungryong Kim</div>
+					<div class="small text-muted">@ KAIST CVLAB</div>
 				</li>
-				<li class="experience-row">	
-					<div class="exp-content">
-						<div class="fw-bold">Research Intern</div>
-						<div class="small text-muted">with Seungryong Kim</div>
-						<div class="small text-muted">@ KAIST CVLAB</div>
+				
+				<li class="sidebar-experience-item">
+					<div class="d-flex justify-content-between align-items-start">
+						<span class="fw-bold">Research Intern</span>
+						<span class="exp-date small text-muted text-nowrap">Dec. 2023 - Feb. 2026</span>
 					</div>
-					<div class="exp-date">Dec. 2023 - Feb. 2026</div>
+					<div class="small text-muted mt-1">with Seungryong Kim</div>
+					<div class="small text-muted">@ KAIST CVLAB</div>
 				</li>
-				<li class="experience-row">
-					<div class="exp-content">
-						<div class="fw-bold">B.S. in Computer Science & Engineering</div>
-						<div class="small text-muted">Korea University</div>
+
+				<li class="sidebar-experience-item">
+					<div class="d-flex justify-content-between align-items-start">
+						<span class="fw-bold">B.S. in Computer Science & Engineering</span>
+						<span class="exp-date small text-muted text-nowrap">Mar. 2022 - Feb. 2026</span>
 					</div>
-					<div class="exp-date">Mar. 2022 - Feb. 2026</div>
+					<div class="small text-muted mt-1">Korea University</div>
 				</li>
 			</ul>
 		</div>
@@ -65,7 +67,7 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 	<div class="col-md-8 about-main">
 		<div class="bio-intro">
 			<p>
-				<span class="highlight">To Know As We Know | </span> The world obeys physics. Humans reason with logic. Machines see only patterns. I study the internal reasoning processes of <span class="dotted-underline">Generative 3D/4D Models</span> and infuse them with <span class="dotted-underline">Physical and Perceptual Priors</span>, so AI can interpret and interact with dynamic environments more like humans do.
+				<span class="highlight">To Know As We Know: </span> The world obeys physics. Humans reason with logic. However machines see only patterns. I study the internal reasoning processes of <span class="dotted-underline">Generative 3D/4D Models</span> and infuse them with <span class="dotted-underline">Physical and Perceptual Priors</span>, so AI can interpret and interact with dynamic environments more like humans do.
 			</p>
 		</div>
 

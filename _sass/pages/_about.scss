@@ -1,0 +1,563 @@
+/* ============================================
+   ABOUT PAGE REDESIGN - BLURPLE THEME
+   ============================================ */
+
+/* Scoped to .about-page-custom class on body */
+body.about-page-custom {
+    /* Define Theme Colors - Blue/Purple (Blurple) */
+    --theme-color: #4e54c8;        /* Primary Blurple */
+    --theme-color-dark: #373b99;   /* Darker shade for hover */
+    --theme-color-light: #8f94fb;  /* Lighter shade */
+    --theme-bg-dot: #ecf4ff;       /* Dot color - White */
+    
+    /* Override Global Variables for this page */
+    --primary: var(--theme-color);
+    --primary-hover: var(--theme-color-dark);
+    
+    /* Use the shared background mixin from _foundation.scss */
+    @include background-dot-theme;
+    
+    /* Default font for About Page - Wanted Sans */
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* 
+   CRITICAL FIX: Font Override Strategy 
+   1. Force Wanted Sans for most elements in About Page
+   2. But do NOT override FontAwesome icons
+*/
+
+/* Force FontAwesome fonts for icons to prevent override */
+body.about-page-custom .fab {
+    font-family: "Font Awesome 5 Brands" !important;
+}
+body.about-page-custom .fas,
+body.about-page-custom .far,
+body.about-page-custom .fa,
+body.about-page-custom i {
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900; /* Default to solid */
+}
+body.about-page-custom .far {
+    font-weight: 400; /* Regular for .far */
+}
+
+body.about-page-custom :not(.fa):not(.fas):not(.far):not(.fab):not(i) {
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Apply Theme Color to Specific Elements */
+
+/* Sidebar Icons - FIXED: Black color */
+body.about-page-custom .sidebar-contact-icons {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+body.about-page-custom .sidebar-contact-icons a {
+    color: var(--text-dark) !important; /* Force Black */
+    font-size: 1.1rem; /* Make icons visible size */
+    transition: color 0.2s ease;
+}
+
+body.about-page-custom .sidebar-contact-icons a:hover {
+    color: var(--theme-color) !important;
+}
+
+/* Section Headers (h4) */
+body.about-page-custom h4 {
+    color: var(--theme-color);
+    font-weight: 700;
+}
+
+/* Highlighted Text */
+body.about-page-custom .highlight {
+    color: var(--text-dark) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* Dotted Underline */
+body.about-page-custom .dotted-underline {
+    border-bottom-color: var(--text-dark);
+    color: var(--text-dark);
+}
+
+/* Project Category Titles */
+body.about-page-custom .project-category-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--theme-color);
+    margin-bottom: 0.9rem;
+    font-weight: 700;
+}
+
+body.about-page-custom .project-category-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(78, 84, 200, 0.5), transparent);
+    opacity: 0.7;
+}
+
+/* Links in text - Changed to black by default */
+body.about-page-custom a:not(.btn):not(.sidebar-contact-icons a) {
+    color: var(--text-dark) !important;
+    transition: color 0.2s ease;
+}
+
+body.about-page-custom a:not(.btn):not(.sidebar-contact-icons a):hover {
+    color: var(--theme-color) !important;
+    text-decoration: none;
+}
+
+/* Experience Arrows - Hidden as requested */
+body.about-page-custom .experience-arrow {
+    display: none !important;
+}
+
+/* ============================================
+   ABOUT PAGE: Animations & Interactions
+   ============================================ */
+
+/* 1. Staggered Fade-in: Sequential Appearance */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to main sections with staggered delays */
+body.about-page-custom .profile-left {
+    opacity: 0;
+    animation: fadeSlideUp 0.6s ease-out 0s forwards;
+}
+
+body.about-page-custom .about-main .bio-intro {
+    opacity: 0;
+    animation: fadeSlideUp 0.6s ease-out 0.2s forwards;
+}
+
+body.about-page-custom .about-main h4:nth-of-type(1),
+body.about-page-custom .about-main h4:nth-of-type(1) + ul {
+    opacity: 0;
+    animation: fadeSlideUp 0.6s ease-out 0.4s forwards;
+}
+
+body.about-page-custom .about-main h4:nth-of-type(2),
+body.about-page-custom .about-main h4:nth-of-type(2) + ul {
+    opacity: 0;
+    animation: fadeSlideUp 0.6s ease-out 0.6s forwards;
+}
+
+body.about-page-custom .about-main h4:nth-of-type(3),
+body.about-page-custom .about-main h4:nth-of-type(3) + ul,
+body.about-page-custom .about-main h4:nth-of-type(3) + .project-grid {
+    opacity: 0;
+    animation: fadeSlideUp 0.6s ease-out 0.8s forwards;
+}
+
+/* 2. List Row Highlight: Hover Feedback */
+body.about-page-custom .experience-item {
+    transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+    border-radius: 8px;
+    padding: 0.1rem 0.3rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+}
+
+body.about-page-custom .experience-item:hover {
+    background-color: rgba(78, 84, 200, 0.05); /* Light purple tint */
+    transform: translateY(-2px);
+}
+
+/* 3. Interactive Underline for Links in Bio */
+body.about-page-custom .bio-intro .dotted-underline {
+    position: relative;
+    display: inline;
+    background-image: linear-gradient(120deg, rgba(78, 84, 200, 0.3), rgba(78, 84, 200, 0.1));
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position: 0 85%;
+    transition: background-size 0.35s ease-out;
+}
+
+body.about-page-custom .bio-intro .dotted-underline:hover {
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+/* ============================================
+   SIDEBAR EXPERIENCE LIST (Simpler Layout)
+   ============================================ */
+body.about-page-custom .sidebar-experience-item {
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
+    border-bottom: 1px dotted #ccc;
+}
+
+body.about-page-custom .sidebar-experience-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+body.about-page-custom .sidebar-experience-item .exp-date {
+    font-size: 0.65rem;
+    margin-left: 0.5rem;
+}
+
+body.about-page-custom .sidebar-experience-item .fw-bold {
+    font-size: 0.9rem; /* Match previous size tweak */
+    line-height: 1.3;
+}
+
+/* ============================================
+   ABOUT PAGE LAYOUT & TYPOGRAPHY
+   ============================================ */
+
+/* HIDE ABOUT ME TITLE - KEY FIX 1 */
+body.about-page-custom .mainheading,
+body.about-page-custom .page-title,
+body.about-page-custom .section-title {
+    display: none !important;
+}
+
+body.about-page-custom .about-content-wrapper {
+    margin-left: 320px;
+    padding: 0 0.5rem 0 0.3rem;
+    margin-top: 6rem;
+    margin-right: 0.5rem;
+}
+
+body.about-page-custom .about-content-wrapper .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+body.about-page-custom .about-content-wrapper .row {
+    display: block;
+    max-width: 100%;
+}
+
+body.about-page-custom .about-main {
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+body.about-page-custom .about-main h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.9rem;
+}
+
+body.about-page-custom .about-main h4 {
+    font-size: 1.35rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    border-top: 1px solid var(--border-light);
+    padding-top: 2rem;
+}
+
+body.about-page-custom .about-main h4:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 1rem;
+}
+
+body.about-page-custom .about-main h5 {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+body.about-page-custom .about-main p {
+    margin-bottom: 0.7rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 1200px) {
+    body.about-page-custom .about-content-wrapper {
+        margin-left: 0;
+        padding: 0 1rem;
+        margin-top: 4rem;
+    }
+
+    /* Change sidebar from fixed to normal flow on mobile */
+    body.about-page-custom .profile-left {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        left: auto !important;
+        top: auto !important;
+        padding-right: 0 !important;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 991px) {
+    body.about-page-custom .about-content-wrapper {
+        margin-left: 0;
+        padding: 0 0.8rem;
+        margin-top: 3rem;
+    }
+    
+    /* Ensure sidebar is visible and properly styled on mobile */
+    body.about-page-custom .profile-left {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        left: auto !important;
+        top: auto !important;
+        padding-right: 0 !important;
+        margin-bottom: 2rem;
+        overflow: visible !important;
+    }
+    
+    /* Adjust sidebar content for mobile */
+    body.about-page-custom .profile-left .img-fluid {
+        width: 200px !important;
+        height: auto !important;
+        max-width: 100%;
+    }
+    
+    body.about-page-custom .profile-left .sidebar-section {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* ============================================
+   SIDEBAR PROFILE PANEL
+   ============================================ */
+
+body.about-page-custom .profile-left {
+    position: fixed;
+    left: 40px;
+    top: 160px;
+    width: 400px;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    z-index: 100;
+    padding-right: 15px;
+}
+
+body.about-page-custom .profile-left::-webkit-scrollbar {
+    width: 3px;
+}
+
+body.about-page-custom .profile-left::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body.about-page-custom .profile-left::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 3px;
+}
+
+body.about-page-custom .profile-left::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
+}
+
+body.about-page-custom .profile-left .sidebar-section {
+    margin-bottom: 1.2rem;
+}
+
+body.about-page-custom .profile-left h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.3rem;
+}
+
+body.about-page-custom .profile-left p,
+body.about-page-custom .profile-left li {
+    font-size: 0.7rem;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+}
+
+body.about-page-custom .profile-header-container {
+    padding-bottom: 0rem;
+    margin-bottom: 0.3rem;
+}
+
+body.about-page-custom .profile-left ul {
+    margin-top: 0.5rem;
+    text-align: left;
+    padding-left: 0;
+}
+
+body.about-page-custom .profile-left .img-fluid {
+    width: 160px;
+    height: 160px;
+}
+
+body.about-page-custom .profile-left .sidebar-link {
+    font-size: 0.7rem;
+    color: var(--text-dark) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+body.about-page-custom .profile-left .sidebar-link:hover {
+    color: var(--primary) !important;
+}
+
+/* ============================================
+   TIMELINE & EXPERIENCE LIST
+   ============================================ */
+
+body.about-page-custom .timeline {
+    position: relative;
+    padding-left: 0;
+}
+
+body.about-page-custom .timeline-item {
+    margin-bottom: 0.2em !important;
+    position: relative;
+    margin-left: -10px;
+    padding: 0.3rem 1rem 0.3rem 8px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+body.about-page-custom .timeline-item:hover {
+    background: rgba(58, 64, 231, 0.03);
+}
+
+body.about-page-custom .experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+/* List Item Flexbox Layout Fix */
+body.about-page-custom .experience-item {
+    display: flex;
+    align-items: baseline; /* Align text baselines */
+    gap: 0.5rem; /* Small gap */
+    margin-bottom: 0.1rem;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    width: 100%; /* Ensure full width */
+}
+
+/* Title: No wrapping, bold */
+body.about-page-custom .experience-title {
+    font-weight: 400; /* Or 400 depending on original */
+    white-space: nowrap;
+    color: var(--text-dark);
+    flex-shrink: 0;
+}
+
+/* Filler: Dotted line filling available space */
+body.about-page-custom .experience-filler {
+    flex-grow: 1;
+    border-bottom: 1px dotted #aaa; /* Visible dots */
+    margin: 0 0.2rem;
+    height: 1px;
+    position: relative;
+    top: -5px; /* Adjust vertical position to match baseline */
+    opacity: 0.6;
+    min-width: 20px; /* Ensure dots are always visible */
+    display: block !important; /* Force show */
+}
+
+/* Description: Optional middle part */
+body.about-page-custom .experience-description {
+    color: var(--text-medium);
+    white-space: nowrap;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* Date: Right aligned */
+body.about-page-custom .experience-date {
+    font-size: 0.65rem; /* Smaller date */
+    color: var(--text-medium);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+/* Intro Section */
+body.about-page-custom .bio-intro {
+    margin-bottom: 3rem;
+}
+
+body.about-page-custom .bio-intro p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.25 !important;
+    color: var(--text-dark);
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+body.about-page-custom .bio-intro .highlight {
+    font-size: 1.5rem !important;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* ============================================
+   PROJECT GRID
+   ============================================ */
+
+body.about-page-custom .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+body.about-page-custom .project-category {
+    margin-bottom: 1rem;
+}
+
+body.about-page-custom .project-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+body.about-page-custom .project-items li {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    body.about-page-custom .project-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Mobile adjustments for lists */
+    body.about-page-custom .experience-item {
+        flex-wrap: wrap;
+    }
+    body.about-page-custom .experience-filler {
+        display: none;
+    }
+    body.about-page-custom .experience-description,
+    body.about-page-custom .experience-date {
+        width: 100%;
+        text-align: left;
+        margin-left: 0;
+    }
+}

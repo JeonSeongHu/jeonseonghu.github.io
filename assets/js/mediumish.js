@@ -80,6 +80,15 @@ jQuery(document).ready(function($){
     }, 250);
 
     function hasScrolled() {
+        // Don't hide nav on mobile devices
+        var isMobile = $(window).width() <= 991;
+        if (isMobile) {
+            // Always show nav on mobile
+            $('nav').removeClass('nav-up').addClass('nav-down');
+            $('nav').css('top', '0px');
+            return;
+        }
+        
         var st = $(this).scrollTop();
         
         // Make sure they scroll more than delta
@@ -103,6 +112,15 @@ jQuery(document).ready(function($){
 
         lastScrollTop = st;
     }
+    
+    // Handle window resize to ensure nav is visible on mobile
+    $(window).on('resize', function() {
+        var isMobile = $(window).width() <= 991;
+        if (isMobile) {
+            $('nav').removeClass('nav-up').addClass('nav-down');
+            $('nav').css('top', '0px');
+        }
+    });
         
     $('.site-content').css('margin-top', $('header').outerHeight() + 'px');  
     

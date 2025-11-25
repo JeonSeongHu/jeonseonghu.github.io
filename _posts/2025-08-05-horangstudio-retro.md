@@ -1,9 +1,11 @@
 ---
 layout: post  
 image: ./../assets/images/image-20250806-163231.png
-title: "[Project] 호랑이사진관 회고"  
+title: "호랑이사진관 회고"  
 author: jeonseonghu  
-categories: [ Project, Diffusion, Retrospective ]  
+main_category: Projects
+sub_category: Web Dev
+categories: [ Projects, Web Dev ]  
 featured: true
 series: "프로젝트 회고"
 ---

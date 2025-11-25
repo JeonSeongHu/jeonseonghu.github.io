@@ -1,0 +1,24 @@
+- name: Research
+  slug: research
+  subcategories:
+    - name: 3D Vision
+      slug: 3d-vision
+    - name: Generative AI
+      slug: generative-ai
+
+- name: Projects
+  slug: projects
+  subcategories:
+    - name: Web Dev
+      slug: web-dev
+    - name: Design
+      slug: design
+
+- name: Life & Thoughts
+  slug: life-thoughts
+  subcategories:
+    - name: Review
+      slug: review
+    - name: Essays
+      slug: essays
+

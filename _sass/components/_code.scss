@@ -1,0 +1,29 @@
+/* ============================================
+   CODE BLOCK ENHANCEMENTS
+   ============================================ */
+
+pre {
+    position: relative;
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    color: var(--text-medium);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+pre:hover .code-copy-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+

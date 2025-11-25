@@ -1,0 +1,30 @@
+/* ============================================
+   ARCHIVE / CATEGORY PAGE TWEAKS
+   ============================================ */
+
+.other-categories .card {
+    border: 1px solid var(--border-light) !important;
+    border-radius: 8px !important;
+}
+
+.other-categories .card-header {
+    background: var(--bg-light) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+}
+
+@media (max-width: 768px) {
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .categories-overview .col-md-6 {
+        margin-bottom: 1rem;
+    }
+
+    .categories-detailed .section-title h3 {
+        font-size: 1.3rem;
+    }
+}
+

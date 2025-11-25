@@ -1,9 +1,11 @@
 ---
 layout: post  
 image: ./../assets/images/image-20250806-174943.png
-title: "[AIKU] DeepintoDeep 3D Vision"  
+title: "DeepintoDeep 3D Vision"  
 author: jeonseonghu  
-categories: [ AIKU, Lecture, 3D Vision ]  
+main_category: Research
+sub_category: 3D Vision
+categories: [ Research, 3D Vision ]  
 featured: true
 series: "강의 노트"
 ---

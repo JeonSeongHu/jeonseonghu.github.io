@@ -1,0 +1,273 @@
+/* ============================================
+   CARDS & CONTENT BLOCKS
+   ============================================ */
+
+.card {
+    border: 0px solid #000000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+}
+
+.card:hover {
+    box-shadow: none !important;
+    transform: translateY(-2px);
+    border-color: #333333 !important;
+}
+
+.card-header {
+    background: var(--bg-light) !important;
+    // border-bottom: 1px solid var(--border-light) !important;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ============================================
+   NO IMAGE PLACEHOLDER STYLES
+   ============================================ */
+
+.no-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-light);
+    color: var(--text-light);
+    height: 200px;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.no-image-placeholder i {
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+.no-image-placeholder:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-medium);
+}
+
+/* Card specific no-image styles */
+.card .maxthumb .no-image-placeholder {
+    height: 200px;
+    border-radius: 0;
+}
+
+.listfeaturedtag .wrapthumbnail .no-image-placeholder {
+    height: 200px;
+    border-radius: 0;
+}
+
+/* When image fails to load, adjust layout */
+.card.no-image .maxthumb,
+.listfeaturedtag.no-image .wrapthumbnail {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+}
+
+.card.no-image .maxthumb::after,
+.listfeaturedtag.no-image .wrapthumbnail::after {
+    content: '📷';
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+/* Mobile responsiveness for placeholders */
+@media (max-width: 768px) {
+    .no-image-placeholder {
+        height: 150px;
+    }
+
+    .no-image-placeholder i {
+        font-size: 1.5rem;
+    }
+
+    .card .maxthumb .no-image-placeholder,
+    .listfeaturedtag .wrapthumbnail .no-image-placeholder {
+        height: 150px;
+    }
+}
+
+/* ============================================
+   POST CARDS & LAYOUT - UNIFIED STYLE
+   ============================================ */
+
+.mb-30px {
+    margin-bottom: 30px !important;
+}
+
+/* Regular post cards (standalone) */
+.card {
+    // border: 1px solid #000000 !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: var(--bg-white);
+    box-shadow: none !important;
+    position: relative;
+}
+
+/* Featured post cards (container only) */
+.listfeaturedtag {
+    border: 1px solid var(--border-light) !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: var(--bg-white);
+    box-shadow: none !important;
+    position: relative;
+}
+
+/* Remove borders from inner cards in featured posts */
+.listfeaturedtag .card {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Remove ::before from inner cards in featured posts */
+.listfeaturedtag .card::before {
+    display: none !important;
+}
+
+/* Remove ::before from categories-detailed cards */
+.categories-detailed .card::before {
+    display: none !important;
+}
+
+.categories-detailed .card {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Hover effects - separate for regular and featured */
+.card:hover {
+    box-shadow: none !important;
+    transform: translateY(-3px);
+    border-color: var(--primary-hover) !important;
+}
+
+.listfeaturedtag:hover {
+    box-shadow: none !important;
+    transform: translateY(-3px);
+    border-color: var(--primary-hover) !important;
+}
+
+/* No hover effect for inner cards in featured posts */
+.listfeaturedtag .card:hover {
+    box-shadow: none !important;
+    transform: none !important;
+    border: none !important;
+}
+
+/* Featured post specific adjustments */
+.listfeaturedtag {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+.listfeaturedtag .row {
+    flex-direction: column !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+.listfeaturedtag .col-12.col-md-12.col-lg-5,
+.listfeaturedtag .col-12.col-md-12.col-lg-7 {
+    flex: none !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+.listfeaturedtag .wrapthumbnail,
+.maxthumb {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.listfeaturedtag .wrapthumbnail img,
+.maxthumb img {
+    transition: transform 0.4s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listfeaturedtag:hover .wrapthumbnail img,
+.card:hover .maxthumb img {
+    transform: scale(1.05);
+}
+
+/* Card title styling */
+.listfeaturedtag h2.card-title,
+.card h2.card-title {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.listfeaturedtag .card-text,
+.card .card-text {
+    color: var(--text-medium) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.2rem !important;
+}
+
+.listfeaturedtag .card-footer,
+.card .card-footer {
+    background: transparent !important;
+    border-top: 1px solid var(--border-light) !important;
+    margin-top: auto;
+}
+
+.post-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-medium);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-read-more svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.post-read-more:hover {
+    color: var(--primary);
+}
+
+.post-read-more:hover svg {
+    fill: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+/* Ensure both card types have same layout structure */
+.listfeaturedtag .card-group,
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.listfeaturedtag .card-body,
+.card .card-body {
+    flex: 1;
+    padding: 1.5rem;
+}
+

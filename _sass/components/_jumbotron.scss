@@ -1,0 +1,53 @@
+/* ============================================
+   JUMBOTRON / TAG HERO
+   ============================================ */
+
+.jumbotron.fortags h2 {
+    font-size: 1.5rem !important;
+    margin: 0 !important;
+}
+
+.jumbotron.fortags .col-md-8 {
+    padding: 1rem !important;
+}
+
+.jumbotron.fortags a {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    margin: 0.2rem;
+    background: var(--bg-light);
+    color: var(--primary) !important;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--primary);
+}
+
+.jumbotron.fortags a:hover {
+    background: var(--primary) !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .jumbotron.fortags {
+        min-height: 100px !important;
+        padding: 1.5rem 0 !important;
+    }
+
+    .jumbotron.fortags .d-md-flex {
+        flex-direction: column !important;
+    }
+
+    .jumbotron.fortags .col-md-4,
+    .jumbotron.fortags .col-md-8 {
+        max-width: 100% !important;
+        padding: 0.5rem !important;
+    }
+
+    .jumbotron.fortags h2 {
+        font-size: 1.3rem !important;
+        margin-bottom: 1rem !important;
+    }
+}
+

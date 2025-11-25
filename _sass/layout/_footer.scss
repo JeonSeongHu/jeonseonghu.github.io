@@ -1,0 +1,199 @@
+
+/* ============================================
+   FOOTER & RELATED CONTENT BLOCKS
+   ============================================ */
+
+.footer {
+    background: var(--bg-light) !important;
+    border-top: 1px solid var(--border-light);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    margin-bottom: 0 !important;
+    color: var(--text-medium);
+}
+
+/* Reading progress bar */
+#read-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--primary);
+    z-index: 2000;
+    transition: width 0.15s ease-out;
+}
+
+/* Series & Related */
+.series-list ol {
+    counter-reset: item;
+    padding-left: 1rem;
+}
+
+.series-list li {
+    line-height: 1.5;
+    font-size: 0.85rem;
+}
+
+.series-list small {
+    font-size: 0.7rem;
+}
+
+.related-posts .section-title h2 {
+    font-size: 1.1rem !important;
+}
+
+.article-divider {
+    margin: 2.5rem 0;
+    border: 0;
+    border-top: 1px solid var(--border-light);
+}
+
+/* Tighter, smaller typography for series & related sections */
+.series-list .section-title h2,
+.related-posts .section-title h2 {
+    font-size: 1.0rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.related-posts-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.25rem 0 0.5rem 0;
+}
+
+.related-posts-list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+    border-top: 1px dashed var(--border-light);
+}
+
+.related-posts-list li:first-child {
+    border-top: 0;
+}
+
+.related-posts-list a {
+    color: var(--text-dark) !important;
+    font-size: 0.9rem;
+}
+
+.related-posts-list a:hover {
+    color: var(--primary) !important;
+}
+
+.related-posts-list small {
+    color: var(--text-light);
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+/* Title categories under title */
+.title-categories.tags {
+    margin-top: 0.25rem !important;
+}
+
+.title-categories.tags li a {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+}
+
+/* Inline follow menu */
+.follow-inline .btn,
+#followToggle,
+#followMenu .btn {
+    border-radius: var(--radius) !important;
+}
+
+#followMenu {
+    display: inline-flex;
+    gap: 0.4rem;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity .18s ease, transform .18s ease;
+    pointer-events: none;
+}
+
+#followMenu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#followMenu .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+#followToggle {
+    border-radius: 0 !important;
+}
+
+/* Compact listrecent tweaks */
+.listrecent .card h2.card-title {
+    font-size: 1.0rem !important;
+}
+
+.listrecent .card .card-text {
+    font-size: 0.85rem !important;
+}
+
+.listrecent .card .author-thumb {
+    width: 24px;
+    height: 24px;
+}
+
+.listrecent .card .post-date {
+    font-size: 0.7rem !important;
+}
+
+.listrecent .card .card-body {
+    padding: 1rem !important;
+}
+
+.listrecent .card .card-footer {
+    padding: 0.75rem 1rem !important;
+}
+
+/* Full-width footer treatment */
+.site-content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer.fullwidth-section {
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+    padding: 1rem 0 0.5rem 0 !important;
+    flex-shrink: 0;
+}
+
+.footer.fullwidth-section .container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer.fullwidth-section .row {
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-copyright {
+    font-size: 0.65rem;
+    color: var(--text-light);
+    opacity: 0.7;
+    font-weight: 400;
+    text-align: center;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+

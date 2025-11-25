@@ -1,0 +1,19 @@
+/* ============================================
+   INPUTS & SEARCH FORMS
+   ============================================ */
+
+.form-control {
+    border: 2px solid var(--border-light) !important;
+    border-radius: var(--radius) !important;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+}
+
+.form-control:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px var(--light-primary) !important;
+    background: var(--bg-white);
+}
+
