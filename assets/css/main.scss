@@ -8,6 +8,8 @@
    Based on the provided portfolio design
    ============================================ */
 
+@import "custom_profile.css";
+
 /* CSS Variables for Design System */
 :root {
     --primary: #3539ad;
@@ -49,7 +51,12 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: var(--text-dark);
     font-weight: 700;
@@ -64,14 +71,43 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(255, 255, 255, 0.98) !important;
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) !important;
+    padding-top: 0.0rem !important;
+    padding-bottom: 0.0rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    min-height: auto !important;
     // border-bottom: 1px solid var(--border-light);
 }
 
 .navbar-brand {
-    font-weight: 800 !important;
-    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
     color: var(--text-dark) !important;
     letter-spacing: -0.5px;
+    padding-left: 1rem !important;
+    padding-right: 0 !important;
+}
+
+.mediumnavigation .container,
+.mediumnavigation .container.pr-0,
+nav.mediumnavigation .container,
+nav.mediumnavigation .container.pr-0,
+.navbar .container,
+.navbar .container.pr-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.mediumnavigation .navbar-collapse {
+    padding-right: 0 !important;
+}
+
+.mediumnavigation .navbar-nav {
+    padding-right: 0 !important;
 }
 
 .navbar-nav .nav-link {
@@ -167,8 +203,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
-.article-post h1, .article-post h2, .article-post h3, 
-.article-post h4, .article-post h5, .article-post h6 {
+.article-post h1,
+.article-post h2,
+.article-post h3,
+.article-post h4,
+.article-post h5,
+.article-post h6 {
     font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif;
     font-weight: 700;
     color: var(--text-dark);
@@ -184,8 +224,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .modal-header {
     border-radius: 0 !important;
-    background-color: white !important; /* 상단 바 하얀색 */
-    padding: 0.75rem 1rem !important; /* 세로 길이 축소 */
+    background-color: white !important;
+    /* 상단 바 하얀색 */
+    padding: 0.75rem 1rem !important;
+    /* 세로 길이 축소 */
 }
 
 .article-post blockquote {
@@ -199,15 +241,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   FEATURED CONTENT
+   FEATURED CONTENT - DISABLED
    ============================================ */
 
+/* Featured Box styles disabled as requested */
+/*
 .featured-box {
-    background: transparent; /* 파란 배경 제거 */
-    color: inherit; /* 페이지 기본 텍스트 색상 사용 */
+    background: transparent;
+    color: inherit;
     padding: 3rem 0;
     margin: 2rem 0;
-    box-shadow: none; /* 그림자 제거하여 깔끔하게 */
+    box-shadow: none;
     width: 100vw;
     position: relative;
     left: 50%;
@@ -217,7 +261,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .featured-box .page-title {
-    color: inherit !important; /* 제목 색상을 상속하여 페이지 기본 색과 일치 */
+    color: inherit !important;
     font-weight: 800;
     font-size: 2.5rem;
     margin-top: 0rem;
@@ -229,7 +273,6 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-
 .featured-box .page-title::after {
     content: '';
     position: absolute;
@@ -237,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 2rem;
     width: 60px;
     height: 3px;
-    background: currentColor; /* 언더라인을 제목 색상과 동일하게 */
+    background: currentColor;
 }
 
 .featured-box p {
@@ -254,7 +297,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .featured-box h3 {
-    color: inherit !important; /* h3도 페이지 기본 색상으로 */
+    color: inherit !important;
     font-weight: 800;
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -262,6 +305,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto 1rem auto;
     padding: 0 2rem;
 }
+*/
 
 /* ============================================
    SECTION TITLES
@@ -275,6 +319,27 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 0.75rem !important;
     margin-bottom: 2rem !important;
     display: inline-block;
+}
+
+/* Page Title - General styling for when featured-box is not used */
+.page-title {
+    font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    line-height: 1.3;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary);
+    margin: 0.5rem 0 0 0;
 }
 
 /* ============================================
@@ -302,9 +367,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Series & Related */
-.series-list ol { counter-reset: item; }
-.series-list li { line-height: 1.5; }
-.related-posts .section-title h2 { font-size: 1.1rem !important; }
+.series-list ol {
+    counter-reset: item;
+}
+
+.series-list li {
+    line-height: 1.5;
+}
+
+.related-posts .section-title h2 {
+    font-size: 1.1rem !important;
+}
+
 .article-divider {
     margin: 2.5rem 0;
     border: 0;
@@ -322,22 +396,40 @@ h1, h2, h3, h4, h5, h6 {
 .series-list ol {
     padding-left: 1rem;
 }
+
 .series-list li {
     font-size: 0.85rem;
     line-height: 1.4;
 }
-.series-list small { font-size: 0.7rem; }
+
+.series-list small {
+    font-size: 0.7rem;
+}
 
 .listrecent .card h2.card-title {
     font-size: 1.0rem !important;
 }
+
 .listrecent .card .card-text {
     font-size: 0.85rem !important;
 }
-.listrecent .card .author-thumb { width: 24px; height: 24px; }
-.listrecent .card .post-date { font-size: 0.7rem !important; }
-.listrecent .card .card-body { padding: 1rem !important; }
-.listrecent .card .card-footer { padding: 0.75rem 1rem !important; }
+
+.listrecent .card .author-thumb {
+    width: 24px;
+    height: 24px;
+}
+
+.listrecent .card .post-date {
+    font-size: 0.7rem !important;
+}
+
+.listrecent .card .card-body {
+    padding: 1rem !important;
+}
+
+.listrecent .card .card-footer {
+    padding: 0.75rem 1rem !important;
+}
 
 /* Related posts as compact list */
 .related-posts-list {
@@ -345,6 +437,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 0;
     margin: 0.25rem 0 0.5rem 0;
 }
+
 .related-posts-list li {
     display: flex;
     align-items: baseline;
@@ -353,22 +446,40 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.35rem 0;
     border-top: 1px dashed var(--border-light);
 }
-.related-posts-list li:first-child { border-top: 0; }
-.related-posts-list a { color: var(--text-dark) !important; font-size: 0.9rem; }
-.related-posts-list a:hover { color: var(--primary) !important; }
-.related-posts-list small { color: var(--text-light); font-size: 0.75rem; white-space: nowrap; }
+
+.related-posts-list li:first-child {
+    border-top: 0;
+}
+
+.related-posts-list a {
+    color: var(--text-dark) !important;
+    font-size: 0.9rem;
+}
+
+.related-posts-list a:hover {
+    color: var(--primary) !important;
+}
+
+.related-posts-list small {
+    color: var(--text-light);
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
 
 /* Title categories under title */
 .title-categories.tags {
     margin-top: 0.25rem !important;
 }
+
 .title-categories.tags li a {
     font-size: 0.75rem;
     padding: 0.2rem 0.6rem;
 }
 
 /* Inline follow menu */
-.follow-inline .btn { border-radius: var(--radius) !important; }
+.follow-inline .btn {
+    border-radius: var(--radius) !important;
+}
 
 /* Smooth inline follow menu */
 #followMenu {
@@ -379,11 +490,13 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity .18s ease, transform .18s ease;
     pointer-events: none;
 }
+
 #followMenu.open {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
+
 #followMenu .btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
@@ -397,7 +510,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Code block enhancements */
-pre { position: relative; }
+pre {
+    position: relative;
+}
+
 .code-copy-btn {
     position: absolute;
     top: 8px;
@@ -409,13 +525,14 @@ pre { position: relative; }
     padding: 2px 6px;
     cursor: pointer;
 }
+
 .code-lang-badge {
     position: absolute;
     top: 8px;
     left: 8px;
     background: var(--light-primary);
     color: var(--primary);
-    border: 1px solid rgba(58,64,231,0.2);
+    border: 1px solid rgba(58, 64, 231, 0.2);
     font-size: 0.7rem;
     padding: 2px 6px;
 }
@@ -431,7 +548,7 @@ pre { position: relative; }
 
 /* We need to add display:inline in order to align the '>>' of the 'read more' link */
 .post-excerpt p {
-	display:inline;
+    display: inline;
 }
 
 /* Timeline Styles for About Me page */
@@ -450,10 +567,11 @@ body.about-page-custom .mainheading {
 /* featured-box not used in about page anymore */
 
 .about-content-wrapper {
-    margin-left: 280px; /* reserve space for fixed sidebar */
-    padding: 0 0.5rem 0 0.3rem; /* 좌우 여백 더욱 축소 */
-    margin-top: 6rem; /* About Me 위 공백 대폭 증가 */
-    margin-right: 0.5rem; /* 오른쪽 여백 더욱 최소화 */
+    margin-left: 320px;
+    /* Adjusted margin to fix overlap and keep close */
+    padding: 0 0.5rem 0 0.3rem;
+    margin-top: 6rem;
+    margin-right: 0.5rem;
 }
 
 .about-content-wrapper .container {
@@ -468,33 +586,52 @@ body.about-page-custom .mainheading {
 
 /* About page specific typography */
 body.about-page-custom .about-main {
-    font-size: 0.9rem; /* 기본 폰트 크기 약간 증가 */
+    font-size: 0.9rem;
+    /* 기본 폰트 크기 약간 증가 */
     width: 100%;
 }
 
 body.about-page-custom .about-main h1 {
-    font-size: 1.8rem; /* 제목 크기 약간 증가 */
+    font-size: 1.8rem;
+    /* 제목 크기 약간 증가 */
     margin-bottom: 0.9rem;
 }
 
 body.about-page-custom .about-main h4 {
-    font-size: 1.35rem; /* h4 크기 증가 */
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    /* h4 크기 증가 */
+    margin-top: 4rem;
+    /* 섹션 간격 대폭 증가 */
+    margin-bottom: 1.5rem;
     font-weight: 700;
+    border-top: 1px solid var(--border-light);
+    padding-top: 2rem;
 }
 
-body.about-page-custom .about-main h4:first-child {
-    margin-top: 0; /* 첫 번째 h4(About Me)는 상단 여백 제거 */
+body.about-page-custom .about-main h4:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 1rem; 
+}
+
+
+body.about-page-custom .about-main h5 {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
 }
 
 body.about-page-custom .about-main p {
-    margin-bottom: 0.7rem; /* 문단 여백 약간 증가 */
+    margin-bottom: 0.7rem;
+    /* 문단 여백 약간 증가 */
     line-height: 1.6;
 }
 
 body.about-page-custom .about-main .timeline {
-    margin: 1rem 0; /* 타임라인 여백 축소 */
+    margin: 1rem 0;
+    /* 타임라인 여백 축소 */
 }
 
 body.about-page-custom .about-main .timeline-item {
@@ -522,15 +659,19 @@ body.about-page-custom .about-main .timeline-date {
 }
 
 body.about-page-custom .about-main .achievement-grid {
-    gap: 1rem; /* 그리드 간격 축소 */
+    gap: 1rem;
+    /* 그리드 간격 축소 */
     margin: 1rem 0;
 }
 
 body.about-page-custom .about-main .achievement-card {
-    padding: 0.8rem; /* 패딩 균일하게 */
-    padding-top: 10rem; /* 상단 이미지 영역만큼 패딩 (2배 증가) */
+    padding: 0.8rem;
+    /* 패딩 균일하게 */
+    padding-top: 10rem;
+    /* 상단 이미지 영역만큼 패딩 (2배 증가) */
     border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
-    background: #fff !important; /* 텍스트 영역은 완전히 흰색 */
+    background: #fff !important;
+    /* 텍스트 영역은 완전히 흰색 */
     position: relative;
 }
 
@@ -540,11 +681,14 @@ body.about-page-custom .about-main .achievement-card::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 9rem; /* 이미지 영역 높이 (2배 증가) */
+    height: 9rem;
+    /* 이미지 영역 높이 (2배 증가) */
     background: var(--bg-image, url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80'));
     background-size: cover;
-    background-position: center 30%;
-    border-radius: var(--radius) var(--radius) 0 0; /* 상단 모서리만 둥글게 */
+    background-position: center;
+    /* center crop */
+    border-radius: var(--radius) var(--radius) 0 0;
+    /* 상단 모서리만 둥글게 */
     z-index: 0;
 }
 
@@ -556,11 +700,13 @@ body.about-page-custom .about-main .achievement-card:hover {
 
 /* Paper 섹션 카드는 배경 이미지 없음 */
 body.about-page-custom .about-main .paper-card {
-    padding-top: 1.5rem !important; /* 배경 이미지 영역 제거 */
+    padding-top: 1.5rem !important;
+    /* 배경 이미지 영역 제거 */
 }
 
 body.about-page-custom .about-main .paper-card::before {
-    display: none; /* 배경 이미지 제거 */
+    display: none;
+    /* 배경 이미지 제거 */
 }
 
 body.about-page-custom .about-main .paper-card .achievement-title a {
@@ -574,50 +720,244 @@ body.about-page-custom .about-main .paper-card .achievement-title a:hover {
     text-decoration: underline;
 }
 
+/* achievement-card 링크 스타일 (배경 이미지가 있는 카드용) */
+body.about-page-custom .about-main .achievement-card .achievement-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+body.about-page-custom .about-main .achievement-card .achievement-title a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Awards List 스타일 */
+.awards-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.award-item {
+    background: #fff;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.2rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.award-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-hover);
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+}
+
+.award-title {
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.award-details {
+    font-size: 0.88rem;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+}
+
+.award-title a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.award-title a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
 body.about-page-custom .about-main .achievement-title {
-    font-size: 0.9rem; /* 업적 제목 크기 약간 증가 */
+    font-size: 0.9rem;
+    /* 업적 제목 크기 약간 증가 */
     line-height: 1.3rem;
     position: relative;
     z-index: 1;
 }
 
 body.about-page-custom .about-main .achievement-org {
-    font-size: 0.8rem; /* 조직명 크기 약간 증가 */
+    font-size: 0.8rem;
+    /* 조직명 크기 약간 증가 */
     position: relative;
     z-index: 1;
 }
 
 body.about-page-custom .about-main .achievement-desc {
-    font-size: 0.85rem; /* 설명 크기 약간 증가 */
+    font-size: 0.85rem;
+    /* 설명 크기 약간 증가 */
     position: relative;
     z-index: 1;
 }
 
 body.about-page-custom .about-main .contact-grid {
-    gap: 0.8rem; /* 연락처 그리드 간격 축소 */
+    gap: 0.8rem;
+    /* 연락처 그리드 간격 축소 */
     margin: 1rem 0;
 }
 
 body.about-page-custom .about-main .contact-card {
-    padding: 0.8rem; /* 연락처 카드 패딩 축소 */
+    padding: 0.8rem;
+    /* 연락처 카드 패딩 축소 */
 }
 
 /* Apply same style as post-sidebar-fixed */
 .profile-left {
     position: fixed;
-    left: 120px; /* 약간 오른쪽으로 이동 */
-    top: 160px; /* 사이드바 시작 위치를 아래로 */
-    width: 200px;
+    left: 40px;
+    /* Moved left to prevent overlap */
+    top: 160px;
+    width: 400px;
     height: calc(100vh - 160px);
     overflow-y: auto;
     z-index: 100;
     padding-right: 15px;
 }
 
-
-
 .profile-left::-webkit-scrollbar {
     width: 3px;
+}
+
+/* Sidebar Experience List */
+/* Sidebar Experience List */
+.sidebar-title {
+    font-size: 1.0rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Sidebar Experience List - Split Layout (Refined) */
+/* Sidebar Experience List - Swapped Layout (Content Left, Date Right) */
+.sidebar-experience-list {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin-top: 1.5rem;
+}
+
+.experience-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.experience-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.45rem;
+    border-bottom: 1px dashed #d1d5db;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+.exp-content {
+    flex: 1;
+    text-align: left;
+    background: var(--bg-white);
+    padding-right: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.exp-date {
+    font-size: 0.6rem; /* Reduced from 0.75rem */
+    color: var(--text-medium);
+    white-space: nowrap;
+    font-weight: 500;
+    background: var(--bg-white);
+    padding-left: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.exp-content .fw-bold {
+    font-weight: 500 !important;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+}
+
+.exp-content .small {
+    font-size: 0.75rem;
+    color: var(--text-medium);
+    display: block;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
+.sidebar-contact-icons {
+    display: flex;
+    flex-direction: row !important;
+    gap: 0.5rem;
+    margin-top: 0;
+    align-items: center;
+}
+
+.sidebar-contact-icons a {
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.sidebar-contact-icons i {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+}
+
+/* Interests List */
+.interests-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.interests-list li {
+    background: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    border: 1px solid var(--border-light);
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+}
+
+.interests-list li:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.interests-list li::before {
+    display: none;
 }
 
 .profile-left::-webkit-scrollbar-track {
@@ -640,7 +980,8 @@ body.about-page-custom .about-main .contact-card {
 .profile-left h3 {
     font-size: 0.9rem;
     font-weight: 700;
-    margin-top: 0.5rem !important; /* article-post h3 스타일 상속 방지 */
+    margin-top: 0.5rem !important;
+    /* article-post h3 스타일 상속 방지 */
     margin-bottom: 0.3rem;
 }
 
@@ -714,10 +1055,12 @@ body.about-page-custom .about-main .contact-card {
 @media (max-width: 1200px) {
     .about-content-wrapper {
         margin-left: 0;
-        padding: 0 1rem; /* 모바일에서도 좌우 여백 축소 */
-        margin-top: 4rem; /* 모바일에서는 약간 줄임 */
+        padding: 0 1rem;
+        /* 모바일에서도 좌우 여백 축소 */
+        margin-top: 4rem;
+        /* 모바일에서는 약간 줄임 */
     }
-    
+
     .profile-left {
         display: none !important;
     }
@@ -726,24 +1069,29 @@ body.about-page-custom .about-main .contact-card {
 @media (max-width: 991px) {
     .about-content-wrapper {
         margin-left: 0;
-        padding: 0 0.8rem; /* 더 작은 화면에서도 여백 최소화 */
-        margin-top: 3rem; /* 더 작은 화면에서는 더 줄임 */
+        padding: 0 0.8rem;
+        /* 더 작은 화면에서도 여백 최소화 */
+        margin-top: 3rem;
+        /* 더 작은 화면에서는 더 줄임 */
     }
 }
 
 .timeline {
     position: relative;
-    padding-left: 0px; /* 점 영역 확보 */
+    padding-left: 0px;
+    /* 점 영역 확보 */
 }
 
 .timeline::before {
-    display: none; /* 세로선 제거 */
+    display: none;
+    /* 세로선 제거 */
 }
 
 .timeline-item {
     margin-bottom: 0.2em !important;
     position: relative;
-    margin-left: -10px; /* timeline padding-left 캠슬 */
+    margin-left: -10px;
+    /* timeline padding-left 캠슬 */
     padding: 0.3rem 1rem 0.3rem 8px;
     border-radius: 8px;
     transition: background 0.2s ease;
@@ -755,7 +1103,8 @@ body.about-page-custom .about-main .contact-card {
 
 .timeline-dot {
     position: absolute;
-    left: 7px; /* timeline-item의 padding-left 35px에서 점 위치 조정 */
+    left: 7px;
+    /* timeline-item의 padding-left 35px에서 점 위치 조정 */
     top: 50%;
     transform: translateY(-50%);
     width: 10px;
@@ -789,7 +1138,8 @@ body.about-page-custom .about-main .contact-card {
 }
 
 .timeline-item.current .timeline-dot {
-    display: none; /* 애니메이션 제거 */
+    display: none;
+    /* 애니메이션 제거 */
 }
 
 @keyframes pulse {
@@ -827,11 +1177,13 @@ body.about-page-custom .about-main .contact-card {
 }
 
 .timeline-separator {
-    display: none; /* grid로 나뉘어졌으므로 구분자 불필요 */
+    display: none;
+    /* grid로 나뉘어졌으므로 구분자 불필요 */
 }
 
 .timeline-description {
-    display: none; /* 설명 숨김 */
+    display: none;
+    /* 설명 숨김 */
 }
 
 /* Awards & Achievements Styles */
@@ -847,7 +1199,8 @@ body.about-page-custom .about-main .contact-card {
     border: 1px solid var(--border-light);
     border-radius: var(--radius);
     padding: 1.2rem;
-    padding-top: 10rem; /* 상단 이미지 영역만큼 패딩 (2배 증가) */
+    padding-top: 10rem;
+    /* 상단 이미지 영역만큼 패딩 (2배 증가) */
     transition: transform 0.2s ease;
     position: relative;
     overflow: hidden;
@@ -859,10 +1212,12 @@ body.about-page-custom .about-main .contact-card {
     top: 0;
     left: 0;
     right: 0;
-    height: 9rem; /* 이미지 영역 높이 (2배 증가) */
+    height: 9rem;
+    /* 이미지 영역 높이 (2배 증가) */
     background: var(--bg-image, url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80'));
     background-size: cover;
-    background-position: center 30%;
+    background-position: center;
+    /* center crop */
     border-radius: var(--radius) var(--radius) 0 0;
     z-index: 0;
 }
@@ -977,11 +1332,11 @@ body.about-page-custom .about-main .contact-card {
     .contact-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-card {
         padding: 0.8rem;
     }
-    
+
     .contact-icon {
         font-size: 1.3rem;
     }
@@ -1094,11 +1449,11 @@ body.about-page-custom .about-main .contact-card {
         align-items: flex-start;
         gap: 0.5rem;
     }
-    
+
     .categories-overview .col-md-6 {
         margin-bottom: 1rem;
     }
-    
+
     .categories-detailed .section-title h3 {
         font-size: 1.3rem;
     }
@@ -1114,30 +1469,39 @@ body.about-page-custom .about-main .contact-card {
 
 /* Fixed sidebar specific styling */
 .post-sidebar-fixed .sidebar-section {
-    margin-bottom: 1.2rem; /* profile-left와 동일 */
+    margin-bottom: 1.2rem;
+    /* profile-left와 동일 */
 }
 
 .post-sidebar-fixed .sidebar-title-simple {
     font-size: 0.75rem;
     margin-bottom: 0.5rem;
-    font-weight: 700; /* profile-left h3와 유사하게 */
+    font-weight: 700;
+    /* profile-left h3와 유사하게 */
 }
 
 .post-sidebar-fixed .sidebar-text {
-    font-size: 0.7rem; /* profile-left p, li와 동일 */
-    line-height: 1.4; /* profile-left와 동일 */
-    margin-bottom: 0.4rem; /* profile-left와 동일 */
+    font-size: 0.7rem;
+    /* profile-left p, li와 동일 */
+    line-height: 1.4;
+    /* profile-left와 동일 */
+    margin-bottom: 0.4rem;
+    /* profile-left와 동일 */
 }
 
 .post-sidebar-fixed .sidebar-link {
-    font-size: 0.7rem; /* profile-left와 동일 */
-    color: var(--text-dark) !important; /* profile-left와 동일 */
+    font-size: 0.7rem;
+    /* profile-left와 동일 */
+    color: var(--text-dark) !important;
+    /* profile-left와 동일 */
     text-decoration: none;
-    transition: color 0.3s ease; /* profile-left와 동일 */
+    transition: color 0.3s ease;
+    /* profile-left와 동일 */
 }
 
 .post-sidebar-fixed .sidebar-link:hover {
-    color: var(--primary) !important; /* profile-left와 동일 */
+    color: var(--primary) !important;
+    /* profile-left와 동일 */
 }
 
 .post-sidebar-fixed .sidebar-link-small {
@@ -1208,13 +1572,17 @@ body.about-page-custom .about-main .contact-card {
 }
 
 .post-sidebar-fixed .blog-title {
-    font-size: 0.9rem; /* profile-left h3와 동일 */
-    font-weight: 700; /* profile-left h3와 동일 */
+    font-size: 0.9rem;
+    /* profile-left h3와 동일 */
+    font-weight: 700;
+    /* profile-left h3와 동일 */
 }
 
 .post-sidebar-fixed .blog-description {
-    font-size: 0.7rem; /* profile-left p와 동일 */
-    line-height: 1.4; /* profile-left와 동일 */
+    font-size: 0.7rem;
+    /* profile-left p와 동일 */
+    line-height: 1.4;
+    /* profile-left와 동일 */
 }
 
 .sidebar-card-simple {
@@ -1297,10 +1665,13 @@ body.about-page-custom .about-main .contact-card {
 /* Fixed Left Sidebar - only on post pages */
 .post-sidebar-fixed {
     position: fixed;
-    left: 120px; /* profile-left와 동일하게 약간 오른쪽으로 */
-    top: 160px; /* profile-left와 동일하게 */
+    left: 120px;
+    /* profile-left와 동일하게 약간 오른쪽으로 */
+    top: 160px;
+    /* profile-left와 동일하게 */
     width: 200px;
-    height: calc(100vh - 160px); /* profile-left와 동일하게 */
+    height: calc(100vh - 160px);
+    /* profile-left와 동일하게 */
     overflow-y: auto;
     z-index: 100;
     padding-right: 15px;
@@ -1340,9 +1711,10 @@ body.about-page-custom .about-main .contact-card {
 /* Post page에서 사이드바 겹침 방지 */
 @media (min-width: 1371px) {
     body:has(.post-sidebar-fixed) .container .row {
-        margin-left: 310px; /* 본문을 왼쪽으로 이동 */
+        margin-left: 310px;
+        /* 본문을 왼쪽으로 이동 */
     }
-    
+
     body:has(.post-sidebar-fixed) .container {
         max-width: 100%;
         padding-left: 0 !important;
@@ -1355,9 +1727,10 @@ body.about-page-custom .about-main .contact-card {
     .post-sidebar-fixed {
         display: none !important;
     }
-    
+
     body:has(.post-sidebar-fixed) .container .row {
-        margin-left: auto;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
@@ -1369,7 +1742,8 @@ body.about-page-custom .about-main .contact-card {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-left: 0 !important; /* row의 margin-left 영향 제거 */
+    margin-left: 0 !important;
+    /* row의 margin-left 영향 제거 */
 }
 
 .PageNavigation a {
@@ -1380,7 +1754,8 @@ body.about-page-custom .about-main .contact-card {
     background: none;
     display: inline-flex;
     align-items: center;
-    max-width: 48%; /* 절반 너비로 제한 */
+    max-width: 48%;
+    /* 절반 너비로 제한 */
 }
 
 .PageNavigation a:hover {
@@ -1400,14 +1775,15 @@ body.about-page-custom .about-main .contact-card {
 .PageNavigation .next {
     text-align: right;
     justify-content: flex-end;
-    margin-left: auto; /* 오른쪽 정렬 */
+    margin-left: auto;
+    /* 오른쪽 정렬 */
 }
 
 @media (max-width: 768px) {
     .PageNavigation {
         flex-direction: column;
     }
-    
+
     .PageNavigation a {
         max-width: 100%;
         width: 100%;
@@ -1430,27 +1806,27 @@ body.about-page-custom .about-main .contact-card {
     .sidebar-section {
         margin-bottom: 1rem;
     }
-    
+
     .sidebar-card-simple {
         padding: 0.6rem 0;
     }
-    
+
     .sidebar-title-simple {
         font-size: 0.75rem;
     }
-    
+
     .sidebar-text {
         font-size: 0.7rem;
     }
-    
+
     .sidebar-link {
         font-size: 0.7rem;
     }
-    
+
     .sidebar-link-small {
         font-size: 0.65rem;
     }
-    
+
     .sidebar-date {
         font-size: 0.6rem;
     }
@@ -1515,11 +1891,11 @@ body.about-page-custom .about-main .contact-card {
     .no-image-placeholder {
         height: 150px;
     }
-    
+
     .no-image-placeholder i {
         font-size: 1.5rem;
     }
-    
+
     .card .maxthumb .no-image-placeholder,
     .listfeaturedtag .wrapthumbnail .no-image-placeholder {
         height: 150px;
@@ -1580,12 +1956,12 @@ body.about-page-custom .about-main .contact-card {
     .article-post table {
         font-size: 0.85rem;
     }
-    
+
     .article-post table th,
     .article-post table td {
         padding: 10px 12px;
     }
-    
+
     .article-post table th {
         font-size: 0.8rem;
     }
@@ -1909,9 +2285,9 @@ body.about-page-custom .about-main .contact-card {
 
 @media (max-width: 1200px) {
     .container {
-        max-width: 95%;
+        max-width: 100%;
     }
-    
+
     .section-title h2 {
         font-size: 1.75rem !important;
     }
@@ -1926,38 +2302,40 @@ body.about-page-custom .about-main .contact-card {
         margin-right: 0 !important;
         position: static !important;
     }
-    
+
     .featured-box h3 {
         font-size: 1.3rem;
     }
-    
+
     .listfeaturedtag {
         margin-bottom: 2rem;
     }
-    
+
     .listfeaturedtag .wrapthumbnail {
         height: 180px;
     }
-    
+
     .navbar-nav .nav-link {
         padding: 0.6rem 1rem !important;
     }
-    
+
     .section-title h2 {
         font-size: 1.5rem !important;
     }
-    
+
     .article-post h2 {
         font-size: 1.5rem;
     }
 }
 
 @media (max-width: 576px) {
-    .btn-primary, .btn-outline-primary {
+
+    .btn-primary,
+    .btn-outline-primary {
         padding: 0.6rem 1.5rem;
         font-size: 0.9rem;
     }
-    
+
     .featured-box {
         padding: 1.5rem 1rem;
         margin: 1.5rem 0;
@@ -1967,28 +2345,28 @@ body.about-page-custom .about-main .contact-card {
         margin-right: 0 !important;
         position: static !important;
     }
-    
+
     .featured-box .page-title {
         font-size: 2rem;
         padding: 0 1rem;
     }
-    
+
     .featured-box .page-title::after {
         left: 1rem;
     }
-    
+
     .featured-box p {
         padding: 0 1rem;
     }
-    
+
     .featured-box h3 {
         font-size: 1.2rem;
     }
-    
+
     .featured-box p {
         font-size: 1rem;
     }
-    
+
     .listfeaturedtag .wrapthumbnail {
         height: 160px;
     }
@@ -2000,16 +2378,16 @@ body.about-page-custom .about-main .contact-card {
         padding: 1rem 0.5rem !important;
         margin: 1rem 0 !important;
     }
-    
+
     .featured-box .page-title {
         font-size: 1.75rem !important;
         padding: 0 0.5rem !important;
     }
-    
+
     .featured-box .page-title::after {
         left: 0.5rem !important;
     }
-    
+
     .featured-box p {
         padding: 0 0.5rem !important;
         font-size: 0.95rem !important;
@@ -2021,7 +2399,7 @@ body.about-page-custom .about-main .contact-card {
     .featured-box .page-title {
         font-size: 1.5rem !important;
     }
-    
+
     .featured-box p {
         font-size: 0.9rem !important;
     }
@@ -2036,6 +2414,7 @@ body.about-page-custom .about-main .contact-card {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2167,17 +2546,21 @@ body:has(.about-content-wrapper) .section-title,
 }
 
 /* Hide any duplicate titles after featured-box */
-.featured-box + .lead,
-.featured-box + .section-title,
-.featured-box ~ .lead,
-.featured-box ~ .section-title {
+.featured-box+.lead,
+.featured-box+.section-title,
+.featured-box~.lead,
+.featured-box~.section-title {
     display: none !important;
 }
 
 /* Hide page header elements on About page */
-.page-header,
-.page-title:not(.featured-box .page-title) {
+.page-header {
     display: none !important;
+}
+
+/* 페이지 제목은 일반적으로 표시되도록 유지 */
+.page-title {
+    display: block !important;
 }
 
 /* ============================================
@@ -2194,22 +2577,164 @@ body:has(.about-content-wrapper) .section-title,
     margin-right: -50vw !important;
 }
 
-/* Explore section adjustments */
-.jumbotron.fortags {
-    min-height: 12px !important; /* Reduced from default */
-    margin-bottom: 2rem !important;
-    background: var(--bg-white) !important;
+/* Experience List Styles (Refactored About Section) */
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
 
+/* Bio Intro */
+.bio-intro {
+    margin-bottom: 3rem;
+}
+
+.bio-intro p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.25 !important;   
+    color: var(--text-dark);
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.bio-intro .highlight {
+    font-size: 1.5rem !important;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Experience Item Styling */
+.experience-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.experience-title {
+    font-weight: 400;
+    white-space: nowrap;
+    margin-right: 0.8rem;
+    color: var(--text-dark);
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.experience-filler {
+    flex-grow: 1;
+    border-bottom: 1px dashed #bbb;
+    margin: 0 0.5rem;
+    height: 1px;
+    align-self: center;
+    opacity: 0.5;
+    min-width: 20px;
+}
+
+.experience-description {
+    color: var(--text-medium);
+    white-space: nowrap;
+    margin-right: 1.5rem;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.experience-date {
+    font-size: 0.6rem; /* Reduced from 0.85rem (~1.3x smaller) */
+    color: var(--text-medium);
+    white-space: nowrap;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.experience-arrow {
+    font-size: 1rem;
+    color: var(--text-dark);
+    opacity: 1;
+    flex-shrink: 0;
+    font-family: sans-serif;
+}
+
+.experience-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.experience-link:hover {
+    color: var(--primary);
+}
+
+/* General Arrow Link (for other usages) */
+.arrow-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+}
+
+.arrow-link::after {
+    content: "→";
+    font-size: 0.85em;
+    color: var(--text-medium);
+    opacity: 0.4;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.arrow-link:hover::after {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* Mobile responsiveness for experience list */
+@media (max-width: 768px) {
+    .experience-item {
+        flex-wrap: wrap;
+        gap: 0.2rem;
+        align-items: flex-start;
+    }
+
+    .experience-filler, .experience-arrow {
+        display: none;
+    }
+
+    .experience-title {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0.1rem;
+        font-weight: 600;
+    }
+
+    .experience-description {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0.1rem;
+        white-space: normal;
+    }
+
+    .experience-date {
+        width: 100%;
+        text-align: left;
+        margin-right: 0;
+    }
 }
 
 .jumbotron.fortags h2 {
-    font-size: 1.5rem !important; /* Smaller title */
+    font-size: 1.5rem !important;
+    /* Smaller title */
     margin: 0 !important;
     // color: var(--text-dark) !important;
 }
 
 .jumbotron.fortags .col-md-8 {
-    padding: 1rem !important; /* Reduced from p-5 */
+    padding: 1rem !important;
+    /* Reduced from p-5 */
 }
 
 .jumbotron.fortags a {
@@ -2234,7 +2759,8 @@ body:has(.about-content-wrapper) .section-title,
 /* Footer full width styling */
 .footer.fullwidth-section {
     margin-top: 0 !important;
-    padding: 1.5rem 0 !important; /* Consistent padding */
+    padding: 1.5rem 0 !important;
+    /* Consistent padding */
 }
 
 /* Responsive adjustments */
@@ -2243,20 +2769,59 @@ body:has(.about-content-wrapper) .section-title,
         min-height: 100px !important;
         padding: 1.5rem 0 !important;
     }
-    
+
     .jumbotron.fortags .d-md-flex {
         flex-direction: column !important;
     }
-    
+
     .jumbotron.fortags .col-md-4,
     .jumbotron.fortags .col-md-8 {
         max-width: 100% !important;
         padding: 0.5rem !important;
     }
-    
+
     .jumbotron.fortags h2 {
         font-size: 1.3rem !important;
         margin-bottom: 1rem !important;
     }
 }
 
+/* Project Grid Styles */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.project-category {
+    margin-bottom: 1rem;
+}
+
+.project-category-title {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.project-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-items li {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+/* Mobile responsiveness for project grid */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
