@@ -12,11 +12,11 @@
     const canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
 
-    // Disable on post pages
-    if (document.body.classList.contains('layout-post')) {
-        canvas.style.display = 'none';
-        return;
-    }
+    // Disable on post pages - REMOVED as requested
+    // if (document.body.classList.contains('layout-post')) {
+    //     canvas.style.display = 'none';
+    //     return;
+    // }
 
     const ctx = canvas.getContext('2d');
     let width, height;

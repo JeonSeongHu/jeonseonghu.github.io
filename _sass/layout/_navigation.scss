@@ -3,16 +3,16 @@
    ============================================ */
 
 .mediumnavigation {
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) !important;
+    background: transparent !important;
+    backdrop-filter: none;
+    box-shadow: none !important;
     padding-top: 0.0rem !important;
     padding-bottom: 0.0rem !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     min-height: auto !important;
     z-index: 1030 !important; /* Ensure nav is above other content */
-    // border-bottom: 1px solid var(--border-light);
+    border-bottom: none !important;
 }
 
 /* Ensure nav is always visible on mobile */

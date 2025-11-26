@@ -174,13 +174,14 @@
 /* Search Input Styling */
 #lunrsearch {
     border: 1px solid var(--border-light) !important;
-    padding: 0.5rem 1rem !important;
+    padding: 0.5rem 1rem 0.5rem 2.4rem !important; /* Added left padding for icon */
     font-size: 0.9rem !important;
     transition: all 0.3s ease !important;
     background: var(--bg-white) !important;
     color: var(--text-dark) !important;
     width: 200px;
     height: 38px;
+    border-radius: 20px !important; /* Rounded pill shape */
 }
 
 #lunrsearch:focus {
@@ -188,6 +189,24 @@
     border-color: var(--primary) !important;
     box-shadow: 0 0 0 3px var(--light-primary) !important;
     background: var(--bg-white) !important;
+}
+
+/* Search Wrapper and Icon */
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 0.9rem;
+    z-index: 10;
+    pointer-events: none;
 }
 
 #lunrsearch::placeholder {
@@ -273,7 +292,10 @@ body.modal-open {
 
 <li class="nav-item search-nav-item">
     <form class="bd-search" onSubmit="fuseSearch(document.getElementById('lunrsearch').value, event); return false;">
-        <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="{% if site.active_lang == 'en' %}Search...{% else %}검색...{% endif %}"/>
+        <div class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="{% if site.active_lang == 'en' %}Search...{% else %}검색...{% endif %}"/>
+        </div>
     </form>
 </li>
 
