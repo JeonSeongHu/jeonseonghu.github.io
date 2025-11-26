@@ -60,19 +60,73 @@ nav.mediumnavigation .container.pr-0,
 
 .mediumnavigation .navbar-nav {
     padding-right: 0 !important;
+    display: flex;
+    align-items: center; /* Vertically center all items */
 }
 
-.navbar-nav .nav-link {
+/* Increased specificity to override Bootstrap defaults consistently */
+.navbar-expand-lg .navbar-nav .nav-link,
+.mediumnavigation .navbar-nav .nav-link {
     font-weight: 500 !important;
     color: var(--text-medium) !important;
     font-size: 0.95rem;
-    padding: 0.8rem 1.2rem !important;
+    padding: 0.6rem 1.2rem !important; /* Adjusted padding */
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Horizontally center text */
+    height: 100%;
 }
 
-.navbar-nav .nav-link:hover {
+.navbar-expand-lg .navbar-nav .nav-link:hover,
+.mediumnavigation .navbar-nav .nav-link:hover {
     color: var(--primary) !important;
     background: rgba(58, 64, 231, 0.05);
-    // border-radius: 6px;
 }
 
+/* Centered Navigation with Dots for Desktop */
+@media (min-width: 992px) {
+    .mediumnavigation .navbar-collapse {
+        /* Removed justify-content: center; handled by absolute positioning */
+    }
+
+    /* Absolutely position the main menu in the exact center */
+    .mediumnavigation .navbar-nav.main-menu {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row !important; /* Ensure row direction */
+        flex-wrap: nowrap !important;   /* Prevent wrapping */
+    }
+
+    .mediumnavigation .navbar-nav .nav-item {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Add dots after Brand and Home items in the MAIN MENU only */
+    .mediumnavigation .navbar-nav.main-menu .nav-item:nth-child(1):after,
+    .mediumnavigation .navbar-nav.main-menu .nav-item:nth-child(2):after {
+        content: "·";
+        color: var(--text-medium);
+        font-weight: bold;
+        margin: 0 0.2rem;
+    }
+
+    /* Adjust link padding for centered look */
+    .mediumnavigation .navbar-nav.main-menu .nav-link {
+        padding-left: 0.8rem !important;
+        padding-right: 0.8rem !important;
+    }
+
+    /* Brand link color */
+    .mediumnavigation .navbar-nav.main-menu .nav-item:first-child .nav-link {
+        color: var(--text-dark) !important;
+    }
+
+    /* Ensure search is pushed to the right */
+    .mediumnavigation .navbar-nav:not(.main-menu) {
+        margin-left: auto;
+        flex-direction: row !important;
+    }
+}

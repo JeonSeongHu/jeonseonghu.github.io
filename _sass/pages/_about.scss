@@ -232,7 +232,7 @@ body.about-page-custom .section-title {
 }
 
 body.about-page-custom .about-content-wrapper {
-    margin-left: 320px;
+    margin-left: 460px; /* Restoring safe margin for desktop */
     padding: 0 0.5rem 0 0.3rem;
     margin-top: 6rem;
     margin-right: 0.5rem;
@@ -288,10 +288,99 @@ body.about-page-custom .about-main p {
 }
 
 @media (max-width: 1200px) {
+    /* Tablet Landscape Range: 992px - 1200px */
+    /* Slightly adjust sidebar and content for medium screens */
     body.about-page-custom .about-content-wrapper {
-        margin-left: 0;
+        margin-left: 360px; /* Reduce from 400/460 */
         padding: 0 1rem;
+        margin-top: 5rem;
+    }
+
+    body.about-page-custom .profile-left {
+        width: 320px !important; /* Force override later definition */
+        left: 20px !important;
+    }
+    
+    body.about-page-custom .profile-left .img-fluid {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Fix text truncation around 1000px by switching to vertical layout */
+    body.about-page-custom .experience-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px dashed var(--border-light);
+        padding-bottom: 0.5rem;
+    }
+    
+    body.about-page-custom .experience-item:last-child {
+        border-bottom: none;
+    }
+
+    body.about-page-custom .experience-filler {
+        display: none !important;
+    }
+    
+    body.about-page-custom .experience-title {
+        width: 100%;
+        white-space: normal;
+        font-weight: 700;
+        margin-bottom: 0.1rem;
+    }
+
+    body.about-page-custom .experience-description {
+        width: 100%;
+        text-align: left;
+        margin-left: 0;
+        white-space: normal;
+        line-height: 1.4;
+    }
+    
+    body.about-page-custom .experience-date {
+        width: 100%;
+        text-align: left;
+        margin-left: 0;
+        white-space: normal;
+        font-size: 0.75rem;
+        margin-top: 0.2rem;
+        opacity: 0.8;
+    }
+}
+
+@media (max-width: 991px) {
+    /* Tablet Portrait Range: 768px - 991px */
+    /* Keep sidebar visible but narrower */
+    body.about-page-custom .profile-left {
+        width: 260px !important; /* Narrower sidebar */
+        left: 20px !important;
+        padding-right: 10px !important;
+        position: fixed !important; /* Keep fixed */
+        top: 140px !important;
+        height: calc(100vh - 140px) !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Reduce sidebar elements size */
+    body.about-page-custom .profile-left .img-fluid {
+        width: 140px !important;
+        height: 140px !important;
+    }
+
+    body.about-page-custom .about-content-wrapper {
+        margin-left: 300px !important; /* Adjust margin for narrower sidebar */
+        padding-right: 1rem;
         margin-top: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body.about-page-custom .about-content-wrapper {
+        margin-left: 0 !important;
+        padding: 0 1rem;
+        margin-top: 3rem;
     }
 
     /* Change sidebar from fixed to normal flow on mobile */
@@ -303,39 +392,16 @@ body.about-page-custom .about-main p {
         top: auto !important;
         padding-right: 0 !important;
         margin-bottom: 2rem;
+        overflow: visible !important;
+    }
+
+    /* Center profile on mobile */
+    body.about-page-custom .profile-left .img-fluid {
+        width: 160px !important; /* Restore size on mobile */
+        height: auto !important;
     }
 }
 
-@media (max-width: 991px) {
-    body.about-page-custom .about-content-wrapper {
-        margin-left: 0;
-        padding: 0 0.8rem;
-        margin-top: 3rem;
-    }
-    
-    /* Ensure sidebar is visible and properly styled on mobile */
-    body.about-page-custom .profile-left {
-        position: static !important;
-        width: 100% !important;
-        height: auto !important;
-        left: auto !important;
-        top: auto !important;
-        padding-right: 0 !important;
-        margin-bottom: 2rem;
-        overflow: visible !important;
-    }
-    
-    /* Adjust sidebar content for mobile */
-    body.about-page-custom .profile-left .img-fluid {
-        width: 200px !important;
-        height: auto !important;
-        max-width: 100%;
-    }
-    
-    body.about-page-custom .profile-left .sidebar-section {
-        margin-bottom: 1.5rem;
-    }
-}
 
 /* ============================================
    SIDEBAR PROFILE PANEL
@@ -547,17 +613,7 @@ body.about-page-custom .project-items li {
         gap: 1.5rem;
     }
     
-    /* Mobile adjustments for lists */
-    body.about-page-custom .experience-item {
-        flex-wrap: wrap;
-    }
-    body.about-page-custom .experience-filler {
-        display: none;
-    }
-    body.about-page-custom .experience-description,
-    body.about-page-custom .experience-date {
-        width: 100%;
-        text-align: left;
-        margin-left: 0;
+    body.about-page-custom .experience-arrow {
+        display: none !important;
     }
 }

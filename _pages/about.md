@@ -58,7 +58,7 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 						<span class="fw-bold">B.S. in Computer Science & Engineering</span>
 						<span class="exp-date small text-muted text-nowrap">Mar. 2022 - Feb. 2026</span>
 					</div>
-					<div class="small text-muted mt-1">Korea University</div>
+					<div class="small text-muted mt-1">Korea University (GPA: 4.46/4.50)</div>
 				</li>
 			</ul>
 		</div>
