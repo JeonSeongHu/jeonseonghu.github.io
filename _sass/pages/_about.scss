@@ -379,8 +379,9 @@ body.about-page-custom .about-main p {
 @media (max-width: 768px) {
     body.about-page-custom .about-content-wrapper {
         margin-left: 0 !important;
-        padding: 0 1rem;
+        padding: 0 15px; /* Standard Bootstrap padding */
         margin-top: 3rem;
+        overflow-x: hidden; /* Prevent wrapper overflow */
     }
 
     /* Change sidebar from fixed to normal flow on mobile */
@@ -399,6 +400,36 @@ body.about-page-custom .about-main p {
     body.about-page-custom .profile-left .img-fluid {
         width: 160px !important; /* Restore size on mobile */
         height: auto !important;
+    }
+    
+    /* Add background color to navbar on mobile to prevent overlap */
+    nav.navbar {
+        background-color: white !important;
+    }
+    
+    /* Reset main container overflow */
+    body.about-page-custom {
+        overflow-x: hidden !important;
+    }
+    
+    body.about-page-custom .site-content {
+        overflow-x: hidden !important;
+    }
+    
+    body.about-page-custom .container {
+        max-width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        overflow-x: hidden !important;
+    }
+
+    body.about-page-custom .project-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    body.about-page-custom .experience-arrow {
+        display: none !important;
     }
 }
 
@@ -613,7 +644,56 @@ body.about-page-custom .project-items li {
         gap: 1.5rem;
     }
     
-    body.about-page-custom .experience-arrow {
-        display: none !important;
+    /* Add background color to navbar on mobile to prevent overlap */
+    nav.navbar {
+        background-color: white !important;
+    }
+    
+    /* Reset main container overflow and ensure proper width */
+    body.about-page-custom {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        position: relative;
+    }
+    
+    body.about-page-custom .site-content {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+    
+    body.about-page-custom .container {
+        overflow-x: hidden !important;
+        padding-right: 15px !important; /* Restore standard padding */
+        padding-left: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Ensure experience items don't overflow */
+    body.about-page-custom .experience-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        flex-direction: column !important; /* Force column layout */
+        align-items: flex-start !important;
+        white-space: normal !important; /* Force normal whitespace on container */
+    }
+    
+    body.about-page-custom .experience-title,
+    body.about-page-custom .experience-description,
+    body.about-page-custom .experience-date {
+        width: 100% !important;
+        white-space: normal !important; /* Force wrap */
+        word-wrap: break-word !important; /* Legacy support */
+        overflow-wrap: break-word !important; /* Modern support */
+        word-break: break-word !important; /* Break long words if needed */
+        max-width: 100% !important;
+    }
+
+    body.about-page-custom .experience-title a {
+        display: inline; /* Change from inline-block to allow better wrapping */
+        white-space: normal !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
     }
 }
