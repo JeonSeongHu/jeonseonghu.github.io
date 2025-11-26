@@ -232,7 +232,7 @@ body.about-page-custom .section-title {
 }
 
 body.about-page-custom .about-content-wrapper {
-    margin-left: 460px; /* Restoring safe margin for desktop */
+    margin-left: 490px; /* Adjusted for shifted sidebar (460px + 30px) */
     padding: 0 0.5rem 0 0.3rem;
     margin-top: 6rem;
     margin-right: 0.5rem;
@@ -409,7 +409,7 @@ body.about-page-custom .about-main p {
 
 body.about-page-custom .profile-left {
     position: fixed;
-    left: 40px;
+    left: 70px; /* Shifted right from 40px */
     top: 160px;
     width: 400px;
     height: calc(100vh - 160px);
