@@ -19,7 +19,7 @@ custom_css_class: with-dot-bg
             </div>
 
             <!-- Dynamic Categories from _data/categories.yml -->
-            {% for category in site.data.categories %}
+            {% for category in site.data.categories.categories %}
             {% assign category_slug = category.slug %}
             {% assign main_category_count = 0 %}
             {% for post in site.posts %}
@@ -67,7 +67,7 @@ custom_css_class: with-dot-bg
             {% endfor %}
             
             <!-- Fallback if data file is missing -->
-            {% if site.data.categories == null %}
+            {% if site.data.categories.categories == null %}
                 {% for category in site.categories %}
                 <div class="category-group">
                     <a href="#" onclick="filterPosts('{{ category[0] | slugify }}'); return false;" class="category-major">
@@ -86,7 +86,7 @@ custom_css_class: with-dot-bg
         <div class="mobile-category-selector">
             <select id="mobile-category-select" onchange="filterPosts(this.value);">
                 <option value="all">All Posts ({{ site.posts | size }})</option>
-                {% for category in site.data.categories %}
+                {% for category in site.data.categories.categories %}
                 {% assign category_slug = category.slug %}
                 {% assign main_category_count = 0 %}
                 {% for post in site.posts %}

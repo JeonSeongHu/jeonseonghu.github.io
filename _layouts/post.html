@@ -63,6 +63,18 @@ post_class: post-template
                 </div>
             </div>
         </div>
+
+        <!-- Table of Contents (Sidebar) -->
+        {% if page.toc %}
+        <div class="sidebar-section mt-5 pt-3"> <!-- Added margin and padding for separation -->
+            <div class="sidebar-card-simple border-bottom-0">
+                <h6 class="sidebar-title-simple">Table of Contents</h6>
+                <div class="sidebar-toc" style="font-size: 0.85rem;"> <!-- Slightly increased font size -->
+                    {% include toc_pure_html.html html=content class="toc-list" item_class="toc-item" submenu_class="toc-sub-list" %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 
 <!-- Main Content Container -->
@@ -156,7 +168,7 @@ post_class: post-template
                     {% endif %}
                     <div class="toc mt-4 mb-4 lead">
                         <h3 class="font-weight-bold">Table of Contents</h3>
-                        {% include toc.html html=content %}
+                        {% include toc.html html=content ordered=true %}
                     </div>
                 {% endif %}
                 <!-- End Toc -->
@@ -164,6 +176,48 @@ post_class: post-template
             </div>
 
             <hr class="article-divider" />
+            
+            <!-- ScrollSpy for Sidebar TOC -->
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const tocLinks = document.querySelectorAll('.sidebar-toc a');
+                const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3, .article-post h4, .article-post h5, .article-post h6');
+                
+                function changeLinkState() {
+                    let index = sections.length;
+            
+                    while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+                    
+                    tocLinks.forEach((link) => {
+                        link.classList.remove('active');
+                        link.style.removeProperty('color');
+                        link.style.removeProperty('font-weight');
+                    });
+                    
+                    // Remove active-li class from all lists
+                    document.querySelectorAll('.sidebar-toc .active-li').forEach(li => {
+                        li.classList.remove('active-li');
+                    });
+            
+                    if (index >= 0 && tocLinks[index]) {
+                        const activeLink = tocLinks[index];
+                        activeLink.classList.add('active');
+                        
+                        // Add active-li class to all ancestor LIs to expand the tree
+                        let parent = activeLink.parentElement;
+                        while(parent) {
+                            if (parent.tagName === 'LI' && parent.closest('.sidebar-toc')) {
+                                parent.classList.add('active-li');
+                            }
+                            parent = parent.parentElement;
+                        }
+                    }
+                }
+            
+                changeLinkState();
+                window.addEventListener('scroll', changeLinkState);
+            });
+            </script>
 
             {% include series-list.html %}
 
@@ -189,27 +243,41 @@ post_class: post-template
             <!-- Post Tags -->
             <div class="after-post-tags">
                 <ul class="tags">
+                    {% if page.tags %}
                     {% assign sortedTags = page.tags | sort %}
                     {% for tag in sortedTags %}
                     <li>
                         <a class="smoothscroll" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>
                     </li>
                     {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
             <!-- End Tags -->
 
             <!-- Prev/Next -->
-            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-            {% if page.previous.url %}
-            <a class="prev d-block col-md-6" href="{{ site.baseurl }}{{page.previous.url}}"> &laquo; {{page.previous.title}}</a>
-            {% endif %}
-            {% if page.next.url %}
-            <a class="next d-block col-md-6 text-lg-right" href="{{ site.baseurl }}{{page.next.url}}">{{page.next.title}} &raquo; </a>
-            {% endif %}
-            <div class="clearfix"></div>
+            <div class="post-navigation">
+                <div class="nav-links">
+                    {% if page.previous.url %}
+                    <a class="nav-previous" href="{{ site.baseurl }}{{page.previous.url}}">
+                        <span class="nav-label">이전 글</span>
+                        <span class="nav-title">&laquo; {{page.previous.title}}</span>
+                    </a>
+                    {% else %}
+                    <div class="nav-previous nav-empty"></div>
+                    {% endif %}
+                    
+                    {% if page.next.url %}
+                    <a class="nav-next" href="{{ site.baseurl }}{{page.next.url}}">
+                        <span class="nav-label">다음 글</span>
+                        <span class="nav-title">{{page.next.title}} &raquo;</span>
+                    </a>
+                    {% else %}
+                    <div class="nav-next nav-empty"></div>
+                    {% endif %}
+                </div>
             </div>
-            <!-- End Categories -->
+            <!-- End Prev/Next -->
 
             </div>
             <!-- End Post -->

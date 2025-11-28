@@ -3,7 +3,7 @@
 
 <div class="related-posts mt-5">
   <div class="section-title">
-    <h2><span>{% if site.active_lang == 'en' %}Related Posts{% else %}관련 글{% endif %}</span></h2>
+    <h2><span>관련 글</span></h2>
   </div>
 
   <ul class="related-posts-list">
@@ -40,7 +40,7 @@
   </ul>
 
   {% if page.series %}
-    <div class="series-note text-muted small">{% if site.active_lang == 'en' %}Series{% else %}시리즈{% endif %}: {{ page.series }}</div>
+    <div class="series-note text-muted small">시리즈: {{ page.series }}</div>
   {% endif %}
 </div>
 

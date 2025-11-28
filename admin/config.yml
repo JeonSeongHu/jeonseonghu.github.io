@@ -1,0 +1,178 @@
+# ============================================
+# DECAP CMS CONFIGURATION
+# Local file system backend for local development
+# ============================================
+
+backend:
+  name: git-gateway
+
+local_backend: true
+
+# Enable auto-save
+# (removed publish_mode: editorial_workflow to enable auto-save)
+
+# ============================================
+# MEDIA SETTINGS
+# Images are stored per-post in assets/images/posts/{slug}/
+# ============================================
+media_folder: "assets/images/posts"
+public_folder: "/assets/images/posts"
+
+# ============================================
+# COLLECTIONS
+# ============================================
+collections:
+  # ----------------------------------------
+  # Posts
+  # ----------------------------------------
+  - name: "posts"
+    label: "Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    media_folder: "/assets/images/posts/{{slug}}"
+    public_folder: "/assets/images/posts/{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "post"
+      
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        format: "YYYY-MM-DD HH:mm"
+        required: false
+      
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        default: "jeonseonghu"
+      
+      - label: "Main Category"
+        name: "main_category"
+        widget: "relation"
+        collection: "main_categories"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
+      
+      - label: "Sub Category"
+        name: "sub_category"
+        widget: "relation"
+        collection: "sub_categories"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
+
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        required: false
+        media_folder: "/assets/images/posts/{{slug}}"
+        public_folder: "/assets/images/posts/{{slug}}"
+      
+      - label: "Series"
+        name: "series"
+        widget: "relation"
+        collection: "series"
+        search_fields: ["name"]
+        value_field: "{{slug}}"
+        display_fields: ["name"]
+        required: false
+
+      - label: "Table of Contents"
+        name: "toc"
+        widget: "boolean"
+        default: true
+        required: false
+      
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        media_folder: "/assets/images/posts/{{slug}}"
+        public_folder: "/assets/images/posts/{{slug}}"
+
+  # ----------------------------------------
+  # Series
+  # ----------------------------------------
+  - name: "series"
+    label: "Series"
+    folder: "_data/series"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    slug: "{{slug}}"
+    fields:
+      - label: "Name"
+        name: "name"
+        widget: "string"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        required: false
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Posts"
+        name: "posts"
+        widget: "relation"
+        collection: "posts"
+        multiple: true
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        required: false
+
+  # ----------------------------------------
+  # Main Categories (folder-based for relation widget)
+  # ----------------------------------------
+  - name: "main_categories"
+    label: "Main Categories"
+    folder: "_data/main_categories"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    slug: "{{slug}}"
+    fields:
+      - label: "Name"
+        name: "name"
+        widget: "string"
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+
+  # ----------------------------------------
+  # Sub Categories (folder-based for relation widget)
+  # ----------------------------------------
+  - name: "sub_categories"
+    label: "Sub Categories"
+    folder: "_data/sub_categories"
+    create: true
+    extension: "yml"
+    format: "yaml"
+    slug: "{{slug}}"
+    fields:
+      - label: "Name"
+        name: "name"
+        widget: "string"
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+      - label: "Parent Category"
+        name: "parent"
+        widget: "relation"
+        collection: "main_categories"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
+        required: false

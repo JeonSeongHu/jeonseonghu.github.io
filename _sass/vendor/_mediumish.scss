@@ -3,10 +3,19 @@ Template Name: Mediumish
 Copyright: Sal, WowThemes.net, https://www.wowthemes.net 
 License: https://www.wowthemes.net/freebies-license/ 
 */
+html { font-size: 80%; }
+
 @media screen and (min-width:1500px) {
-    html { font-size:18px; } /* Increase the font size on higher resolutions */
+    html { font-size:14.4px; } /* Increase the font size on higher resolutions */
     .container {max-width:80%;}
 }
+.layout-post #bg-canvas {
+    display: none !important;
+}
+/*.layout-page #bg-canvas {
+    display: none !important;
+}*/
+
 .mainheading {
     padding: 1rem 0rem;
 }
@@ -79,24 +88,65 @@ section.recent-posts {
     margin-bottom: -1px;
 }
 
-.article-post ol,
-.article-post ul {
-    margin-bottom: 1.3rem;
-    line-height: 1.5rem;
+.article-post h1,
+.article-post .h1 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.article-post ol li,
-.article-post ul li {
-    margin-bottom: 0.75rem;
+.article-post h2,
+.article-post .h2 {
+    font-size: 1.75rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
 }
 
-.article-post ol ol,
+.article-post h3,
+.article-post .h3 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+
+.article-post h4,
+.article-post .h4 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.article-post p {
+    font-size: 1.32rem; /* Increased by 20% from 1.1rem */
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.article-post ul, 
+.article-post ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.article-post li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+
+/* Fix nested list overlap */
 .article-post ul ul,
-.article-post ol ul,
-.article-post ul ol {
-    list-style: disc;
-    margin-top: -0.75rem;
-    margin-bottom: 0.75rem;
+.article-post ol ol,
+.article-post ul ol,
+.article-post ol ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0; /* Reset margin to avoid double indentation causing narrow width */
 }
 
 @media (min-width:576px) {
@@ -339,9 +389,14 @@ span.post-read-more a:hover {
     color: rgba(0, 0, 0, .8);
 }
 
+.post-content {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
 .article-post {
-    font-family: 'GowunBatang-Regular', serif;
-    font-size: 1.1rem;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.32rem; /* Increased by 20% from 1.1rem */
     line-height: 1.7;
     font-weight: 400;
     color: rgba(0, 0, 0, .8);

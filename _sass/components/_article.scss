@@ -3,16 +3,17 @@
    ============================================ */
 
 .article-post {
-    font-family: 'GowunBatang-Regular', serif !important;
-    font-size: 1.1rem;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 1.32rem;
     line-height: 1.7;
     color: var(--text-dark);
     font-weight: 400;
+    counter-reset: article-h1; /* Initialize counter for H1 mapping */
 }
 
-/* Force all children to use Gowun Batang */
+/* Force all children to use Wanted Sans */
 .article-post * {
-    font-family: 'GowunBatang-Regular', serif !important;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
 /* Exception for code blocks - usually want monospace */
@@ -23,14 +24,12 @@
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 
-.article-post h1,
-.article-post h2,
-.article-post h3,
-.article-post h4,
-.article-post h5,
-.article-post h6 {
-    /* Headers also use Gowun Batang based on user request */
-    font-family: 'GowunBatang-Regular', serif !important; 
+/* Treat h1 and h2 as the same top-level section for numbering purposes, 
+   since users might mix them or start with h1. */
+.article-post h1 {
+    counter-reset: article-h2;
+    counter-increment: article-h1;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     font-weight: 700;
     color: var(--text-dark);
     margin-top: 2rem;
@@ -38,9 +37,85 @@
 }
 
 .article-post h2 {
+    counter-reset: article-h3;
+    counter-increment: article-h2;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
     font-size: 1.75rem;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.article-post h1::before {
+    content: counter(article-h1) ". ";
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.article-post h2::before {
+    content: counter(article-h1) "." counter(article-h2) ". ";
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.article-post h3 {
+    counter-reset: article-h4;
+    counter-increment: article-h3;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Prevent Table of Contents header from getting numbered */
+.toc h3::before {
+    content: none !important;
+}
+
+.article-post h3::before {
+    content: counter(article-h1) "." counter(article-h2) "." counter(article-h3) ". ";
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.article-post h4 {
+    counter-increment: article-h4;
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-post h4::before {
+    content: counter(article-h1) "." counter(article-h2) "." counter(article-h3) "." counter(article-h4) ". ";
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.article-post h5,
+.article-post h6 {
+    /* Headers also use Wanted Sans */
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Disable numbering for About page content wrapper */
+.article-post .about-content-wrapper h1::before,
+.article-post .about-content-wrapper h2::before,
+.article-post .about-content-wrapper h3::before,
+.article-post .about-content-wrapper h4::before,
+.article-post .about-content-wrapper h5::before,
+.article-post .about-content-wrapper h6::before {
+    content: none !important;
+    display: none !important;
 }
 
 .modal-header {
@@ -52,13 +127,26 @@
 }
 
 .article-post blockquote {
-    border-left: 4px solid var(--primary);
-    background: rgba(58, 64, 231, 0.03);
-    padding: 1.5rem 2rem;
-    margin: 2rem 0;
-    border-radius: 0;
-    font-style: italic;
-    color: var(--text-medium);
+    border: 0px solid var(--primary);
+    background: rgba(58, 64, 231, 0.04);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    font-style: normal;
+    color: var(--text-dark);
+}
+
+.article-post blockquote ul,
+.article-post blockquote ol {
+    margin-bottom: 0;
+}
+.article-post blockquote p {
+    margin-bottom: 0;
+}
+
+
+.article-post blockquote li {
+    font-size: 0.95em;
 }
 
 /* ============================================
@@ -158,4 +246,290 @@
     .article-post table th {
         font-size: 0.8rem;
     }
+}
+
+/* ============================================
+   TABLE OF CONTENTS (TOC) STYLING
+   ============================================ */
+
+/* 1. Main Content TOC */
+.toc {
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    padding: 1.5rem 2rem;
+    border-radius: 0;
+    color: #555;
+    box-shadow: none !important;
+    margin-bottom: 3rem !important;
+}
+
+.toc h3 {
+    margin-top: 0 !important;
+    font-size: 1.3rem !important; /* Increased from 1.1rem */
+    color: #333 !important;
+    margin-bottom: 1.2rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.toc ol {
+    list-style: none;
+    counter-reset: item;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.toc li {
+    margin-bottom: 0.4rem;
+}
+
+.toc li a {
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.toc li a:hover {
+    color: #000;
+    border-bottom: 1px solid #000;
+    text-decoration: none;
+}
+
+/* Level 1: 1. 2. 3. */
+.toc > ol > li {
+    counter-increment: item;
+    font-weight: 600;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+}
+.toc > ol > li::before {
+    content: counter(item) ". ";
+    color: #999;
+    font-weight: 400;
+    margin-right: 0.4rem;
+}
+
+/* Level 2: 1.1. 1.2. */
+.toc > ol > li > ol {
+    counter-reset: subitem;
+    padding-left: 0.5rem;
+    margin-top: 0.4rem;
+}
+.toc > ol > li > ol > li {
+    counter-increment: subitem;
+    font-weight: 400;
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+    padding-left: 1rem;
+    text-indent: -1rem; /* Hanging indent */
+}
+.toc > ol > li > ol > li::before {
+    content: counter(item) "." counter(subitem) ". ";
+    color: #aaa;
+    margin-right: 0.3rem;
+    font-size: 0.9rem;
+}
+
+/* Level 3: 1.1.1. 1.1.2. */
+.toc > ol > li > ol > li > ol {
+    counter-reset: subsubitem;
+    padding-left: 1.5rem;
+}
+.toc > ol > li > ol > li > ol > li {
+    counter-increment: subsubitem;
+    font-size: 0.9rem;
+}
+.toc > ol > li > ol > li > ol > li::before {
+    content: counter(item) "." counter(subitem) "." counter(subsubitem) ". ";
+    color: #bbb;
+    margin-right: 0.3rem;
+}
+
+
+/* 2. Sidebar TOC - Clean HCI Redesign (v5: Bigger Title, Deeper Indents) */
+.sidebar-toc {
+    padding-left: 0;
+    /* Reset counters for main items */
+    counter-reset: sidebar-toc-item;
+}
+
+.sidebar-title-simple {
+    font-size: 1.25rem; /* Increased font size further */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+/* Remove default list styles */
+.sidebar-toc ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* 1st Level Items */
+.sidebar-toc .toc-list > ul > li {
+    margin-top: 1.2rem; /* More spacing between main sections */
+    margin-bottom: 0.5rem;
+    position: relative;
+    counter-increment: sidebar-toc-item;
+}
+
+.sidebar-toc .toc-list > ul > li > a {
+    color: var(--text-medium) !important;
+    font-weight: 700; /* Bolder */
+    font-size: 0.95rem;
+    display: block;
+    line-height: 1.4;
+    border-left: none;
+    padding-left: 0;
+    transition: all 0.2s ease;
+}
+
+/* 1st Level Numbering */
+.sidebar-toc .toc-list > ul > li > a::before {
+    content: counter(sidebar-toc-item) ". ";
+    color: #888;
+    margin-right: 4px;
+    font-weight: 400;
+}
+
+/* Active State - Level 1 */
+.sidebar-toc .toc-list > ul > li > a.active {
+    color: var(--primary) !important;
+    font-weight: 800;
+}
+.sidebar-toc .toc-list > ul > li > a.active::before {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+
+/* 2nd Level Items (Nested) */
+.sidebar-toc .toc-list > ul > li > ul {
+    display: none; /* Hidden by default */
+    margin-top: 0.5rem;
+    padding-left: 0;
+    position: relative;
+    margin-left: 15px !important; /* Force override reset */
+    border-left: 1px solid var(--border-light);
+    counter-reset: sidebar-toc-subitem;
+}
+
+/* Show nested level 2 when parent level 1 is active */
+.sidebar-toc .toc-list > ul > li.active-li > ul {
+    display: block;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li {
+    margin-bottom: 0.3rem;
+    position: relative;
+    counter-increment: sidebar-toc-subitem;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > a {
+    color: var(--text-light) !important;
+    font-size: 0.85rem;
+    font-weight: 400;
+    display: block;
+    line-height: 1.3;
+    transition: all 0.2s;
+    padding-left: 15px;
+    position: relative;
+}
+
+/* 2nd Level Numbering */
+.sidebar-toc .toc-list > ul > li > ul > li > a::before {
+    content: counter(sidebar-toc-item) "." counter(sidebar-toc-subitem) ". ";
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-right: 2px;
+}
+
+/* Active Indicator for Level 2 */
+.sidebar-toc .toc-list > ul > li > ul > li > a.active {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > a.active::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--primary);
+}
+
+
+/* 3rd Level Items (Deeply Nested) */
+.sidebar-toc .toc-list > ul > li > ul > li > ul {
+    /* display: none; removed to show all children when L1 is active */
+    margin-top: 0.3rem;
+    padding-left: 0;
+    position: relative;
+    border-left: 1px solid var(--border-light);
+    margin-left: 25px !important; /* Force override reset */
+    counter-reset: sidebar-toc-subsubitem;
+}
+
+/* Show nested level 3 - Logic changed: L3 is always visible if L2 is visible */
+/* .sidebar-toc .toc-list > ul > li > ul > li.active-li > ul {
+    display: block;
+} */
+
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li {
+    margin-bottom: 0.2rem;
+    counter-increment: sidebar-toc-subsubitem;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a {
+    color: var(--text-light) !important;
+    font-size: 0.8rem;
+    padding-left: 15px;
+    display: block;
+    position: relative;
+    line-height: 1.25;
+}
+
+/* 3rd Level Numbering */
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a::before {
+    content: counter(sidebar-toc-item) "." counter(sidebar-toc-subitem) "." counter(sidebar-toc-subsubitem) ". ";
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-right: 2px;
+}
+
+/* Active Indicator for Level 3 */
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a.active {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a.active::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--primary);
+}
+
+/* Hover States */
+.sidebar-toc a:hover {
+    color: var(--primary) !important;
+    text-decoration: none;
+}
+
+/* Hide nested bullets/numbers - fallback */
+.sidebar-toc ul li::before {
+    content: none !important;
+    display: none !important;
 }

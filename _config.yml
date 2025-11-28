@@ -76,3 +76,12 @@ exclude_from_localization:
   - feed.xml
   - start.sh
   - docker-compose.yml
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      toc: true

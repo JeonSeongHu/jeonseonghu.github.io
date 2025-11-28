@@ -1,24 +1,31 @@
-- name: Research
-  slug: research
-  subcategories:
-    - name: 3D Vision
-      slug: 3d-vision
-    - name: Generative AI
-      slug: generative-ai
-
-- name: Projects
-  slug: projects
-  subcategories:
-    - name: Web Dev
-      slug: web-dev
-    - name: Design
-      slug: design
-
-- name: Life & Thoughts
-  slug: life-thoughts
-  subcategories:
-    - name: Review
-      slug: review
-    - name: Essays
-      slug: essays
-
+categories:
+  - name: Research
+    slug: research
+    subcategories:
+      - name: Papers
+        slug: papers
+      - name: Reviews
+        slug: reviews
+      - name: Notes
+        slug: notes
+  - name: Education
+    slug: education
+    subcategories:
+      - name: ML/DL Basics
+        slug: ml-dl-basics
+      - name: 3D Vision
+        slug: 3d-vision
+  - name: Projects
+    slug: projects
+    subcategories:
+      - name: Retrospectives
+        slug: retrospectives
+  - name: Hobbies
+    slug: hobbies
+    subcategories:
+      - name: Design
+        slug: design
+      - name: Music
+        slug: music
+      - name: Thoughts
+        slug: thoughts

@@ -40,11 +40,12 @@
     const GLOW_MID   = 'rgba(169, 171, 214, 0.1)';
     const GLOW_END   = 'rgba(153, 155, 213, 0)';
     
-    const DOT_COLOR  = '#ffffff'; // White dots
+    const DOT_COLOR  = '#ffffff'; // Default to white, will be updated from CSS
 
     let dots = [];
 
     function init() {
+        // updateThemeColors();
         resize();
         window.addEventListener('resize', resize);
         document.addEventListener('mousemove', onMouseMove);

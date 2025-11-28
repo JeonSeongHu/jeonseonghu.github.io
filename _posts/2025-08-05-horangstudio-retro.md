@@ -1,13 +1,17 @@
 ---
-layout: post  
-image: ./../assets/images/image-20250806-163231.png
-title: "호랑이사진관 회고"  
-author: jeonseonghu  
+layout: post
+title: 호랑이사진관 회고
+author: jeonseonghu
 main_category: Projects
-sub_category: Web Dev
-categories: [ Projects, Web Dev ]  
-featured: true
-series: "프로젝트 회고"
+sub_category: Retrospectives
+categories:
+  - Projects
+tags:
+  - Web Dev
+  - Retrospectives
+image: ""
+featured: false
+series: 프로젝트 회고
 ---
 
 호랑이사진관은 GDSC KU (현 GDGoC KU)에서 진행한 대형 프로젝트로, 2023년 고연전과 2024년 대동제에서 두 번 서비스되었었습니다.

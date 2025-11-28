@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  
+  <!-- Wanted Sans Font (same as blog) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
+  
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
+    :root {
+      --primary: #3539ad;
+      --primary-hover: #3a40e7;
+      --light-primary: #c5cdf968;
+      --text-dark: #1a1a1a;
+      --text-medium: #666666;
+      --text-light: #999999;
+      --bg-white: #ffffff;
+      --bg-light: #f8f9fa;
+      --border-light: #e9ecef;
+      --success: #28a745;
+    }
+    
+    /* ============================================
+       GLOBAL FONT
+       ============================================ */
+    body, html, * {
+      font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+    
+    pre, code, kbd, samp, [class*="CodeMirror"] {
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    }
+    
+    /* ============================================
+       MINIMAL UI TWEAKS (non-destructive)
+       ============================================ */
+    
+    /* Primary buttons */
+    button[class*="css-"][class*="Button"] {
+      border-radius: 6px !important;
+    }
+    
+    /* Inputs */
+    input, textarea, select {
+      border-radius: 6px !important;
+    }
+    
+    /* ============================================
+       SAVE STATUS INDICATOR
+       ============================================ */
+    #save-status {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
+      color: var(--text-medium);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    #save-status.saved {
+      border-color: var(--success);
+    }
+    
+    #save-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    
+    #save-status.saving .dot {
+      background: #ffc107;
+      animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nc-root"></div>
+  <div id="save-status" class="saved">
+    <span class="dot"></span>
+    <span id="save-text">저장됨</span>
+    <span id="save-time"></span>
+  </div>
+  
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Auto-save status tracker
+    let lastSaveTime = null;
+    
+    function updateSaveStatus(status) {
+      const statusEl = document.getElementById('save-status');
+      const textEl = document.getElementById('save-text');
+      const timeEl = document.getElementById('save-time');
+      
+      if (status === 'saving') {
+        statusEl.className = 'saving';
+        textEl.textContent = '저장 중...';
+        timeEl.textContent = '';
+      } else if (status === 'saved') {
+        statusEl.className = 'saved';
+        textEl.textContent = '저장됨';
+        lastSaveTime = new Date();
+        timeEl.textContent = formatTime(lastSaveTime);
+      }
+    }
+    
+    function formatTime(date) {
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      const seconds = date.getSeconds().toString().padStart(2, '0');
+      return `${hours}:${minutes}:${seconds}`;
+    }
+    
+    // Listen for CMS events
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: () => {
+        updateSaveStatus('saving');
+      }
+    });
+    
+    CMS.registerEventListener({
+      name: 'postSave',
+      handler: async () => {
+        updateSaveStatus('saved');
+        
+        // Cleanup unused images after save
+        try {
+          const response = await fetch('http://localhost:3001/cleanup', { method: 'POST' });
+          if (response.ok) {
+            const result = await response.json();
+            if (result.deleted > 0) {
+              console.log(`🗑️ Cleaned up ${result.deleted} unused images`);
+            }
+          }
+        } catch (e) {
+          // Cleanup server not running, ignore
+        }
+      }
+    });
+    
+    // Initialize
+    updateSaveStatus('saved');
+    
+    // Custom preview template
+    const PostPreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const title = entry.getIn(['data', 'title']) || '';
+        const body = this.props.widgetFor('body');
+        
+        return h('div', { className: 'preview-container' },
+          h('style', {}, `
+            .preview-container {
+              font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+              font-size: 1.1rem;
+              line-height: 1.7;
+              color: rgba(0, 0, 0, 0.8);
+              padding: 2rem;
+              max-width: 90%;
+              margin: 0 auto;
+              counter-reset: h1-counter;
+            }
+            .preview-container h1 {
+              font-size: 1.75rem;
+              font-weight: 700;
+              margin: 2rem 0 1rem;
+              padding-bottom: 0.5rem;
+              border-bottom: 1px solid rgba(0,0,0,0.1);
+              counter-reset: h2-counter;
+              counter-increment: h1-counter;
+            }
+            .preview-container h1::before {
+              content: counter(h1-counter) ". ";
+              color: #3539ad;
+            }
+            .preview-container h2 {
+              font-size: 1.5rem;
+              font-weight: 700;
+              margin: 1.5rem 0 0.75rem;
+              counter-increment: h2-counter;
+            }
+            .preview-container h2::before {
+              content: counter(h1-counter) "." counter(h2-counter) ". ";
+              color: #3539ad;
+            }
+            .preview-container p { margin-bottom: 1rem; }
+            .preview-container blockquote {
+              background: rgba(58, 64, 231, 0.04);
+              padding: 1rem;
+              margin: 1rem 0;
+              border-radius: 8px;
+            }
+            .preview-container code {
+              background: rgba(0,0,0,0.05);
+              padding: 0.2em 0.4em;
+              border-radius: 3px;
+              font-size: 0.9em;
+            }
+            .preview-container pre {
+              background: #f8f8f8;
+              padding: 1rem;
+              border-radius: 6px;
+              overflow-x: auto;
+            }
+            .preview-container img {
+              max-width: 100%;
+              border-radius: 8px;
+              margin: 1rem 0;
+            }
+            .preview-title {
+              font-size: 2rem;
+              font-weight: 800;
+              margin-bottom: 1.5rem;
+              padding-bottom: 0.75rem;
+              border-bottom: 3px solid #3539ad;
+            }
+          `),
+          h('h1', { className: 'preview-title' }, title),
+          h('div', { className: 'preview-body' }, body)
+        );
+      }
+    });
+    
+    CMS.registerPreviewTemplate('posts', PostPreview);
+    
+    // ============================================
+    // CLIPBOARD IMAGE PASTE HANDLER
+    // Ctrl+V로 이미지 붙여넣기 → 자동 업로드 → 마크다운 삽입
+    // ============================================
+    const UPLOAD_SERVER = 'http://localhost:3001/upload';
+    
+    document.addEventListener('paste', async function(e) {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          e.preventDefault();
+          
+          const blob = items[i].getAsFile();
+          if (!blob) return;
+          
+          // Generate unique filename
+          const timestamp = Date.now();
+          const filename = `image-${timestamp}.png`;
+          
+          // Show uploading indicator
+          showUploadStatus('uploading');
+          
+          try {
+            // Upload to local server
+            const formData = new FormData();
+            formData.append('file', blob, filename);
+            
+            const response = await fetch(UPLOAD_SERVER, {
+              method: 'POST',
+              body: formData
+            });
+            
+            if (response.ok) {
+              const result = await response.json();
+              insertImageMarkdown(result.path, result.filename);
+              showUploadStatus('success', result.filename);
+            } else {
+              throw new Error('Upload failed');
+            }
+          } catch (err) {
+            console.error('Upload error:', err);
+            showUploadStatus('error');
+          }
+          
+          break;
+        }
+      }
+    });
+    
+    function insertImageMarkdown(path, alt) {
+      const imageMarkdown = `\n![${alt}](${path})\n`;
+      
+      // Only works in Markdown mode (CodeMirror)
+      const cmElement = document.querySelector('.CodeMirror');
+      if (cmElement && cmElement.CodeMirror) {
+        const cm = cmElement.CodeMirror;
+        const cursor = cm.getCursor();
+        cm.replaceRange(imageMarkdown, cursor);
+        cm.focus();
+        return;
+      }
+      
+      // Rich Text mode - copy to clipboard and notify user
+      navigator.clipboard.writeText(imageMarkdown).then(() => {
+        showUploadStatus('clipboard');
+      }).catch(() => {
+        console.log('Image markdown:', imageMarkdown);
+      });
+    }
+    
+    function showUploadStatus(status, filename) {
+      // Remove existing toast
+      const existing = document.getElementById('upload-toast');
+      if (existing) existing.remove();
+      
+      const toast = document.createElement('div');
+      toast.id = 'upload-toast';
+      toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        z-index: 99999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: opacity 0.3s ease;
+      `;
+      
+      if (status === 'uploading') {
+        toast.style.background = '#fff3cd';
+        toast.style.color = '#856404';
+        toast.textContent = '📤 이미지 업로드 중...';
+      } else if (status === 'success') {
+        toast.style.background = '#d4edda';
+        toast.style.color = '#155724';
+        toast.textContent = `✅ 업로드 완료: ${filename}`;
+        setTimeout(() => toast.remove(), 3000);
+      } else if (status === 'clipboard') {
+        toast.style.background = '#cce5ff';
+        toast.style.color = '#004085';
+        toast.textContent = '📋 Rich Text 모드: 마크다운이 클립보드에 복사됨. Markdown 모드로 전환 후 Ctrl+V';
+        setTimeout(() => toast.remove(), 5000);
+      } else if (status === 'error') {
+        toast.style.background = '#f8d7da';
+        toast.style.color = '#721c24';
+        toast.textContent = '❌ 업로드 실패 - 서버가 실행 중인지 확인하세요';
+        setTimeout(() => toast.remove(), 5000);
+      }
+      
+      document.body.appendChild(toast);
+    }
+    
+    console.log('📋 Clipboard paste enabled: Ctrl+V to auto-upload images');
+  </script>
+</body>
+</html>
