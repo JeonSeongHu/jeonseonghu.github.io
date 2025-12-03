@@ -8,7 +8,8 @@
     line-height: 1.7;
     color: var(--text-dark);
     font-weight: 400;
-    counter-reset: article-h1; /* Initialize counter for H1 mapping */
+    counter-reset: article-h1;
+    /* Initialize counter for H1 mapping */
 }
 
 /* Force all children to use Wanted Sans */
@@ -140,6 +141,7 @@
 .article-post blockquote ol {
     margin-bottom: 0;
 }
+
 .article-post blockquote p {
     margin-bottom: 0;
 }
@@ -265,7 +267,8 @@
 
 .toc h3 {
     margin-top: 0 !important;
-    font-size: 1.3rem !important; /* Increased from 1.1rem */
+    font-size: 1.3rem !important;
+    /* Increased from 1.1rem */
     color: #333 !important;
     margin-bottom: 1.2rem !important;
     text-transform: uppercase;
@@ -298,13 +301,14 @@
 }
 
 /* Level 1: 1. 2. 3. */
-.toc > ol > li {
+.toc>ol>li {
     counter-increment: item;
     font-weight: 600;
     margin-top: 0.8rem;
     font-size: 1rem;
 }
-.toc > ol > li::before {
+
+.toc>ol>li::before {
     content: counter(item) ". ";
     color: #999;
     font-weight: 400;
@@ -312,20 +316,23 @@
 }
 
 /* Level 2: 1.1. 1.2. */
-.toc > ol > li > ol {
+.toc>ol>li>ol {
     counter-reset: subitem;
     padding-left: 0.5rem;
     margin-top: 0.4rem;
 }
-.toc > ol > li > ol > li {
+
+.toc>ol>li>ol>li {
     counter-increment: subitem;
     font-weight: 400;
     font-size: 0.95rem;
     margin-top: 0.3rem;
     padding-left: 1rem;
-    text-indent: -1rem; /* Hanging indent */
+    text-indent: -1rem;
+    /* Hanging indent */
 }
-.toc > ol > li > ol > li::before {
+
+.toc>ol>li>ol>li::before {
     content: counter(item) "." counter(subitem) ". ";
     color: #aaa;
     margin-right: 0.3rem;
@@ -333,15 +340,17 @@
 }
 
 /* Level 3: 1.1.1. 1.1.2. */
-.toc > ol > li > ol > li > ol {
+.toc>ol>li>ol>li>ol {
     counter-reset: subsubitem;
     padding-left: 1.5rem;
 }
-.toc > ol > li > ol > li > ol > li {
+
+.toc>ol>li>ol>li>ol>li {
     counter-increment: subsubitem;
     font-size: 0.9rem;
 }
-.toc > ol > li > ol > li > ol > li::before {
+
+.toc>ol>li>ol>li>ol>li::before {
     content: counter(item) "." counter(subitem) "." counter(subsubitem) ". ";
     color: #bbb;
     margin-right: 0.3rem;
@@ -356,7 +365,8 @@
 }
 
 .sidebar-title-simple {
-    font-size: 1.25rem; /* Increased font size further */
+    font-size: 1.25rem;
+    /* Increased font size further */
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -373,16 +383,18 @@
 }
 
 /* 1st Level Items */
-.sidebar-toc .toc-list > ul > li {
-    margin-top: 1.2rem; /* More spacing between main sections */
+.sidebar-toc .toc-list>ul>li {
+    margin-top: 1.2rem;
+    /* More spacing between main sections */
     margin-bottom: 0.5rem;
     position: relative;
     counter-increment: sidebar-toc-item;
 }
 
-.sidebar-toc .toc-list > ul > li > a {
+.sidebar-toc .toc-list>ul>li>a {
     color: var(--text-medium) !important;
-    font-weight: 700; /* Bolder */
+    font-weight: 700;
+    /* Bolder */
     font-size: 0.95rem;
     display: block;
     line-height: 1.4;
@@ -392,7 +404,7 @@
 }
 
 /* 1st Level Numbering */
-.sidebar-toc .toc-list > ul > li > a::before {
+.sidebar-toc .toc-list>ul>li>a::before {
     content: counter(sidebar-toc-item) ". ";
     color: #888;
     margin-right: 4px;
@@ -400,39 +412,42 @@
 }
 
 /* Active State - Level 1 */
-.sidebar-toc .toc-list > ul > li > a.active {
+.sidebar-toc .toc-list>ul>li>a.active {
     color: var(--primary) !important;
     font-weight: 800;
 }
-.sidebar-toc .toc-list > ul > li > a.active::before {
+
+.sidebar-toc .toc-list>ul>li>a.active::before {
     color: var(--primary);
     font-weight: 800;
 }
 
 
 /* 2nd Level Items (Nested) */
-.sidebar-toc .toc-list > ul > li > ul {
-    display: none; /* Hidden by default */
+.sidebar-toc .toc-list>ul>li>ul {
+    display: none;
+    /* Hidden by default */
     margin-top: 0.5rem;
     padding-left: 0;
     position: relative;
-    margin-left: 15px !important; /* Force override reset */
+    margin-left: 15px !important;
+    /* Force override reset */
     border-left: 1px solid var(--border-light);
     counter-reset: sidebar-toc-subitem;
 }
 
 /* Show nested level 2 when parent level 1 is active */
-.sidebar-toc .toc-list > ul > li.active-li > ul {
+.sidebar-toc .toc-list>ul>li.active-li>ul {
     display: block;
 }
 
-.sidebar-toc .toc-list > ul > li > ul > li {
+.sidebar-toc .toc-list>ul>li>ul>li {
     margin-bottom: 0.3rem;
     position: relative;
     counter-increment: sidebar-toc-subitem;
 }
 
-.sidebar-toc .toc-list > ul > li > ul > li > a {
+.sidebar-toc .toc-list>ul>li>ul>li>a {
     color: var(--text-light) !important;
     font-size: 0.85rem;
     font-weight: 400;
@@ -444,7 +459,7 @@
 }
 
 /* 2nd Level Numbering */
-.sidebar-toc .toc-list > ul > li > ul > li > a::before {
+.sidebar-toc .toc-list>ul>li>ul>li>a::before {
     content: counter(sidebar-toc-item) "." counter(sidebar-toc-subitem) ". ";
     font-size: 0.85rem;
     color: #aaa;
@@ -452,12 +467,12 @@
 }
 
 /* Active Indicator for Level 2 */
-.sidebar-toc .toc-list > ul > li > ul > li > a.active {
+.sidebar-toc .toc-list>ul>li>ul>li>a.active {
     color: var(--text-dark) !important;
     font-weight: 600;
 }
 
-.sidebar-toc .toc-list > ul > li > ul > li > a.active::after {
+.sidebar-toc .toc-list>ul>li>ul>li>a.active::after {
     content: "";
     position: absolute;
     left: -1px;
@@ -469,13 +484,14 @@
 
 
 /* 3rd Level Items (Deeply Nested) */
-.sidebar-toc .toc-list > ul > li > ul > li > ul {
+.sidebar-toc .toc-list>ul>li>ul>li>ul {
     /* display: none; removed to show all children when L1 is active */
     margin-top: 0.3rem;
     padding-left: 0;
     position: relative;
     border-left: 1px solid var(--border-light);
-    margin-left: 25px !important; /* Force override reset */
+    margin-left: 25px !important;
+    /* Force override reset */
     counter-reset: sidebar-toc-subsubitem;
 }
 
@@ -484,12 +500,12 @@
     display: block;
 } */
 
-.sidebar-toc .toc-list > ul > li > ul > li > ul > li {
+.sidebar-toc .toc-list>ul>li>ul>li>ul>li {
     margin-bottom: 0.2rem;
     counter-increment: sidebar-toc-subsubitem;
 }
 
-.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a {
+.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a {
     color: var(--text-light) !important;
     font-size: 0.8rem;
     padding-left: 15px;
@@ -499,7 +515,7 @@
 }
 
 /* 3rd Level Numbering */
-.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a::before {
+.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a::before {
     content: counter(sidebar-toc-item) "." counter(sidebar-toc-subitem) "." counter(sidebar-toc-subsubitem) ". ";
     font-size: 0.8rem;
     color: #ccc;
@@ -507,12 +523,12 @@
 }
 
 /* Active Indicator for Level 3 */
-.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a.active {
+.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a.active {
     color: var(--text-dark) !important;
     font-weight: 600;
 }
 
-.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a.active::after {
+.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a.active::after {
     content: "";
     position: absolute;
     left: -1px;
@@ -532,4 +548,31 @@
 .sidebar-toc ul li::before {
     content: none !important;
     display: none !important;
+}
+
+/* ============================================
+   IMAGE & CAPTION STYLING
+   ============================================ */
+
+.article-post img {
+    border-radius: 8px;
+    margin: 1rem 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.article-post figure {
+    display: block !important;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.article-post figcaption {
+    display: block !important;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    text-align: center;
+    font-style: italic;
+    line-height: 1.4;
 }

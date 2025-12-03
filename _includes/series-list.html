@@ -7,73 +7,75 @@
 
 <!-- 1. Try to find series definition in _data/series (Manual Mode check) -->
 {% for s in site.data.series %}
-  {% if s[1].posts contains page_slug %}
-    {% assign series_slug = s[0] %}
-    {% assign series_data = s[1] %}
-    {% break %}
-  {% endif %}
+{% if s[1].posts contains page_slug %}
+{% assign series_slug = s[0] %}
+{% assign series_data = s[1] %}
+{% break %}
+{% endif %}
 {% endfor %}
 
 <!-- 2. Fallback: If not found in data but defined in frontmatter -->
 {% if series_data == nil and series_slug %}
-  {% assign series_data = site.data.series[series_slug] %}
+{% assign series_data = site.data.series[series_slug] %}
 {% endif %}
 
 <!-- 3. If we have a series (either from Manual or Frontmatter) -->
 {% if series_slug %}
-  
-  {% if series_data %}
-    {% assign series_name = series_data.name %}
-    {% assign series_desc = series_data.description %}
-    
-    <!-- Determine posts list -->
-    {% if series_data.posts %}
-      <!-- Manual Ordering from Series File -->
-      {% assign series_posts = "" | split: "" %}
-      {% for post_slug in series_data.posts %}
-        {% for p in site.posts %}
-          {% assign p_slug = p.path | remove: "_posts/" | remove: ".md" %}
-          {% if p_slug == post_slug %}
-            {% assign series_posts = series_posts | push: p %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
-    {% else %}
-      <!-- Fallback: Dynamic lookup by series slug -->
-      {% assign series_posts = site.posts | where: "series", series_slug | sort: "date" %}
-    {% endif %}
 
-  {% else %}
-    <!-- Simple Tag Mode (No data file) -->
-    {% assign series_name = series_slug %}
-    {% assign series_posts = site.posts | where: "series", series_slug | sort: "date" %}
-  {% endif %}
+{% if series_data %}
+{% assign series_name = series_data.name %}
+{% assign series_desc = series_data.description %}
 
-  {% if series_posts.size > 0 %}
-  <div class="series-list">
-    <div class="section-title">
-      <h2>시리즈 글 더보기: {{ series_name }}</h2>
-    </div>
-    
-    {% if series_desc %}
-    <div class="series-description">
-      {{ series_desc | markdownify | remove: '<p>' | remove: '</p>' }}
-    </div>
-    {% endif %}
+<!-- Determine posts list -->
+{% if series_data.posts %}
+<!-- Manual Ordering from Series File -->
+{% assign series_posts = "" | split: "" %}
+{% for post_slug in series_data.posts %}
+{% for p in site.posts %}
+{% assign p_slug = p.path | remove: "_posts/" | remove: ".md" %}
+{% if p_slug == post_slug %}
+{% assign series_posts = series_posts | push: p %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% else %}
+<!-- Fallback: Dynamic lookup by series slug -->
+{% assign series_posts = site.posts | where: "series", series_slug | where_exp: "post", "post.hidden != true" | sort:
+"date" %}
+{% endif %}
 
-    <ol>
-      {% for sp in series_posts %}
-        <li class="{% if sp.url == page.url %}current-post{% endif %}">
-          {% if sp.url == page.url %}
-            <span>{{ sp.title }}</span>
-          {% else %}
-            <a href="{{ site.baseurl }}{{ sp.url }}">{{ sp.title }}</a>
-          {% endif %}
-          <small>{{ sp.date | date: "%Y.%m.%d" }}</small>
-        </li>
-      {% endfor %}
-    </ol>
+{% else %}
+<!-- Simple Tag Mode (No data file) -->
+{% assign series_name = series_slug %}
+{% assign series_posts = site.posts | where: "series", series_slug | where_exp: "post", "post.hidden != true" | sort:
+"date" %}
+{% endif %}
+
+{% if series_posts.size > 0 %}
+<div class="series-list">
+  <div class="section-title">
+    <h2>시리즈 글 더보기: {{ series_name }}</h2>
+  </div>
+
+  {% if series_desc %}
+  <div class="series-description">
+    {{ series_desc | markdownify | remove: '<p>' | remove: '</p>' }}
   </div>
   {% endif %}
+
+  <ol>
+    {% for sp in series_posts %}
+    <li class="{% if sp.url == page.url %}current-post{% endif %}">
+      {% if sp.url == page.url %}
+      <span>{{ sp.title }}</span>
+      {% else %}
+      <a href="{{ site.baseurl }}{{ sp.url }}">{{ sp.title }}</a>
+      {% endif %}
+      <small>{{ sp.date | date: "%Y.%m.%d" }}</small>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}
 {% endif %}

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  
+
   <!-- Wanted Sans Font (same as blog) -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
-  
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
+
   <style>
     /* ============================================
        DESIGN TOKENS
@@ -25,32 +27,40 @@
       --border-light: #e9ecef;
       --success: #28a745;
     }
-    
+
     /* ============================================
        GLOBAL FONT
        ============================================ */
-    body, html, * {
+    body,
+    html,
+    * {
       font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
-    
-    pre, code, kbd, samp, [class*="CodeMirror"] {
+
+    pre,
+    code,
+    kbd,
+    samp,
+    [class*="CodeMirror"] {
       font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
     }
-    
+
     /* ============================================
        MINIMAL UI TWEAKS (non-destructive)
        ============================================ */
-    
+
     /* Primary buttons */
     button[class*="css-"][class*="Button"] {
       border-radius: 6px !important;
     }
-    
+
     /* Inputs */
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       border-radius: 6px !important;
     }
-    
+
     /* ============================================
        SAVE STATUS INDICATOR
        ============================================ */
@@ -64,35 +74,43 @@
       padding: 0.6rem 1rem;
       font-size: 0.75rem;
       color: var(--text-medium);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       z-index: 9999;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     #save-status.saved {
       border-color: var(--success);
     }
-    
+
     #save-status .dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: var(--success);
     }
-    
+
     #save-status.saving .dot {
       background: #ffc107;
       animation: pulse 1s infinite;
     }
-    
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
     }
   </style>
 </head>
+
 <body>
   <div id="nc-root"></div>
   <div id="save-status" class="saved">
@@ -100,17 +118,17 @@
     <span id="save-text">저장됨</span>
     <span id="save-time"></span>
   </div>
-  
+
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
     // Auto-save status tracker
     let lastSaveTime = null;
-    
+
     function updateSaveStatus(status) {
       const statusEl = document.getElementById('save-status');
       const textEl = document.getElementById('save-text');
       const timeEl = document.getElementById('save-time');
-      
+
       if (status === 'saving') {
         statusEl.className = 'saving';
         textEl.textContent = '저장 중...';
@@ -122,14 +140,14 @@
         timeEl.textContent = formatTime(lastSaveTime);
       }
     }
-    
+
     function formatTime(date) {
       const hours = date.getHours().toString().padStart(2, '0');
       const minutes = date.getMinutes().toString().padStart(2, '0');
       const seconds = date.getSeconds().toString().padStart(2, '0');
       return `${hours}:${minutes}:${seconds}`;
     }
-    
+
     // Listen for CMS events
     CMS.registerEventListener({
       name: 'preSave',
@@ -137,12 +155,12 @@
         updateSaveStatus('saving');
       }
     });
-    
+
     CMS.registerEventListener({
       name: 'postSave',
       handler: async () => {
         updateSaveStatus('saved');
-        
+
         // Cleanup unused images after save
         try {
           const response = await fetch('http://localhost:3001/cleanup', { method: 'POST' });
@@ -157,18 +175,64 @@
         }
       }
     });
-    
+
     // Initialize
     updateSaveStatus('saved');
-    
+
     // Custom preview template
     const PostPreview = createClass({
-      render: function() {
+      componentDidMount: function () {
+        this.updateCaptions();
+      },
+
+      componentDidUpdate: function () {
+        this.updateCaptions();
+      },
+
+      updateCaptions: function () {
+        const container = this.containerRef;
+        if (!container) return;
+
+        const images = container.querySelectorAll('img');
+        images.forEach(img => {
+          if (img.closest('figure')) return;
+
+          let captionText = img.getAttribute('alt');
+          const titleText = img.getAttribute('title');
+
+          if (!captionText || captionText.trim() === '') {
+            captionText = titleText;
+          }
+
+          if (captionText && captionText.trim() !== '') {
+            const figure = document.createElement('figure');
+            const figcaption = document.createElement('figcaption');
+            figcaption.textContent = captionText;
+
+            const parent = img.parentNode;
+            if (parent.tagName === 'P' && parent.childNodes.length === 1) {
+              parent.parentNode.insertBefore(figure, parent);
+              figure.appendChild(img);
+              parent.remove();
+            } else {
+              parent.insertBefore(figure, img);
+              figure.appendChild(img);
+            }
+
+            figure.appendChild(figcaption);
+          }
+        });
+      },
+
+      render: function () {
         const entry = this.props.entry;
         const title = entry.getIn(['data', 'title']) || '';
         const body = this.props.widgetFor('body');
-        
-        return h('div', { className: 'preview-container' },
+
+        return h('div', {
+          className: 'preview-container',
+          ref: (el) => { this.containerRef = el; }
+        },
           h('style', {}, `
             .preview-container {
               font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -227,6 +291,20 @@
               border-radius: 8px;
               margin: 1rem 0;
             }
+            .preview-container figure {
+              display: block !important;
+              margin: 1.5rem 0;
+              text-align: center;
+            }
+            .preview-container figcaption {
+              display: block !important;
+              margin-top: 0.5rem;
+              font-size: 0.9rem;
+              color: #666666;
+              text-align: center;
+              font-style: italic;
+              line-height: 1.4;
+            }
             .preview-title {
               font-size: 2rem;
               font-weight: 800;
@@ -240,43 +318,43 @@
         );
       }
     });
-    
+
     CMS.registerPreviewTemplate('posts', PostPreview);
-    
+
     // ============================================
     // CLIPBOARD IMAGE PASTE HANDLER
     // Ctrl+V로 이미지 붙여넣기 → 자동 업로드 → 마크다운 삽입
     // ============================================
     const UPLOAD_SERVER = 'http://localhost:3001/upload';
-    
-    document.addEventListener('paste', async function(e) {
+
+    document.addEventListener('paste', async function (e) {
       const items = e.clipboardData?.items;
       if (!items) return;
-      
+
       for (let i = 0; i < items.length; i++) {
         if (items[i].type.indexOf('image') !== -1) {
           e.preventDefault();
-          
+
           const blob = items[i].getAsFile();
           if (!blob) return;
-          
+
           // Generate unique filename
           const timestamp = Date.now();
           const filename = `image-${timestamp}.png`;
-          
+
           // Show uploading indicator
           showUploadStatus('uploading');
-          
+
           try {
             // Upload to local server
             const formData = new FormData();
             formData.append('file', blob, filename);
-            
+
             const response = await fetch(UPLOAD_SERVER, {
               method: 'POST',
               body: formData
             });
-            
+
             if (response.ok) {
               const result = await response.json();
               insertImageMarkdown(result.path, result.filename);
@@ -288,15 +366,15 @@
             console.error('Upload error:', err);
             showUploadStatus('error');
           }
-          
+
           break;
         }
       }
     });
-    
+
     function insertImageMarkdown(path, alt) {
       const imageMarkdown = `\n![${alt}](${path})\n`;
-      
+
       // Only works in Markdown mode (CodeMirror)
       const cmElement = document.querySelector('.CodeMirror');
       if (cmElement && cmElement.CodeMirror) {
@@ -306,7 +384,7 @@
         cm.focus();
         return;
       }
-      
+
       // Rich Text mode - copy to clipboard and notify user
       navigator.clipboard.writeText(imageMarkdown).then(() => {
         showUploadStatus('clipboard');
@@ -314,12 +392,12 @@
         console.log('Image markdown:', imageMarkdown);
       });
     }
-    
+
     function showUploadStatus(status, filename) {
       // Remove existing toast
       const existing = document.getElementById('upload-toast');
       if (existing) existing.remove();
-      
+
       const toast = document.createElement('div');
       toast.id = 'upload-toast';
       toast.style.cssText = `
@@ -333,7 +411,7 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         transition: opacity 0.3s ease;
       `;
-      
+
       if (status === 'uploading') {
         toast.style.background = '#fff3cd';
         toast.style.color = '#856404';
@@ -354,11 +432,12 @@
         toast.textContent = '❌ 업로드 실패 - 서버가 실행 중인지 확인하세요';
         setTimeout(() => toast.remove(), 5000);
       }
-      
+
       document.body.appendChild(toast);
     }
-    
+
     console.log('📋 Clipboard paste enabled: Ctrl+V to auto-upload images');
   </script>
 </body>
+
 </html>

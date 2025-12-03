@@ -9,12 +9,13 @@ custom_css_class: with-dot-bg
     <aside class="home-sidebar">
         <div class="category-widget sticky-top">
             <div class="sidebar-header">CATEGORY</div>
-            
+
             <!-- All Posts Link -->
             <div class="category-group">
                 <a href="#" onclick="filterPosts('all'); return false;" class="category-major active" id="cat-link-all">
                     <span class="cat-name">All Posts</span>
-                    <span class="cat-count">{{ site.posts | size }}</span>
+                    {% assign all_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+                    <span class="cat-count">{{ all_posts | size }}</span>
                 </a>
             </div>
 
@@ -23,39 +24,46 @@ custom_css_class: with-dot-bg
             {% assign category_slug = category.slug %}
             {% assign main_category_count = 0 %}
             {% for post in site.posts %}
-                {% assign post_main_slug = post.main_category | slugify %}
-                {% if post_main_slug == category_slug %}
-                    {% assign main_category_count = main_category_count | plus: 1 %}
-                {% endif %}
+            {% if post.hidden != true %}
+            {% assign post_main_slug = post.main_category | slugify %}
+            {% if post_main_slug == category_slug %}
+            {% assign main_category_count = main_category_count | plus: 1 %}
+            {% endif %}
+            {% endif %}
             {% endfor %}
-            
+
             <div class="category-group">
-                <a href="#" onclick="filterPosts('{{ category.slug }}'); return false;" class="category-major-title" id="cat-link-{{ category.slug }}">
+                <a href="#" onclick="filterPosts('{{ category.slug }}'); return false;" class="category-major-title"
+                    id="cat-link-{{ category.slug }}">
                     <span class="cat-name">{{ category.name }}</span>
                     <span class="cat-count">{{ main_category_count }}</span>
                 </a>
-                
+
                 {% if category.subcategories %}
                 <ul class="subcategory-list">
                     <!-- Parent Category Link (hidden, same as main title) -->
                     <li style="display: none;">
-                        <a href="#" onclick="filterPosts('{{ category.slug }}'); return false;" class="subcategory-link" id="cat-link-{{ category.slug }}-all">
+                        <a href="#" onclick="filterPosts('{{ category.slug }}'); return false;" class="subcategory-link"
+                            id="cat-link-{{ category.slug }}-all">
                             <span class="cat-name">All {{ category.name }}</span>
                         </a>
                     </li>
-                    
+
                     <!-- Subcategories -->
                     {% for sub in category.subcategories %}
                     <li>
                         {% assign sub_slug = sub.slug %}
                         {% assign sub_count = 0 %}
                         {% for post in site.posts %}
-                            {% assign post_sub_slug = post.sub_category | slugify %}
-                            {% if post_sub_slug == sub_slug %}
-                                {% assign sub_count = sub_count | plus: 1 %}
-                            {% endif %}
+                        {% if post.hidden != true %}
+                        {% assign post_sub_slug = post.sub_category | slugify %}
+                        {% if post_sub_slug == sub_slug %}
+                        {% assign sub_count = sub_count | plus: 1 %}
+                        {% endif %}
+                        {% endif %}
                         {% endfor %}
-                        <a href="#" onclick="filterPosts('{{ sub.slug }}'); return false;" class="subcategory-link" id="cat-link-{{ sub.slug }}">
+                        <a href="#" onclick="filterPosts('{{ sub.slug }}'); return false;" class="subcategory-link"
+                            id="cat-link-{{ sub.slug }}">
                             <span class="cat-name">{{ sub.name }}</span>
                             <span class="cat-count">{{ sub_count }}</span>
                         </a>
@@ -65,17 +73,17 @@ custom_css_class: with-dot-bg
                 {% endif %}
             </div>
             {% endfor %}
-            
+
             <!-- Fallback if data file is missing -->
             {% if site.data.categories.categories == null %}
-                {% for category in site.categories %}
-                <div class="category-group">
-                    <a href="#" onclick="filterPosts('{{ category[0] | slugify }}'); return false;" class="category-major">
-                        <span class="cat-name">{{ category[0] | capitalize }}</span>
-                        <span class="cat-count">{{ category[1].size }}</span>
-                    </a>
-                </div>
-                {% endfor %}
+            {% for category in site.categories %}
+            <div class="category-group">
+                <a href="#" onclick="filterPosts('{{ category[0] | slugify }}'); return false;" class="category-major">
+                    <span class="cat-name">{{ category[0] | capitalize }}</span>
+                    <span class="cat-count">{{ category[1].size }}</span>
+                </a>
+            </div>
+            {% endfor %}
             {% endif %}
         </div>
     </aside>
@@ -85,47 +93,55 @@ custom_css_class: with-dot-bg
         <!-- Mobile Category Selector -->
         <div class="mobile-category-selector">
             <select id="mobile-category-select" onchange="filterPosts(this.value);">
-                <option value="all">All Posts ({{ site.posts | size }})</option>
+                {% assign all_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+                <option value="all">All Posts ({{ all_posts | size }})</option>
                 {% for category in site.data.categories.categories %}
                 {% assign category_slug = category.slug %}
                 {% assign main_category_count = 0 %}
                 {% for post in site.posts %}
-                    {% assign post_main_slug = post.main_category | slugify %}
-                    {% if post_main_slug == category_slug %}
-                        {% assign main_category_count = main_category_count | plus: 1 %}
-                    {% endif %}
+                {% if post.hidden != true %}
+                {% assign post_main_slug = post.main_category | slugify %}
+                {% if post_main_slug == category_slug %}
+                {% assign main_category_count = main_category_count | plus: 1 %}
+                {% endif %}
+                {% endif %}
                 {% endfor %}
                 <option value="{{ category.slug }}">— {{ category.name }} ({{ main_category_count }})</option>
                 {% if category.subcategories %}
-                    {% for sub in category.subcategories %}
-                    {% assign sub_slug = sub.slug %}
-                    {% assign sub_count = 0 %}
-                    {% for post in site.posts %}
-                        {% assign post_sub_slug = post.sub_category | slugify %}
-                        {% if post_sub_slug == sub_slug %}
-                            {% assign sub_count = sub_count | plus: 1 %}
-                            {% endif %}
-                    {% endfor %}
-                    <option value="{{ sub.slug }}">  {{ sub.name }} ({{ sub_count }})</option>
-                    {% endfor %}
+                {% for sub in category.subcategories %}
+                {% assign sub_slug = sub.slug %}
+                {% assign sub_count = 0 %}
+                {% for post in site.posts %}
+                {% if post.hidden != true %}
+                {% assign post_sub_slug = post.sub_category | slugify %}
+                {% if post_sub_slug == sub_slug %}
+                {% assign sub_count = sub_count | plus: 1 %}
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                <option value="{{ sub.slug }}"> {{ sub.name }} ({{ sub_count }})</option>
+                {% endfor %}
                 {% endif %}
                 {% endfor %}
             </select>
         </div>
-        
+
         <div class="current-category-header">
             <h2 id="current-category-title">All Posts</h2>
-            <span class="post-count-badge" id="current-category-count">{{ site.posts | size }} posts</span>
+            {% assign all_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+            <span class="post-count-badge" id="current-category-count">{{ all_posts | size }} posts</span>
         </div>
 
         <div class="blog-list-container" id="blog-list">
             {% for post in site.posts %}
+            {% unless post.hidden %}
             <!-- Generate category classes for filtering - Use main_category and sub_category explicitly -->
             {% assign main_slug = post.main_category | slugify %}
             {% assign sub_slug = post.sub_category | slugify %}
             {% capture cat_classes %}{{ main_slug }} {{ sub_slug }}{% endcapture %}
-            
-            <article class="blog-list-item post-item" data-main-category="{{ main_slug }}" data-sub-category="{{ sub_slug }}" data-categories="{{ cat_classes }}" style="display: block;">
+
+            <article class="blog-list-item post-item" data-main-category="{{ main_slug }}"
+                data-sub-category="{{ sub_slug }}" data-categories="{{ cat_classes }}" style="display: block;">
                 <div class="blog-item-header">
                     {% if post.categories.size > 0 %}
                     <div class="blog-badges">
@@ -136,7 +152,7 @@ custom_css_class: with-dot-bg
                     </div>
                     {% endif %}
                 </div>
-                
+
                 <a href="{{ post.url | relative_url }}" class="blog-title-link">
                     <h3 class="blog-title">{{ post.title }}</h3>
                 </a>
@@ -150,17 +166,14 @@ custom_css_class: with-dot-bg
                     <span class="blog-separator">·</span>
                     <span class="blog-read-time">
                         {% assign words = post.content | number_of_words %}
-                        {% if words < 360 %}
-                          1 min read
-                        {% else %}
-                          {{ words | divided_by:180 }} min read
-                        {% endif %}
-                    </span>
+                        {% if words < 360 %} 1 min read {% else %} {{ words | divided_by:180 }} min read {% endif %}
+                            </span>
                 </div>
             </article>
+            {% endunless %}
             {% endfor %}
         </div>
-        
+
         <!-- No results message -->
         <div id="no-results" style="display: none; text-align: center; padding: 2rem; color: #666;">
             No posts found in this category.
@@ -170,93 +183,93 @@ custom_css_class: with-dot-bg
 </div>
 
 <script>
-function filterPosts(category) {
-    // 1. Update Active Link
-    document.querySelectorAll('.category-major, .category-major-title, .subcategory-link').forEach(el => {
-        el.classList.remove('active');
-        // Remove inline styles if any
-        el.style.color = ''; 
-        el.style.fontWeight = '';
-        el.style.background = '';
-    });
-    
-    // Try to find the active link (could be main category or subcategory)
-    let activeLink = document.getElementById('cat-link-' + category);
-    // If not found, try with '-all' suffix (for "All Research" type links)
-    if (!activeLink) {
-        activeLink = document.getElementById('cat-link-' + category + '-all');
-    }
-    if (activeLink) {
-        activeLink.classList.add('active');
-        // CSS handles all styling, no inline styles needed
-    }
+    function filterPosts(category) {
+        // 1. Update Active Link
+        document.querySelectorAll('.category-major, .category-major-title, .subcategory-link').forEach(el => {
+            el.classList.remove('active');
+            // Remove inline styles if any
+            el.style.color = '';
+            el.style.fontWeight = '';
+            el.style.background = '';
+        });
 
-    // 2. Update Header Title
-    const titleEl = document.getElementById('current-category-title');
-    if (category === 'all') {
-        titleEl.textContent = 'All Posts';
-    } else {
-        // Try to find the category name from the link text
+        // Try to find the active link (could be main category or subcategory)
+        let activeLink = document.getElementById('cat-link-' + category);
+        // If not found, try with '-all' suffix (for "All Research" type links)
+        if (!activeLink) {
+            activeLink = document.getElementById('cat-link-' + category + '-all');
+        }
         if (activeLink) {
-            titleEl.textContent = activeLink.innerText.replace(/All\s+/, '').trim(); 
-        } else {
-            titleEl.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            activeLink.classList.add('active');
+            // CSS handles all styling, no inline styles needed
         }
+
+        // 2. Update Header Title
+        const titleEl = document.getElementById('current-category-title');
+        if (category === 'all') {
+            titleEl.textContent = 'All Posts';
+        } else {
+            // Try to find the category name from the link text
+            if (activeLink) {
+                titleEl.textContent = activeLink.innerText.replace(/All\s+/, '').trim();
+            } else {
+                titleEl.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            }
+        }
+
+        // 3. Filter Posts - Use explicit main_category and sub_category
+        const posts = document.querySelectorAll('.post-item');
+        let visibleCount = 0;
+
+        posts.forEach(post => {
+            const mainCat = post.getAttribute('data-main-category');
+            const subCat = post.getAttribute('data-sub-category');
+
+            // 'all' shows everything
+            if (category === 'all') {
+                post.style.display = 'block';
+                visibleCount++;
+            }
+            // Check if main category matches (e.g., 'research', 'projects')
+            else if (mainCat === category) {
+                post.style.display = 'block';
+                visibleCount++;
+            }
+            // Check if sub category matches (e.g., '3d-vision', 'web-dev')
+            else if (subCat === category) {
+                post.style.display = 'block';
+                visibleCount++;
+            }
+            else {
+                post.style.display = 'none';
+            }
+        });
+
+        // 4. Update Count and No Results Message
+        document.getElementById('current-category-count').textContent = visibleCount + ' posts';
+
+        // Update mobile select dropdown
+        const mobileSelect = document.getElementById('mobile-category-select');
+        if (mobileSelect) {
+            mobileSelect.value = category;
+        }
+
+        const noResults = document.getElementById('no-results');
+        if (visibleCount === 0) {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+
+        // 5. Scroll to top of list (optional, for better UX)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 3. Filter Posts - Use explicit main_category and sub_category
-    const posts = document.querySelectorAll('.post-item');
-    let visibleCount = 0;
-
-    posts.forEach(post => {
-        const mainCat = post.getAttribute('data-main-category');
-        const subCat = post.getAttribute('data-sub-category');
-        
-        // 'all' shows everything
-        if (category === 'all') {
-            post.style.display = 'block';
-            visibleCount++;
-        } 
-        // Check if main category matches (e.g., 'research', 'projects')
-        else if (mainCat === category) {
-            post.style.display = 'block';
-            visibleCount++;
-        }
-        // Check if sub category matches (e.g., '3d-vision', 'web-dev')
-        else if (subCat === category) {
-            post.style.display = 'block';
-            visibleCount++;
-        }
-        else {
-            post.style.display = 'none';
+    // Initial load check - if URL has hash, filter by it
+    document.addEventListener('DOMContentLoaded', function () {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            filterPosts(hash);
         }
     });
-
-    // 4. Update Count and No Results Message
-    document.getElementById('current-category-count').textContent = visibleCount + ' posts';
-    
-    // Update mobile select dropdown
-    const mobileSelect = document.getElementById('mobile-category-select');
-    if (mobileSelect) {
-        mobileSelect.value = category;
-    }
-    
-    const noResults = document.getElementById('no-results');
-    if (visibleCount === 0) {
-        noResults.style.display = 'block';
-    } else {
-        noResults.style.display = 'none';
-    }
-    
-    // 5. Scroll to top of list (optional, for better UX)
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Initial load check - if URL has hash, filter by it
-document.addEventListener('DOMContentLoaded', function() {
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-        filterPosts(hash);
-    }
-});
 </script>

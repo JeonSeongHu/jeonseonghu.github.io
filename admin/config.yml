@@ -40,6 +40,12 @@ collections:
         widget: "hidden"
         default: "post"
       
+      - label: "Hidden"
+        name: "hidden"
+        widget: "boolean"
+        default: false
+        required: false
+      
       - label: "Title"
         name: "title"
         widget: "string"

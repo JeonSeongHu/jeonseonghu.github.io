@@ -7,75 +7,80 @@ post_class: post-template
 
 <!-- Begin Article
 ================================================== -->
-    <!-- Fixed Left Sidebar -->
-    <div class="post-sidebar-fixed d-none d-md-block">
-        <!-- Home Link -->
-        <div class="sidebar-section">
-            <div class="sidebar-card-simple border-bottom-0 pb-2">
-                <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
-            </div>
+<!-- Fixed Left Sidebar -->
+<div class="post-sidebar-fixed d-none d-md-block">
+    <!-- Home Link -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple border-bottom-0 pb-2">
+            <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
         </div>
-
-        <hr style="margin: 0 0 1.5rem 0; border-top: 1px solid var(--border-light);">
-
-        <!-- Profile -->
-        <div class="sidebar-section">
-            <div class="sidebar-card-simple d-flex align-items-start">
-                <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}" alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid mr-3" style="width: 100px; height: 100px; object-fit: cover; min-width: 100px;">
-                <div class="text-left">
-                    <h5 class="blog-title mb-1">@jeonseonghu</h5>
-                    <p class="sidebar-text mb-2">Exploring 3D vision, deep learning, and computer vision through research.</p>
-                    <a href="{{ site.baseurl }}/about-me" class="sidebar-link">View Profile →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Categories -->
-        <div class="sidebar-section">
-            <div class="sidebar-card-simple">
-                <h6 class="sidebar-title-simple">Categories</h6>
-                <div class="sidebar-list">
-                    {% assign categories = site.categories | sort %}
-                    {% for category in categories limit:4 %}
-                    <div class="sidebar-list-item">
-                        <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="sidebar-link">
-                            {{ category[0] }} ({{ category[1].size }})
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-                <a href="{{ site.baseurl }}/categories" class="sidebar-link-small">All Categories</a>
-            </div>
-        </div>
-
-        <!-- Recent Posts -->
-        <div class="sidebar-section">
-            <div class="sidebar-card-simple">
-                <h6 class="sidebar-title-simple">Recent Posts</h6>
-                <div class="sidebar-list">
-                    {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
-                    {% for post in recent_posts limit:3 %}
-                    <div class="sidebar-list-item">
-                        <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
-                        <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-
-        <!-- Table of Contents (Sidebar) -->
-        {% if page.toc %}
-        <div class="sidebar-section mt-5 pt-3"> <!-- Added margin and padding for separation -->
-            <div class="sidebar-card-simple border-bottom-0">
-                <h6 class="sidebar-title-simple">Table of Contents</h6>
-                <div class="sidebar-toc" style="font-size: 0.85rem;"> <!-- Slightly increased font size -->
-                    {% include toc_pure_html.html html=content class="toc-list" item_class="toc-item" submenu_class="toc-sub-list" %}
-                </div>
-            </div>
-        </div>
-        {% endif %}
     </div>
+
+    <hr style="margin: 0 0 1.5rem 0; border-top: 1px solid var(--border-light);">
+
+    <!-- Profile -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple d-flex align-items-start">
+            <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}"
+                alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid mr-3"
+                style="width: 100px; height: 100px; object-fit: cover; min-width: 100px;">
+            <div class="text-left">
+                <h5 class="blog-title mb-1">@jeonseonghu</h5>
+                <p class="sidebar-text mb-2">Exploring 3D vision, deep learning, and computer vision through research.
+                </p>
+                <a href="{{ site.baseurl }}/about-me" class="sidebar-link">View Profile →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple">
+            <h6 class="sidebar-title-simple">Categories</h6>
+            <div class="sidebar-list">
+                {% assign categories = site.categories | sort %}
+                {% for category in categories limit:4 %}
+                <div class="sidebar-list-item">
+                    <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="sidebar-link">
+                        {{ category[0] }} ({{ category[1].size }})
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="{{ site.baseurl }}/categories" class="sidebar-link-small">All Categories</a>
+        </div>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="sidebar-section">
+        <div class="sidebar-card-simple">
+            <h6 class="sidebar-title-simple">Recent Posts</h6>
+            <div class="sidebar-list">
+                {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url and post.hidden != true"
+                %}
+                {% for post in recent_posts limit:3 %}
+                <div class="sidebar-list-item">
+                    <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
+                    <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Table of Contents (Sidebar) -->
+    {% if page.toc %}
+    <div class="sidebar-section mt-5 pt-3"> <!-- Added margin and padding for separation -->
+        <div class="sidebar-card-simple border-bottom-0">
+            <h6 class="sidebar-title-simple">Table of Contents</h6>
+            <div class="sidebar-toc" style="font-size: 0.85rem;"> <!-- Slightly increased font size -->
+                {% include toc_pure_html.html html=content class="toc-list" item_class="toc-item"
+                submenu_class="toc-sub-list" %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 
 <!-- Main Content Container -->
 <div class="container">
@@ -86,198 +91,211 @@ post_class: post-template
             <div class="post-content">
                 <div class="mainheading">
 
-                <!-- Author Box - 숨김 처리 -->
-                {% if false %}
-                <div class="row post-top-meta">
-                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
-                        {% if author.avatar %}
-                        <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}" onerror="this.style.display='none';">
-                        {% else %}
-                        <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}" onerror="this.style.display='none';">
-                        {% endif %}
+                    <!-- Author Box - 숨김 처리 -->
+                    {% if false %}
+                    <div class="row post-top-meta">
+                        <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                            {% if author.avatar %}
+                            <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}"
+                                alt="{{ author.display_name }}" onerror="this.style.display='none';">
+                            {% else %}
+                            <img class="author-thumb"
+                                src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x"
+                                alt="{{ author.display_name }}" onerror="this.style.display='none';">
+                            {% endif %}
+                        </div>
+                        <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                            <a target="_blank" class="link-dark" href="{{ author.web }}">{{ author.display_name }}</a>
+                            <a href="#" class="btn follow ml-1" id="followToggle">Follow</a>
+                            <span id="followMenu" class="follow-inline ml-2">
+                                {% assign about = site.pages | where: "permalink", "/about-me" | first %}
+                                <a {% unless about.github %}style="display:none" {% endunless %} target="_blank"
+                                    href="{{ about.github }}" class="btn btn-outline-primary btn-sm mr-1">GitHub</a>
+                                <a {% unless about.linkedin %}style="display:none" {% endunless %} target="_blank"
+                                    href="{{ about.linkedin }}" class="btn btn-outline-primary btn-sm">LinkedIn</a>
+                            </span>
+                            <br>
+                            <span class="author-description">{{ author.description }}</span>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
-                        <a target="_blank" class="link-dark" href="{{ author.web }}">{{ author.display_name }}</a>
-                        <a href="#" class="btn follow ml-1" id="followToggle">Follow</a>
-                        <span id="followMenu" class="follow-inline ml-2">
-                            {% assign about = site.pages | where: "permalink", "/about-me" | first %}
-                            <a {% unless about.github %}style="display:none"{% endunless %} target="_blank" href="{{ about.github }}" class="btn btn-outline-primary btn-sm mr-1">GitHub</a>
-                            <a {% unless about.linkedin %}style="display:none"{% endunless %} target="_blank" href="{{ about.linkedin }}" class="btn btn-outline-primary btn-sm">LinkedIn</a>
-                        </span>
-                        <br>
-                        <span class="author-description">{{ author.description }}</span>
-                    </div>
+                    {% endif %}
+
+                    <!-- Post Title -->
+                    <h1 class="posttitle">{{ page.title }}</h1>
+                    {% if page.categories %}
+                    <ul class="title-categories tags mt-2 mb-0">
+                        {% assign titleCats = page.categories | sort %}
+                        {% for category in titleCats %}
+                        <li><a href="{{site.baseurl}}/category/{{ category | slugify }}/">{{ category }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    <!-- Inline follow menu script -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var btn = document.getElementById('followToggle');
+                            var menu = document.getElementById('followMenu');
+                            if (!btn || !menu) return;
+                            btn.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                menu.classList.toggle('open');
+                            });
+                            document.addEventListener('click', function (e) {
+                                if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== btn) {
+                                    menu.classList.remove('open');
+                                }
+                            });
+                        });
+                    </script>
+
+                </div>
+
+                <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+                {% if site.adsense == "enabled" %}
+                {% include adsense-under-header.html %}
+                {% endif %}
+                <!-- End Adsense -->
+
+                <!-- Post Featured Image -->
+                {% if page.image %}
+                <div class="post-featured-image">
+                    {% if site.lazyimages == "enabled" %}
+                    <img class="featured-image img-fluid lazyimg"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII="
+                        data-src="{% if page.image contains " ://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{
+                        page.image }}{% endif %}" alt="{{ page.title }}" onerror="this.style.display='none';">
+                    {% else %}
+                    <img class="featured-image img-fluid" src="{% if page.image contains " ://" %}{{ page.image }}{%
+                        else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}"
+                        onerror="this.style.display='none';">
+                    {% endif %}
                 </div>
                 {% endif %}
+                <!-- End Featured Image -->
 
-                <!-- Post Title -->
-                <h1 class="posttitle">{{ page.title }}</h1>
-                {% if page.categories %}
-                <ul class="title-categories tags mt-2 mb-0">
-                    {% assign titleCats = page.categories | sort %}
-                    {% for category in titleCats %}
-                    <li><a href="{{site.baseurl}}/category/{{ category | slugify }}/">{{ category }}</a></li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-
-                <!-- Inline follow menu script -->
-                <script>
-                document.addEventListener('DOMContentLoaded', function(){
-                  var btn = document.getElementById('followToggle');
-                  var menu = document.getElementById('followMenu');
-                  if (!btn || !menu) return;
-                  btn.addEventListener('click', function(e){
-                    e.preventDefault();
-                    menu.classList.toggle('open');
-                  });
-                  document.addEventListener('click', function(e){
-                    if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== btn){
-                      menu.classList.remove('open');
-                    }
-                  });
-                });
-                </script>
-
-            </div>
-
-            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
-            {% if site.adsense == "enabled" %}
-                {% include adsense-under-header.html %}
-            {% endif %}
-            <!-- End Adsense -->
-
-            <!-- Post Featured Image -->
-            {% if page.image %}
-            <div class="post-featured-image">
-                {% if site.lazyimages == "enabled" %}
-                <img class="featured-image img-fluid lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}" onerror="this.style.display='none';">
-                {% else %}
-                <img class="featured-image img-fluid" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}" onerror="this.style.display='none';">
-                {% endif %}
-            </div>
-            {% endif %}
-            <!-- End Featured Image -->
-
-            <!-- Post Content -->
-            <div class="article-post">
-                <!-- Toc if any -->
-                {% if page.toc %}
+                <!-- Post Content -->
+                <div class="article-post">
+                    <!-- Toc if any -->
+                    {% if page.toc %}
                     {% if page.beforetoc %}
-                        <p><em>{{page.beforetoc}}</em></p>
+                    <p><em>{{page.beforetoc}}</em></p>
                     {% endif %}
                     <div class="toc mt-4 mb-4 lead">
                         <h3 class="font-weight-bold">Table of Contents</h3>
                         {% include toc.html html=content ordered=true %}
                     </div>
-                {% endif %}
-                <!-- End Toc -->
-                {{content}}
-            </div>
-
-            <hr class="article-divider" />
-            
-            <!-- ScrollSpy for Sidebar TOC -->
-            <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const tocLinks = document.querySelectorAll('.sidebar-toc a');
-                const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3, .article-post h4, .article-post h5, .article-post h6');
-                
-                function changeLinkState() {
-                    let index = sections.length;
-            
-                    while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
-                    
-                    tocLinks.forEach((link) => {
-                        link.classList.remove('active');
-                        link.style.removeProperty('color');
-                        link.style.removeProperty('font-weight');
-                    });
-                    
-                    // Remove active-li class from all lists
-                    document.querySelectorAll('.sidebar-toc .active-li').forEach(li => {
-                        li.classList.remove('active-li');
-                    });
-            
-                    if (index >= 0 && tocLinks[index]) {
-                        const activeLink = tocLinks[index];
-                        activeLink.classList.add('active');
-                        
-                        // Add active-li class to all ancestor LIs to expand the tree
-                        let parent = activeLink.parentElement;
-                        while(parent) {
-                            if (parent.tagName === 'LI' && parent.closest('.sidebar-toc')) {
-                                parent.classList.add('active-li');
-                            }
-                            parent = parent.parentElement;
-                        }
-                    }
-                }
-            
-                changeLinkState();
-                window.addEventListener('scroll', changeLinkState);
-            });
-            </script>
-
-            {% include series-list.html %}
-
-            <!-- Rating -->
-            {% if page.rating %}
-            <div class="rating mb-4 d-flex align-items-center">
-                <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
-            </div>
-            {% endif %}
-
-            <!-- Post Date -->
-            <p>
-            <small>
-                <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date: "%Y.%m.%d" }}</time></span>
-                {% if page.last_modified_at %}
-                (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%Y.%m.%d" }}</time>)
-                {% endif %}
-                </small>
-            </p>
-
-            <!-- Post Categories (moved to under title) -->
-
-            <!-- Post Tags -->
-            <div class="after-post-tags">
-                <ul class="tags">
-                    {% if page.tags %}
-                    {% assign sortedTags = page.tags | sort %}
-                    {% for tag in sortedTags %}
-                    <li>
-                        <a class="smoothscroll" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>
-                    </li>
-                    {% endfor %}
                     {% endif %}
-                </ul>
-            </div>
-            <!-- End Tags -->
-
-            <!-- Prev/Next -->
-            <div class="post-navigation">
-                <div class="nav-links">
-                    {% if page.previous.url %}
-                    <a class="nav-previous" href="{{ site.baseurl }}{{page.previous.url}}">
-                        <span class="nav-label">이전 글</span>
-                        <span class="nav-title">&laquo; {{page.previous.title}}</span>
-                    </a>
-                    {% else %}
-                    <div class="nav-previous nav-empty"></div>
-                    {% endif %}
-                    
-                    {% if page.next.url %}
-                    <a class="nav-next" href="{{ site.baseurl }}{{page.next.url}}">
-                        <span class="nav-label">다음 글</span>
-                        <span class="nav-title">{{page.next.title}} &raquo;</span>
-                    </a>
-                    {% else %}
-                    <div class="nav-next nav-empty"></div>
-                    {% endif %}
+                    <!-- End Toc -->
+                    {{content}}
                 </div>
-            </div>
-            <!-- End Prev/Next -->
+
+                <hr class="article-divider" />
+
+                <!-- ScrollSpy for Sidebar TOC -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const tocLinks = document.querySelectorAll('.sidebar-toc a');
+                        const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3, .article-post h4, .article-post h5, .article-post h6');
+
+                        function changeLinkState() {
+                            let index = sections.length;
+
+                            while (--index && window.scrollY + 100 < sections[index].offsetTop) { }
+
+                            tocLinks.forEach((link) => {
+                                link.classList.remove('active');
+                                link.style.removeProperty('color');
+                                link.style.removeProperty('font-weight');
+                            });
+
+                            // Remove active-li class from all lists
+                            document.querySelectorAll('.sidebar-toc .active-li').forEach(li => {
+                                li.classList.remove('active-li');
+                            });
+
+                            if (index >= 0 && tocLinks[index]) {
+                                const activeLink = tocLinks[index];
+                                activeLink.classList.add('active');
+
+                                // Add active-li class to all ancestor LIs to expand the tree
+                                let parent = activeLink.parentElement;
+                                while (parent) {
+                                    if (parent.tagName === 'LI' && parent.closest('.sidebar-toc')) {
+                                        parent.classList.add('active-li');
+                                    }
+                                    parent = parent.parentElement;
+                                }
+                            }
+                        }
+
+                        changeLinkState();
+                        window.addEventListener('scroll', changeLinkState);
+                    });
+                </script>
+
+                {% include series-list.html %}
+
+                <!-- Rating -->
+                {% if page.rating %}
+                <div class="rating mb-4 d-flex align-items-center">
+                    <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
+                </div>
+                {% endif %}
+
+                <!-- Post Date -->
+                <p>
+                    <small>
+                        <span class="post-date"><time class="post-date" datetime="{{ page.date | date:" %Y-%m-%d" }}">{{
+                                page.date | date: "%Y.%m.%d" }}</time></span>
+                        {% if page.last_modified_at %}
+                        (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}"
+                            itemprop="dateModified">{{ page.last_modified_at | date: "%Y.%m.%d" }}</time>)
+                        {% endif %}
+                    </small>
+                </p>
+
+                <!-- Post Categories (moved to under title) -->
+
+                <!-- Post Tags -->
+                <div class="after-post-tags">
+                    <ul class="tags">
+                        {% if page.tags %}
+                        {% assign sortedTags = page.tags | sort %}
+                        {% for tag in sortedTags %}
+                        <li>
+                            <a class="smoothscroll" href="{{site.baseurl}}/tags#{{ tag | replace: " "," -" }}">#{{ tag
+                                }}</a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- End Tags -->
+
+                <!-- Prev/Next -->
+                <div class="post-navigation">
+                    <div class="nav-links">
+                        {% if page.previous.url %}
+                        <a class="nav-previous" href="{{ site.baseurl }}{{page.previous.url}}">
+                            <span class="nav-label">이전 글</span>
+                            <span class="nav-title">&laquo; {{page.previous.title}}</span>
+                        </a>
+                        {% else %}
+                        <div class="nav-previous nav-empty"></div>
+                        {% endif %}
+
+                        {% if page.next.url %}
+                        <a class="nav-next" href="{{ site.baseurl }}{{page.next.url}}">
+                            <span class="nav-label">다음 글</span>
+                            <span class="nav-title">{{page.next.title}} &raquo;</span>
+                        </a>
+                        {% else %}
+                        <div class="nav-next nav-empty"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- End Prev/Next -->
 
             </div>
             <!-- End Post -->
@@ -293,7 +311,9 @@ post_class: post-template
                 <!-- Blog Title & Description -->
                 <div class="sidebar-section">
                     <div class="sidebar-card-simple blog-header">
-                        <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}" alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid rounded-circle mb-2" style="width: 120px; height: 120px; object-fit: contain;">
+                        <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}"
+                            alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid rounded-circle mb-2"
+                            style="width: 120px; height: 120px; object-fit: contain;">
                         <h5 class="blog-title">{{ site.title }}</h5>
                         <p class="blog-description">{{ site.description }}</p>
                         <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
@@ -317,7 +337,7 @@ post_class: post-template
                 <!-- Categories -->
                 <div class="sidebar-section">
                     <div class="sidebar-card-simple">
-                            <h6 class="sidebar-title-simple">Categories</h6>
+                        <h6 class="sidebar-title-simple">Categories</h6>
                         <div class="sidebar-list">
                             {% assign categories = site.categories | sort %}
                             {% for category in categories limit:4 %}
@@ -335,12 +355,14 @@ post_class: post-template
                 <!-- Recent Posts -->
                 <div class="sidebar-section">
                     <div class="sidebar-card-simple">
-                            <h6 class="sidebar-title-simple">Recent Posts</h6>
+                        <h6 class="sidebar-title-simple">Recent Posts</h6>
                         <div class="sidebar-list">
-                            {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" %}
+                            {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url and
+                            post.hidden != true" %}
                             {% for post in recent_posts limit:3 %}
                             <div class="sidebar-list-item">
-                                <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title | truncate: 25 }}</a>
+                                <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title |
+                                    truncate: 25 }}</a>
                                 <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
                             </div>
                             {% endfor %}
@@ -357,13 +379,13 @@ post_class: post-template
 <!-- Begin Comments
 ================================================== -->
 {% if page.comments != false %}
-    <div class="container">
-        <div id="comments" class="row justify-content-center mb-5">
-            <div class="col-md-8">
-                {% include utterances.html %}
-            </div>
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            {% include utterances.html %}
         </div>
     </div>
+</div>
 {% endif %}
 <!--End Comments
 ================================================== -->
@@ -392,54 +414,56 @@ https://search.google.com/structured-data/testing-tool/u/0/
   }
 }
 </script>
+{% endif %}
+
 <script src="{{ site.baseurl }}/assets/js/reading.js"></script>
 <script src="{{ site.baseurl }}/assets/js/codeblocks.js"></script>
-{% endif %}
+<script src="{{ site.baseurl }}/assets/js/post-captions.js?v=4"></script>
 
 <!-- Sidebar visibility control -->
 <script>
-// 페이지 완전 로딩 후 사이드바 제어
-window.addEventListener('load', function() {
-    const sidebar = document.querySelector('.post-sidebar-fixed');
-    if (!sidebar) return;
-    
-    // 초기 로딩 지연 후 사이드바 표시
-    setTimeout(function() {
-        // 처음에는 사이드바를 보여줌
-        sidebar.classList.remove('hidden');
-        
-        function checkSidebarVisibility() {
-            const footer = document.querySelector('.footer');
-            const windowHeight = window.innerHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const documentHeight = document.documentElement.scrollHeight;
-            
-            let hidesSidebar = false;
-            
-            // 페이지 하단 근처에서만 푸터 체크 (스크롤이 85% 이상일 때)
-            const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
-            
-            if (scrollPercentage > 0.85 && footer) {
-                const footerRect = footer.getBoundingClientRect();
-                if (footerRect.top < windowHeight - 50) { // 푸터가 화면 하단 50px 이내에 올 때만
-                    hidesSidebar = true;
+    // 페이지 완전 로딩 후 사이드바 제어
+    window.addEventListener('load', function () {
+        const sidebar = document.querySelector('.post-sidebar-fixed');
+        if (!sidebar) return;
+
+        // 초기 로딩 지연 후 사이드바 표시
+        setTimeout(function () {
+            // 처음에는 사이드바를 보여줌
+            sidebar.classList.remove('hidden');
+
+            function checkSidebarVisibility() {
+                const footer = document.querySelector('.footer');
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const documentHeight = document.documentElement.scrollHeight;
+
+                let hidesSidebar = false;
+
+                // 페이지 하단 근처에서만 푸터 체크 (스크롤이 85% 이상일 때)
+                const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
+
+                if (scrollPercentage > 0.85 && footer) {
+                    const footerRect = footer.getBoundingClientRect();
+                    if (footerRect.top < windowHeight - 50) { // 푸터가 화면 하단 50px 이내에 올 때만
+                        hidesSidebar = true;
+                    }
+                }
+
+                // Toggle sidebar visibility
+                if (hidesSidebar) {
+                    sidebar.classList.add('hidden');
+                } else {
+                    sidebar.classList.remove('hidden');
                 }
             }
-            
-            // Toggle sidebar visibility
-            if (hidesSidebar) {
-                sidebar.classList.add('hidden');
-            } else {
-                sidebar.classList.remove('hidden');
-            }
-        }
-        
-        // Check on scroll
-        window.addEventListener('scroll', checkSidebarVisibility);
-        
-        // Initial check - 로딩 완료 후에는 기본적으로 사이드바 표시
-        sidebar.classList.remove('hidden');
-        
-    }, 800); // 800ms 후에 시작 (충분한 로딩 시간 확보)
-});
+
+            // Check on scroll
+            window.addEventListener('scroll', checkSidebarVisibility);
+
+            // Initial check - 로딩 완료 후에는 기본적으로 사이드바 표시
+            sidebar.classList.remove('hidden');
+
+        }, 800); // 800ms 후에 시작 (충분한 로딩 시간 확보)
+    });
 </script>
