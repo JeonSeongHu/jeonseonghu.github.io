@@ -361,8 +361,12 @@ post_class: post-template
                     <div class="sidebar-card-simple">
                         <h6 class="sidebar-title-simple">Recent Posts</h6>
                         <div class="sidebar-list">
-                            {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url and
-                            post.hidden != true" %}
+                            {% assign recent_posts = "" | split: "" %}
+                            {% for post in site.posts %}
+                            {% if post.url != page.url and post.hidden != true and post.hidden != "true" %}
+                            {% assign recent_posts = recent_posts | push: post %}
+                            {% endif %}
+                            {% endfor %}
                             {% for post in recent_posts limit:3 %}
                             <div class="sidebar-list-item">
                                 <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title |
