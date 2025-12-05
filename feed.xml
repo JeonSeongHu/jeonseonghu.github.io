@@ -11,7 +11,12 @@ layout: null
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
+    {% assign posts = "" | split: "" %}
+    {% for post in site.posts %}
+    {% if post.hidden != true and post.hidden != "true" %}
+    {% assign posts = posts | push: post %}
+    {% endif %}
+    {% endfor %}
     {% for post in posts limit:10 %}
       <item>
         <title>{{ post.title | xml_escape }}</title>

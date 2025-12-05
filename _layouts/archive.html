@@ -18,7 +18,12 @@ title: 아카이브
 <section class="recent-posts">
     <div class="row listrecent">
 
-        {% assign posts = page.posts | where_exp: "post", "post.hidden != true" %}
+        {% assign posts = "" | split: "" %}
+        {% for post in page.posts %}
+        {% if post.hidden != true and post.hidden != "true" %}
+        {% assign posts = posts | push: post %}
+        {% endif %}
+        {% endfor %}
         {% assign post_count = posts | size %}
         <div class="col-12 mb-4">
             <p class="text-muted">

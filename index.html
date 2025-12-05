@@ -14,7 +14,12 @@ custom_css_class: with-dot-bg
             <div class="category-group">
                 <a href="#" onclick="filterPosts('all'); return false;" class="category-major active" id="cat-link-all">
                     <span class="cat-name">All Posts</span>
-                    {% assign all_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+                    {% assign all_posts = "" | split: "" %}
+                    {% for post in site.posts %}
+                    {% if post.hidden != true and post.hidden != "true" %}
+                    {% assign all_posts = all_posts | push: post %}
+                    {% endif %}
+                    {% endfor %}
                     <span class="cat-count">{{ all_posts | size }}</span>
                 </a>
             </div>
@@ -24,7 +29,7 @@ custom_css_class: with-dot-bg
             {% assign category_slug = category.slug %}
             {% assign main_category_count = 0 %}
             {% for post in site.posts %}
-            {% if post.hidden != true %}
+            {% if post.hidden != true and post.hidden != "true" %}
             {% assign post_main_slug = post.main_category | slugify %}
             {% if post_main_slug == category_slug %}
             {% assign main_category_count = main_category_count | plus: 1 %}
@@ -55,7 +60,7 @@ custom_css_class: with-dot-bg
                         {% assign sub_slug = sub.slug %}
                         {% assign sub_count = 0 %}
                         {% for post in site.posts %}
-                        {% if post.hidden != true %}
+                        {% if post.hidden != true and post.hidden != "true" %}
                         {% assign post_sub_slug = post.sub_category | slugify %}
                         {% if post_sub_slug == sub_slug %}
                         {% assign sub_count = sub_count | plus: 1 %}
@@ -93,13 +98,18 @@ custom_css_class: with-dot-bg
         <!-- Mobile Category Selector -->
         <div class="mobile-category-selector">
             <select id="mobile-category-select" onchange="filterPosts(this.value);">
-                {% assign all_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+                {% assign all_posts = "" | split: "" %}
+                {% for post in site.posts %}
+                {% if post.hidden != true and post.hidden != "true" %}
+                {% assign all_posts = all_posts | push: post %}
+                {% endif %}
+                {% endfor %}
                 <option value="all">All Posts ({{ all_posts | size }})</option>
                 {% for category in site.data.categories.categories %}
                 {% assign category_slug = category.slug %}
                 {% assign main_category_count = 0 %}
                 {% for post in site.posts %}
-                {% if post.hidden != true %}
+                {% if post.hidden != true and post.hidden != "true" %}
                 {% assign post_main_slug = post.main_category | slugify %}
                 {% if post_main_slug == category_slug %}
                 {% assign main_category_count = main_category_count | plus: 1 %}
@@ -112,7 +122,7 @@ custom_css_class: with-dot-bg
                 {% assign sub_slug = sub.slug %}
                 {% assign sub_count = 0 %}
                 {% for post in site.posts %}
-                {% if post.hidden != true %}
+                {% if post.hidden != true and post.hidden != "true" %}
                 {% assign post_sub_slug = post.sub_category | slugify %}
                 {% if post_sub_slug == sub_slug %}
                 {% assign sub_count = sub_count | plus: 1 %}
@@ -128,13 +138,18 @@ custom_css_class: with-dot-bg
 
         <div class="current-category-header">
             <h2 id="current-category-title">All Posts</h2>
-            {% assign all_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+            {% assign all_posts = "" | split: "" %}
+            {% for post in site.posts %}
+            {% if post.hidden != true and post.hidden != "true" %}
+            {% assign all_posts = all_posts | push: post %}
+            {% endif %}
+            {% endfor %}
             <span class="post-count-badge" id="current-category-count">{{ all_posts | size }} posts</span>
         </div>
 
         <div class="blog-list-container" id="blog-list">
             {% for post in site.posts %}
-            {% unless post.hidden %}
+            {% if post.hidden != true and post.hidden != "true" %}
             <!-- Generate category classes for filtering - Use main_category and sub_category explicitly -->
             {% assign main_slug = post.main_category | slugify %}
             {% assign sub_slug = post.sub_category | slugify %}
@@ -170,7 +185,7 @@ custom_css_class: with-dot-bg
                             </span>
                 </div>
             </article>
-            {% endunless %}
+            {% endif %}
             {% endfor %}
         </div>
 

@@ -33,7 +33,7 @@
 {% for post_slug in series_data.posts %}
 {% for p in site.posts %}
 {% assign p_slug = p.path | remove: "_posts/" | remove: ".md" %}
-{% if p_slug == post_slug %}
+{% if p_slug == post_slug and p.hidden != true and p.hidden != "true" %}
 {% assign series_posts = series_posts | push: p %}
 {% break %}
 {% endif %}
@@ -41,15 +41,25 @@
 {% endfor %}
 {% else %}
 <!-- Fallback: Dynamic lookup by series slug -->
-{% assign series_posts = site.posts | where: "series", series_slug | where_exp: "post", "post.hidden != true" | sort:
-"date" %}
+{% assign series_posts = "" | split: "" %}
+{% for post in site.posts %}
+{% if post.series == series_slug and post.hidden != true and post.hidden != "true" %}
+{% assign series_posts = series_posts | push: post %}
+{% endif %}
+{% endfor %}
+{% assign series_posts = series_posts | sort: "date" %}
 {% endif %}
 
 {% else %}
 <!-- Simple Tag Mode (No data file) -->
 {% assign series_name = series_slug %}
-{% assign series_posts = site.posts | where: "series", series_slug | where_exp: "post", "post.hidden != true" | sort:
-"date" %}
+{% assign series_posts = "" | split: "" %}
+{% for post in site.posts %}
+{% if post.series == series_slug and post.hidden != true and post.hidden != "true" %}
+{% assign series_posts = series_posts | push: post %}
+{% endif %}
+{% endfor %}
+{% assign series_posts = series_posts | sort: "date" %}
 {% endif %}
 
 {% if series_posts.size > 0 %}
