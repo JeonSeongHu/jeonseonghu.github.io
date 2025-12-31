@@ -21,16 +21,37 @@
     --theme-bg-dot: #ecf4ff; /* Revert to subtle light blue */
 }
 
-/* Links */
+/* Links - Global Style */
 a {
-    color: var(--primary) !important;
+    color: #111 !important; /* 기본: 검정색 */
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 a:hover {
-    color: var(--primary-hover) !important;
-    text-decoration: none;
+    color: var(--primary) !important; /* 호버: 파란색 */
+    text-decoration: underline;
+}
+
+/* External Links with Arrow Animation */
+a[target="_blank"],
+a.external-link {
+    position: relative;
+    display: inline;
+}
+
+a[target="_blank"]::after,
+a.external-link::after {
+    content: " ↗";
+    display: inline-block;
+    font-size: 0.85em;
+    transition: transform 0.2s ease;
+    vertical-align: baseline;
+}
+
+a[target="_blank"]:hover::after,
+a.external-link:hover::after {
+    transform: rotate(90deg); /* 오른쪽 위(↗) → 오른쪽 아래(↘) 회전 */
 }
 
 /* Typography */

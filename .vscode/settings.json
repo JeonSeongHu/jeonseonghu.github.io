@@ -1,0 +1,9 @@
+{
+    "[scss]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
+    },
+    "scss.format.enable": false,
+    "prettier.ignorePath": ".prettierignore",
+    "editor.formatOnSave": false
+}

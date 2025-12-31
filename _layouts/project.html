@@ -1,0 +1,192 @@
+---
+layout: default
+---
+
+<!-- Main Content Container: Left TOC & Links | Right Content -->
+<div class="container project-container-custom">
+    <div class="row">
+        <!-- LEFT SIDEBAR: TOC Only (Sticky) -->
+        <div class="col-lg-2 d-none d-lg-block">
+            <div class="project-left-sidebar sticky-top" style="top: 100px;">
+                <!-- Table of Contents -->
+                <div class="sidebar-block">
+                    <h6 class="sidebar-label">CONTENTS</h6>
+                    <div class="project-toc">
+                        {% include toc_pure_html.html html=content class="toc-list list-unstyled" item_class="toc-item mb-1" submenu_class="toc-sub-list pl-3" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT MAIN CONTENT -->
+        <div class="col-lg-10 pl-lg-5">
+            <div class="post-content project-content-left-aligned">
+                <!-- Project Header (Left Aligned) -->
+                <div class="project-header-section text-start mb-5">
+                    <!-- Publication Badge -->
+                    {% if page.type == "publication" %}
+                    <span class="project-type-label mb-2 d-inline-block">Publication</span>
+                    {% endif %}
+                    
+                    <!-- Title -->
+                    <h1 class="project-main-title mb-3">{{ page.title }}</h1>
+                    
+                    <!-- Description -->
+                    {% if page.full_title %}
+                    <p class="project-full-title mb-4">{{ page.full_title }}</p>
+                    {% elsif page.description %}
+                    <p class="project-full-title mb-4">{{ page.description }}</p>
+                    {% endif %}
+                    
+                    <!-- Compact Meta Info -->
+                    <div class="project-meta-grid">
+                        <!-- AUTHORS (Full Width) -->
+                        {% if page.authors %}
+                        <div class="meta-item mb-2">
+                            <span class="meta-label">AUTHORS</span>
+                            <span class="meta-value">
+                                {% assign highlight_author = "Seonghu Jeon" %}
+                                {% assign authors_array = page.authors | split: ", " %}
+                                {% for author in authors_array %}
+                                    {% if author contains highlight_author %}
+                                        <strong>{{ author }}</strong>{% unless forloop.last %}, {% endunless %}
+                                    {% else %}
+                                        {{ author }}{% unless forloop.last %}, {% endunless %}
+                                    {% endif %}
+                                {% endfor %}
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Row: MY ROLE + VENUE + DATE (Inline) -->
+                        <div class="meta-row-inline mb-2">
+                            {% if page.role %}
+                            <div class="meta-inline-item">
+                                <span class="meta-label">MY ROLE</span>
+                                <span class="meta-value">{{ page.role }}</span>
+                            </div>
+                            {% endif %}
+                            
+                            {% if page.venue %}
+                            <div class="meta-inline-item">
+                                <span class="meta-label">VENUE</span>
+                                <span class="meta-value">{{ page.venue }}</span>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="meta-inline-item">
+                                <span class="meta-label">DATE</span>
+                                <span class="meta-value">{{ page.date | date: "%B %Y" }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Row: LINKS (if any) -->
+                        {% if page.link or page.project_link or page.arxiv or page.pdf or page.code %}
+                        <div class="meta-item mb-2">
+                            <span class="meta-label">LINKS</span>
+                            <span class="meta-value meta-links">
+                                {% if page.link and page.link != "#" %}<a href="{{ page.link }}" target="_blank">Paper</a>{% endif %}
+                                {% if page.project_link and page.project_link != "#" %}{% if page.link and page.link != "#" %} · {% endif %}<a href="{{ page.project_link }}" target="_blank">Project Page</a>{% endif %}
+                                {% if page.arxiv and page.arxiv != "#" %}{% if page.link or page.project_link %} · {% endif %}<a href="{{ page.arxiv }}" target="_blank">arXiv</a>{% endif %}
+                                {% if page.pdf and page.pdf != "#" %}{% if page.link or page.project_link or page.arxiv %} · {% endif %}<a href="{{ page.pdf }}" target="_blank">PDF</a>{% endif %}
+                                {% if page.code and page.code != "#" %}{% if page.link or page.project_link or page.arxiv or page.pdf %} · {% endif %}<a href="{{ page.code }}" target="_blank">Code</a>{% endif %}
+                            </span>
+                        </div>
+                        {% endif %}
+
+                        <!-- Tags -->
+                        {% if page.tags %}
+                        <div class="meta-item mt-4">
+                            <div class="project-tags-inline justify-content-start">
+                                {% assign sortedTags = page.tags | sort %}
+                                {% for tag in sortedTags %}
+                                <a href="{{site.baseurl}}/projects/?tag={{ tag | slugify }}" class="project-tag-inline">#{{ tag }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Featured Image -->
+                {% if page.image %}
+                <div class="post-featured-image mb-5 shadow-sm rounded overflow-hidden">
+                    <img class="featured-image img-fluid w-100" src="{{ page.image }}" alt="{{ page.title }}" style="object-fit: cover;">
+                </div>
+                {% endif %}
+
+                <!-- Content Body -->
+                <div class="article-post content-body text-start">
+                    {{ content }}
+                </div>
+
+                <hr class="article-divider mt-5 mb-5" />
+
+                <!-- Prev/Next Navigation -->
+                <div class="post-navigation">
+                    <div class="nav-links">
+                        {% assign sorted_projects = site.projects | sort: "date" | reverse %}
+                        {% assign prev_project = nil %}
+                        {% assign next_project = nil %}
+                        {% assign found_current = false %}
+                        
+                        {% for project in sorted_projects %}
+                            {% if found_current and next_project == nil %}
+                                {% assign next_project = project %}
+                            {% endif %}
+                            {% if project.url == page.url %}
+                                {% assign found_current = true %}
+                            {% endif %}
+                            {% unless found_current %}
+                                {% assign prev_project = project %}
+                            {% endunless %}
+                        {% endfor %}
+                        
+                        {% if prev_project %}
+                        <a class="nav-previous" href="{{ site.baseurl }}{{ prev_project.url }}">
+                            <span class="nav-label">Previous</span>
+                            <span class="nav-title">&laquo; {{ prev_project.title }}</span>
+                        </a>
+                        {% else %}
+                        <div class="nav-previous nav-empty"></div>
+                        {% endif %}
+
+                        {% if next_project %}
+                        <a class="nav-next" href="{{ site.baseurl }}{{ next_project.url }}">
+                            <span class="nav-label">Next</span>
+                            <span class="nav-title">{{ next_project.title }} &raquo;</span>
+                        </a>
+                        {% else %}
+                        <div class="nav-next nav-empty"></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ScrollSpy for Sidebar TOC -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tocLinks = document.querySelectorAll('.project-toc a');
+        const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3'); 
+
+        function changeLinkState() {
+            let index = sections.length;
+            while (--index && window.scrollY + 100 < sections[index].offsetTop) { }
+
+            tocLinks.forEach((link) => {
+                link.classList.remove('active');
+            });
+
+            if (index >= 0 && tocLinks[index]) {
+                tocLinks[index].classList.add('active');
+            }
+        }
+
+        changeLinkState();
+        window.addEventListener('scroll', changeLinkState);
+    });
+</script>
+

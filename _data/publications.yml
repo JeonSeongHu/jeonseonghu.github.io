@@ -1,0 +1,42 @@
+# Publications Data
+# 각 논문은 date, short_title, full_title, authors, venue, image, link 필드를 가집니다.
+# highlight_author: 강조할 저자 이름
+
+highlight_author: "Seonghu Jeon"
+
+publications:
+  - year: 2025
+    papers:
+      - date: "Nov. 2025"
+        short_title: "StageDiffusion"
+        full_title: "Compositional Stage-wise Diffusion for Progressive Generation"
+        authors: "Jaesang Yu, Seonghu Jeon, Taesoo Kim, Yoonju Lee, Yilun Du, Juho Kim"
+        venue: "Under review"
+        image: "https://picsum.photos/seed/stage/80/60"
+        link: "#"
+      
+      - date: "Nov. 2025"
+        short_title: "Saccadic Variability"
+        full_title: "Saccadic Variability in Patients with Parkinson's Disease"
+        authors: "Kyoungwon Baik*, Seonghu Jeon*, Seoui Kwag, Hyunsoh Park, Yukang Kim, Tonghoon Woo, Sun-Uk Lee, Nyoung Lee, Gerard J. Kim, Byung-Jo Kim, Ji-Soo Kim, Kun-Woo Park"
+        venue: "Under review"
+        image: "https://picsum.photos/seed/saccadic/80/60"
+        link: "#"
+      
+      - date: "Aug. 2025"
+        short_title: "CANVAS"
+        full_title: "A Benchmark for Vision-Language Models on Tool-Based User Interface Design"
+        authors: "Daeheon Jeong*, Seonghu Jeon*, Kihoon Son, Daehyun Kim, Juho Kim"
+        venue: "AAAI 2026"
+        image: "https://picsum.photos/seed/canvas/80/60"
+        link: "#"
+
+  - year: 2024
+    papers:
+      - date: "Dec. 2024"
+        short_title: "Sample Paper"
+        full_title: "An Example Research Paper for Demonstration Purposes"
+        authors: "Seonghu Jeon, Collaborator One, Collaborator Two"
+        venue: "CHI 2025"
+        image: "https://picsum.photos/seed/sample/80/60"
+        link: "#"

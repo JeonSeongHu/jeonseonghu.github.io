@@ -1,0 +1,59 @@
+# Projects Data
+# 각 프로젝트는 title, description, image, tags, link 필드를 가집니다.
+
+projects:
+  - title: "Horang Studio"
+    description: "A personalized profile-photo generation service for the Korea University festival, built with a diffusion-based AI pipeline and deployed for thousands of students."
+    image: "https://picsum.photos/seed/horang/400/300"
+    tags:
+      - "AI Engineering"
+      - "Computer Vision"
+      - "Diffusion"
+      - "Web"
+      - "GDGoC"
+    link: "#"
+
+  - title: "Hand Tracking VR"
+    description: "Real-time hand tracking system for virtual reality applications using computer vision and deep learning techniques."
+    image: "https://picsum.photos/seed/handtrack/400/300"
+    tags:
+      - "Computer Vision"
+      - "VR"
+      - "Machine Learning"
+    link: "#"
+
+  - title: "Neural Style Transfer"
+    description: "Implementation of neural style transfer algorithm for artistic image generation using convolutional neural networks."
+    image: "https://picsum.photos/seed/style/400/300"
+    tags:
+      - "AI Engineering"
+      - "Generative AI"
+      - "Computer Vision"
+    link: "#"
+
+  - title: "Brain-Computer Interface"
+    description: "Research project on EEG-based brain-computer interface for controlling external devices using neural signals."
+    image: "https://picsum.photos/seed/brain/400/300"
+    tags:
+      - "Neurology"
+      - "HCI"
+      - "Machine Learning"
+    link: "#"
+
+  - title: "Mobile Health App"
+    description: "User experience research and design for a mobile health application targeting elderly users."
+    image: "https://picsum.photos/seed/health/400/300"
+    tags:
+      - "User Experience"
+      - "User Interface"
+      - "HCI"
+    link: "#"
+
+  - title: "Image Inpainting"
+    description: "Deep learning-based image inpainting system for reconstructing missing or damaged regions in photographs."
+    image: "https://picsum.photos/seed/inpaint/400/300"
+    tags:
+      - "Diffusion"
+      - "Generative AI"
+      - "Computer Vision"
+    link: "#"

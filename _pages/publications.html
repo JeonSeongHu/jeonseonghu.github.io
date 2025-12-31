@@ -1,0 +1,111 @@
+---
+layout: default
+title: Publications
+permalink: /publications/
+custom_css_class: with-dot-bg
+---
+
+{% assign highlight_author = "Seonghu Jeon" %}
+
+<div class="publications-container">
+    <header class="publications-header">
+        <h1 class="publications-title">publications</h1>
+    </header>
+
+    <!-- Search Filter -->
+    <div class="publications-filter">
+        <input type="text" id="publication-search" class="publication-search-input" placeholder="Type to filter">
+    </div>
+
+    <!-- Publications by Year (Filtered from Projects where type == publication) -->
+    <div class="publications-list">
+        {% assign publications = site.projects | where: "type", "publication" | sort: "date" | reverse %}
+        {% assign grouped_pubs = publications | group_by_exp: "pub", "pub.date | date: '%Y'" %}
+        
+        {% for year_group in grouped_pubs %}
+        <section class="publication-year-section" data-year="{{ year_group.name }}">
+            <div class="year-label">{{ year_group.name }}</div>
+            
+            {% for paper in year_group.items %}
+            <article class="publication-item" data-searchable="{{ paper.title | downcase }} {{ paper.full_title | downcase }} {{ paper.authors | downcase }} {{ paper.venue | downcase }}">
+                <div class="publication-thumbnail">
+                    <img src="{{ paper.image }}" alt="{{ paper.title }}" loading="lazy">
+                </div>
+                
+                <div class="publication-content">
+                    <h3 class="publication-short-title">
+                        <a href="{{ paper.url | relative_url }}">{{ paper.title }}</a>
+                    </h3>
+                    <p class="publication-full-title-inline">{{ paper.full_title }}</p>
+                    <p class="publication-authors">
+                        {% assign authors_array = paper.authors | split: ", " %}
+                        {% for author in authors_array %}
+                            {% if author contains highlight_author %}
+                                <strong class="highlight-author">{{ author }}</strong>{% unless forloop.last %}, {% endunless %}
+                            {% else %}
+                                <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                    <div class="publication-meta-row">
+                        <span class="publication-venue">{{ paper.venue }}</span>
+                        <span class="publication-date">{{ paper.date | date: "%b. %Y" }}</span>
+                    </div>
+                </div>
+                
+                <a href="{{ paper.url | relative_url }}" class="publication-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+            </article>
+            {% endfor %}
+        </section>
+        {% endfor %}
+    </div>
+
+    <!-- No Results Message -->
+    <div id="no-publications" class="no-publications" style="display: none;">
+        No publications found matching your search.
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('publication-search');
+    const publicationItems = document.querySelectorAll('.publication-item');
+    const yearSections = document.querySelectorAll('.publication-year-section');
+    const noResultsMsg = document.getElementById('no-publications');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        publicationItems.forEach(item => {
+            const searchable = item.getAttribute('data-searchable');
+            
+            if (query === '' || searchable.includes(query)) {
+                item.style.display = 'flex';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Hide year sections with no visible items
+        yearSections.forEach(section => {
+            const hiddenItems = section.querySelectorAll('.publication-item[style="display: none"]');
+            
+            if (hiddenItems.length === section.querySelectorAll('.publication-item').length) {
+                section.style.display = 'none';
+            } else {
+                section.style.display = 'block';
+            }
+        });
+
+        // Show/hide no results message
+        noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+});
+</script>

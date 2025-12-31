@@ -182,3 +182,160 @@ collections:
         value_field: "name"
         display_fields: ["name"]
         required: false
+
+  # ----------------------------------------
+  # Projects
+  # ----------------------------------------
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    create: true
+    slug: "{{slug}}"
+    media_folder: "/assets/images/projects/{{slug}}"
+    public_folder: "/assets/images/projects/{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "project"
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options: ["project", "publication"]
+        default: "project"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Short Title"
+        name: "short_title"
+        widget: "string"
+        required: false
+      - label: "Description"
+        name: "description"
+        widget: "text"
+      - label: "Authors / Team Members"
+        name: "authors"
+        widget: "string"
+        hint: "Comma-separated list. Use * for equal contribution."
+        required: false
+      - label: "My Role"
+        name: "role"
+        widget: "string"
+        hint: "e.g., Lead Developer, Research Contributor"
+        required: false
+      - label: "Venue"
+        name: "venue"
+        widget: "string"
+        hint: "e.g., CVPR 2025, Course Project, Personal"
+        required: false
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        allow_add: true
+        field:
+          label: "Tag"
+          name: "tag"
+          widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+      - label: "Paper Link"
+        name: "link"
+        widget: "string"
+        required: false
+        hint: "Link to the paper (arXiv, publication page, etc.)"
+      - label: "Project Page Link"
+        name: "project_link"
+        widget: "string"
+        required: false
+        hint: "Link to project demo or website"
+      - label: "arXiv Link"
+        name: "arxiv"
+        widget: "string"
+        required: false
+      - label: "PDF Link"
+        name: "pdf"
+        widget: "string"
+        required: false
+      - label: "Code Repository"
+        name: "code"
+        widget: "string"
+        required: false
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  # ----------------------------------------
+  # Publications
+  # ----------------------------------------
+  - name: "publications"
+    label: "Publications"
+    folder: "_publications"
+    create: true
+    slug: "{{slug}}"
+    media_folder: "/assets/images/publications/{{slug}}"
+    public_folder: "/assets/images/publications/{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - label: "Title (Short)"
+        name: "title"
+        widget: "string"
+      - label: "Full Title"
+        name: "full_title"
+        widget: "string"
+      - label: "Authors"
+        name: "authors"
+        widget: "string"
+        hint: "Comma-separated list of authors. Use * for equal contribution."
+      - label: "Venue"
+        name: "venue"
+        widget: "string"
+        hint: "e.g., CVPR 2025, Under review, etc."
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+      - label: "Thumbnail Image"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "arXiv Link"
+        name: "arxiv"
+        widget: "string"
+        default: "#"
+        required: false
+      - label: "PDF Link"
+        name: "pdf"
+        widget: "string"
+        default: "#"
+        required: false
+      - label: "Code Repository"
+        name: "code"
+        widget: "string"
+        default: "#"
+        required: false
+      - label: "Project Page"
+        name: "project_page"
+        widget: "string"
+        default: "#"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"

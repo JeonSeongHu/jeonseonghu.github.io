@@ -2,7 +2,6 @@
 # Add a comment to make this file sass-y.
 # Change this file for any custom CSS.
 ---
-
 /* ============================================
    MAIN STYLESHEET ENTRY POINT
    ============================================ */
@@ -37,6 +36,10 @@
 @import "pages/home";
 @import "pages/about";
 @import "pages/categories";
+@import "pages/projects";
+@import "pages/publications";
+@import "pages/detail";
+@import "pages/cv";
 
 /* 6. Utilities */
 @import "utilities/responsive";

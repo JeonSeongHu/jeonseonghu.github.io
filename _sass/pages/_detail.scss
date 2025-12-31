@@ -1,0 +1,787 @@
+/* ============================================
+   PROJECT & PUBLICATION DETAIL PAGE
+   ============================================ */
+
+/* Shared Container */
+.project-detail-container,
+.publication-detail-container {
+    max-width: 1600px; /* 1400px -> 1600px (15% 확대) */
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* LEFT ALIGNED Content Wrapper */
+.project-content-left-aligned {
+    width: 100%;
+    max-width: none; /* 폭 제한 해제 */
+}
+
+/* Main Content Body */
+.content-body {
+    font-size: 0.9rem !important; /* 1rem -> 0.9rem (폰트 축소) */
+    line-height: 1.7;
+    color: #333;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--text-dark);
+}
+
+/* ============================================
+   PROJECT DETAIL
+   ============================================ */
+
+.project-detail-header {
+    margin-bottom: 2rem;
+}
+
+.project-detail-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+
+.project-detail-description {
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.project-detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-detail-tag {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+}
+
+.project-external-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--text-dark);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.project-external-link:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.project-detail-image {
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-detail-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-detail-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.project-detail-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.project-detail-content h2:first-child {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.project-detail-content p {
+    margin-bottom: 1rem;
+}
+
+.project-detail-content ul,
+.project-detail-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.project-detail-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   PUBLICATION DETAIL
+   ============================================ */
+
+.publication-detail-header {
+    margin-bottom: 2rem;
+}
+
+.publication-venue-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: rgba(53, 57, 173, 0.08);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.publication-detail-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.publication-detail-container .publication-full-title {
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    margin: 0 0 1.5rem 0;
+    line-height: 1.5;
+}
+
+.publication-authors-list {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+}
+
+.publication-authors-list .author.highlight {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.publication-authors-list .separator {
+    color: var(--text-light);
+}
+
+.publication-detail-image {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.publication-detail-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Publication Links */
+.publication-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pub-link:hover {
+    background: var(--text-dark);
+    color: #fff;
+    border-color: var(--text-dark);
+}
+
+.pub-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+.publication-detail-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.publication-detail-content h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem 0;
+}
+
+.publication-detail-content p {
+    margin-bottom: 1rem;
+}
+
+.publication-detail-content ul,
+.publication-detail-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.publication-detail-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 600px) {
+    .project-detail-container,
+    .publication-detail-container {
+        padding: 1rem;
+    }
+    
+    .project-detail-title {
+        font-size: 1.8rem;
+    }
+    
+    .publication-detail-title {
+        font-size: 1.5rem;
+    }
+    
+    .publication-links {
+        gap: 0.5rem;
+    }
+    
+    .pub-link {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================
+   PROJECT HEADER SECTION - Clean Layout
+   ============================================ */
+
+.project-header-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Publication Type Label */
+.project-type-label {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    background: rgba(78, 84, 200, 0.08);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Project Main Title */
+.project-main-title {
+    font-size: 1.8rem;
+    font-weight: 800; /* 더 굵게 */
+    color: var(--text-dark);
+    line-height: 1.25;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.02em;
+}
+
+/* Project Full Title / Description */
+.project-full-title {
+    font-size: 0.95rem; /* 1.1rem -> 0.95rem 축소 */
+    color: var(--text-medium);
+    line-height: 1.5;
+    margin: 0 0 1.2rem 0;
+    font-weight: 400;
+}
+
+/* Project Meta Info Container */
+.project-meta-info {
+    margin-bottom: 1.25rem;
+}
+
+/* Project Meta Row */
+.project-meta-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.project-meta-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Meta Label */
+.project-meta-label {
+    flex-shrink: 0;
+    width: 70px;
+    font-weight: 600;
+    color: var(--text-medium);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Meta Value */
+.project-meta-value {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.project-meta-value strong {
+    font-weight: 600;
+}
+
+/* Venue Value - Accent Color */
+.project-venue-value {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Project Tags Inline */
+.project-tags-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+
+.project-tag-inline {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-medium);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.project-tag-inline:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+/* Project Subtitle */
+.project-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-medium);
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    font-weight: 400;
+}
+
+/* Project Authors */
+.project-authors {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin: 0 0 0.75rem 0;
+}
+
+.project-authors strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Project Venue Inline */
+.project-venue-inline {
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}
+
+/* Sidebar Label/Value pairs */
+.sidebar-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 0.1rem;
+}
+
+.sidebar-value {
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.sidebar-text-small {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Project Links Section (Mobile) */
+.project-links-section {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.project-links-section h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.project-link-btn:hover {
+    background: var(--text-dark);
+    color: #fff;
+    border-color: var(--text-dark);
+}
+
+/* ============================================
+   DISABLE HEADER NUMBERING FOR PROJECTS
+   ============================================ */
+
+.layout-project .article-post h1::before,
+.layout-project .article-post h2::before,
+.layout-project .article-post h3::before,
+.layout-project .article-post h4::before,
+.layout-project .article-post h5::before,
+.layout-project .article-post h6::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* ============================================
+   NEW PROFESSIONAL STYLES (LEFT ALIGN)
+   ============================================ */
+
+/* Left Sidebar Styling */
+.project-left-sidebar {
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+}
+
+.sidebar-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    display: block;
+}
+
+.sidebar-link-item {
+    display: block;
+    font-size: 0.85rem;
+    color: #555;
+    text-decoration: none;
+    padding: 0.3rem 0;
+    transition: color 0.2s ease;
+}
+
+.sidebar-link-item:hover {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* TOC Styling (Left) - Clean */
+.project-toc {
+    font-size: 0.85rem;
+}
+
+.toc-list {
+    list-style: none !important; /* 점 제거 */
+    padding-left: 0 !important;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 0.4rem;
+}
+
+.toc-item a {
+    display: block;
+    color: #666 !important; /* 기본 회색/검정 */
+    text-decoration: none !important;
+    padding-left: 0.75rem;
+    line-height: 1.3;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.toc-item a:hover {
+    color: #111 !important;
+    text-decoration: none !important;
+}
+
+.toc-item a.active {
+    color: #111 !important; /* 파란색 아님, 검정 */
+    font-weight: 700;
+    border-left-color: #111; /* 파란색 아님, 검정 */
+}
+
+/* Header & Meta Styling (Left Aligned) */
+.project-header-section {
+    border-bottom: none; /* 하단 라인 제거 (깔끔하게) */
+    margin-bottom: 3rem !important;
+}
+
+.project-meta-grid {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.meta-row-flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.meta-row-flex {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Inline Row for Compact Meta (MY ROLE + VENUE + DATE) */
+.meta-row-inline {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+}
+
+.meta-inline-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.meta-inline-item .meta-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.1rem;
+}
+
+.meta-inline-item .meta-value {
+    font-size: 0.9rem;
+}
+
+.meta-item {
+    margin-bottom: 0.5rem;
+}
+
+
+.meta-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800; /* 요청대로 더 굵게 */
+    color: #111; /* 더 진한 색상 */
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+}
+
+.meta-value {
+    font-size: 0.95rem;
+    font-weight: 400; /* 300 -> 400 정도로 */
+    color: #222; /* #444 -> #222 더 진하게 */
+    line-height: 1.5;
+}
+
+.meta-value strong {
+    font-weight: 700;
+    color: #000;
+}
+
+.meta-links a {
+    color: #333;
+    text-decoration: underline;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+.meta-links a:hover {
+    color: var(--primary);
+}
+
+
+
+/* Featured Image Enchancement */
+.post-featured-image {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; /* 부드러운 그림자 */
+    border-radius: 12px !important;
+    margin-bottom: 3rem !important;
+}
+
+/* ============================================
+   PROJECT PAGE TYPOGRAPHY HIERARCHY
+   ============================================ */
+
+/* Content Body Override for Projects */
+.project-content-left-aligned .content-body {
+    font-size: 1.15rem !important; /* 1.05 -> 1.15 더 크게 */
+    line-height: 1.65;
+}
+
+/* Heading Hierarchy for Project Content */
+.project-content-left-aligned .article-post h1 {
+    font-size: 1.6rem !important;
+    font-weight: 500; /* 700 -> 600 */
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: #111;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.4rem;
+}
+
+.project-content-left-aligned .article-post h2 {
+    font-size: 1.4rem !important;
+    font-weight: 400; /* 700 -> 600 */
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.project-content-left-aligned .article-post h3 {
+    font-size: 1.15rem !important;
+    font-weight: 400; /* 600 -> 500 */
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
+    color: #333;
+}
+
+.project-content-left-aligned .article-post h4,
+.project-content-left-aligned .article-post h5,
+.project-content-left-aligned .article-post h6 {
+    font-size: 1.1rem !important;
+    font-weight: 400; /* 600 -> 500 */
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+    color: #444;
+}
+
+/* Paragraph and List Styling */
+.project-content-left-aligned .article-post p {
+    margin-bottom: 0.85rem;
+    font-size: 1.15rem;
+    line-height: 1.65;
+}
+
+.project-content-left-aligned .article-post ul,
+.project-content-left-aligned .article-post ol {
+    font-size: 1.15rem;
+    margin-bottom: 0.85rem;
+    padding-left: 1.5rem;
+}
+
+.project-content-left-aligned .article-post li {
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+}
+
+/* ============================================
+   TOC COMPLETE BULLET REMOVAL & STYLING
+   ============================================ */
+
+.project-left-sidebar .toc-list,
+.project-left-sidebar .toc-sub-list,
+.project-toc ul,
+.project-toc ol {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+}
+
+.project-left-sidebar .toc-list li,
+.project-left-sidebar .toc-sub-list li,
+.project-toc li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+.project-left-sidebar .toc-list li::before,
+.project-left-sidebar .toc-sub-list li::before,
+.project-toc li::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* Sub-list indentation */
+.project-toc .toc-sub-list {
+    padding-left: 0.75rem !important;
+}
+
+.project-toc .toc-sub-list a {
+    font-size: 0.8rem !important;
+    color: #888 !important;
+}
+

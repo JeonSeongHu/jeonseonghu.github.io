@@ -8,8 +8,8 @@
     line-height: 1.7;
     color: var(--text-dark);
     font-weight: 400;
-    counter-reset: article-h1;
-    /* Initialize counter for H1 mapping */
+    /* Initialize counters - start at 0, will be incremented before display */
+    counter-reset: article-h2;
 }
 
 /* Force all children to use Wanted Sans */
@@ -25,11 +25,9 @@
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 
-/* Treat h1 and h2 as the same top-level section for numbering purposes, 
-   since users might mix them or start with h1. */
+/* H1 - Top level, resets H2 counter */
 .article-post h1 {
     counter-reset: article-h2;
-    counter-increment: article-h1;
     font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     font-weight: 700;
     color: var(--text-dark);
@@ -37,6 +35,7 @@
     margin-bottom: 1rem;
 }
 
+/* H2 - Main sections: 1. 2. 3. */
 .article-post h2 {
     counter-reset: article-h3;
     counter-increment: article-h2;
@@ -50,18 +49,19 @@
     margin-bottom: 0.75rem;
 }
 
+/* H1 - No numbering (usually page title or major section) */
 .article-post h1::before {
-    content: counter(article-h1) ". ";
-    color: var(--primary);
-    margin-right: 0.5rem;
+    content: none;
 }
 
+/* H2 numbering: 1. 2. 3. */
 .article-post h2::before {
-    content: counter(article-h1) "." counter(article-h2) ". ";
-    color: var(--primary);
+    content: counter(article-h2) ". ";
+    color: var(--text-dark);
     margin-right: 0.5rem;
 }
 
+/* H3 - Subsections: 1.1. 1.2. */
 .article-post h3 {
     counter-reset: article-h4;
     counter-increment: article-h3;
@@ -77,12 +77,14 @@
     content: none !important;
 }
 
+/* H3 numbering: 1.1. 1.2. */
 .article-post h3::before {
-    content: counter(article-h1) "." counter(article-h2) "." counter(article-h3) ". ";
-    color: var(--primary);
+    content: counter(article-h2) "." counter(article-h3) ". ";
+    color: var(--text-dark);
     margin-right: 0.5rem;
 }
 
+/* H4 - Sub-subsections: 1.1.1. */
 .article-post h4 {
     counter-increment: article-h4;
     font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
@@ -92,9 +94,10 @@
     margin-bottom: 1rem;
 }
 
+/* H4 numbering: 1.1.1. */
 .article-post h4::before {
-    content: counter(article-h1) "." counter(article-h2) "." counter(article-h3) "." counter(article-h4) ". ";
-    color: var(--primary);
+    content: counter(article-h2) "." counter(article-h3) "." counter(article-h4) ". ";
+    color: var(--text-dark);
     margin-right: 0.5rem;
 }
 
@@ -108,13 +111,25 @@
     margin-bottom: 1rem;
 }
 
-/* Disable numbering for About page content wrapper */
+/* Disable numbering for About page content wrapper, project, and CV pages */
 .article-post .about-content-wrapper h1::before,
 .article-post .about-content-wrapper h2::before,
 .article-post .about-content-wrapper h3::before,
 .article-post .about-content-wrapper h4::before,
 .article-post .about-content-wrapper h5::before,
-.article-post .about-content-wrapper h6::before {
+.article-post .about-content-wrapper h6::before,
+.layout-project .article-post h1::before,
+.layout-project .article-post h2::before,
+.layout-project .article-post h3::before,
+.layout-project .article-post h4::before,
+.layout-project .article-post h5::before,
+.layout-project .article-post h6::before,
+.cv-page .article-post h1::before,
+.cv-page .article-post h2::before,
+.cv-page .article-post h3::before,
+.cv-page .article-post h4::before,
+.cv-page .article-post h5::before,
+.cv-page .article-post h6::before {
     content: none !important;
     display: none !important;
 }
@@ -403,12 +418,9 @@
     transition: all 0.2s ease;
 }
 
-/* 1st Level Numbering */
+/* 1st Level - No Numbering (to avoid mismatch with article) */
 .sidebar-toc .toc-list>ul>li>a::before {
-    content: counter(sidebar-toc-item) ". ";
-    color: #888;
-    margin-right: 4px;
-    font-weight: 400;
+    content: none;
 }
 
 /* Active State - Level 1 */
@@ -458,12 +470,9 @@
     position: relative;
 }
 
-/* 2nd Level Numbering */
+/* 2nd Level - No Numbering */
 .sidebar-toc .toc-list>ul>li>ul>li>a::before {
-    content: counter(sidebar-toc-item) "." counter(sidebar-toc-subitem) ". ";
-    font-size: 0.85rem;
-    color: #aaa;
-    margin-right: 2px;
+    content: none;
 }
 
 /* Active Indicator for Level 2 */
@@ -514,12 +523,9 @@
     line-height: 1.25;
 }
 
-/* 3rd Level Numbering */
+/* 3rd Level - No Numbering */
 .sidebar-toc .toc-list>ul>li>ul>li>ul>li>a::before {
-    content: counter(sidebar-toc-item) "." counter(sidebar-toc-subitem) "." counter(sidebar-toc-subsubitem) ". ";
-    font-size: 0.8rem;
-    color: #ccc;
-    margin-right: 2px;
+    content: none;
 }
 
 /* Active Indicator for Level 3 */

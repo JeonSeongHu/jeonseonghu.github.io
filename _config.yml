@@ -77,6 +77,12 @@ exclude_from_localization:
   - start.sh
   - docker-compose.yml
 
+# Collections - Publications are now part of Projects with type: publication
+collections:
+  projects:
+    output: true
+    permalink: /projects/:slug/
+
 # Defaults
 defaults:
   - scope:
@@ -85,3 +91,8 @@ defaults:
     values:
       layout: "post"
       toc: true
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"

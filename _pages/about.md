@@ -71,166 +71,21 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 			</p>
 		</div>
 
-		<h4>Publications ↗</h4>
-		<ul class="experience-list">
-			<li class="experience-item">
-		        <div class="experience-title">
-		            <a href="https://arxiv.org/abs/1234.5678" target="_blank" rel="noopener noreferrer" class="experience-link">CAMEO</a>
-		        </div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Correspondence-Attention Alignment for Multi-View Diffusion Models</div>
-		        <div class="experience-date">Preprint · Nov. 2025</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">
-		            <a href="https://ieeexplore.ieee.org/abstract/document/11137589/?casa_token=5o_frcElfd4AAAAA:FJCw5F4WR17cM7YB4q1Whh_4mWxyvzZFtT-_QMKpEtJ76ojiHc9SfS9Vw7z04GyEHauM6VamXQs" target="_blank" rel="noopener noreferrer" class="experience-link">ReMoTE</a>
-		        </div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">A Benchmark for Object Motion Transfer</div>
-		        <div class="experience-date">ITC-CSCC · Jun. 2025</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		</ul>
+		<div class="about-navigation-links mt-5">
+			<div class="nav-link-section mb-4">
+				<h4 class="mb-2"><a href="{{ site.baseurl }}/publications" class="section-link">Publications <span class="arrow-icon">↗</span></a></h4>
+				<p class="text-muted small">Selected research papers and preprints on Generative 3D/4D models and motion transfer benchmarks.</p>
+			</div>
 
-		<h4>Extracurricular Activities ↗</h4>
-		<ul class="experience-list">
-		    <li class="experience-item">
-		        <div class="experience-title">Google Developer Groups on Campus, Korea University</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">DevRel Lead & AI Core</div>
-		        <div class="experience-date">Sep. 2022 - Jun. 2025</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">AIKU - Korea University AI Society</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Lead, Senior</div>
-		        <div class="experience-date">Jul. 2022 - Dec. 2025</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">54th Student Council, Korea University</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Public Relations & Communication Dept.</div>
-		        <div class="experience-date">Jan. 2024 - Dec. 2024</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">9th Student Council of College of Informatics</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Communication & Welfare Dept.</div>
-		        <div class="experience-date">Jan. 2024 - Dec. 2024</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		</ul>
+			<div class="nav-link-section mb-4">
+				<h4 class="mb-2"><a href="{{ site.baseurl }}/projects" class="section-link">Projects <span class="arrow-icon">↗</span></a></h4>
+				<p class="text-muted small">A diverse portfolio of projects ranging from Generative AI and Computer Vision to Design and Teaching.</p>
+			</div>
 
-		<h4>Awards ↗</h4>
-		<ul class="experience-list">
-		    <li class="experience-item">
-		        <div class="experience-title">2nd Prize, AISP 2025 (Undergraduate AI Paper Competition)</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">IEIE</div>
-		        <div class="experience-date">Jun. 2025</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">1st Prize, Korea-Yonsei University Datathon</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">FLock.io</div>
-		        <div class="experience-date">Apr. 2025</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">Merit-based Scholarship</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Sangah Scholarship Foundation</div>
-		        <div class="experience-date">Apr. 2024</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">National Science & Technology Scholarship</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Korea Student Aid Foundation (2-year full tuition)</div>
-		        <div class="experience-date">Apr. 2024</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">Merit-based Scholarship</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Woonhae Scholarship Foundation</div>
-		        <div class="experience-date">Apr. 2024</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">Grand Prize, iNThon</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Korea University College of Informatics Datathon</div>
-		        <div class="experience-date">Nov. 2023</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">President's List</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Korea University</div>
-		        <div class="experience-date">Mar. 2023 & Sep. 2023</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">Dean's List</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Korea University</div>
-		        <div class="experience-date">Sep. 2022</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		    <li class="experience-item">
-		        <div class="experience-title">Semester High Honors</div>
-		        <div class="experience-filler"></div>
-		        <div class="experience-description">Korea University</div>
-		        <div class="experience-date">Mar. 2022 - Dec. 2025</div>
-		        <div class="experience-arrow">→</div>
-		    </li>
-		</ul>
-
-		<h4>Projects ↗</h4>
-		
-		<div class="project-grid">
-		    <div class="project-category">
-		        <div class="project-category-title">Generative AI</div>
-		        <ul class="project-items">
-		            <li>Horang Studio</li>
-		            <li>@tune</li>
-		            <li>IConZIC</li>
-		            <li>Synthetic-to-Real Translation with Diffusion Models</li>
-		        </ul>
-		    </div>
-
-		    <div class="project-category">
-		        <div class="project-category-title">Design</div>
-		        <ul class="project-items">
-		            <li><a href="https://www.hermes.com/kr/ko/content/story/maison-dosan-park/atelier-hermes/250725/" target="_blank" rel="noopener noreferrer" class="arrow-link" style="color: inherit; text-decoration: none;">The 2nd Life (Atelier Hermes)</a></li>
-		            <li>2024 Korea-Yonsei Games</li>
-		            <li><a href="https://trail-library-510.notion.site/285a4cb3483980b2a3bcf0980d60ad89?v=285a4cb3483980928fb8000ced715593" target="_blank" rel="noopener noreferrer" class="arrow-link" style="color: inherit; text-decoration: none;">Portfolio</a></li>
-		        </ul>
-		    </div>
-
-		    <div class="project-category">
-		        <div class="project-category-title">Teaching</div>
-		        <ul class="project-items">
-		            <li>GDGoC KU Lecture - branch/ai</li>
-		            <li>AIKU Junior Bootcamp - DeepIntoDeep</li>
-		            <li>CLASS101 Instructor</li>
-		        </ul>
-		    </div>
-
-		    <div class="project-category">
-		        <div class="project-category-title">Event Organization</div>
-		        <ul class="project-items">
-		            <li>2024, 2025 InThon Datathon track</li>
-		            <li>Hackathon Organization: Realthon, The bridge</li>
-					<li>AIKU Networking Day</li>
-		        </ul>
-		    </div>
+			<div class="nav-link-section mb-4">
+				<h4 class="mb-2"><a href="{{ site.baseurl }}/cv" class="section-link">Curriculum Vitae <span class="arrow-icon">↗</span></a></h4>
+				<p class="text-muted small">Detailed academic journey, research experience, community leadership in AIKU/GDGoC, and honors.</p>
+			</div>
 		</div>
 
 

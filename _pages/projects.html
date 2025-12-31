@@ -1,0 +1,140 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+custom_css_class: with-dot-bg
+---
+
+<div class="projects-container">
+    <header class="projects-header">
+        <h1 class="projects-title">projects</h1>
+    </header>
+
+    <!-- Filter Tags -->
+    <div class="projects-filter">
+        {% assign all_tags = "" | split: "" %}
+        {% for project in site.projects %}
+            {% for tag in project.tags %}
+                {% unless all_tags contains tag %}
+                    {% assign all_tags = all_tags | push: tag %}
+                {% endunless %}
+            {% endfor %}
+        {% endfor %}
+        {% assign sorted_tags = all_tags | sort %}
+
+        <button class="filter-tag active" data-filter="all">All</button>
+        {% for tag in sorted_tags %}
+        <button class="filter-tag" data-filter="{{ tag | slugify }}">{{ tag }}</button>
+        {% endfor %}
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+        {% assign sorted_projects = site.projects | sort: "date" | reverse %}
+        {% for project in sorted_projects %}
+        <article class="project-card" data-tags="{% for tag in project.tags %}{{ tag | slugify }} {% endfor %}">
+            <a href="{{ project.url | relative_url }}" class="project-link">
+                <div class="project-image-wrapper">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="project-image" loading="lazy">
+                </div>
+            </a>
+            <div class="project-content">
+                {% if project.type == "publication" %}
+                <div class="project-type-badge publication-badge">📄 Publication</div>
+                {% endif %}
+                <h3 class="project-title">
+                    <a href="{{ project.url | relative_url }}">
+                        {{ project.title }}
+                    </a>
+                </h3>
+                <p class="project-description">{{ project.description }}</p>
+                {% if project.venue %}
+                <p class="project-venue">{{ project.venue }}</p>
+                {% endif %}
+                <div class="project-tags">
+                    {% for tag in project.tags %}
+                    <span class="project-tag" data-tag="{{ tag | slugify }}">#{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- No Results Message -->
+    <div id="no-projects" class="no-projects" style="display: none;">
+        No projects found for this category.
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-tag');
+    const projectCards = document.querySelectorAll('.project-card');
+    const noProjectsMsg = document.getElementById('no-projects');
+
+    // Function to apply filter
+    function applyFilter(filter) {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        const targetButton = document.querySelector(`.filter-tag[data-filter="${filter}"]`);
+        if (targetButton) {
+            targetButton.classList.add('active');
+        } else {
+            // Default to 'all' if tag not found
+            document.querySelector('.filter-tag[data-filter="all"]').classList.add('active');
+            filter = 'all';
+        }
+
+        // Filter projects
+        let visibleCount = 0;
+        projectCards.forEach(card => {
+            const tags = card.getAttribute('data-tags');
+            
+            if (filter === 'all' || tags.includes(filter)) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInUp 0.4s ease forwards';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Show/hide no results message
+        noProjectsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // Check URL parameter on page load
+    const urlParams = new URLSearchParams(window.location.search);
+    const tagFromUrl = urlParams.get('tag');
+    if (tagFromUrl) {
+        applyFilter(tagFromUrl);
+    }
+
+    // Button click event
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            applyFilter(filter);
+            
+            // Update URL without reload (optional)
+            if (filter === 'all') {
+                history.pushState(null, '', window.location.pathname);
+            } else {
+                history.pushState(null, '', `?tag=${filter}`);
+            }
+        });
+    });
+
+    // Allow clicking on tags to filter
+    document.querySelectorAll('.project-tag').forEach(tag => {
+        tag.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tagFilter = this.getAttribute('data-tag');
+            applyFilter(tagFilter);
+            history.pushState(null, '', `?tag=${tagFilter}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+});
+</script>

@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+{% assign highlight_author = "Seonghu Jeon" %}
+
+<div class="publication-detail-container">
+    <a href="{{ site.baseurl }}/publications" class="back-link">← Back to Publications</a>
+    
+    <header class="publication-detail-header">
+        <div class="publication-venue-badge">{{ page.venue }}</div>
+        <h1 class="publication-detail-title">{{ page.title }}</h1>
+        <p class="publication-full-title">{{ page.full_title }}</p>
+        
+        <div class="publication-authors-list">
+            {% assign authors_array = page.authors | split: ", " %}
+            {% for author in authors_array %}
+                {% if author contains highlight_author %}
+                <span class="author highlight">{{ author }}</span>
+                {% else %}
+                <span class="author">{{ author }}</span>
+                {% endif %}
+                {% unless forloop.last %}<span class="separator">, </span>{% endunless %}
+            {% endfor %}
+        </div>
+    </header>
+    
+    {% if page.image %}
+    <div class="publication-detail-image">
+        <img src="{{ page.image }}" alt="{{ page.title }}">
+    </div>
+    {% endif %}
+    
+    <div class="publication-links">
+        {% if page.arxiv and page.arxiv != "#" %}
+        <a href="{{ page.arxiv }}" target="_blank" rel="noopener noreferrer" class="pub-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            arXiv
+        </a>
+        {% endif %}
+        {% if page.pdf and page.pdf != "#" %}
+        <a href="{{ page.pdf }}" target="_blank" rel="noopener noreferrer" class="pub-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            PDF
+        </a>
+        {% endif %}
+        {% if page.code and page.code != "#" %}
+        <a href="{{ page.code }}" target="_blank" rel="noopener noreferrer" class="pub-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Code
+        </a>
+        {% endif %}
+        {% if page.project_page and page.project_page != "#" %}
+        <a href="{{ page.project_page }}" target="_blank" rel="noopener noreferrer" class="pub-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Project Page
+        </a>
+        {% endif %}
+    </div>
+    
+    <div class="publication-detail-content">
+        {{ content }}
+    </div>
+</div>

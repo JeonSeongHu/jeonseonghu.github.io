@@ -3,7 +3,7 @@
    ============================================ */
 
 .mediumnavigation {
-    background: transparent !important;
+    background: #ffffff !important;
     backdrop-filter: none;
     box-shadow: none !important;
     padding-top: 0.0rem !important;
@@ -12,7 +12,7 @@
     padding-right: 0 !important;
     min-height: auto !important;
     z-index: 1030 !important; /* Ensure nav is above other content */
-    border-bottom: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Ensure nav is always visible on mobile */

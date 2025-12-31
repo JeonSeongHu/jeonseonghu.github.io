@@ -9,12 +9,11 @@ html { font-size: 80%; }
     html { font-size:14.4px; } /* Increase the font size on higher resolutions */
     .container {max-width:80%;}
 }
-.layout-post #bg-canvas {
+.layout-post #bg-canvas,
+.layout-project #bg-canvas,
+.layout-page #bg-canvas {
     display: none !important;
 }
-/*.layout-page #bg-canvas {
-    display: none !important;
-}*/
 
 .mainheading {
     padding: 1rem 0rem;
