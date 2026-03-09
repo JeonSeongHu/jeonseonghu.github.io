@@ -84,6 +84,9 @@
             </a>
             <!-- End Logo -->
 
+            <!-- Search (outside collapse — always visible) -->
+            {% include search-lunr.html %}
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
                 aria-controls="navbarMediumish" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -123,11 +126,6 @@
                         <a class="nav-link" href="{{ site.baseurl }}/cv">CV</a>
                     </li>
 
-                </ul>
-
-                <!-- Search -->
-                <ul class="navbar-nav">
-                    {% include search-lunr.html %}
                 </ul>
 
                 <!-- End Menu -->

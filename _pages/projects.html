@@ -27,6 +27,7 @@ custom_css_class: with-dot-bg
         <button class="filter-tag" data-filter="{{ tag | slugify }}">{{ tag }}</button>
         {% endfor %}
     </div>
+    <button class="filter-toggle-btn" id="filterToggle" style="display:none;">더보기 &#9662;</button>
 
     <!-- Projects Grid -->
     <div class="projects-grid">
@@ -142,5 +143,33 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
+
+    // Filter toggle button for mobile overflow
+    const filterContainer = document.querySelector('.projects-filter');
+    const filterToggle = document.getElementById('filterToggle');
+
+    function checkFilterOverflow() {
+        if (!filterContainer || !filterToggle) return;
+        // Only show on mobile (matches the 600px breakpoint in SCSS)
+        if (window.innerWidth > 600) {
+            filterToggle.style.display = 'none';
+            return;
+        }
+        // Check if content overflows the max-height
+        const isOverflowing = filterContainer.scrollHeight > filterContainer.clientHeight + 2;
+        const isExpanded = filterContainer.classList.contains('expanded');
+        filterToggle.style.display = (isOverflowing || isExpanded) ? 'block' : 'none';
+    }
+
+    if (filterToggle) {
+        filterToggle.addEventListener('click', function() {
+            filterContainer.classList.toggle('expanded');
+            const isExpanded = filterContainer.classList.contains('expanded');
+            this.textContent = isExpanded ? '접기 \u25B4' : '더보기 \u25BE';
+        });
+    }
+
+    checkFilterOverflow();
+    window.addEventListener('resize', checkFilterOverflow);
 });
 </script>
