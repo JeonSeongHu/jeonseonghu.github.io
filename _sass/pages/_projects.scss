@@ -212,6 +212,14 @@
 
     .projects-filter {
         gap: 0.4rem;
+        max-height: 7rem;
+        overflow: hidden;
+        position: relative;
+        transition: max-height 0.3s ease;
+
+        &.expanded {
+            max-height: none;
+        }
     }
 
     .projects-grid {
@@ -225,5 +233,9 @@
 
     .project-description {
         font-size: var(--text-sm-plus);
+    }
+
+    .project-image-wrapper {
+        padding-top: 56.25%;
     }
 }

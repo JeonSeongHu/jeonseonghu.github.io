@@ -109,6 +109,16 @@
 }
 
 @media (max-width: 768px) {
+    .post-sidebar-mobile {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .blog-header {
+        text-align: left;
+        border-bottom: 1px solid var(--color-border-light);
+    }
+
     .sidebar-section {
         margin-bottom: 1rem;
     }

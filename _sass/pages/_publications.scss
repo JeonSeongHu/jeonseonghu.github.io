@@ -302,8 +302,18 @@
     .publication-search-input {
         max-width: 100%;
     }
+}
+
+@media (max-width: 480px) {
+    .publication-item {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
 
     .publication-thumbnail {
-        height: 150px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-height: 160px;
     }
 }

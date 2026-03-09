@@ -279,11 +279,24 @@
     align-items: baseline;
     font-size: 0.88rem;
     color: var(--gray-300);
+    gap: 0.5rem;
 
     strong {
         font-weight: var(--weight-semibold);
         color: var(--gray-900);
     }
+}
+
+.cv-honor-name {
+    flex: 1;
+    min-width: 0;
+}
+
+.cv-honor-year {
+    flex-shrink: 0;
+    white-space: nowrap;
+    color: var(--gray-150);
+    text-align: right;
 }
 
 /* --- Skills: tag pills (matches PDF) --- */
@@ -373,6 +386,11 @@
 @media (max-width: 600px) {
     .cv-row { flex-wrap: wrap; gap: 0.15rem; }
     .cv-date { margin-left: 0; }
+
+    .cv-proj-name,
+    .cv-proj-org {
+        white-space: normal;
+    }
 
     .cv-honors-grid { grid-template-columns: 1fr; }
 

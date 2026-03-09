@@ -151,3 +151,19 @@ div.pub-thumb.pub-thumb-placeholder {
         gap: 12px;
     }
 }
+
+@media (max-width: 480px) {
+    .pub-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .pub-thumb,
+    div.pub-thumb.pub-thumb-placeholder {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-height: 160px;
+    }
+}
