@@ -44,6 +44,15 @@ nav.mediumnavigation .container.pr-0,
     padding-right: 0;
 }
 
+/* Wrapper for search + hamburger — keeps them grouped on the right */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    padding-right: 1rem;
+}
+
 /* Nav link styling */
 .mediumnavigation .navbar-nav .nav-link {
     font-weight: var(--weight-medium);
@@ -142,6 +151,15 @@ nav.mediumnavigation .container.pr-0,
 
     .mediumnavigation .navbar-toggler {
         display: none;
+    }
+
+    .navbar-actions {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        padding-right: 1rem;
     }
 
     .mediumnavigation .navbar-nav {
