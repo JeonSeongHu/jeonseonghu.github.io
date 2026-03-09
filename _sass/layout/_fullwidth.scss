@@ -1,13 +1,16 @@
 /* ============================================
-   FULL WIDTH SECTIONS
+   FILE: layout/_fullwidth.scss
+   PURPOSE: Full viewport width utility for sections
+   DEPENDS ON: nothing
+   USED BY: footer, hero sections
+   KEY CLASSES: .fullwidth-section
    ============================================ */
 
 .fullwidth-section {
-    width: 100vw !important;
+    width: 100vw;
     position: relative;
     left: 50%;
     right: 50%;
-    margin-left: -50vw !important;
-    margin-right: -50vw !important;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
-

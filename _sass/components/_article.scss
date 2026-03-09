@@ -1,123 +1,152 @@
 /* ============================================
-   ARTICLE & POST STYLING
+   FILE: components/_article.scss
+   PURPOSE: Article body content styling — headings, p, lists,
+            blockquote, images, tables, heading numbering
+   DEPENDS ON: tokens/colors, tokens/typography
+   USED BY: _layouts/post.html, _layouts/project.html
+   KEY CLASSES: .article-post, .article-post h1-h6, .section-title,
+                .page-title
    ============================================ */
 
 .article-post {
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    font-size: 1.32rem;
-    line-height: 1.7;
-    color: var(--text-dark);
-    font-weight: 400;
-    /* Initialize counters - start at 0, will be incremented before display */
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override — font inheritance */
+    font-size: var(--text-2xl);
+    line-height: var(--leading-article);
+    color: var(--gray-800);
+    font-weight: var(--weight-regular);
     counter-reset: article-h2;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
-/* Force all children to use Wanted Sans */
+/* Force children to use Wanted Sans */
 .article-post * {
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override — font inheritance */
 }
 
-/* Exception for code blocks - usually want monospace */
+/* Exception for code blocks */
 .article-post pre,
+.article-post pre *,
 .article-post code,
 .article-post kbd,
 .article-post samp {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    font-family: var(--font-mono) !important; /* Bootstrap CDN override — code font */
 }
 
-/* H1 - Top level, resets H2 counter */
+/* --- Heading Numbering System --- */
+
+/* H1 - resets H2 counter */
 .article-post h1 {
     counter-reset: article-h2;
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-top: 2rem;
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    font-size: var(--text-6xl);
+    margin-top: 3.5rem;
     margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gray-25);
+    letter-spacing: -0.01em;
+}
+
+.article-post h1::before {
+    content: none;
 }
 
 /* H2 - Main sections: 1. 2. 3. */
 .article-post h2 {
     counter-reset: article-h3;
     counter-increment: article-h2;
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-top: 1.75rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.75rem;
-    padding-bottom: 0.25rem;
-    margin-bottom: 0.75rem;
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    font-size: var(--text-5xl);
+    margin-top: 3rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.3rem;
+    letter-spacing: -0.01em;
 }
 
-/* H1 - No numbering (usually page title or major section) */
-.article-post h1::before {
-    content: none;
-}
-
-/* H2 numbering: 1. 2. 3. */
 .article-post h2::before {
     content: counter(article-h2) ". ";
-    color: var(--text-dark);
-    margin-right: 0.5rem;
+    color: var(--gray-200);
+    margin-right: 0.3rem;
 }
 
 /* H3 - Subsections: 1.1. 1.2. */
 .article-post h3 {
     counter-reset: article-h4;
     counter-increment: article-h3;
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-semibold);
+    color: var(--gray-900);
+    font-size: var(--text-3xl-plus);
+    margin-top: 2.5rem;
+    margin-bottom: 0.6rem;
 }
 
-/* Prevent Table of Contents header from getting numbered */
-.toc h3::before {
-    content: none !important;
-}
-
-/* H3 numbering: 1.1. 1.2. */
 .article-post h3::before {
     content: counter(article-h2) "." counter(article-h3) ". ";
-    color: var(--text-dark);
-    margin-right: 0.5rem;
+    color: var(--gray-150);
+    margin-right: 0.3rem;
+    font-weight: var(--weight-regular);
 }
 
 /* H4 - Sub-subsections: 1.1.1. */
 .article-post h4 {
     counter-increment: article-h4;
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    font-weight: 700;
-    color: var(--text-dark);
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-semibold);
+    color: var(--gray-800);
+    font-size: var(--text-xl-plus);
     margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-/* H4 numbering: 1.1.1. */
 .article-post h4::before {
     content: counter(article-h2) "." counter(article-h3) "." counter(article-h4) ". ";
-    color: var(--text-dark);
-    margin-right: 0.5rem;
+    color: var(--gray-100);
+    margin-right: 0.3rem;
+    font-weight: var(--weight-regular);
 }
 
-.article-post h5,
+.article-post h5 {
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-semibold);
+    color: var(--gray-700);
+    font-size: var(--text-xl);
+    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
+}
+
 .article-post h6 {
-    /* Headers also use Wanted Sans */
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-medium);
+    color: var(--gray-600);
+    font-size: var(--text-lg);
+    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
 }
 
-/* Disable numbering for About page content wrapper, project, and CV pages */
+/* Disable numbering for About, Project, CV pages */
 .article-post .about-content-wrapper h1::before,
 .article-post .about-content-wrapper h2::before,
 .article-post .about-content-wrapper h3::before,
 .article-post .about-content-wrapper h4::before,
 .article-post .about-content-wrapper h5::before,
 .article-post .about-content-wrapper h6::before,
+.article-post .about-bento h1::before,
+.article-post .about-bento h2::before,
+.article-post .about-bento h3::before,
+.article-post .about-bento h4::before,
+.article-post .about-bento h5::before,
+.article-post .about-bento h6::before,
+.article-post .about-page h1::before,
+.article-post .about-page h2::before,
+.article-post .about-page h3::before,
+.article-post .about-page h4::before,
+.article-post .about-page h5::before,
+.article-post .about-page h6::before,
 .layout-project .article-post h1::before,
 .layout-project .article-post h2::before,
 .layout-project .article-post h3::before,
@@ -130,65 +159,118 @@
 .cv-page .article-post h4::before,
 .cv-page .article-post h5::before,
 .cv-page .article-post h6::before {
-    content: none !important;
-    display: none !important;
+    content: none;
+    display: none;
 }
 
-.modal-header {
-    border-radius: 0 !important;
-    background-color: white !important;
-    /* 상단 바 하얀색 */
-    padding: 0.75rem 1rem !important;
-    /* 세로 길이 축소 */
+/* --- Paragraphs --- */
+.article-post p {
+    margin-bottom: 1.4rem;
+    line-height: var(--leading-prose);
 }
 
+/* --- Lists --- */
+.article-post ul,
+.article-post ol {
+    margin-bottom: 1.4rem;
+    padding-left: 1.6rem;
+}
+
+.article-post li {
+    margin-bottom: 0.4rem;
+    line-height: var(--leading-article);
+}
+
+.article-post li > ul,
+.article-post li > ol {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+/* --- Strong & Emphasis --- */
+.article-post strong {
+    font-weight: var(--weight-semibold);
+    color: var(--gray-900);
+}
+
+.article-post em {
+    color: var(--gray-600);
+}
+
+/* --- Inline Code --- */
+.article-post code:not(pre code) {
+    font-family: var(--font-mono) !important; /* Bootstrap CDN override */
+    font-size: 0.88em;
+    color: var(--gray-800);
+    background: var(--color-surface-quaternary);
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-sm);
+    word-break: break-word;
+}
+
+/* --- Horizontal Rule --- */
+.article-post hr {
+    border: none;
+    border-top: 1px solid var(--gray-25);
+    margin: 2.5rem 0;
+}
+
+/* --- Blockquote --- */
 .article-post blockquote {
-    border: 0px solid var(--primary);
-    background: rgba(58, 64, 231, 0.04);
-    padding: 1.5rem;
-    margin: 1rem 0;
-    border-radius: 12px;
+    border-left: 3px solid var(--gray-50);
+    background: var(--color-surface-secondary);
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
     font-style: normal;
-    color: var(--text-dark);
+    color: var(--gray-700);
+    font-size: 0.95em;
 }
 
 .article-post blockquote ul,
 .article-post blockquote ol {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 
 .article-post blockquote p {
+    margin-bottom: 0.6rem;
+}
+
+.article-post blockquote p:last-child {
     margin-bottom: 0;
 }
 
-
 .article-post blockquote li {
     font-size: 0.95em;
+    margin-bottom: 0.3rem;
 }
 
-/* ============================================
-   SECTION TITLES
-   ============================================ */
+.article-post blockquote blockquote {
+    margin: 0.8rem 0;
+    border-left-color: var(--gray-25);
+    background: transparent;
+}
 
+/* --- Section Titles (component override) --- */
 .section-title h2 {
-    font-size: 2rem !important;
-    font-weight: 800 !important;
-    color: var(--text-dark) !important;
-    padding-bottom: 0.75rem !important;
-    margin-bottom: 2rem !important;
+    font-size: var(--text-6xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
     display: inline-block;
 }
 
-/* Page Title - General styling for when featured-box is not used */
+/* --- Page Title --- */
 .page-title {
-    font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif;
-    font-weight: 800;
-    font-size: 2.5rem;
-    color: var(--text-dark);
+    font-family: var(--font-sans);
+    font-weight: var(--weight-extrabold);
+    font-size: var(--text-8xl);
+    color: var(--color-text-primary);
     margin-top: 0;
     margin-bottom: 1.5rem;
     text-align: left;
-    line-height: 1.3;
+    line-height: var(--leading-snug);
 }
 
 .page-title::after {
@@ -196,33 +278,30 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--primary);
+    background: var(--color-primary);
     margin: 0.5rem 0 0 0;
 }
 
-/* ============================================
-   CLEAN TABLE STYLING
-   ============================================ */
-
+/* --- Tables --- */
 .article-post table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
-    font-size: 0.95rem;
-    border: 1px solid rgba(0, 0, 0, .125);
+    font-size: var(--text-base-plus);
+    border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .article-post table thead {
-    background-color: rgba(0, 0, 0, .02);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .article-post table th {
     padding: 12px 16px;
     text-align: left;
-    font-weight: 600;
-    color: rgba(0, 0, 0, .8);
-    font-size: 0.9rem;
-    border-right: 1px solid rgba(0, 0, 0, .08);
+    font-weight: var(--weight-semibold);
+    color: rgba(0, 0, 0, 0.8);
+    font-size: var(--text-base);
+    border-right: 1px solid var(--color-border-light);
 }
 
 .article-post table th:last-child {
@@ -231,8 +310,8 @@
 
 .article-post table td {
     padding: 12px 16px;
-    border-right: 1px solid rgba(0, 0, 0, .05);
-    color: rgba(0, 0, 0, .8);
+    border-right: 1px solid var(--color-border-divider);
+    color: rgba(0, 0, 0, 0.8);
     line-height: 1.5;
 }
 
@@ -241,7 +320,7 @@
 }
 
 .article-post table tbody tr:hover {
-    background-color: rgba(0, 0, 0, .02);
+    background-color: rgba(0, 0, 0, 0.02);
     transition: background-color 0.2s ease;
 }
 
@@ -249,10 +328,9 @@
     border-bottom: none;
 }
 
-/* 작은 화면에서의 테이블 반응형 */
 @media (max-width: 768px) {
     .article-post table {
-        font-size: 0.85rem;
+        font-size: var(--text-sm-plus);
     }
 
     .article-post table th,
@@ -261,324 +339,63 @@
     }
 
     .article-post table th {
-        font-size: 0.8rem;
+        font-size: var(--text-sm);
     }
 }
 
-/* ============================================
-   TABLE OF CONTENTS (TOC) STYLING
-   ============================================ */
-
-/* 1. Main Content TOC */
-.toc {
-    background-color: #fcfcfc;
-    border: 1px solid #eee;
-    padding: 1.5rem 2rem;
-    border-radius: 0;
-    color: #555;
-    box-shadow: none !important;
-    margin-bottom: 3rem !important;
-}
-
-.toc h3 {
-    margin-top: 0 !important;
-    font-size: 1.3rem !important;
-    /* Increased from 1.1rem */
-    color: #333 !important;
-    margin-bottom: 1.2rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 700;
-}
-
-.toc ol {
-    list-style: none;
-    counter-reset: item;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-
-.toc li {
-    margin-bottom: 0.4rem;
-}
-
-.toc li a {
-    color: #555;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.toc li a:hover {
-    color: #000;
-    border-bottom: 1px solid #000;
-    text-decoration: none;
-}
-
-/* Level 1: 1. 2. 3. */
-.toc>ol>li {
-    counter-increment: item;
-    font-weight: 600;
-    margin-top: 0.8rem;
-    font-size: 1rem;
-}
-
-.toc>ol>li::before {
-    content: counter(item) ". ";
-    color: #999;
-    font-weight: 400;
-    margin-right: 0.4rem;
-}
-
-/* Level 2: 1.1. 1.2. */
-.toc>ol>li>ol {
-    counter-reset: subitem;
-    padding-left: 0.5rem;
-    margin-top: 0.4rem;
-}
-
-.toc>ol>li>ol>li {
-    counter-increment: subitem;
-    font-weight: 400;
-    font-size: 0.95rem;
-    margin-top: 0.3rem;
-    padding-left: 1rem;
-    text-indent: -1rem;
-    /* Hanging indent */
-}
-
-.toc>ol>li>ol>li::before {
-    content: counter(item) "." counter(subitem) ". ";
-    color: #aaa;
-    margin-right: 0.3rem;
-    font-size: 0.9rem;
-}
-
-/* Level 3: 1.1.1. 1.1.2. */
-.toc>ol>li>ol>li>ol {
-    counter-reset: subsubitem;
-    padding-left: 1.5rem;
-}
-
-.toc>ol>li>ol>li>ol>li {
-    counter-increment: subsubitem;
-    font-size: 0.9rem;
-}
-
-.toc>ol>li>ol>li>ol>li::before {
-    content: counter(item) "." counter(subitem) "." counter(subsubitem) ". ";
-    color: #bbb;
-    margin-right: 0.3rem;
-}
-
-
-/* 2. Sidebar TOC - Clean HCI Redesign (v5: Bigger Title, Deeper Indents) */
-.sidebar-toc {
-    padding-left: 0;
-    /* Reset counters for main items */
-    counter-reset: sidebar-toc-item;
-}
-
-.sidebar-title-simple {
-    font-size: 1.25rem;
-    /* Increased font size further */
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-    color: #111;
-}
-
-/* Remove default list styles */
-.sidebar-toc ul {
-    list-style: none !important;
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-/* 1st Level Items */
-.sidebar-toc .toc-list>ul>li {
-    margin-top: 1.2rem;
-    /* More spacing between main sections */
-    margin-bottom: 0.5rem;
-    position: relative;
-    counter-increment: sidebar-toc-item;
-}
-
-.sidebar-toc .toc-list>ul>li>a {
-    color: var(--text-medium) !important;
-    font-weight: 700;
-    /* Bolder */
-    font-size: 0.95rem;
-    display: block;
-    line-height: 1.4;
-    border-left: none;
-    padding-left: 0;
-    transition: all 0.2s ease;
-}
-
-/* 1st Level - No Numbering (to avoid mismatch with article) */
-.sidebar-toc .toc-list>ul>li>a::before {
-    content: none;
-}
-
-/* Active State - Level 1 */
-.sidebar-toc .toc-list>ul>li>a.active {
-    color: var(--primary) !important;
-    font-weight: 800;
-}
-
-.sidebar-toc .toc-list>ul>li>a.active::before {
-    color: var(--primary);
-    font-weight: 800;
-}
-
-
-/* 2nd Level Items (Nested) */
-.sidebar-toc .toc-list>ul>li>ul {
-    display: none;
-    /* Hidden by default */
-    margin-top: 0.5rem;
-    padding-left: 0;
-    position: relative;
-    margin-left: 15px !important;
-    /* Force override reset */
-    border-left: 1px solid var(--border-light);
-    counter-reset: sidebar-toc-subitem;
-}
-
-/* Show nested level 2 when parent level 1 is active */
-.sidebar-toc .toc-list>ul>li.active-li>ul {
-    display: block;
-}
-
-.sidebar-toc .toc-list>ul>li>ul>li {
-    margin-bottom: 0.3rem;
-    position: relative;
-    counter-increment: sidebar-toc-subitem;
-}
-
-.sidebar-toc .toc-list>ul>li>ul>li>a {
-    color: var(--text-light) !important;
-    font-size: 0.85rem;
-    font-weight: 400;
-    display: block;
-    line-height: 1.3;
-    transition: all 0.2s;
-    padding-left: 15px;
-    position: relative;
-}
-
-/* 2nd Level - No Numbering */
-.sidebar-toc .toc-list>ul>li>ul>li>a::before {
-    content: none;
-}
-
-/* Active Indicator for Level 2 */
-.sidebar-toc .toc-list>ul>li>ul>li>a.active {
-    color: var(--text-dark) !important;
-    font-weight: 600;
-}
-
-.sidebar-toc .toc-list>ul>li>ul>li>a.active::after {
-    content: "";
-    position: absolute;
-    left: -1px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: var(--primary);
-}
-
-
-/* 3rd Level Items (Deeply Nested) */
-.sidebar-toc .toc-list>ul>li>ul>li>ul {
-    /* display: none; removed to show all children when L1 is active */
-    margin-top: 0.3rem;
-    padding-left: 0;
-    position: relative;
-    border-left: 1px solid var(--border-light);
-    margin-left: 25px !important;
-    /* Force override reset */
-    counter-reset: sidebar-toc-subsubitem;
-}
-
-/* Show nested level 3 - Logic changed: L3 is always visible if L2 is visible */
-/* .sidebar-toc .toc-list > ul > li > ul > li.active-li > ul {
-    display: block;
-} */
-
-.sidebar-toc .toc-list>ul>li>ul>li>ul>li {
-    margin-bottom: 0.2rem;
-    counter-increment: sidebar-toc-subsubitem;
-}
-
-.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a {
-    color: var(--text-light) !important;
-    font-size: 0.8rem;
-    padding-left: 15px;
-    display: block;
-    position: relative;
-    line-height: 1.25;
-}
-
-/* 3rd Level - No Numbering */
-.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a::before {
-    content: none;
-}
-
-/* Active Indicator for Level 3 */
-.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a.active {
-    color: var(--text-dark) !important;
-    font-weight: 600;
-}
-
-.sidebar-toc .toc-list>ul>li>ul>li>ul>li>a.active::after {
-    content: "";
-    position: absolute;
-    left: -1px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: var(--primary);
-}
-
-/* Hover States */
-.sidebar-toc a:hover {
-    color: var(--primary) !important;
-    text-decoration: none;
-}
-
-/* Hide nested bullets/numbers - fallback */
-.sidebar-toc ul li::before {
-    content: none !important;
-    display: none !important;
-}
-
-/* ============================================
-   IMAGE & CAPTION STYLING
-   ============================================ */
-
+/* --- Images & Captions --- */
 .article-post img {
-    border-radius: 8px;
-    margin: 1rem 0;
+    border-radius: var(--radius-lg);
+    margin: 0.5rem 0;
     max-width: 100%;
     height: auto;
+    display: block;
+}
+
+.article-post p > img:only-child {
+    margin: 2rem auto;
 }
 
 .article-post figure {
-    display: block !important;
-    margin: 1.5rem 0;
+    display: block;
+    margin: 2rem 0;
     text-align: center;
 }
 
 .article-post figcaption {
-    display: block !important;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-medium);
+    display: block;
+    margin-top: 0.6rem;
+    font-size: var(--text-sm-plus);
+    color: var(--gray-200);
     text-align: center;
-    font-style: italic;
-    line-height: 1.4;
+    line-height: 1.5;
+}
+
+.article-post img.shadow {
+    border: 1px solid var(--color-border-light);
+}
+
+/* --- Layout Page overrides --- */
+.layout-page .article-post {
+    font-family: var(--font-sans-kr);
+    font-size: var(--text-md);
+}
+
+.layout-page .article-post p {
+    margin-bottom: 1rem;
+}
+
+.layout-page .article-post h4 {
+    margin-top: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.layout-page .article-post h5 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.layout-page .article-post ul li,
+.layout-page .article-post ol li {
+    margin-bottom: 0.75rem;
 }

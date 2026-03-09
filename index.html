@@ -226,7 +226,8 @@ custom_css_class: with-dot-bg
         } else {
             // Try to find the category name from the link text
             if (activeLink) {
-                titleEl.textContent = activeLink.innerText.replace(/All\s+/, '').trim();
+                var catNameEl = activeLink.querySelector('.cat-name');
+                titleEl.textContent = (catNameEl ? catNameEl.textContent : activeLink.textContent).replace(/All\s+/, '').trim();
             } else {
                 titleEl.textContent = category.charAt(0).toUpperCase() + category.slice(1);
             }

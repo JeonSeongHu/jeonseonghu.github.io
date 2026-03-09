@@ -1,29 +1,118 @@
 /* ============================================
-   CODE BLOCK ENHANCEMENTS
+   FILE: components/_code.scss
+   PURPOSE: Code block layout, copy button, lang badge
+   DEPENDS ON: tokens/colors, tokens/typography, tokens/borders
+   USED BY: assets/js/codeblocks.js, _syntax.scss
+   KEY CLASSES: .highlighter-rouge, div.highlight, .code-copy-btn,
+                .code-lang-badge, .rouge-table
    ============================================ */
 
-pre {
-    position: relative;
+/* --- Outer wrapper --- */
+.highlighter-rouge {
+    margin-bottom: 1.5rem;
 }
 
+/* --- Code block container --- */
+div.highlight {
+    position: relative;
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+/* Reset all nested pre inside highlight */
+div.highlight pre {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+/* The outer pre.highlight — scrollable container */
+div.highlight > pre.highlight {
+    overflow-x: auto;
+    padding: 1rem;
+}
+
+/* --- Rouge table (line numbers + code) --- */
+.rouge-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: none;
+}
+
+.rouge-table td {
+    padding: 0;
+    border: none;
+    vertical-align: top;
+}
+
+/* Line number gutter */
+td.rouge-gutter {
+    width: 1px;
+    white-space: nowrap;
+    padding-right: 0.8rem;
+    user-select: none;
+}
+
+td.rouge-gutter pre.lineno {
+    color: var(--gray-100);
+    text-align: right;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    padding: 0;
+}
+
+/* Code cell */
+td.rouge-code {
+    width: 100%;
+}
+
+td.rouge-code pre {
+    line-height: 1.6;
+    font-size: 0.88rem;
+}
+
+/* --- Copy button --- */
 .code-copy-btn {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    color: var(--text-medium);
-    font-size: 0.75rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border-light);
+    color: var(--gray-400);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs-plus);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     opacity: 0;
-    transform: translateY(-2px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease;
+    z-index: 2;
 }
 
-pre:hover .code-copy-btn {
+.code-copy-btn:hover {
+    background: var(--color-surface-primary);
+    color: var(--gray-700);
+}
+
+div.highlight:hover .code-copy-btn {
     opacity: 1;
-    transform: translateY(0);
 }
 
+/* --- Language badge --- */
+.code-lang-badge {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    font-size: var(--text-2xs);
+    font-family: var(--font-mono);
+    color: var(--gray-100);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    user-select: none;
+}

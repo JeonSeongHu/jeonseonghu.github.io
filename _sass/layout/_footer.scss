@@ -1,142 +1,42 @@
-
 /* ============================================
-   FOOTER & RELATED CONTENT BLOCKS
+   FILE: layout/_footer.scss
+   PURPOSE: Footer, article-divider, related posts, follow-inline,
+            compact listrecent tweaks, fullwidth footer
+   DEPENDS ON: tokens/colors, tokens/typography
+   USED BY: _layouts/default.html, _layouts/post.html
+   KEY CLASSES: .footer, .footer-copyright, .article-divider,
+                .related-posts, .follow-inline, .listrecent
    ============================================ */
 
 .footer {
-    background: var(--bg-light) !important;
-    border-top: 1px solid var(--border-light);
+    background: var(--color-surface-secondary);
+    border-top: 1px solid var(--color-border-light);
     padding: 2rem 0;
     margin-top: 4rem;
-    margin-bottom: 0 !important;
-    color: var(--text-medium);
+    margin-bottom: 0;
+    color: var(--color-text-secondary);
+    position: relative;
+    font-size: var(--text-sm);
 }
 
-/* Reading progress bar */
-#read-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0;
-    background: var(--primary);
-    z-index: 2000;
-    transition: width 0.15s ease-out;
+@media (max-width: 999px) {
+    .footer {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 }
 
-/* Series & Related */
-.series-list {
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
-    padding: 0; /* Remove padding to let header/list fill width */
-    margin: 2rem 0;
-    overflow: hidden; /* Ensure rounded corners for children */
-}
-
-.series-list .section-title {
-    background: linear-gradient(135deg, rgba(53, 57, 173, 0.06) 0%, rgba(58, 64, 231, 0.1) 100%);
-    padding: 1rem 1.5rem;
-    margin: 0;
-    border-bottom: 1px solid var(--border-light);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.series-list .section-title h2 {
-    font-size: 0.95rem !important;
-    font-weight: 700 !important;
-    color: var(--primary) !important;
-    margin: 0 !important;
-    padding: 0 !important; /* Remove padding */
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.series-list ol {
-    counter-reset: item;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.series-list li {
-    line-height: 1.5;
-    font-size: 0.9rem;
-    padding: 0.85rem 1.5rem;
-    border-bottom: 1px solid var(--border-light);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    background: var(--bg-white);
-    transition: background 0.2s ease;
-}
-
-.series-list li:last-child {
-    border-bottom: none;
-}
-
-.series-list li:hover {
-    background: rgba(0,0,0,0.01);
-}
-
-/* Active (current) post styling */
-.series-list li.current-post {
-    background: rgba(53, 57, 173, 0.03);
-    border-left: 3px solid var(--primary);
-    padding-left: calc(1.5rem - 3px); /* Compensate for border width */
-}
-
-.series-list li.current-post span {
-    color: var(--primary);
-    font-weight: 600;
-}
-
-.series-list li a {
-    color: var(--text-dark);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.series-list li a:hover {
-    color: var(--primary);
-    text-decoration: underline;
-}
-
-.series-list small {
-    font-size: 0.75rem;
-    color: var(--text-light);
-    white-space: nowrap;
-    opacity: 0.8;
-}
-
-.series-description {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-medium);
-    background: rgba(0,0,0,0.02);
-    border-bottom: 1px solid var(--border-light);
-    line-height: 1.6;
-}
-
+/* --- Related Posts --- */
 .related-posts .section-title h2 {
-    font-size: 1.1rem !important;
+    font-size: var(--text-md);
+    font-weight: var(--weight-bold);
+    margin-bottom: 0.75rem;
 }
 
 .article-divider {
     margin: 2.5rem 0;
     border: 0;
-    border-top: 1px solid var(--border-light);
-}
-
-/* Tighter, smaller typography for related sections */
-.related-posts .section-title h2 {
-    font-size: 1.0rem !important;
-    font-weight: 700 !important;
-    margin-bottom: 0.75rem !important;
+    border-top: 1px solid var(--color-border-light);
 }
 
 .related-posts-list {
@@ -151,7 +51,7 @@
     justify-content: space-between;
     gap: 0.75rem;
     padding: 0.35rem 0;
-    border-top: 1px dashed var(--border-light);
+    border-top: 1px dashed var(--color-border-light);
 }
 
 .related-posts-list li:first-child {
@@ -159,35 +59,25 @@
 }
 
 .related-posts-list a {
-    color: var(--text-dark) !important;
-    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    font-size: var(--text-base);
 }
 
 .related-posts-list a:hover {
-    color: var(--primary) !important;
+    color: var(--color-primary);
 }
 
 .related-posts-list small {
-    color: var(--text-light);
-    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+    font-size: var(--text-sm-minus);
     white-space: nowrap;
 }
 
-/* Title categories under title */
-.title-categories.tags {
-    margin-top: 0.25rem !important;
-}
-
-.title-categories.tags li a {
-    font-size: 0.75rem;
-    padding: 0.2rem 0.6rem;
-}
-
-/* Inline follow menu */
+/* --- Follow Inline --- */
 .follow-inline .btn,
 #followToggle,
 #followMenu .btn {
-    border-radius: var(--radius) !important;
+    border-radius: var(--radius);
 }
 
 #followMenu {
@@ -195,7 +85,7 @@
     gap: 0.4rem;
     opacity: 0;
     transform: translateY(-2px);
-    transition: opacity .18s ease, transform .18s ease;
+    transition: opacity 0.18s ease, transform 0.18s ease;
     pointer-events: none;
 }
 
@@ -207,21 +97,21 @@
 
 #followMenu .btn {
     padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
+    font-size: var(--text-sm-minus);
     line-height: 1.2;
 }
 
 #followToggle {
-    border-radius: 0 !important;
+    border-radius: 0;
 }
 
-/* Compact listrecent tweaks */
+/* --- Compact Listrecent Tweaks --- */
 .listrecent .card h2.card-title {
-    font-size: 1.0rem !important;
+    font-size: var(--text-md);
 }
 
 .listrecent .card .card-text {
-    font-size: 0.85rem !important;
+    font-size: var(--text-sm-plus);
 }
 
 .listrecent .card .author-thumb {
@@ -230,28 +120,22 @@
 }
 
 .listrecent .card .post-date {
-    font-size: 0.7rem !important;
+    font-size: var(--text-xs);
 }
 
 .listrecent .card .card-body {
-    padding: 1rem !important;
+    padding: 1rem;
 }
 
 .listrecent .card .card-footer {
-    padding: 0.75rem 1rem !important;
+    padding: 0.75rem 1rem;
 }
 
-/* Full-width footer treatment */
-.site-content {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-
+/* --- Fullwidth Footer --- */
 .footer.fullwidth-section {
-    margin-top: auto !important;
-    margin-bottom: 0 !important;
-    padding: 1rem 0 0.5rem 0 !important;
+    margin-top: auto;
+    margin-bottom: 0;
+    padding: 1rem 0 0.5rem 0;
     flex-shrink: 0;
 }
 
@@ -269,86 +153,12 @@
 }
 
 .footer-copyright {
-    font-size: 0.65rem;
-    color: var(--text-light);
+    font-size: var(--text-2xs);
+    color: var(--color-text-tertiary);
     opacity: 0.7;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     text-align: center;
     display: block;
     margin: 0;
     padding: 0;
 }
-
-/* Post Navigation (Prev/Next) */
-.post-navigation {
-    margin: 2rem 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-light);
-}
-
-.post-navigation .nav-links {
-    display: flex;
-    justify-content: space-between;
-    gap: 1.5rem;
-}
-
-.post-navigation .nav-previous,
-.post-navigation .nav-next {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 1.25rem;
-    background: var(--bg-light);
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.post-navigation .nav-previous:hover,
-.post-navigation .nav-next:hover {
-    border-color: var(--primary);
-    background: rgba(53, 57, 173, 0.04);
-}
-
-.post-navigation .nav-next {
-    text-align: right;
-}
-
-.post-navigation .nav-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-light);
-    margin-bottom: 0.35rem;
-    font-weight: 600;
-}
-
-.post-navigation .nav-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    line-height: 1.4;
-}
-
-.post-navigation a:hover .nav-title {
-    color: var(--primary);
-}
-
-.post-navigation .nav-empty {
-    flex: 1;
-    background: transparent;
-    border: none;
-}
-
-@media (max-width: 576px) {
-    .post-navigation .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .post-navigation .nav-next {
-        text-align: left;
-    }
-}
-

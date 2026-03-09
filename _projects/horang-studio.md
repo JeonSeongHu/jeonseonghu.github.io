@@ -4,7 +4,7 @@ type: project
 title: "Horang Studio"
 short_title: "Horang Studio"
 description: "AI profile picture generation service for Korea/Yonsei University students using ID preservation Stable Diffusion, supported by Kakao Brain."
-image: "https://picsum.photos/seed/horang/800/600"
+image: ""
 date: 2023-08-01
 tags: ["Generative AI", "Stable Diffusion", "Web Service"]
 ---

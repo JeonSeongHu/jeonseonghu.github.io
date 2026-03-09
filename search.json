@@ -4,7 +4,7 @@ layout: null
 [
 {% assign first_item = true %}
 {% for page in site.pages %}
-  {% unless page.url contains '.xml' or page.url contains 'assets' or page.url contains 'category' or page.url contains 'tag' or page.url == '/about-me' or page.url == '/' or page.url == '/categories' %}
+  {% unless page.url contains '.xml' or page.url contains '.json' or page.url contains 'assets' or page.url contains 'category' or page.url contains 'tag' or page.url == '/about-me' or page.url == '/' or page.url == '/categories' or page.url contains 'robots' %}
     {% unless first_item %},{% endunless %}
     {
       "title": {{ page.title | jsonify }},

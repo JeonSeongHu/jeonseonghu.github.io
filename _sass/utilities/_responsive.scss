@@ -1,5 +1,10 @@
 /* ============================================
-   RESPONSIVE DESIGN UTILITIES
+   FILE: utilities/_responsive.scss
+   PURPOSE: Responsive breakpoints for featured boxes, buttons,
+            typography scaling
+   DEPENDS ON: tokens/colors, tokens/typography
+   USED BY: all pages
+   KEY CLASSES: (media query overrides)
    ============================================ */
 
 @media (max-width: 1200px) {
@@ -8,22 +13,22 @@
     }
 
     .section-title h2 {
-        font-size: 1.75rem !important;
+        font-size: var(--text-5xl);
     }
 }
 
 @media (max-width: 768px) {
     .featured-box {
         padding: 2rem 1.5rem;
-        width: 100% !important;
-        left: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        position: static !important;
+        width: 100%;
+        left: 0;
+        margin-left: 0;
+        margin-right: 0;
+        position: static;
     }
 
     .featured-box h3 {
-        font-size: 1.3rem;
+        font-size: var(--text-xl-plus);
     }
 
     .listfeaturedtag {
@@ -35,38 +40,37 @@
     }
 
     .navbar-nav .nav-link {
-        padding: 0.6rem 1rem !important;
+        padding: 0.6rem 1rem !important; /* Bootstrap CDN override */
     }
 
     .section-title h2 {
-        font-size: 1.5rem !important;
+        font-size: var(--text-3xl-plus);
     }
 
     .article-post h2 {
-        font-size: 1.5rem;
+        font-size: var(--text-3xl-plus);
     }
 }
 
 @media (max-width: 576px) {
-
     .btn-primary,
     .btn-outline-primary {
         padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
+        font-size: var(--text-base);
     }
 
     .featured-box {
         padding: 1.5rem 1rem;
         margin: 1.5rem 0;
-        width: 100% !important;
-        left: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        position: static !important;
+        width: 100%;
+        left: 0;
+        margin-left: 0;
+        margin-right: 0;
+        position: static;
     }
 
     .featured-box .page-title {
-        font-size: 2rem;
+        font-size: var(--text-6xl);
         padding: 0 1rem;
     }
 
@@ -83,7 +87,7 @@
     }
 
     .featured-box p {
-        font-size: 1rem;
+        font-size: var(--text-md);
     }
 
     .listfeaturedtag .wrapthumbnail {
@@ -91,36 +95,33 @@
     }
 }
 
-/* 매우 작은 화면을 위한 추가 처리 */
 @media (max-width: 480px) {
     .featured-box {
-        padding: 1rem 0.5rem !important;
-        margin: 1rem 0 !important;
+        padding: 1rem 0.5rem;
+        margin: 1rem 0;
     }
 
     .featured-box .page-title {
-        font-size: 1.75rem !important;
-        padding: 0 0.5rem !important;
+        font-size: var(--text-5xl);
+        padding: 0 0.5rem;
     }
 
     .featured-box .page-title::after {
-        left: 0.5rem !important;
+        left: 0.5rem;
     }
 
     .featured-box p {
-        padding: 0 0.5rem !important;
-        font-size: 0.95rem !important;
+        padding: 0 0.5rem;
+        font-size: var(--text-base-plus);
     }
 }
 
-/* 아주 작은 화면 (320px 이하) */
 @media (max-width: 320px) {
     .featured-box .page-title {
-        font-size: 1.5rem !important;
+        font-size: var(--text-3xl-plus);
     }
 
     .featured-box p {
-        font-size: 0.9rem !important;
+        font-size: var(--text-base);
     }
 }
-

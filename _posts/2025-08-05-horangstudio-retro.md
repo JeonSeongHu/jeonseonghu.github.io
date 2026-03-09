@@ -5,7 +5,7 @@ title: 호랑이사진관 회고
 author: jeonseonghu
 main_category: Projects
 featured: false
-image: ""
+image:
 series: 프로젝트 회고
 tags:
   - Web Dev

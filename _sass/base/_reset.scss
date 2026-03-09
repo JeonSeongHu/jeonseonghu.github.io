@@ -1,0 +1,82 @@
+/* ============================================
+   FILE: base/_reset.scss
+   PURPOSE: HTML/body reset, font-size, img/iframe max-width
+   DEPENDS ON: tokens/colors, tokens/typography
+   USED BY: all pages (loaded first in base layer)
+   KEY CLASSES: html, body, img, iframe
+   ============================================ */
+
+html {
+    font-size: 80%;
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 1500px) {
+    html { font-size: 14.4px; }
+    .container { max-width: 80%; }
+}
+
+body {
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    background-color: var(--color-surface-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* Reset elements to inherit font-family */
+p, h1, h2, h3, h4, h5, h6, li, span, div, a, td, th {
+    font-family: inherit;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--font-sans-kr);
+    color: var(--color-text-primary);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-snug);
+}
+
+img {
+    max-width: 100%;
+}
+
+iframe {
+    max-width: 100%;
+}
+
+pre {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    white-space: pre;
+    overflow: auto;
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    line-height: 1.6;
+    color: var(--gray-700);
+    margin-bottom: 1rem;
+}
+
+blockquote {
+    border-left: 4px solid var(--gray-75);
+    padding: 0 20px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+section.recent-posts {
+    margin-bottom: 0;
+}

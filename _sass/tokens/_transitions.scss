@@ -1,0 +1,28 @@
+/* ============================================
+   FILE: tokens/_transitions.scss
+   PURPOSE: Transition durations and easing presets
+   DEPENDS ON: nothing (root-level definitions)
+   USED BY: component and layout files
+   KEY CLASSES: :root custom properties
+   ============================================ */
+
+:root {
+    /* --- Durations --- */
+    --duration-fast: 0.15s;
+    --duration-normal: 0.2s;
+    --duration-medium: 0.3s;
+    --duration-slow: 0.4s;
+    --duration-slower: 0.5s;
+
+    /* --- Easing --- */
+    --ease-default: ease;
+    --ease-in-out: ease-in-out;
+    --ease-out: ease-out;
+    --ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* --- Preset Transitions --- */
+    --transition-default: all 0.2s ease;
+    --transition-color: color 0.2s ease;
+    --transition-bg: background 0.2s ease;
+    --transition-transform: transform 0.3s ease;
+}

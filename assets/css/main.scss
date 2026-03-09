@@ -1,46 +1,56 @@
 ---
-# Add a comment to make this file sass-y.
-# Change this file for any custom CSS.
+# Main stylesheet entry point
 ---
 /* ============================================
    MAIN STYLESHEET ENTRY POINT
    ============================================ */
 
-/* 1. Base & Vendors */
-@import "base/foundation";
-@import "vendor/mediumish";
+/* 1. Design Tokens (theme-wide variables) */
+@use "tokens/colors";
+@use "tokens/typography";
+@use "tokens/spacing";
+@use "tokens/borders";
+@use "tokens/transitions";
 
-/* 2. Core Utilities */
-@import "syntax";
-@import "stars";
+/* 2. Base Layer (reset, Bootstrap overrides, global elements) */
+@use "base/reset";
+@use "base/bootstrap-overrides";
+@use "base/global";
 
-/* 3. Layouts */
-@import "layout/navigation";
-@import "layout/footer";
-@import "layout/sidebar";
-@import "layout/fullwidth";
+/* 3. Effects */
+@use "effects/reading-progress";
 
-/* 4. Components */
-@import "components/buttons";
-@import "components/cards";
-@import "components/article";
-@import "components/jumbotron";
-@import "components/taxonomy";
-@import "components/pagination";
-@import "components/forms";
-@import "components/code";
-@import "components/search-modal";
-@import "components/profile";
+/* 4. Syntax & Stars (standalone) */
+@use "syntax";
+@use "stars";
 
-/* 5. Pages */
-@import "pages/home";
-@import "pages/about";
-@import "pages/categories";
-@import "pages/projects";
-@import "pages/publications";
-@import "pages/detail";
-@import "pages/cv";
+/* 5. Layouts */
+@use "layout/navigation";
+@use "layout/footer";
+@use "layout/sidebar";
+@use "layout/fullwidth";
 
-/* 6. Utilities */
-@import "utilities/responsive";
-@import "utilities/animations";
+/* 6. Components */
+@use "components/cards";
+@use "components/article";
+@use "components/toc";
+@use "components/tags";
+@use "components/publication-item";
+@use "components/series-list";
+@use "components/post-navigation";
+@use "components/code";
+@use "components/search-modal";
+@use "components/profile";
+
+/* 7. Pages */
+@use "pages/home";
+@use "pages/about";
+@use "pages/categories";
+@use "pages/projects";
+@use "pages/publications";
+@use "pages/detail";
+@use "pages/cv";
+
+/* 8. Utilities (last — can override anything) */
+@use "utilities/responsive";
+@use "utilities/animations";

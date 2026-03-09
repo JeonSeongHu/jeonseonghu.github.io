@@ -1,4 +1,8 @@
 /// Credits to https://codepen.io/damianmuti/pen/KmEMdR
+@use "sass:math";
+@use "sass:list";
+@use "sass:map";
+@use "sass:string";
 
 ///
 $rating-min-value: 0 !default;
@@ -25,9 +29,9 @@ $rating-icons-paths: (
 @function rating-values() {
   $rating-values: ();
 
-  @for $i from $rating-min-value through ($rating-max-value / $rating-steps-value) {
+  @for $i from $rating-min-value through math.div($rating-max-value, $rating-steps-value) {
     $rating-value: abs($i * $rating-steps-value);
-    $rating-values: append($rating-values, $rating-value, 'comma');
+    $rating-values: list.append($rating-values, $rating-value, 'comma');
   }
 
   @return $rating-values;
@@ -38,11 +42,11 @@ $rating-icons-paths: (
 /// @param {color} $color - Passes the fill color of the SVG icon that is being generated. Note: Hexa color values must be escaped for cross-browser support.
 /// @return {string} background value.
 @function get-icon($icon, $color) {
-  @if not index(quarter half three-quarters full, $icon) {
+  @if not list.index(quarter half three-quarters full, $icon) {
     @error "Interaction type must be either `quarter`, `half`, `three-quarters` or `full`.";
   }
-  
-  @return url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20fill%3D%22' + $color + '%22%20d%3D%22' + map-get($rating-icons-paths, $icon) + '%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') center / cover no-repeat;
+
+  @return url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20fill%3D%22' + $color + '%22%20d%3D%22' + map.get($rating-icons-paths, $icon) + '%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') center / cover no-repeat;
 }
 
 /// This is a CSS-only star rating component that shows the proper rating depending on a data-attribute value. JS logic behind this component should round up values per quarter.
@@ -62,7 +66,7 @@ $rating-icons-paths: (
 ///     <span>5</span>
 ///   </div>
 @mixin c-rating($star-size: 20px, $star-element: button, $interaction-type: representative) {
-  @if not index(clickable representative, $interaction-type) {
+  @if not list.index(clickable representative, $interaction-type) {
     @error "Interaction type must be either `clickable` or `representative`.";
   }
   
@@ -80,7 +84,7 @@ $rating-icons-paths: (
   
 @each $rating-value in rating-values() {
     // Get the next higher integer.
-    $rating-value-ceil: ceil($rating-value);
+    $rating-value-ceil: math.ceil($rating-value);
 
     &[data-rating-value="#{$rating-value}"] {
       #{$star-element}:nth-child(-n+#{$rating-value-ceil}) {
@@ -89,13 +93,13 @@ $rating-icons-paths: (
 
       #{$star-element}:nth-child(#{$rating-value-ceil}) {
         // Evaluate which fraction of a star this value is and add the proper background
-        @if str-slice("#{$rating-value}", 2, 4) == '.25' {
+        @if string.slice("#{$rating-value}", 2, 4) == '.25' {
           background: get-icon(quarter, $rating-color-full), get-icon(full, $rating-color-empty)
         }
-        @else if str-slice("#{$rating-value}", 2, 4) == '.5' {
+        @else if string.slice("#{$rating-value}", 2, 4) == '.5' {
           background: get-icon(half, $rating-color-full), get-icon(full, $rating-color-empty)
         }
-        @else if str-slice("#{$rating-value}", 2, 4) == '.75' {
+        @else if string.slice("#{$rating-value}", 2, 4) == '.75' {
           background: get-icon(three-quarters, $rating-color-full), get-icon(full, $rating-color-empty)
         }
       }
@@ -112,14 +116,14 @@ $rating-icons-paths: (
     @return 0
   }
 
-  @return $target / $context+0em;
+  @return math.div($target, $context) + 0em;
 }
 
 
 .rating-holder {
   font-size: 16px;
   display: inline-block;
-  background-color: #fff;
+  background-color: var(--color-surface-primary);
   border-radius: toem(25px);
   box-sizing: border-box;
 }

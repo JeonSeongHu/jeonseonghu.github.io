@@ -4,6 +4,7 @@ title: "@jeonseonghu"
 description: "Research."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
+url: "https://jeonseonghu.github.io"
 baseurl: ""
 google_analytics: ''
 # Comments via Utterances (GitHub Issues)

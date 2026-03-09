@@ -1,784 +1,260 @@
+@use "../effects/dot-background" as *;
+
 /* ============================================
-   ABOUT PAGE REDESIGN - BLURPLE THEME
+   FILE: pages/_about.scss
+   PURPOSE: About page — hero, grid, news, experience, interests
+   DEPENDS ON: tokens/colors, tokens/typography, effects/dot-background
+   USED BY: _pages/about.md
+   KEY CLASSES: .about-page-custom, .about-page, .about-hero,
+                .about-grid, .about-card, .news-item, .exp-item
    ============================================ */
 
-/* Scoped to .about-page-custom class on body */
 body.about-page-custom {
-    /* Define Theme Colors - Blue/Purple (Blurple) */
-    --theme-color: #4e54c8;        /* Primary Blurple */
-    --theme-color-dark: #373b99;   /* Darker shade for hover */
-    --theme-color-light: #8f94fb;  /* Lighter shade */
-    --theme-bg-dot: #ecf4ff;       /* Dot color - White */
-    
-    /* Override Global Variables for this page */
-    --primary: var(--theme-color);
-    --primary-hover: var(--theme-color-dark);
-    
-    /* Use the shared background mixin from _foundation.scss */
+    --theme-color: var(--color-accent);
+    --theme-color-dark: var(--color-primary);
+    --theme-color-light: var(--color-primary-light);
+    --theme-bg-dot: var(--color-primary-tint-5);
+    --primary: var(--color-primary);
+    --primary-hover: var(--color-primary-hover);
+
     @include background-dot-theme;
-    
-    /* Default font for About Page - Wanted Sans */
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
 }
 
-/* 
-   CRITICAL FIX: Font Override Strategy 
-   1. Force Wanted Sans for most elements in About Page
-   2. But do NOT override FontAwesome icons
-*/
-
-/* Force FontAwesome fonts for icons to prevent override */
-body.about-page-custom .fab {
-    font-family: "Font Awesome 5 Brands" !important;
-}
+/* Font overrides */
+body.about-page-custom .fab { font-family: "Font Awesome 5 Brands" !important; /* Bootstrap CDN override */ }
 body.about-page-custom .fas,
 body.about-page-custom .far,
 body.about-page-custom .fa,
-body.about-page-custom i {
-    font-family: "Font Awesome 5 Free" !important;
-    font-weight: 900; /* Default to solid */
-}
-body.about-page-custom .far {
-    font-weight: 400; /* Regular for .far */
-}
-
+body.about-page-custom i { font-family: "Font Awesome 5 Free" !important; /* Bootstrap CDN override */ font-weight: var(--weight-black); }
+body.about-page-custom .far { font-weight: var(--weight-regular); }
 body.about-page-custom :not(.fa):not(.fas):not(.far):not(.fab):not(i) {
-    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
 }
 
-/* Apply Theme Color to Specific Elements */
-
-/* Sidebar Icons - FIXED: Black color */
-body.about-page-custom .sidebar-contact-icons {
-    display: flex;
-    gap: 0.8rem;
-    align-items: center;
-}
-
-body.about-page-custom .sidebar-contact-icons a {
-    color: var(--text-dark) !important; /* Force Black */
-    font-size: 1.1rem; /* Make icons visible size */
-    transition: color 0.2s ease;
-}
-
-body.about-page-custom .sidebar-contact-icons a:hover {
-    color: var(--theme-color) !important;
-}
-
-/* Section Headers (h4) */
-body.about-page-custom h4 {
-    color: var(--text-dark);
-    font-weight: 700;
-    transition: color 0.2s ease;
-}
-
-body.about-page-custom h4:hover {
-    color: var(--theme-color);
-}
-
-/* Highlighted Text */
-body.about-page-custom .highlight {
-    color: var(--text-dark) !important;
-    background-color: rgba(0, 0, 0, 0) !important;
-}
-
-/* Dotted Underline */
-body.about-page-custom .dotted-underline {
-    border-bottom-color: var(--text-dark);
-    color: var(--text-dark);
-}
-
-/* Project Category Titles */
-body.about-page-custom .project-category-title {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-dark);
-    margin-bottom: 0.9rem;
-    font-weight: 700;
-    transition: color 0.2s ease;
-}
-
-body.about-page-custom .project-category-title:hover {
-    color: var(--theme-color);
-}
-
-body.about-page-custom .project-category-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.3), transparent);
-    opacity: 0.7;
-    transition: background 0.2s ease;
-}
-
-body.about-page-custom .project-category-title:hover::after {
-    background: linear-gradient(90deg, rgba(78, 84, 200, 0.5), transparent);
-}
-
-/* Links in text - Changed to black by default */
-body.about-page-custom a:not(.btn):not(.sidebar-contact-icons a) {
-    color: var(--text-dark) !important;
-    transition: color 0.2s ease;
-}
-
-body.about-page-custom a:not(.btn):not(.sidebar-contact-icons a):hover {
-    color: var(--theme-color) !important;
-    text-decoration: none;
-}
-
-/* Section Link (Publications, Projects headers) */
-body.about-page-custom .section-link {
-    color: var(--text-dark) !important;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    display: inline-block;
-}
-
-body.about-page-custom .section-link:hover {
-    color: var(--theme-color) !important;
-    text-decoration: underline;
-}
-
-body.about-page-custom .section-link:hover .arrow-icon {
-    display: inline-block;
-    transform: rotate(90deg);
-}
-
-/* Arrow icon in section headers */
-body.about-page-custom .arrow-icon {
-    display: inline-block;
-    transition: transform 0.3s ease;
-    margin-left: 0.25rem;
-}
-
-/* H4 headers (non-link) hover effect */
-body.about-page-custom .about-main > h4 {
-    cursor: default;
-    transition: color 0.2s ease;
-}
-
-body.about-page-custom .about-main > h4:hover {
-    color: var(--theme-color) !important;
-    text-decoration: underline;
-}
-
-body.about-page-custom .about-main > h4:hover .arrow-icon {
-    transform: rotate(90deg);
-}
-
-/* Experience Arrows - Hidden as requested */
-body.about-page-custom .experience-arrow {
-    display: none !important;
-}
-
-/* ============================================
-   ABOUT PAGE: Animations & Interactions
-   ============================================ */
-
-/* 1. Staggered Fade-in: Sequential Appearance */
-@keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Apply animation to main sections with staggered delays */
-body.about-page-custom .profile-left {
-    opacity: 0;
-    animation: fadeSlideUp 0.6s ease-out 0s forwards;
-}
-
-body.about-page-custom .about-main .bio-intro {
-    opacity: 0;
-    animation: fadeSlideUp 0.6s ease-out 0.2s forwards;
-}
-
-body.about-page-custom .about-main h4:nth-of-type(1),
-body.about-page-custom .about-main h4:nth-of-type(1) + ul {
-    opacity: 0;
-    animation: fadeSlideUp 0.6s ease-out 0.4s forwards;
-}
-
-body.about-page-custom .about-main h4:nth-of-type(2),
-body.about-page-custom .about-main h4:nth-of-type(2) + ul {
-    opacity: 0;
-    animation: fadeSlideUp 0.6s ease-out 0.6s forwards;
-}
-
-body.about-page-custom .about-main h4:nth-of-type(3),
-body.about-page-custom .about-main h4:nth-of-type(3) + ul,
-body.about-page-custom .about-main h4:nth-of-type(3) + .project-grid {
-    opacity: 0;
-    animation: fadeSlideUp 0.6s ease-out 0.8s forwards;
-}
-
-/* 2. List Row Highlight: Hover Feedback */
-body.about-page-custom .experience-item {
-    transition: background-color 0.2s ease-out, transform 0.2s ease-out;
-    border-radius: 8px;
-    padding: 0.1rem 0.3rem;
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
-}
-
-body.about-page-custom .experience-item:hover {
-    background-color: rgba(78, 84, 200, 0.05); /* Light purple tint */
-    transform: translateY(-2px);
-}
-
-/* 3. Interactive Underline for Links in Bio */
-body.about-page-custom .bio-intro .dotted-underline {
-    position: relative;
-    display: inline;
-    background-image: linear-gradient(120deg, rgba(78, 84, 200, 0.3), rgba(78, 84, 200, 0.1));
-    background-repeat: no-repeat;
-    background-size: 0% 100%;
-    background-position: 0 85%;
-    transition: background-size 0.35s ease-out;
-}
-
-body.about-page-custom .bio-intro .dotted-underline:hover {
-    background-size: 100% 100%;
-    cursor: pointer;
-}
-
-/* ============================================
-   SIDEBAR EXPERIENCE LIST (Simpler Layout)
-   ============================================ */
-body.about-page-custom .sidebar-experience-item {
-    padding-bottom: 0.3rem;
-    margin-bottom: 0.2rem;
-    border-bottom: 1px dotted #ccc;
-}
-
-body.about-page-custom .sidebar-experience-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-body.about-page-custom .sidebar-experience-item .exp-date {
-    font-size: 0.65rem;
-    margin-left: 0.5rem;
-}
-
-body.about-page-custom .sidebar-experience-item .fw-bold {
-    font-size: 0.9rem; /* Match previous size tweak */
-    line-height: 1.3;
-}
-
-/* ============================================
-   ABOUT PAGE LAYOUT & TYPOGRAPHY
-   ============================================ */
-
-/* HIDE ABOUT ME TITLE - KEY FIX 1 */
+/* Hide page title + reset wrappers */
 body.about-page-custom .mainheading,
 body.about-page-custom .page-title,
-body.about-page-custom .section-title {
-    display: none !important;
+body.about-page-custom .section-title { display: none; }
+body.about-page-custom .site-content { padding-top: 0; }
+body.about-page-custom .site-content > .container { max-width: 100%; padding: 0; }
+body.about-page-custom .main-content { padding: 0; }
+body.about-page-custom .main-content > section { padding: 0; margin: 0; }
+body.about-page-custom .article-post { padding: 0; max-width: 100%; }
+
+/* --- Page Container --- */
+.about-page {
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    padding: 2rem 15px 2rem;
+    box-sizing: border-box;
 }
 
-body.about-page-custom .about-content-wrapper {
-    margin-left: 490px; /* Adjusted for shifted sidebar (460px + 30px) */
-    padding: 0 0.5rem 0 0.3rem;
-    margin-top: 6rem;
-    margin-right: 0.5rem;
-}
-
-body.about-page-custom .about-content-wrapper .container {
-    max-width: 100%;
-    padding: 0;
-}
-
-body.about-page-custom .about-content-wrapper .row {
-    display: block;
-    max-width: 100%;
-}
-
-body.about-page-custom .about-main {
-    font-size: 0.9rem;
-    width: 100%;
-    max-width: 100%;
-}
-
-body.about-page-custom .about-main h1 {
-    font-size: 1.8rem;
-    margin-bottom: 0.9rem;
-}
-
-body.about-page-custom .about-main h4 {
-    font-size: 1.35rem;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    border-top: 1px solid var(--border-light);
-    padding-top: 2rem;
-}
-
-body.about-page-custom .about-main h4:first-of-type {
-    border-top: none;
-    padding-top: 0;
-    margin-top: 1rem;
-}
-
-body.about-page-custom .about-main h5 {
-    font-size: 1.1rem;
-    margin-top: 2rem;
-    margin-bottom: 0.8rem;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-body.about-page-custom .about-main p {
-    margin-bottom: 0.7rem;
-    line-height: 1.6;
-}
-
-@media (max-width: 1200px) {
-    /* Tablet Landscape Range: 992px - 1200px */
-    /* Slightly adjust sidebar and content for medium screens */
-    body.about-page-custom .about-content-wrapper {
-        margin-left: 360px; /* Reduce from 400/460 */
-        padding: 0 1rem;
-        margin-top: 5rem;
-    }
-
-    body.about-page-custom .profile-left {
-        width: 320px !important; /* Force override later definition */
-        left: 20px !important;
-    }
-    
-    body.about-page-custom .profile-left .img-fluid {
-        width: 150px;
-        height: 150px;
-    }
-
-    /* Fix text truncation around 1000px by switching to vertical layout */
-    body.about-page-custom .experience-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.2rem;
-        margin-bottom: 1rem;
-        border-bottom: 1px dashed var(--border-light);
-        padding-bottom: 0.5rem;
-    }
-    
-    body.about-page-custom .experience-item:last-child {
-        border-bottom: none;
-    }
-
-    body.about-page-custom .experience-filler {
-        display: none !important;
-    }
-    
-    body.about-page-custom .experience-title {
-        width: 100%;
-        white-space: normal;
-        font-weight: 700;
-        margin-bottom: 0.1rem;
-    }
-
-    body.about-page-custom .experience-description {
-        width: 100%;
-        text-align: left;
-        margin-left: 0;
-        white-space: normal;
-        line-height: 1.4;
-    }
-    
-    body.about-page-custom .experience-date {
-        width: 100%;
-        text-align: left;
-        margin-left: 0;
-        white-space: normal;
-        font-size: 0.75rem;
-        margin-top: 0.2rem;
-        opacity: 0.8;
-    }
-}
-
-@media (max-width: 991px) {
-    /* Tablet Portrait Range: 768px - 991px */
-    /* Keep sidebar visible but narrower */
-    body.about-page-custom .profile-left {
-        width: 260px !important; /* Narrower sidebar */
-        left: 20px !important;
-        padding-right: 10px !important;
-        position: fixed !important; /* Keep fixed */
-        top: 140px !important;
-        height: calc(100vh - 140px) !important;
-        margin-bottom: 0 !important;
-    }
-    
-    /* Reduce sidebar elements size */
-    body.about-page-custom .profile-left .img-fluid {
-        width: 140px !important;
-        height: 140px !important;
-    }
-
-    body.about-page-custom .about-content-wrapper {
-        margin-left: 300px !important; /* Adjust margin for narrower sidebar */
-        padding-right: 1rem;
-        margin-top: 4rem;
-    }
-}
-
-@media (max-width: 768px) {
-    body.about-page-custom .about-content-wrapper {
-        margin-left: 0 !important;
-        padding: 0 15px; /* Standard Bootstrap padding */
-        margin-top: 3rem;
-        overflow-x: hidden; /* Prevent wrapper overflow */
-    }
-
-    /* Change sidebar from fixed to normal flow on mobile */
-    body.about-page-custom .profile-left {
-        position: static !important;
-        width: 100% !important;
-        height: auto !important;
-        left: auto !important;
-        top: auto !important;
-        padding-right: 0 !important;
-        margin-bottom: 2rem;
-        overflow: visible !important;
-    }
-
-    /* Center profile on mobile */
-    body.about-page-custom .profile-left .img-fluid {
-        width: 160px !important; /* Restore size on mobile */
-        height: auto !important;
-    }
-    
-    /* Add background color to navbar on mobile to prevent overlap */
-    nav.navbar {
-        background-color: white !important;
-    }
-    
-    /* Reset main container overflow */
-    body.about-page-custom {
-        overflow-x: hidden !important;
-    }
-    
-    body.about-page-custom .site-content {
-        overflow-x: hidden !important;
-    }
-    
-    body.about-page-custom .container {
-        max-width: 100% !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-        overflow-x: hidden !important;
-    }
-
-    body.about-page-custom .project-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    body.about-page-custom .experience-arrow {
-        display: none !important;
-    }
-}
-
-
-/* ============================================
-   SIDEBAR PROFILE PANEL
-   ============================================ */
-
-body.about-page-custom .profile-left {
-    position: fixed;
-    left: 70px; /* Shifted right from 40px */
-    top: 160px;
-    width: 400px;
-    height: calc(100vh - 160px);
-    overflow-y: auto;
-    z-index: 100;
-    padding-right: 15px;
-}
-
-body.about-page-custom .profile-left::-webkit-scrollbar {
-    width: 3px;
-}
-
-body.about-page-custom .profile-left::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-body.about-page-custom .profile-left::-webkit-scrollbar-thumb {
-    background: var(--border-light);
-    border-radius: 3px;
-}
-
-body.about-page-custom .profile-left::-webkit-scrollbar-thumb:hover {
-    background: var(--text-light);
-}
-
-body.about-page-custom .profile-left .sidebar-section {
-    margin-bottom: 1.2rem;
-}
-
-body.about-page-custom .profile-left h3 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-top: 0.5rem !important;
-    margin-bottom: 0.3rem;
-}
-
-body.about-page-custom .profile-left p,
-body.about-page-custom .profile-left li {
-    font-size: 0.7rem;
-    line-height: 1.4;
-    margin-bottom: 0.4rem;
-}
-
-body.about-page-custom .profile-header-container {
-    padding-bottom: 0rem;
-    margin-bottom: 0.3rem;
-}
-
-body.about-page-custom .profile-left ul {
-    margin-top: 0.5rem;
-    text-align: left;
-    padding-left: 0;
-}
-
-body.about-page-custom .profile-left .img-fluid {
-    width: 160px;
-    height: 160px;
-}
-
-body.about-page-custom .profile-left .sidebar-link {
-    font-size: 0.7rem;
-    color: var(--text-dark) !important;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-body.about-page-custom .profile-left .sidebar-link:hover {
-    color: var(--primary) !important;
-}
-
-/* ============================================
-   TIMELINE & EXPERIENCE LIST
-   ============================================ */
-
-body.about-page-custom .timeline {
-    position: relative;
-    padding-left: 0;
-}
-
-body.about-page-custom .timeline-item {
-    margin-bottom: 0.2em !important;
-    position: relative;
-    margin-left: -10px;
-    padding: 0.3rem 1rem 0.3rem 8px;
-    border-radius: 8px;
-    transition: background 0.2s ease;
-}
-
-body.about-page-custom .timeline-item:hover {
-    background: rgba(58, 64, 231, 0.03);
-}
-
-body.about-page-custom .experience-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-}
-
-/* List Item Flexbox Layout Fix */
-body.about-page-custom .experience-item {
+/* --- Hero --- */
+.about-hero {
     display: flex;
-    align-items: baseline; /* Align text baselines */
-    gap: 0.5rem; /* Small gap */
-    margin-bottom: 0.1rem;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    line-height: 1.5;
-    width: 100%; /* Ensure full width */
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 2rem;
+    background: var(--color-surface-primary);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border-subtle);
+    padding: 24px;
 }
 
-/* Title: No wrapping, bold */
-body.about-page-custom .experience-title {
-    font-weight: 400; /* Or 400 depending on original */
-    white-space: nowrap;
-    color: var(--text-dark);
+.about-photo {
+    width: 170px;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-3xl);
     flex-shrink: 0;
+    background: var(--color-surface-primary);
 }
 
-/* Filler: Dotted line filling available space */
-body.about-page-custom .experience-filler {
-    flex-grow: 1;
-    border-bottom: 1px dotted #aaa; /* Visible dots */
-    margin: 0 0.2rem;
-    height: 1px;
-    position: relative;
-    top: -5px; /* Adjust vertical position to match baseline */
-    opacity: 0.6;
-    min-width: 20px; /* Ensure dots are always visible */
-    display: block !important; /* Force show */
-}
-
-/* Description: Optional middle part */
-body.about-page-custom .experience-description {
-    color: var(--text-medium);
-    white-space: nowrap;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-}
-
-/* Date: Right aligned */
-body.about-page-custom .experience-date {
-    font-size: 0.65rem; /* Smaller date */
-    color: var(--text-medium);
-    white-space: nowrap;
-    flex-shrink: 0;
-    text-align: right;
-}
-
-/* Intro Section */
-body.about-page-custom .bio-intro {
-    margin-bottom: 3rem;
-}
-
-body.about-page-custom .bio-intro p {
-    font-size: 1.25rem;
-    font-weight: 400;
-    line-height: 1.5 !important;
-    color: var(--text-dark);
-    margin: 0;
-    letter-spacing: -0.01em;
+.about-hero-info {
+    flex: 1;
     text-align: left;
 }
 
-body.about-page-custom .bio-intro .highlight {
-    font-size: 1.25rem !important;
-    color: var(--text-dark);
-    font-weight: 600;
+.about-name {
+    font-size: var(--text-6xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0 0 4px;
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
 }
 
-/* ============================================
-   PROJECT GRID
-   ============================================ */
-
-body.about-page-custom .project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin: 1.5rem 0;
+.about-role {
+    font-size: var(--text-base);
+    color: var(--gray-400);
+    margin: 0 0 8px;
+    font-weight: var(--weight-regular);
 }
 
-body.about-page-custom .project-category {
-    margin-bottom: 1rem;
+.about-icons {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+    margin-bottom: 12px;
+
+    a {
+        color: var(--gray-600);
+        font-size: var(--text-lg);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        &:hover {
+            color: var(--color-primary);
+            transform: translateY(-2px) scale(1.15);
+        }
+    }
 }
 
-body.about-page-custom .project-items {
-    list-style: none;
-    padding: 0;
+.about-bio {
+    font-size: var(--text-base-plus);
+    line-height: 1.65;
+    color: var(--gray-700);
     margin: 0;
+
+    strong {
+        color: var(--gray-900);
+        font-weight: var(--weight-semibold);
+    }
 }
 
-body.about-page-custom .project-items li {
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    margin-bottom: 0.4rem;
+/* --- Main Grid --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.6fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.about-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.about-card {
+    background: var(--color-surface-primary);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border-subtle);
+    padding: 16px 18px;
+}
+
+.about-card > .card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0;
+    color: var(--color-text-primary);
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.about-card > .card-title-main {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 14px;
+    line-height: 1.4;
+}
+
+/* --- News --- */
+.news-item {
+    font-size: var(--text-base);
+    color: var(--gray-700);
+    padding: 5px 0;
     line-height: 1.5;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+
+    &:last-child { border-bottom: none; }
 }
 
-/* ============================================
-   NEW NAVIGATION LINKS (Compact Style)
-   ============================================ */
-
-body.about-page-custom .about-navigation-links {
-    margin-top: 3.5rem !important;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    padding-top: 2rem;
+.news-date {
+    font-size: var(--text-xs-plus);
+    font-weight: var(--weight-semibold);
+    color: var(--color-primary-tint-55);
+    margin-right: 6px;
+    font-variant-numeric: tabular-nums;
 }
 
-body.about-page-custom .nav-link-section {
-    margin-bottom: 2rem !important;
+/* --- Experience --- */
+.about-exp .exp-item {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    &:last-child { border-bottom: none; }
 }
 
-body.about-page-custom .nav-link-section h4 {
-    font-size: 1.05rem !important;
-    margin: 0 0 0.4rem 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    line-height: 1.3 !important;
+.exp-role {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    line-height: var(--leading-snug);
 }
 
-body.about-page-custom .nav-link-section p {
-    font-size: 0.85rem !important;
-    color: #666 !important;
-    margin: 0 !important;
-    line-height: 1.5 !important;
-    max-width: 650px; /* 너무 길어지지 않게 제한 */
+.exp-where {
+    font-size: var(--text-sm-plus);
+    color: var(--gray-500);
+    margin-top: 1px;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.about-hero { opacity: 0; animation: fadeIn 0.45s ease-out 0s forwards; }
+.about-news { opacity: 0; animation: fadeIn 0.45s ease-out 0.1s forwards; }
+.about-exp { opacity: 0; animation: fadeIn 0.45s ease-out 0.15s forwards; }
+.about-interests { opacity: 0; animation: fadeIn 0.45s ease-out 0.2s forwards; }
+.about-pubs { opacity: 0; animation: fadeIn 0.45s ease-out 0.15s forwards; }
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr 2fr;
+        gap: 16px;
+    }
 }
 
 @media (max-width: 768px) {
-    body.about-page-custom .project-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    /* Add background color to navbar on mobile to prevent overlap */
-    nav.navbar {
-        background-color: white !important;
-    }
-    
-    /* Reset main container overflow and ensure proper width */
-    body.about-page-custom {
-        overflow-x: hidden !important;
-        width: 100% !important;
-        position: relative;
-    }
-    
-    body.about-page-custom .site-content {
-        overflow-x: hidden !important;
-        width: 100% !important;
-    }
-    
-    body.about-page-custom .container {
-        overflow-x: hidden !important;
-        padding-right: 15px !important; /* Restore standard padding */
-        padding-left: 15px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-    
-    /* Ensure experience items don't overflow */
-    body.about-page-custom .experience-item {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box;
-        flex-direction: column !important; /* Force column layout */
-        align-items: flex-start !important;
-        white-space: normal !important; /* Force normal whitespace on container */
-    }
-    
-    body.about-page-custom .experience-title,
-    body.about-page-custom .experience-description,
-    body.about-page-custom .experience-date {
-        width: 100% !important;
-        white-space: normal !important; /* Force wrap */
-        word-wrap: break-word !important; /* Legacy support */
-        overflow-wrap: break-word !important; /* Modern support */
-        word-break: break-word !important; /* Break long words if needed */
-        max-width: 100% !important;
+    body.about-page-custom { overflow-x: hidden; }
+    body.about-page-custom .site-content > .container { padding: 0; }
+    nav.navbar { background-color: white !important; /* Bootstrap CDN override */ }
+
+    .about-page {
+        padding: 1rem 16px 2rem;
     }
 
-    body.about-page-custom .experience-title a {
-        display: inline; /* Change from inline-block to allow better wrapping */
-        white-space: normal !important;
-        overflow-wrap: break-word !important;
-        word-wrap: break-word !important;
+    .about-hero {
+        gap: 16px;
+        margin-bottom: 1.5rem;
     }
+
+    .about-photo { width: 110px; }
+    .about-name { font-size: var(--text-4xl); }
+    .about-role { font-size: 0.82rem; }
+    .about-bio { font-size: var(--text-base-minus); }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .about-card { padding: 14px 16px; }
+}
+
+@media (max-width: 400px) {
+    .about-hero {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .about-icons { justify-content: center; }
+    .about-bio { text-align: left; }
+    .about-name { font-size: var(--text-3xl); }
+    .about-photo { width: 110px; }
 }

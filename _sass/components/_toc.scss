@@ -1,0 +1,348 @@
+/* ============================================
+   FILE: components/_toc.scss
+   PURPOSE: Table of contents — inline TOC, sidebar TOC, detail TOC
+   DEPENDS ON: tokens/colors, tokens/typography
+   USED BY: _layouts/post.html, _layouts/project.html
+   KEY CLASSES: .toc, .sidebar-toc, .detail-toc, .detail-toc-inline
+   ============================================ */
+
+/* --- TOC (mediumish legacy) --- */
+.toc ul {
+    list-style: decimal;
+    font-weight: var(--weight-regular);
+}
+
+/* --- 1. Main Content TOC --- */
+.toc {
+    background-color: var(--color-surface-tertiary);
+    border: 1px solid var(--gray-25);
+    padding: 1.5rem 2rem;
+    border-radius: 0;
+    color: var(--gray-500);
+    box-shadow: none;
+    margin-bottom: 3rem;
+}
+
+.toc h3 {
+    margin-top: 0;
+    font-size: var(--text-xl-plus);
+    color: var(--gray-700);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--weight-bold);
+}
+
+/* Prevent TOC header from getting numbered */
+.toc h3::before {
+    content: none !important; /* Bootstrap CDN override — counter content */
+}
+
+.toc ol {
+    list-style: none;
+    counter-reset: item;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.toc li {
+    margin-bottom: 0.4rem;
+}
+
+.toc li a {
+    color: var(--gray-500);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.toc li a:hover {
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-text-primary);
+    text-decoration: none;
+}
+
+/* Level 1: 1. 2. 3. */
+.toc > ol > li {
+    counter-increment: item;
+    font-weight: var(--weight-semibold);
+    margin-top: 0.8rem;
+    font-size: var(--text-md);
+}
+
+.toc > ol > li::before {
+    content: counter(item) ". ";
+    color: var(--gray-150);
+    font-weight: var(--weight-regular);
+    margin-right: 0.4rem;
+}
+
+/* Level 2: 1.1. 1.2. */
+.toc > ol > li > ol {
+    counter-reset: subitem;
+    padding-left: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.toc > ol > li > ol > li {
+    counter-increment: subitem;
+    font-weight: var(--weight-regular);
+    font-size: var(--text-base-plus);
+    margin-top: 0.3rem;
+    padding-left: 1rem;
+    text-indent: -1rem;
+}
+
+.toc > ol > li > ol > li::before {
+    content: counter(item) "." counter(subitem) ". ";
+    color: var(--gray-100);
+    margin-right: 0.3rem;
+    font-size: var(--text-base);
+}
+
+/* Level 3: 1.1.1. 1.1.2. */
+.toc > ol > li > ol > li > ol {
+    counter-reset: subsubitem;
+    padding-left: 1.5rem;
+}
+
+.toc > ol > li > ol > li > ol > li {
+    counter-increment: subsubitem;
+    font-size: var(--text-base);
+}
+
+.toc > ol > li > ol > li > ol > li::before {
+    content: counter(item) "." counter(subitem) "." counter(subsubitem) ". ";
+    color: var(--gray-75);
+    margin-right: 0.3rem;
+}
+
+/* --- 2. Sidebar TOC --- */
+.sidebar-toc {
+    padding-left: 0;
+    counter-reset: sidebar-toc-item;
+}
+
+.sidebar-toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+/* 1st Level */
+.sidebar-toc .toc-list > ul > li {
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    counter-increment: sidebar-toc-item;
+}
+
+.sidebar-toc .toc-list > ul > li > a {
+    color: var(--color-text-secondary);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base-plus);
+    display: block;
+    line-height: 1.4;
+    border-left: none;
+    padding-left: 0;
+    transition: all 0.2s ease;
+}
+
+.sidebar-toc .toc-list > ul > li > a::before {
+    content: none;
+}
+
+/* Active State - Level 1 */
+.sidebar-toc .toc-list > ul > li > a.active {
+    color: var(--color-primary);
+    font-weight: var(--weight-extrabold);
+}
+
+.sidebar-toc .toc-list > ul > li > a.active::before {
+    color: var(--color-primary);
+    font-weight: var(--weight-extrabold);
+}
+
+/* 2nd Level */
+.sidebar-toc .toc-list > ul > li > ul {
+    display: none;
+    margin-top: 0.5rem;
+    padding-left: 0;
+    position: relative;
+    margin-left: 15px;
+    border-left: 1px solid var(--color-border-light);
+    counter-reset: sidebar-toc-subitem;
+}
+
+.sidebar-toc .toc-list > ul > li.active-li > ul {
+    display: block;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li {
+    margin-bottom: 0.3rem;
+    position: relative;
+    counter-increment: sidebar-toc-subitem;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > a {
+    color: var(--color-text-tertiary);
+    font-size: var(--text-sm-plus);
+    font-weight: var(--weight-regular);
+    display: block;
+    line-height: 1.3;
+    transition: all 0.2s;
+    padding-left: 15px;
+    position: relative;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > a::before {
+    content: none;
+}
+
+/* Active Indicator - Level 2 */
+.sidebar-toc .toc-list > ul > li > ul > li > a.active {
+    color: var(--color-text-primary);
+    font-weight: var(--weight-semibold);
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > a.active::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-primary);
+}
+
+/* 3rd Level */
+.sidebar-toc .toc-list > ul > li > ul > li > ul {
+    margin-top: 0.3rem;
+    padding-left: 0;
+    position: relative;
+    border-left: 1px solid var(--color-border-light);
+    margin-left: 25px;
+    counter-reset: sidebar-toc-subsubitem;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li {
+    margin-bottom: 0.2rem;
+    counter-increment: sidebar-toc-subsubitem;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a {
+    color: var(--color-text-tertiary);
+    font-size: var(--text-sm);
+    padding-left: 15px;
+    display: block;
+    position: relative;
+    line-height: 1.25;
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a::before {
+    content: none;
+}
+
+/* Active Indicator - Level 3 */
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a.active {
+    color: var(--color-text-primary);
+    font-weight: var(--weight-semibold);
+}
+
+.sidebar-toc .toc-list > ul > li > ul > li > ul > li > a.active::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-primary);
+}
+
+/* Hover States */
+.sidebar-toc a:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* Hide nested bullets - fallback */
+.sidebar-toc ul li::before {
+    content: none;
+    display: none;
+}
+
+/* --- 3. Detail Sidebar TOC --- */
+.detail-toc {
+    font-size: var(--text-sm-plus);
+
+    .toc-list,
+    ul,
+    ol {
+        list-style: none;
+        list-style-type: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    li {
+        list-style: none;
+        list-style-type: none;
+        margin-bottom: 0.4rem;
+        margin-left: 0;
+        padding-left: 0;
+
+        &::before {
+            content: none;
+            display: none;
+        }
+    }
+
+    a {
+        display: block;
+        color: var(--gray-400);
+        text-decoration: none;
+        padding-left: 0.75rem;
+        line-height: 1.3;
+        transition: all 0.2s ease;
+        border-left: 2px solid transparent;
+
+        &:hover {
+            color: var(--gray-900);
+            text-decoration: none;
+        }
+
+        &.active {
+            color: var(--gray-900);
+            font-weight: var(--weight-bold);
+            border-left-color: var(--gray-900);
+        }
+    }
+
+    .toc-sub-list {
+        padding-left: 0.75rem;
+
+        a {
+            font-size: var(--text-sm);
+            color: var(--gray-200);
+        }
+    }
+}
+
+/* --- 4. Inline TOC (Mobile) --- */
+.detail-toc-inline {
+    background-color: var(--color-surface-tertiary);
+    border: 1px solid var(--gray-25);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+
+    h3 {
+        margin-top: 0;
+        font-size: var(--text-md);
+        font-weight: var(--weight-bold);
+        color: var(--gray-700);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
+    }
+}

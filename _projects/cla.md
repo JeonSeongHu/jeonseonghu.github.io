@@ -1,10 +1,10 @@
 ---
 layout: project
-type: publication
+type: project
 title: "Revisiting Flow-Conditioned Motion Transfer via Pseudo-Flow and Consecutive Local Attention"
 short_title: "CLA"
 description: "A novel framework that redefines motion guidance in video diffusion by extracting 'pseudo-flow' from 2D attention layers, enabling more interpretable and robust motion transfer."
-image: "https://picsum.photos/seed/cla/800/600"
+image: ""
 authors: "Seonghu Jeon, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim†"
 venue: "IEIE 2025 Undergraduate Paper Competition (Excellence Award)"
 date: 2025-12-01
@@ -13,7 +13,7 @@ link: ""
 ---
 
 
-## Introduction
+# Introduction
 
 In video generation, motion is not merely a visual change but a form of structural consistency that must be preserved over time for scenes and objects. Frame-level realism alone is insufficient; object positions, shape continuity, and the direction and magnitude of movement must remain logically connected across time. As a result, video generation presents far more complex constraints than image generation.
 
@@ -25,7 +25,7 @@ This work revisits flow-based perspectives within modern diffusion architectures
 
 ---
 
-## Motivation
+# Motivation
 
 This study originated from a detailed analysis of Diffusion Motion Transfer (DMT). DMT attracted attention by preserving motion during sampling while keeping a pre-trained text-to-video diffusion model fixed. Notably, it avoids external motion estimators by defining motion through internal spatio-temporal features of the model.
 
@@ -39,7 +39,7 @@ This paper addresses the second concern. We build upon DMT’s framework while e
 
 ---
 
-## DMT
+# DMT
 
 DMT begins with the assumption that motion information is already embedded in the spatio-temporal representations learned by diffusion models. This allows motion preservation without learning new representations or injecting external conditions.
 
@@ -55,7 +55,7 @@ Overall, DMT operates by inserting optimization steps into the diffusion samplin
 
 ---
 
-## Limitations
+# Limitations
 
 Despite its contributions, DMT exhibits several structural limitations.
 
@@ -67,7 +67,7 @@ Finally, some subsequent approaches rely on 3D or spatio-temporal attention mech
 
 ---
 
-## Method
+# Method
 
 To address these limitations, we propose extracting pseudo-flow representations that explicitly encode frame-to-frame displacement. The key insight is that even in 2D self-attention architectures without explicit temporal interaction, flow-like information can be induced through minimal structural modification.
 
@@ -79,7 +79,7 @@ Using these constrained attention weights, we compute expected target coordinate
 
 ---
 
-## Sampling
+# Sampling
 
 Once pseudo-flow is defined, it can be used to guide diffusion sampling. Pseudo-flow is extracted from a reference video using the same mechanism, and a loss is defined between the reference flow and the flow computed from the generated video.
 
@@ -89,7 +89,7 @@ Empirically, we find that short DDIM inversion schedules suffice for stable appe
 
 ---
 
-## Experiments
+# Experiments
 
 Evaluation is conducted using the ReMoTE benchmark. Compared with existing motion transfer methods, the proposed approach demonstrates strong motion alignment and structural consistency, particularly in intra-category settings.
 
@@ -97,7 +97,7 @@ Visual inspection further confirms that the local correspondence constraint subs
 
 ---
 
-## Conclusion
+# Conclusion
 
 This work revisits how motion should be defined and utilized in diffusion-based motion transfer. Building upon DMT’s framework, we redefine motion as an explicit displacement field rather than a statistical feature difference, while maintaining compatibility with 2D attention architectures.
 

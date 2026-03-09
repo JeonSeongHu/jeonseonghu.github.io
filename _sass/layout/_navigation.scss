@@ -1,43 +1,29 @@
 /* ============================================
-   NAVIGATION STYLING
+   FILE: layout/_navigation.scss
+   PURPOSE: Navigation bar — desktop centered menu, mobile collapse
+   DEPENDS ON: tokens/colors, tokens/typography
+   USED BY: _layouts/default.html
+   KEY CLASSES: .mediumnavigation, .navbar-brand, .navbar-nav,
+                .nav-link, .main-menu
    ============================================ */
 
 .mediumnavigation {
-    background: #ffffff !important;
+    background: var(--color-surface-primary) !important; /* Bootstrap CDN override */
     backdrop-filter: none;
-    box-shadow: none !important;
-    padding-top: 0.0rem !important;
-    padding-bottom: 0.0rem !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    min-height: auto !important;
-    z-index: 1030 !important; /* Ensure nav is above other content */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Ensure nav is always visible on mobile */
-@media (max-width: 991px) {
-    .mediumnavigation {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        z-index: 1030 !important;
-    }
-    
-    .mediumnavigation.nav-up {
-        top: 0 !important; /* Override JavaScript hiding on mobile */
-    }
+    box-shadow: none !important; /* Bootstrap CDN override */
+    padding: 0 !important; /* Bootstrap CDN override */
+    min-height: auto !important; /* Bootstrap CDN override */
+    z-index: 1030 !important; /* Bootstrap CDN override */
+    border-bottom: 1px solid var(--color-border-light) !important; /* Bootstrap CDN override */
 }
 
 .navbar-brand {
-    font-weight: 500 !important;
-    font-size: 0.95rem !important;
-    color: var(--text-dark) !important;
+    font-weight: var(--weight-medium) !important; /* Bootstrap CDN override */
+    font-size: var(--text-base-plus) !important; /* Bootstrap CDN override */
+    color: var(--color-text-primary) !important; /* Bootstrap CDN override */
     letter-spacing: -0.5px;
-    padding-left: 1rem !important;
-    padding-right: 0 !important;
+    padding-left: 1rem !important; /* Bootstrap CDN override */
+    padding-right: 0 !important; /* Bootstrap CDN override */
 }
 
 .mediumnavigation .container,
@@ -46,57 +32,134 @@ nav.mediumnavigation .container,
 nav.mediumnavigation .container.pr-0,
 .navbar .container,
 .navbar .container.pr-0 {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
+    padding-left: 0 !important; /* Bootstrap CDN override */
+    padding-right: 0 !important; /* Bootstrap CDN override */
+    margin-left: 0 !important; /* Bootstrap CDN override */
+    margin-right: 0 !important; /* Bootstrap CDN override */
+    max-width: 100% !important; /* Bootstrap CDN override */
+    width: 100% !important; /* Bootstrap CDN override */
 }
 
 .mediumnavigation .navbar-collapse {
-    padding-right: 0 !important;
+    padding-right: 0;
 }
 
-.mediumnavigation .navbar-nav {
-    padding-right: 0 !important;
-    display: flex;
-    align-items: center; /* Vertically center all items */
-}
-
-/* Increased specificity to override Bootstrap defaults consistently */
-.navbar-expand-lg .navbar-nav .nav-link,
+/* Nav link styling */
 .mediumnavigation .navbar-nav .nav-link {
-    font-weight: 500 !important;
-    color: var(--text-medium) !important;
-    font-size: 0.95rem;
-    padding: 0.6rem 1.2rem !important; /* Adjusted padding */
+    font-weight: var(--weight-medium);
+    color: var(--color-text-secondary);
+    font-size: var(--text-base-plus);
+    padding: 0.6rem 1.2rem;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    justify-content: center; /* Horizontally center text */
-    height: 100%;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link:hover,
 .mediumnavigation .navbar-nav .nav-link:hover {
-    color: var(--primary) !important;
-    background: rgba(58, 64, 231, 0.05);
+    color: white !important; /* Override global a:hover !important */
+    background: var(--color-primary);
+    border-radius: var(--radius-md);
+    text-decoration: none;
 }
 
-/* Centered Navigation with Dots for Desktop */
-@media (min-width: 992px) {
-    .mediumnavigation .navbar-collapse {
-        /* Removed justify-content: center; handled by absolute positioning */
+/* ============================================
+   MOBILE NAVIGATION (below 992px)
+   ============================================ */
+@media (max-width: 991px) {
+    .mediumnavigation {
+        position: fixed !important; /* Bootstrap CDN override */
+        top: 0 !important; /* Bootstrap CDN override */
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1030;
     }
 
-    /* Absolutely position the main menu in the exact center */
+    .mediumnavigation.nav-up {
+        top: 0;
+    }
+
+    .navbar-collapse.collapse:not(.show) {
+        display: none !important; /* Bootstrap CDN override — force collapse */
+    }
+
+    .navbar-collapse.collapse.show,
+    .navbar-collapse.collapsing {
+        display: block !important; /* Bootstrap CDN override — force show */
+    }
+
+    .mediumnavigation .navbar-collapse {
+        background: var(--color-surface-primary);
+        border-top: 1px solid var(--color-border-subtle);
+        padding: 0.5rem 0;
+    }
+
+    .mediumnavigation .navbar-nav {
+        flex-direction: column;
+        align-items: stretch;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .mediumnavigation .navbar-nav .nav-item {
+        list-style: none;
+    }
+
+    .mediumnavigation .navbar-nav .nav-item::after {
+        content: none;
+    }
+
+    .mediumnavigation .navbar-nav .nav-link {
+        justify-content: flex-start;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .mediumnavigation .navbar-nav:not(.main-menu) {
+        border-top: 1px solid var(--color-border-subtle);
+        padding-top: 0.5rem;
+    }
+
+    .mediumnavigation .form-inline {
+        margin: 0.5rem 1rem;
+    }
+
+    .mediumnavigation .form-control {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* ============================================
+   DESKTOP NAVIGATION (992px+)
+   ============================================ */
+@media (min-width: 992px) {
+    .mediumnavigation .navbar-brand.d-lg-none {
+        display: none;
+    }
+
+    .mediumnavigation .navbar-toggler {
+        display: none;
+    }
+
+    .mediumnavigation .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .mediumnavigation .navbar-nav .nav-link {
+        justify-content: center;
+        height: 100%;
+    }
+
     .mediumnavigation .navbar-nav.main-menu {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        flex-direction: row !important; /* Ensure row direction */
-        flex-wrap: nowrap !important;   /* Prevent wrapping */
+        flex-direction: row;
+        flex-wrap: nowrap;
     }
 
     .mediumnavigation .navbar-nav .nav-item {
@@ -104,29 +167,26 @@ nav.mediumnavigation .container.pr-0,
         align-items: center;
     }
 
-    /* Add dots after Brand and Home items in the MAIN MENU only */
+    /* Dot separators after Brand and Home */
     .mediumnavigation .navbar-nav.main-menu .nav-item:nth-child(1):after,
     .mediumnavigation .navbar-nav.main-menu .nav-item:nth-child(2):after {
-        content: "·";
-        color: var(--text-medium);
+        content: "\B7";
+        color: var(--color-text-secondary);
         font-weight: bold;
         margin: 0 0.2rem;
     }
 
-    /* Adjust link padding for centered look */
     .mediumnavigation .navbar-nav.main-menu .nav-link {
-        padding-left: 0.8rem !important;
-        padding-right: 0.8rem !important;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
     }
 
-    /* Brand link color */
     .mediumnavigation .navbar-nav.main-menu .nav-item:first-child .nav-link {
-        color: var(--text-dark) !important;
+        color: var(--color-text-primary);
     }
 
-    /* Ensure search is pushed to the right */
     .mediumnavigation .navbar-nav:not(.main-menu) {
         margin-left: auto;
-        flex-direction: row !important;
+        flex-direction: row;
     }
 }

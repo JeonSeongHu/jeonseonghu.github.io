@@ -6,9 +6,14 @@
     "paste": "node paste-image.js"
   },
   "dependencies": {
-    "clipboardy": "^3.0.0"
+    "clipboardy": "^3.0.0",
+    "playwright": "^1.58.2"
   },
-  "devDependencies": {},
-  "keywords": ["jekyll", "markdown", "image", "clipboard"],
+  "keywords": [
+    "jekyll",
+    "markdown",
+    "image",
+    "clipboard"
+  ],
   "author": "jeonseonghu"
-} 
+}

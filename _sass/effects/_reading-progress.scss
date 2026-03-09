@@ -1,0 +1,18 @@
+/* ============================================
+   FILE: effects/_reading-progress.scss
+   PURPOSE: Reading progress bar at top of page
+   DEPENDS ON: tokens/colors
+   USED BY: _layouts/post.html, _layouts/project.html
+   KEY CLASSES: #read-progress
+   ============================================ */
+
+#read-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--color-primary);
+    z-index: 2000;
+    transition: width 0.15s ease-out;
+}

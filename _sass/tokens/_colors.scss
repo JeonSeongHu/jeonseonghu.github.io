@@ -1,0 +1,90 @@
+/* ============================================
+   FILE: tokens/_colors.scss
+   PURPOSE: Color palette and semantic color tokens
+   DEPENDS ON: nothing (root-level definitions)
+   USED BY: all component, layout, and page files
+   KEY CLASSES: :root custom properties
+   ============================================ */
+
+:root {
+    /* --- Raw Palette (cool blue, shifted from purple-indigo hue 238 → blue hue 222) --- */
+    --color-indigo-600: #2d52b0;
+    --color-indigo-500: #3d65c4;
+    --color-indigo-400: #3560d8;
+    --color-indigo-300: #8aa4f2;
+    --color-indigo-100: #bed2f6;
+
+    /* --- Semantic: Primary --- */
+    --color-primary: var(--color-indigo-600);
+    --color-primary-hover: var(--color-indigo-400);
+    --color-primary-light: var(--color-indigo-100);
+    --color-accent: var(--color-indigo-500);
+
+    /* --- Primary Tints (unified RGB base: 45, 82, 176) --- */
+    --color-primary-tint-3: rgba(45, 82, 176, 0.03);
+    --color-primary-tint-4: rgba(45, 82, 176, 0.04);
+    --color-primary-tint-5: rgba(45, 82, 176, 0.05);
+    --color-primary-tint-6: rgba(45, 82, 176, 0.06);
+    --color-primary-tint-7: rgba(45, 82, 176, 0.07);
+    --color-primary-tint-8: rgba(45, 82, 176, 0.08);
+    --color-primary-tint-10: rgba(45, 82, 176, 0.1);
+    --color-primary-tint-18: rgba(45, 82, 176, 0.18);
+    --color-primary-tint-20: rgba(45, 82, 176, 0.2);
+    --color-primary-tint-30: rgba(45, 82, 176, 0.3);
+    --color-primary-tint-55: rgba(45, 82, 176, 0.55);
+    --color-primary-tint-68: rgba(190, 210, 246, 0.4);
+
+    /* --- Text (subtle cool tint) --- */
+    --color-text-primary: #161a22;
+    --color-text-secondary: #5e6878;
+    --color-text-tertiary: #8c95a4;
+
+    /* --- Surfaces (cool-tinted neutrals) --- */
+    --color-surface-primary: #ffffff;
+    --color-surface-secondary: #f6f8fb;
+    --color-surface-tertiary: #f9fafb;
+    --color-surface-quaternary: #f0f3f8;
+
+    /* --- Borders (cool-tinted) --- */
+    --color-border-light: rgba(20, 35, 70, 0.08);
+    --color-border-medium: rgba(20, 35, 70, 0.15);
+    --color-border-heavy: rgba(20, 35, 70, 0.44);
+    --color-border-divider: rgba(20, 35, 70, 0.05);
+    --color-border-subtle: rgba(20, 35, 70, 0.06);
+
+    /* --- Gray Scale (cool blue undertone: R-3, G+0, B+5 from neutral) --- */
+    --gray-900: #0e1116;
+    --gray-800: #1f2227;
+    --gray-700: #303338;
+    --gray-600: #414449;
+    --gray-500: #52555a;
+    --gray-400: #63666b;
+    --gray-300: #74777c;
+    --gray-200: #85888d;
+    --gray-150: #96999e;
+    --gray-100: #a7aaaf;
+    --gray-75: #b8bbc0;
+    --gray-50: #c9ccd1;
+    --gray-25: #ebeef3;
+
+    /* --- Theme (for background effects) --- */
+    --theme-color: var(--color-accent);
+    --theme-color-dark: var(--color-primary);
+    --theme-color-light: var(--color-indigo-300);
+    --theme-bg-dot: var(--color-primary-tint-5);
+
+    /* --- Dot Background Effect (used by mouse-gradient.js) --- */
+    --dot-glow-rgb: 130, 160, 220;    /* Cool blue glow */
+    --dot-color: var(--color-surface-primary);
+
+    /* --- Legacy aliases (bridge from old token names) --- */
+    --primary: var(--color-primary);
+    --primary-hover: var(--color-primary-hover);
+    --light-primary: var(--color-primary-tint-68);
+    --text-dark: var(--color-text-primary);
+    --text-medium: var(--color-text-secondary);
+    --text-light: var(--color-text-tertiary);
+    --bg-white: var(--color-surface-primary);
+    --bg-light: var(--color-surface-secondary);
+    --border-light: var(--color-border-light);
+}

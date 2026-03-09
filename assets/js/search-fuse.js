@@ -73,19 +73,19 @@ function displaySearchResults(results, searchTerm) {
         
         // 간단한 검색어 하이라이트 적용
         const highlightedTitle = simpleHighlight(item.title, searchTerm);
-        const excerptText = item.excerpt || item.content.substring(0, 150) + '...';
+        const excerptText = item.excerpt || (item.content ? item.content.substring(0, 150) + '...' : '');
         const highlightedExcerpt = simpleHighlight(excerptText, searchTerm);
-        
+
         return `
             <li class='lunrsearchresult'>
                 <a href='${item.url}'>
                     <span class='title'>${highlightedTitle}</span>
                     <span class='match-score' style='color: var(--primary); font-size: 0.8rem; font-weight: 600;'>${Math.round(score)}% 일치</span>
-                    
+
                     <span class='body'>${highlightedExcerpt}</span>
-                    
+
                     <span class='url'>${item.url}</span>
-                    ${item.tags.length > 0 ? `<br><span class='tags' style='font-size: 0.7rem; opacity: 0.7;'>태그: ${item.tags.join(', ')}</span>` : ''}
+                    ${item.tags && item.tags.length > 0 ? `<br><span class='tags' style='font-size: 0.7rem; opacity: 0.7;'>태그: ${item.tags.join(', ')}</span>` : ''}
                 </a>
             </li>
         `;

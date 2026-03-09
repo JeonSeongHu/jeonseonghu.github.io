@@ -1,15 +1,20 @@
 /* ============================================
-   ARCHIVE / CATEGORY PAGE TWEAKS
+   FILE: pages/_categories.scss
+   PURPOSE: Archive / category page styling
+   DEPENDS ON: tokens/colors
+   USED BY: _pages/categories.md, _pages/tags.md
+   KEY CLASSES: .other-categories, .category-header,
+                .categories-overview, .categories-detailed
    ============================================ */
 
 .other-categories .card {
-    border: 1px solid var(--border-light) !important;
-    border-radius: 8px !important;
+    border: 1px solid var(--color-border-light) !important; /* Bootstrap CDN override */
+    border-radius: var(--radius-xl) !important; /* Bootstrap CDN override */
 }
 
 .other-categories .card-header {
-    background: var(--bg-light) !important;
-    border-bottom: 1px solid var(--border-light) !important;
+    background: var(--color-surface-secondary) !important; /* Bootstrap CDN override */
+    border-bottom: 1px solid var(--color-border-light) !important; /* Bootstrap CDN override */
 }
 
 @media (max-width: 768px) {
@@ -24,7 +29,6 @@
     }
 
     .categories-detailed .section-title h3 {
-        font-size: 1.3rem;
+        font-size: var(--text-xl-plus);
     }
 }
-

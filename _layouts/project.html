@@ -2,45 +2,41 @@
 layout: default
 ---
 
-<!-- Main Content Container: Left TOC & Links | Right Content -->
-<div class="container project-container-custom">
+<!-- Detail Container -->
+<div class="container detail-container">
     <div class="row">
-        <!-- LEFT SIDEBAR: TOC Only (Sticky) -->
-        <div class="col-lg-2 d-none d-lg-block">
-            <div class="project-left-sidebar sticky-top" style="top: 100px;">
-                <!-- Table of Contents -->
-                <div class="sidebar-block">
-                    <h6 class="sidebar-label">CONTENTS</h6>
-                    <div class="project-toc">
-                        {% include toc_pure_html.html html=content class="toc-list list-unstyled" item_class="toc-item mb-1" submenu_class="toc-sub-list pl-3" %}
-                    </div>
+        <!-- Sidebar: TOC (Desktop only) -->
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="detail-sidebar sticky-top">
+                <a href="{{ site.baseurl }}/projects" class="detail-back-link">← Projects</a>
+                <div class="detail-sidebar-section">
+                    <h6 class="detail-sidebar-label">CONTENTS</h6>
+                    <nav class="detail-toc sidebar-toc">
+                        {% include toc_pure_html.html html=content h_min=1 h_max=3 class="toc-list" item_class="toc-item" submenu_class="toc-sub-list" %}
+                    </nav>
                 </div>
             </div>
         </div>
 
-        <!-- RIGHT MAIN CONTENT -->
-        <div class="col-lg-10 pl-lg-5">
+        <!-- Main Content -->
+        <div class="col-lg-9">
             <div class="post-content project-content-left-aligned">
-                <!-- Project Header (Left Aligned) -->
-                <div class="project-header-section text-start mb-5">
-                    <!-- Publication Badge -->
+                <!-- Project Header -->
+                <div class="detail-header">
                     {% if page.type == "publication" %}
                     <span class="project-type-label mb-2 d-inline-block">Publication</span>
                     {% endif %}
-                    
-                    <!-- Title -->
-                    <h1 class="project-main-title mb-3">{{ page.title }}</h1>
-                    
-                    <!-- Description -->
+
+                    <h1 class="detail-title">{{ page.title }}</h1>
+
                     {% if page.full_title %}
                     <p class="project-full-title mb-4">{{ page.full_title }}</p>
                     {% elsif page.description %}
                     <p class="project-full-title mb-4">{{ page.description }}</p>
                     {% endif %}
-                    
-                    <!-- Compact Meta Info -->
+
+                    <!-- Meta Grid -->
                     <div class="project-meta-grid">
-                        <!-- AUTHORS (Full Width) -->
                         {% if page.authors %}
                         <div class="meta-item mb-2">
                             <span class="meta-label">AUTHORS</span>
@@ -57,8 +53,7 @@ layout: default
                             </span>
                         </div>
                         {% endif %}
-                        
-                        <!-- Row: MY ROLE + VENUE + DATE (Inline) -->
+
                         <div class="meta-row-inline mb-2">
                             {% if page.role %}
                             <div class="meta-inline-item">
@@ -66,41 +61,40 @@ layout: default
                                 <span class="meta-value">{{ page.role }}</span>
                             </div>
                             {% endif %}
-                            
+
                             {% if page.venue %}
                             <div class="meta-inline-item">
                                 <span class="meta-label">VENUE</span>
                                 <span class="meta-value">{{ page.venue }}</span>
                             </div>
                             {% endif %}
-                            
+
                             <div class="meta-inline-item">
                                 <span class="meta-label">DATE</span>
                                 <span class="meta-value">{{ page.date | date: "%B %Y" }}</span>
                             </div>
                         </div>
-                        
-                        <!-- Row: LINKS (if any) -->
+
                         {% if page.link or page.project_link or page.arxiv or page.pdf or page.code %}
                         <div class="meta-item mb-2">
                             <span class="meta-label">LINKS</span>
                             <span class="meta-value meta-links">
-                                {% if page.link and page.link != "#" %}<a href="{{ page.link }}" target="_blank">Paper</a>{% endif %}
-                                {% if page.project_link and page.project_link != "#" %}{% if page.link and page.link != "#" %} · {% endif %}<a href="{{ page.project_link }}" target="_blank">Project Page</a>{% endif %}
-                                {% if page.arxiv and page.arxiv != "#" %}{% if page.link or page.project_link %} · {% endif %}<a href="{{ page.arxiv }}" target="_blank">arXiv</a>{% endif %}
-                                {% if page.pdf and page.pdf != "#" %}{% if page.link or page.project_link or page.arxiv %} · {% endif %}<a href="{{ page.pdf }}" target="_blank">PDF</a>{% endif %}
-                                {% if page.code and page.code != "#" %}{% if page.link or page.project_link or page.arxiv or page.pdf %} · {% endif %}<a href="{{ page.code }}" target="_blank">Code</a>{% endif %}
+                                {% assign has_prev_link = false %}
+                                {% if page.link and page.link != "#" %}<a href="{{ page.link }}" target="_blank">Paper</a>{% assign has_prev_link = true %}{% endif %}
+                                {% if page.project_link and page.project_link != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.project_link }}" target="_blank">Project Page</a>{% assign has_prev_link = true %}{% endif %}
+                                {% if page.arxiv and page.arxiv != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.arxiv }}" target="_blank">arXiv</a>{% assign has_prev_link = true %}{% endif %}
+                                {% if page.pdf and page.pdf != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.pdf }}" target="_blank">PDF</a>{% assign has_prev_link = true %}{% endif %}
+                                {% if page.code and page.code != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.code }}" target="_blank">Code</a>{% endif %}
                             </span>
                         </div>
                         {% endif %}
 
-                        <!-- Tags -->
                         {% if page.tags %}
                         <div class="meta-item mt-4">
-                            <div class="project-tags-inline justify-content-start">
+                            <div class="detail-tags">
                                 {% assign sortedTags = page.tags | sort %}
                                 {% for tag in sortedTags %}
-                                <a href="{{site.baseurl}}/projects/?tag={{ tag | slugify }}" class="project-tag-inline">#{{ tag }}</a>
+                                <a href="{{site.baseurl}}/projects/?tag={{ tag | slugify }}">#{{ tag }}</a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -110,17 +104,23 @@ layout: default
 
                 <!-- Featured Image -->
                 {% if page.image %}
-                <div class="post-featured-image mb-5 shadow-sm rounded overflow-hidden">
+                <div class="detail-featured-image">
                     <img class="featured-image img-fluid w-100" src="{{ page.image }}" alt="{{ page.title }}" style="object-fit: cover;">
                 </div>
                 {% endif %}
 
-                <!-- Content Body -->
+                <!-- Inline TOC (Mobile only) -->
+                <div class="toc mt-4 mb-4 d-lg-none">
+                    <h3 class="font-weight-bold">Contents</h3>
+                    {% include toc.html html=content h_min=1 h_max=3 ordered=true %}
+                </div>
+
+                <!-- Article Content -->
                 <div class="article-post content-body text-start">
                     {{ content }}
                 </div>
 
-                <hr class="article-divider mt-5 mb-5" />
+                <hr class="detail-divider" />
 
                 <!-- Prev/Next Navigation -->
                 <div class="post-navigation">
@@ -129,7 +129,7 @@ layout: default
                         {% assign prev_project = nil %}
                         {% assign next_project = nil %}
                         {% assign found_current = false %}
-                        
+
                         {% for project in sorted_projects %}
                             {% if found_current and next_project == nil %}
                                 {% assign next_project = project %}
@@ -141,7 +141,7 @@ layout: default
                                 {% assign prev_project = project %}
                             {% endunless %}
                         {% endfor %}
-                        
+
                         {% if prev_project %}
                         <a class="nav-previous" href="{{ site.baseurl }}{{ prev_project.url }}">
                             <span class="nav-label">Previous</span>
@@ -169,8 +169,8 @@ layout: default
 <!-- ScrollSpy for Sidebar TOC -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const tocLinks = document.querySelectorAll('.project-toc a');
-        const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3'); 
+        const tocLinks = document.querySelectorAll('.detail-toc a');
+        const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3');
 
         function changeLinkState() {
             let index = sections.length;
@@ -180,8 +180,21 @@ layout: default
                 link.classList.remove('active');
             });
 
+            document.querySelectorAll('.detail-toc .active-li').forEach(li => {
+                li.classList.remove('active-li');
+            });
+
             if (index >= 0 && tocLinks[index]) {
-                tocLinks[index].classList.add('active');
+                const activeLink = tocLinks[index];
+                activeLink.classList.add('active');
+
+                let parent = activeLink.parentElement;
+                while (parent) {
+                    if (parent.tagName === 'LI' && parent.closest('.detail-toc')) {
+                        parent.classList.add('active-li');
+                    }
+                    parent = parent.parentElement;
+                }
             }
         }
 
@@ -189,4 +202,3 @@ layout: default
         window.addEventListener('scroll', changeLinkState);
     });
 </script>
-

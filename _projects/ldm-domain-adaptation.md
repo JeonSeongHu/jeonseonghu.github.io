@@ -4,7 +4,7 @@ type: project
 title: "Latent Diffusion Models for Domain Adaptation"
 short_title: "LDM for DA"
 description: "Finetuned semantic map-conditioned LDMs with ControlNet for unsupervised and unpaired Synthetic-to-Real image translation."
-image: "https://picsum.photos/seed/ldm/800/600"
+image: ""
 date: 2023-08-01
 tags: ["Domain Adaptation", "Diffusion Models", "ControlNet"]
 ---

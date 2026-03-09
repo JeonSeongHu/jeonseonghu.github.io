@@ -1,40 +1,22 @@
 /* ============================================
-   CARDS & CONTENT BLOCKS
+   FILE: components/_cards.scss
+   PURPOSE: Post cards, featured cards, no-image placeholders
+   DEPENDS ON: tokens/colors, tokens/typography, tokens/borders
+              base/_bootstrap-overrides.scss (card reset)
+   USED BY: _includes/postbox.html, _includes/featuredbox.html
+   KEY CLASSES: .listfeaturedtag, .card, .no-image-placeholder,
+                .post-read-more
    ============================================ */
 
-.card {
-    border: 0px solid #000000 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    transition: all 0.3s ease;
-    background: var(--bg-white);
-}
-
-.card:hover {
-    box-shadow: none !important;
-    transform: translateY(-2px);
-    border-color: #333333 !important;
-}
-
-.card-header {
-    background: var(--bg-light) !important;
-    // border-bottom: 1px solid var(--border-light) !important;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-/* ============================================
-   NO IMAGE PLACEHOLDER STYLES
-   ============================================ */
-
+/* --- No-Image Placeholders --- */
 .no-image-placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-light);
-    color: var(--text-light);
+    background: var(--color-surface-secondary);
+    color: var(--color-text-tertiary);
     height: 200px;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--color-border-light);
     transition: all 0.3s ease;
 }
 
@@ -45,10 +27,9 @@
 
 .no-image-placeholder:hover {
     background: rgba(0, 0, 0, 0.05);
-    color: var(--text-medium);
+    color: var(--color-text-secondary);
 }
 
-/* Card specific no-image styles */
 .card .maxthumb .no-image-placeholder {
     height: 200px;
     border-radius: 0;
@@ -59,25 +40,23 @@
     border-radius: 0;
 }
 
-/* When image fails to load, adjust layout */
 .card.no-image .maxthumb,
 .listfeaturedtag.no-image .wrapthumbnail {
     min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-light);
-    border: 1px solid var(--border-light);
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border-light);
 }
 
 .card.no-image .maxthumb::after,
 .listfeaturedtag.no-image .wrapthumbnail::after {
-    content: '📷';
+    content: '\U0001F4F7';
     font-size: 2rem;
     opacity: 0.3;
 }
 
-/* Mobile responsiveness for placeholders */
 @media (max-width: 768px) {
     .no-image-placeholder {
         height: 150px;
@@ -93,97 +72,79 @@
     }
 }
 
-/* ============================================
-   POST CARDS & LAYOUT - UNIFIED STYLE
-   ============================================ */
-
-.mb-30px {
-    margin-bottom: 30px !important;
-}
-
-/* Regular post cards (standalone) */
+/* --- Regular Post Cards --- */
 .card {
-    // border: 1px solid #000000 !important;
-    border-radius: 0 !important;
+    border-radius: var(--radius-none) !important; /* Bootstrap CDN override */
     transition: all 0.3s ease;
     overflow: hidden;
-    background: var(--bg-white);
-    box-shadow: none !important;
+    background: var(--color-surface-primary);
+    box-shadow: var(--shadow-none) !important; /* Bootstrap CDN override */
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-/* Featured post cards (container only) */
+/* --- Featured Post Cards (container) --- */
 .listfeaturedtag {
-    border: 1px solid var(--border-light) !important;
-    border-radius: 0 !important;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-none);
     transition: all 0.3s ease;
     overflow: hidden;
-    background: var(--bg-white);
-    box-shadow: none !important;
+    background: var(--color-surface-primary);
+    box-shadow: var(--shadow-none);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-/* Remove borders from inner cards in featured posts */
+/* Inner cards in featured posts: flat */
 .listfeaturedtag .card {
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
+    border: none !important; /* Bootstrap CDN override */
+    box-shadow: none !important; /* Bootstrap CDN override */
+    background: transparent !important; /* Bootstrap CDN override */
 }
 
-/* Remove ::before from inner cards in featured posts */
 .listfeaturedtag .card::before {
-    display: none !important;
+    display: none;
 }
 
-/* Remove ::before from categories-detailed cards */
+/* Categories-detailed cards: flat */
 .categories-detailed .card::before {
-    display: none !important;
+    display: none;
 }
 
 .categories-detailed .card {
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
+    border: none !important; /* Bootstrap CDN override */
+    box-shadow: none !important; /* Bootstrap CDN override */
+    background: transparent !important; /* Bootstrap CDN override */
 }
 
-/* Hover effects - separate for regular and featured */
-.card:hover {
-    box-shadow: none !important;
-    transform: translateY(-3px);
-    border-color: var(--primary-hover) !important;
-}
-
+/* --- Hover Effects --- */
 .listfeaturedtag:hover {
-    box-shadow: none !important;
-    transform: translateY(-3px);
-    border-color: var(--primary-hover) !important;
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
 }
 
-/* No hover effect for inner cards in featured posts */
 .listfeaturedtag .card:hover {
-    box-shadow: none !important;
-    transform: none !important;
-    border: none !important;
+    box-shadow: none !important; /* Bootstrap CDN override */
+    transform: none !important; /* Bootstrap CDN override */
+    border: none !important; /* Bootstrap CDN override */
 }
 
-/* Featured post specific adjustments */
-.listfeaturedtag {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-}
-
+/* --- Featured Post Layout --- */
 .listfeaturedtag .row {
-    flex-direction: column !important;
-    height: 100% !important;
-    margin: 0 !important;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
 }
 
 .listfeaturedtag .col-12.col-md-12.col-lg-5,
 .listfeaturedtag .col-12.col-md-12.col-lg-7 {
-    flex: none !important;
-    max-width: 100% !important;
-    padding: 0 !important;
+    flex: none;
+    max-width: 100%;
+    padding: 0;
 }
 
 .listfeaturedtag .wrapthumbnail,
@@ -206,63 +167,51 @@
     transform: scale(1.05);
 }
 
-/* Card title styling */
+.featured-box-img-cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
+
+@media (max-width: 991px) {
+    .featured-box-img-cover {
+        height: auto;
+        width: 100%;
+    }
+}
+
+@media (min-width: 576px) {
+    .card-columns.listfeaturedtag {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+/* --- Card Title/Text --- */
 .listfeaturedtag h2.card-title,
 .card h2.card-title {
-    font-size: 1.3rem !important;
-    font-weight: 700 !important;
-    line-height: 1.35 !important;
-    color: var(--text-dark) !important;
-    margin-bottom: 0.75rem !important;
+    font-size: var(--text-xl-plus);
+    font-weight: var(--weight-bold);
+    line-height: 1.35;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
 }
 
 .listfeaturedtag .card-text,
 .card .card-text {
-    color: var(--text-medium) !important;
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    margin-bottom: 1.2rem !important;
+    color: var(--color-text-secondary);
+    font-size: var(--text-base-plus);
+    line-height: var(--leading-loose);
+    margin-bottom: 1.2rem;
 }
 
 .listfeaturedtag .card-footer,
 .card .card-footer {
-    background: transparent !important;
-    border-top: 1px solid var(--border-light) !important;
+    background: transparent !important; /* Bootstrap CDN override */
+    border-top: 1px solid var(--color-border-light);
     margin-top: auto;
-}
-
-.post-read-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    color: var(--text-medium);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.post-read-more svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-    transition: transform 0.3s ease;
-}
-
-.post-read-more:hover {
-    color: var(--primary);
-}
-
-.post-read-more:hover svg {
-    fill: var(--primary-hover);
-    transform: scale(1.1);
-}
-
-/* Ensure both card types have same layout structure */
-.listfeaturedtag .card-group,
-.card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
 }
 
 .listfeaturedtag .card-body,
@@ -271,3 +220,74 @@
     padding: 1.5rem;
 }
 
+.listfeaturedtag .card-group {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Mediumish legacy */
+.listfeaturedtag .card-block {
+    padding-left: 0;
+}
+
+.listfeaturedtag h4.card-text {
+    color: var(--color-border-heavy);
+    font-size: var(--text-base-plus);
+    line-height: var(--leading-loose);
+    font-weight: var(--weight-regular);
+}
+
+.listfeaturedtag .thumbnail {
+    background-size: cover;
+    height: 100%;
+    display: block;
+    background-position: 38% 22%;
+    background-origin: border-box;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.listfeaturedtag .wrapthumbnail {
+    height: 290px;
+    flex: 0 0 auto;
+    height: 100%;
+}
+
+.maxthumb {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.listfeaturedtag .card,
+.card-footer {
+    border: 0;
+}
+
+/* --- Read More --- */
+.post-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--color-text-secondary);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-read-more svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-read-more:hover {
+    color: var(--color-primary);
+    gap: 0.5rem;
+}
+
+.post-read-more:hover svg {
+    fill: var(--color-primary);
+    transform: translateX(3px);
+}

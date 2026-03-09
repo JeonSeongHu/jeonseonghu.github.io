@@ -4,7 +4,7 @@ type: project
 title: "MelitsUp / @tune"
 short_title: "MelitsUp"
 description: "Music recommendation service using VLM and LLM-based lyrics augmentation to match user preferences and context."
-image: "https://picsum.photos/seed/music/800/600"
+image: ""
 date: 2022-09-01
 tags: ["Music RecSys", "LLM", "VLM"]
 ---

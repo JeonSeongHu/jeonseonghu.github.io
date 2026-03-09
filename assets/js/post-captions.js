@@ -13,8 +13,8 @@
 
         images.forEach(img => {
             try {
-                // Skip if already processed or specific UI element
-                if (img.closest('figure') || img.classList.contains('emoji') || img.hasAttribute('data-caption-processed')) return;
+                // Skip if already processed, specific UI element, or inside a link
+                if (img.closest('figure') || img.classList.contains('emoji') || img.hasAttribute('data-caption-processed') || img.closest('a')) return;
 
                 // Mark as processed to avoid double-processing
                 img.setAttribute('data-caption-processed', 'true');

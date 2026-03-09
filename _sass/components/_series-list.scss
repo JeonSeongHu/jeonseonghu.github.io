@@ -1,0 +1,113 @@
+/* ============================================
+   FILE: components/_series-list.scss
+   PURPOSE: Series list block at the bottom of post pages
+   DEPENDS ON: tokens/colors, tokens/typography, tokens/borders
+   USED BY: _includes/series-list.html
+   KEY CLASSES: .series-list, .series-description
+   ============================================ */
+
+.series-list {
+    background: var(--color-surface-primary);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-2xl);
+    padding: 0;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.series-list .section-title {
+    background: var(--color-primary-tint-6);
+    padding: 1rem 1.5rem;
+    margin: 0;
+    border-bottom: 1px solid var(--color-border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.series-list .section-title h2 {
+    font-size: var(--text-base-plus);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.series-list ol {
+    counter-reset: item;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.series-list li {
+    line-height: 1.5;
+    font-size: var(--text-base);
+    padding: 0.85rem 1.5rem;
+    border-bottom: 1px solid var(--color-border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: var(--color-surface-primary);
+    transition: background 0.2s ease;
+}
+
+.series-list li:last-child {
+    border-bottom: none;
+}
+
+.series-list li:hover {
+    background: var(--color-primary);
+}
+
+.series-list li:hover a {
+    color: white !important; /* Override global a:hover !important */
+    text-decoration: none;
+}
+
+.series-list li:hover small {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Active (current) post */
+.series-list li.current-post {
+    background: var(--color-primary-tint-3);
+    border-left: 3px solid var(--color-primary);
+    padding-left: calc(1.5rem - 3px);
+}
+
+.series-list li.current-post span {
+    color: var(--color-primary);
+    font-weight: var(--weight-semibold);
+}
+
+.series-list li a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.series-list li a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.series-list small {
+    font-size: var(--text-sm-minus);
+    color: var(--color-text-tertiary);
+    white-space: nowrap;
+    opacity: 0.8;
+}
+
+.series-description {
+    padding: 0.75rem 1.5rem;
+    font-size: var(--text-sm-plus);
+    color: var(--color-text-secondary);
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid var(--color-border-light);
+    line-height: 1.6;
+}

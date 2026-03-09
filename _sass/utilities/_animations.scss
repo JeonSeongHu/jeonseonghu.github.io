@@ -1,5 +1,9 @@
 /* ============================================
-   ANIMATIONS & INTERACTIONS
+   FILE: utilities/_animations.scss
+   PURPOSE: Shared keyframe animations
+   DEPENDS ON: tokens/transitions
+   USED BY: various components
+   KEY CLASSES: .fade-in-up, @keyframes fadeInUp
    ============================================ */
 
 @keyframes fadeInUp {
@@ -17,15 +21,3 @@
 .fade-in-up {
     animation: fadeInUp 0.6s ease-out;
 }
-
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Focus styles for accessibility */
-*:focus {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-}
-
