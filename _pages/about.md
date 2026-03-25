@@ -36,17 +36,27 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 
 			<div class="about-card about-exp">
 				<h3 class="card-title">Experience</h3>
-				<div class="exp-item">
-					<div class="exp-role">M.S. Student</div>
-					<div class="exp-where">KAIST CVLAB · 2026 -</div>
+				<div class="exp-group">
+					<img class="exp-logo" src="{{ site.baseurl }}/assets/images/about-me/kaist-logo.png" alt="KAIST">
+					<div class="exp-items">
+						<div class="exp-item">
+							<div class="exp-role">M.S. Student</div>
+							<div class="exp-where">KAIST CVLAB · 2026 -</div>
+						</div>
+						<div class="exp-item">
+							<div class="exp-role">Research Intern</div>
+							<div class="exp-where">KAIST CVLAB · 2023 - 2026</div>
+						</div>
+					</div>
 				</div>
-				<div class="exp-item">
-					<div class="exp-role">Research Intern</div>
-					<div class="exp-where">KAIST CVLAB · 2023 - 2026</div>
-				</div>
-				<div class="exp-item">
-					<div class="exp-role">B.S. in Computer Science & Engineering</div>
-					<div class="exp-where">Korea University (4.46/4.50) · 2022 - 2026</div>
+				<div class="exp-group">
+					<img class="exp-logo" src="{{ site.baseurl }}/assets/images/about-me/korea-univ-logo.png" alt="Korea University">
+					<div class="exp-items">
+						<div class="exp-item">
+							<div class="exp-role">B.S. in Computer Science & Engineering</div>
+							<div class="exp-where">Korea University (4.46/4.50) · 2022 - 2026</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
