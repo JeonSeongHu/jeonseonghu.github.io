@@ -8,7 +8,7 @@ description: "We repurpose geometric foundation model features as latent space f
 image: "https://cvlab-kaist.github.io/GLD/assets/img-000.png"
 authors: "Wooseok Jang, Seonghu Jeon, Jisang Han, Jinhyeok Choi, Minkyung Kwon, Seungryong Kim, Saining Xie, Sainan Liu"
 venue: "Under Review, 2026"
-date: 2026-03-28
+date: 2026-03-25
 role: "Research Contributor"
 tags: ["3D Vision", "Diffusion Models", "Generative AI"]
 link: "https://arxiv.org/abs/2603.22275"
