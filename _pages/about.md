@@ -11,7 +11,7 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 <div class="about-page">
 	<div class="about-hero">
 		<div class="about-hero-top">
-			<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa.png" alt="Seonghu Jeon" class="about-photo">
+			<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa_400.png" alt="Seonghu Jeon" class="about-photo" width="400" height="241" loading="lazy">
 			<div class="about-hero-info">
 				<h1 class="about-name">Seonghu Jeon</h1>
 				<p class="about-role">M.S. Student @ KAIST CVLAB</p>

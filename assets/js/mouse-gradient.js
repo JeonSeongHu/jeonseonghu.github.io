@@ -37,13 +37,33 @@
     const WARP_STRENGTH = 30;
     const GRID_ALPHA = 0.12;
 
+    // Skip continuous animation on touch-only devices (mobile)
+    const isTouchOnly = window.matchMedia('(hover: none)').matches;
+
     function init() {
         readThemeColors();
         resize();
         window.addEventListener('resize', resize);
+        if (isTouchOnly) {
+            // Draw static grid once, no animation loop
+            drawStaticGrid();
+            setTimeout(() => { canvas.classList.add('loaded'); }, 100);
+            return;
+        }
         document.addEventListener('mousemove', onMouseMove);
         requestAnimationFrame(animate);
         setTimeout(() => { canvas.classList.add('loaded'); }, 100);
+    }
+
+    function drawStaticGrid() {
+        ctx.strokeStyle = `rgba(${R},${G},${B},${GRID_ALPHA})`;
+        ctx.lineWidth = 0.7;
+        for (let x = 0; x <= width; x += SPACING) {
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+        }
+        for (let y = 0; y <= height; y += SPACING) {
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+        }
     }
 
     function resize() {

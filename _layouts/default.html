@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.active_lang }}">
+<html lang="{{ site.active_lang | default: site.default_lang | default: 'ko' }}">
 
 <head>
     <meta charset="utf-8">
@@ -7,20 +7,26 @@
 
     <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
 
-    <!-- Wanted Sans Font -->
+    <!-- Preconnect to CDNs -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://stackpath.bootstrapcdn.com" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous" />
+
+    <!-- Wanted Sans Font -->
     <link rel="preload" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
 
-    <!-- BookkMyungjo Font -->
+    <!-- GowunBatang Font -->
     <style>
         @font-face {
             font-family: 'GowunBatang-Regular';
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
             font-weight: 400;
             font-style: normal;
+            font-display: swap;
         }
 
         @font-face {
@@ -28,6 +34,7 @@
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Bold.woff') format('woff');
             font-weight: 700;
             font-style: normal;
+            font-display: swap;
         }
     </style>
 
@@ -39,9 +46,8 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
 
 </head>
 
@@ -66,10 +72,6 @@
     <canvas id="bg-canvas"></canvas>
     <!-- Reading progress bar -->
     <div id="read-progress" aria-hidden="true"></div>
-    <!-- defer loading of font and font awesome -->
-    <noscript id="deferred-styles">
-        <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-    </noscript>
 
 
     <!-- Begin Menu Navigation
@@ -172,6 +174,8 @@
 
             <!-- Scripts
 ================================================== -->
+
+            <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
                 integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"

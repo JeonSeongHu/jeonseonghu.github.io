@@ -7,7 +7,7 @@ description: Proposed faster and stable caption generation utilizing Gibbs
   sampling and Masked VLM for zero-shot image captioning.
 authors: Seonghu Jeon, Jiwon Jeong, Byeongwoo Jeon, Seongmin Ko
 role: Project Lead, Idea reification, Experiments, Report
-image: /assets/images/projects/iconzic-image-conditioned-zero-shot-image-captioning/architecture.png
+image: /assets/images/projects/iconzic-image-conditioned-zero-shot-image-captioning/architecture.webp
 tags:
   - NLP
   - VLM
@@ -24,7 +24,7 @@ In this post, I introduce **IConZIC (Image-Conditioned Zero-shot Image Captionin
 ## **The Problem: The "Blind" Initialization of ConZIC**
 
 
-![image-1766233548862.png](/assets/images/posts/image-1766233548862.png)
+![image-1766233548862.webp](/assets/images/posts/image-1766233548862.webp)
 
 The starting point for our research was **ConZIC**, a leading zero-shot model. ConZIC operates by using a pre-trained Masked Language Model (MLM), specifically Gibbs-BERT, to generate caption candidates via iterative sampling.
 
@@ -49,7 +49,7 @@ Unlike BERT, ViLT is trained with an **Image-Conditioned Masked Language Modelin
 ## **How It Works:**
 
 
-![image-1766233660908.png](/assets/images/posts/image-1766233660908.png)
+![image-1766233660908.webp](/assets/images/posts/image-1766233660908.webp)
 
 * 
 **Visual-Aware Sampling:** Instead of starting with random guesses, IConZIC samples words from a distribution conditioned on the image from the very first step.
@@ -68,7 +68,7 @@ We evaluated IConZIC against ConZIC using the MSCOCO validation set, focusing on
 
 **1. Efficiency and Speed**
 
-![image-1766233688363.png](/assets/images/posts/image-1766233688363.png)
+![image-1766233688363.webp](/assets/images/posts/image-1766233688363.webp)
 
 The most significant achievement was the reduction in computational cost. ConZIC typically requires a candidate size of  to achieve optimal performance. In contrast, IConZIC achieved comparable accuracy with just ****.
 
@@ -81,14 +81,14 @@ The most significant achievement was the reduction in computational cost. ConZIC
 
 **2. Robustness**
 
-![image-1766233714512.png](/assets/images/posts/image-1766233714512.png)
+![image-1766233714512.webp](/assets/images/posts/image-1766233714512.webp)
 
 IConZIC demonstrated superior stability across different hyperparameter settings. Even with extreme values for the weighting parameter  (e.g., ), where ConZIC's performance collapsed, our model maintained decent accuracy.
 
 **3. Qualitative Performance on Out-of-Distribution Data**
 
 
-![image-1766233850919.png](/assets/images/posts/image-1766233850919.png)
+![image-1766233850919.webp](/assets/images/posts/image-1766233850919.webp)
 
 
 We tested the model on images that differ significantly from standard photo datasets, such as Minecraft screenshots, anime art, and line drawings. While ConZIC often failed to capture key elements or generated hallucinations in these scenarios, IConZIC consistently produced relevant and grounded captions.
