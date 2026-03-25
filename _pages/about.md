@@ -16,9 +16,11 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 				<h1 class="about-name">Seonghu Jeon</h1>
 				<p class="about-role">M.S. Student @ KAIST CVLAB</p>
 				<div class="about-icons">
-					<a href="mailto:jsh0423@korea.ac.kr" title="Email"><i class="far fa-envelope"></i></a>
-					<a href="https://github.com/JeonSeongHu" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-					<a href="{{ page.linkedin }}" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+					<a href="mailto:jsh0423@korea.ac.kr" class="about-btn"><i class="far fa-envelope"></i><span>Email</span></a>
+					<a href="https://github.com/JeonSeongHu" target="_blank" rel="noopener noreferrer" class="about-btn"><i class="fab fa-github"></i><span>GitHub</span></a>
+					<a href="{{ page.linkedin }}" target="_blank" rel="noopener noreferrer" class="about-btn"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+					<a href="https://scholar.google.com/citations?user=XavKlZQAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer" class="about-btn"><i class="fas fa-graduation-cap"></i><span>Scholar</span></a>
+					<a href="{{ site.baseurl }}/cv" class="about-btn"><i class="far fa-file-alt"></i><span>CV</span></a>
 				</div>
 			</div>
 		</div>

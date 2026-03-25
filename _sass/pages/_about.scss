@@ -98,19 +98,42 @@ body.about-page-custom .article-post { padding: 0; max-width: 100%; }
 
 .about-icons {
     display: flex;
-    gap: 0.9rem;
+    flex-wrap: wrap;
+    gap: 8px;
     align-items: center;
     margin-bottom: 0;
+}
 
-    a {
-        color: var(--gray-600);
-        font-size: var(--text-xl);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        text-decoration: none;
-        &:hover {
-            color: var(--color-primary);
-            transform: translateY(-2px) scale(1.15);
-        }
+.about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: var(--color-bg, #fff);
+    color: var(--gray-500);
+    font-size: 11.5px;
+    font-weight: var(--weight-regular);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+
+    i {
+        font-size: 11px;
+        width: 14px;
+        text-align: center;
+    }
+
+    &::after {
+        content: none !important;
+    }
+
+    &:hover {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+        background: rgba(67, 97, 238, 0.04);
+        transform: translateY(-1px);
     }
 }
 
@@ -194,7 +217,8 @@ body.about-page-custom .article-post { padding: 0; max-width: 100%; }
 }
 
 .exp-logo {
-    width: 52px;
+    width: 56px;
+    max-height: 52px;
     object-fit: contain;
     flex-shrink: 0;
 }
