@@ -1,35 +1,48 @@
-# i18n Setup (ko → en via DeepL)
+# jeonseonghu.github.io
 
-This site uses jekyll-polyglot for language routing and a GitHub Actions workflow to auto-translate Korean markdown to English using DeepL.
+Personal academic blog for **Seonghu Jeon** (M.S. Student @ KAIST CVLAB). Built with Jekyll 4 on a heavily customized Mediumish theme. Bilingual (Korean / English via jekyll-polyglot + DeepL auto-translation).
 
-Setup:
-- Add `DEEPL_API_KEY` to repository Secrets.
-- Default authoring language is Korean. English pages are generated under `/en/`.
-- To skip translation on a file, add `translate: false` in front matter.
+## Quick Start
 
-Local development:
-- English files are created by the workflow; you can also run `.github/workflows/translate.py` locally with `DEEPL_API_KEY` to pre-generate.
+```bash
+# Recommended: starts Jekyll + Decap CMS proxy + image upload server
+./start.sh
 
-# Mediumish - Jekyll Theme
+# Or manually:
+bundle install
+bundle exec jekyll serve --host 0.0.0.0 --port 4000
+```
 
-[Live Demo](https://wowthemesnet.github.io/mediumish-theme-jekyll/) &nbsp; | &nbsp; [Download](https://github.com/wowthemesnet/mediumish-theme-jekyll/archive/master.zip) &nbsp; | &nbsp; [Documentation](https://bootstrapstarter.com/template-mediumish-bootstrap-jekyll/) &nbsp; | &nbsp; [Buy me a coffee](https://www.wowthemes.net/donate/)
+Dev server runs on **http://localhost:4000**.
 
-![mediumish](assets/images/mediumish-jekyll-template.png)
+## Features
 
+- **Bilingual**: Korean (default) + auto-translated English via GitHub Actions + DeepL
+- **Publications & Projects**: Collection-based pages with tag filtering
+- **Blog**: Category/subcategory sidebar filtering, series system, TOC, reading progress
+- **Search**: Client-side full-text search (Fuse.js)
+- **Comments**: Utterances (GitHub Issues-based)
+- **CMS**: Decap CMS at `/admin/` for visual editing
+- **Performance**: WebP image auto-conversion via GitHub Actions, lazy loading, deferred assets
+- **Interactive**: Grid warp background canvas, smooth scroll navigation
 
-### Copyright
+## Architecture
 
-Copyright (C) 2019 Sal, https://www.wowthemes.net
+```
+_posts/          → Blog posts (Korean markdown)
+_projects/       → Projects & publications (type: publication)
+_pages/          → Static pages (about, cv, projects, publications)
+_sass/           → SCSS organized by tokens/base/layout/components/pages/utilities
+assets/          → CSS, JS, images, PDF
+.github/workflows/ → Auto-translate (DeepL), auto-optimize images (WebP)
+admin/           → Decap CMS config
+```
 
-**Mediumish for Jekyll** is designed and developed by [Sal](https://www.wowthemes.net) and it is *free* under MIT license. 
+## Deployment
 
-<a href="https://www.wowthemes.net/donate/" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+- `master` branch → GitHub Pages (auto-deploy)
+- `main` branch → development
 
-### Contribute
+## License
 
-1. [Fork the repo](https://github.com/wowthemesnet/mediumish-theme-jekyll).
-2. Clone a copy of your fork on your local
-3. Create a branch off of master and give it a meaningful name (e.g. my-new-mediumish-feature).
-4. Make necessary changes, commit, push and open a pull request on GitHub.
-
-Thank you!
+Theme based on [Mediumish](https://github.com/wowthemesnet/mediumish-theme-jekyll) by [Sal](https://www.wowthemes.net) (MIT). Site content © Seonghu Jeon.
