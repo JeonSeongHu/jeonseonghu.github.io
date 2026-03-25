@@ -22,7 +22,7 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 				</div>
 			</div>
 		</div>
-		<p class="about-bio">I study the internal reasoning of <strong>generative 3D/4D models</strong> and infuse them with <strong>physical and perceptual priors</strong>, so AI can interpret and interact with dynamic environments more like humans do.</p>
+		<p class="about-bio">I study <strong>3D/4D vision</strong> and <strong>generative models</strong>, exploring how AI can understand and reconstruct dynamic 3D environments and interact with them through <strong>robotics</strong>.</p>
 	</div>
 
 	<div class="about-grid">
@@ -53,10 +53,9 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 			<div class="about-card about-interests">
 				<h3 class="card-title">Research Interests</h3>
 				<div class="interest-tags">
-					<span class="interest-tag">Generative 3D/4D Models</span>
-					<span class="interest-tag">Physical Priors</span>
-					<span class="interest-tag">Perceptual Alignment</span>
-					<span class="interest-tag">Flow Matching</span>
+					<span class="interest-tag">3D/4D Vision</span>
+					<span class="interest-tag">Generative Models</span>
+					<span class="interest-tag">Robotics</span>
 				</div>
 			</div>
 		</div>
