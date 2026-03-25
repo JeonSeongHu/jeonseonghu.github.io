@@ -6,9 +6,9 @@ short_title: "GLD"
 full_title: "Repurposing Geometric Foundation Models for Multi-view Diffusion"
 description: "We repurpose geometric foundation model features as latent space for multi-view diffusion, achieving 4.4× faster training convergence and zero-shot geometry decoding."
 image: "https://cvlab-kaist.github.io/GLD/assets/img-000.png"
-authors: "Wooseok Jang*, Seonghu Jeon*, Jisang Han, Jinhyeok Choi, Minkyung Kwon, Seungryong Kim, Saining Xie, Sainan Liu"
-venue: "arXiv 2025"
-date: 2025-03-28
+authors: "Wooseok Jang, Seonghu Jeon, Jisang Han, Jinhyeok Choi, Minkyung Kwon, Seungryong Kim, Saining Xie, Sainan Liu"
+venue: "Under Review, 2026"
+date: 2026-03-28
 role: "Research Contributor"
 tags: ["3D Vision", "Diffusion Models", "Generative AI"]
 link: "https://arxiv.org/abs/2603.22275"
