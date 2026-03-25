@@ -11,7 +11,7 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 <div class="about-page">
 	<div class="about-hero">
 		<div class="about-hero-top">
-			<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa_400.png" alt="Seonghu Jeon" class="about-photo" width="400" height="241" loading="lazy">
+			<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa_400.png" alt="Seonghu Jeon" class="about-photo" width="190" height="241" loading="lazy">
 			<div class="about-hero-info">
 				<h1 class="about-name">Seonghu Jeon</h1>
 				<p class="about-role">M.S. Student @ KAIST CVLAB</p>
@@ -31,9 +31,9 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 		<div class="about-left">
 			<div class="about-card about-news">
 				<h3 class="card-title">News</h3>
-				<div class="news-item"><span class="news-date">2026.03</span>Started M.S. at KAIST CVLAB</div>
-				<div class="news-item"><span class="news-date">2026.02</span>One paper accepted to CVPR 2026</div>
-		<div class="news-item"><span class="news-date">2025.07</span>ReMoTE accepted to ITC-CSCC (Oral)</div>
+				<div class="news-item"><span class="news-date">2026.03</span>Joined KAIST CVLAB as an M.S. student!</div>
+				<div class="news-item"><span class="news-date">2026.02</span>CAMEO accepted to CVPR 2026</div>
+				<div class="news-item"><span class="news-date">2025.07</span>ReMoTE accepted to ITC-CSCC as Oral presentation</div>
 			</div>
 
 			<div class="about-card about-exp">
