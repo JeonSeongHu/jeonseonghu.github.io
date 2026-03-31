@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About Me
-permalink: /about-me
+permalink: /
 comments: false
 custom_css_class: about-page-custom
 github: https://github.com/JeonSeongHu
@@ -56,7 +56,7 @@ linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
 					<div class="exp-items">
 						<div class="exp-item">
 							<div class="exp-role">B.S. in Computer Science & Engineering</div>
-							<div class="exp-where">Korea University (4.46/4.50) · 2022 - 2026</div>
+							<div class="exp-where">Korea University (4.46/4.50) · 2022 - 2026 · Graduated with Great Honors</div>
 						</div>
 					</div>
 				</div>
