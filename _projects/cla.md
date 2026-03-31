@@ -4,7 +4,7 @@ type: project
 title: "Revisiting Flow-Conditioned Motion Transfer via Pseudo-Flow and Consecutive Local Attention"
 short_title: "CLA"
 description: "A novel framework that redefines motion guidance in video diffusion by extracting 'pseudo-flow' from 2D attention layers, enabling more interpretable and robust motion transfer."
-image: ""
+image: "/assets/images/projects/cla-figure.png"
 authors: "Seonghu Jeon, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim†"
 venue: "IEIE 2025 Undergraduate Paper Competition (Excellence Award)"
 date: 2025-12-01
