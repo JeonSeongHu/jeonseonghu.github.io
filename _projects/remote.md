@@ -4,7 +4,7 @@ type: publication
 title: "ReMoTE: A Benchmark for Object Motion Transfer"
 short_title: "ReMoTE"
 description: "A benchmark dataset and evaluation protocol for object motion transfer, introducing improved metrics that better correlate with human perception."
-image: ""
+image: "/assets/images/projects/remote-figure1.png"
 authors: "Seonghu Jeon, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim"
 venue: "ITC-CSCC (Oral)"
 date: 2025-06-01
