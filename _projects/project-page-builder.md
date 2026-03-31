@@ -4,7 +4,7 @@ type: project
 title: "Project Page Builder"
 short_title: "Project Page Builder"
 description: "A visual builder for creating academic research project pages — drag-and-drop sections, multiple templates, LLM-powered paper extraction, and one-click GitHub deployment."
-image: "/assets/images/projects/project-page-builder.png"
+image: "/assets/images/projects/project-page-builder.webp"
 date: 2026-03-15
 tags: ["Web Development", "HCI", "Developer Tools"]
 project_link: "https://project-page-builder.vercel.app/"
