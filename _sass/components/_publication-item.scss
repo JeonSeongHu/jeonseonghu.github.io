@@ -41,7 +41,7 @@
 .pub-thumb {
     width: 150px;
     height: 100px;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     border-radius: var(--radius-xl);
     flex-shrink: 0;
