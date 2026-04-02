@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About Me
-permalink: /
+permalink: /about-me/
 comments: false
 custom_css_class: about-page-custom
 github: https://github.com/JeonSeongHu
