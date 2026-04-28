@@ -138,7 +138,7 @@ custom_css_class: portfolio-page
 
 	<aside class="pf-now">
 		<span class="pf-now-tag">/ Now</span>
-		<span class="pf-now-text">Working on a <b>4D scene model</b> that imagines both novel views and their next half-second of motion.</span>
+		<span class="pf-now-text">Connecting <b>3D foundation models</b> to <b>robotics</b> — turning learned geometric priors into actionable scene understanding for embodied agents.</span>
 		<a class="pf-now-arrow" href="{{ site.baseurl }}/projects">read more <span aria-hidden="true">↗</span></a>
 	</aside>
 </section>
