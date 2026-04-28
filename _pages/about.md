@@ -13,11 +13,15 @@ custom_css_class: portfolio-page
 		<p class="pf-deck">
 			I work on <b>3D &amp; 4D vision</b> and <b>generative models</b> — teaching machines to reconstruct dynamic scenes and act in them through robotics. Currently betting that diffusion, not optimization, is how this loop closes. Reach me at <a href="mailto:jsh0423@korea.ac.kr">jsh0423@korea.ac.kr</a>.
 		</p>
+		<div class="pf-links">
+			<a class="pf-link" href="{{ site.baseurl }}/cv/">Curriculum Vitae<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
+			<a class="pf-link" href="https://scholar.google.com/citations?user=XavKlZQAAAAJ&hl=ko" target="_blank" rel="noopener">Google Scholar<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
+			<a class="pf-link" href="https://github.com/JeonSeongHu" target="_blank" rel="noopener">GitHub<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
+		</div>
 	</div>
 	<div class="pf-portrait">
 		<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa_400.png" alt="Seonghu Jeon" loading="lazy">
 		<span class="pf-portrait-corner" aria-hidden="true"></span>
-		<span class="pf-portrait-label">portrait · 4:5</span>
 	</div>
 </section>
 

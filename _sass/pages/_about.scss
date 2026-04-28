@@ -186,7 +186,7 @@ body.layout-portfolio button {
     max-width: 560px;
     text-wrap: pretty;
     letter-spacing: -0.015em;
-    margin-bottom: 0;
+    margin-bottom: 22px;
 
     b { color: var(--pf-ink); font-weight: 600; }
 
@@ -232,6 +232,47 @@ body.layout-portfolio button {
     &:hover { background: var(--pf-blue); color: #fff; }
 }
 
+/* ============= Hero text-only links (Curriculum Vitae, Scholar, GitHub) =============
+   Replaces the heavier pill CTAs with editorial-style underlined links.
+   Arrow rotates 45° on hover (currently points up-right; rotates to point
+   straight up). */
+.pf-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    align-items: baseline;
+}
+.pf-link {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--pf-ink-2);
+    border-bottom: 1px solid var(--pf-ink-4);
+    padding-bottom: 1px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    transition: color 0.12s ease, border-color 0.12s ease;
+
+    .pf-link-arrow {
+        display: inline-block;
+        font-size: 13px;
+        line-height: 1;
+        transform-origin: 50% 55%;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.12s ease;
+        color: var(--pf-ink-3);
+    }
+
+    &:hover {
+        color: var(--pf-blue);
+        border-color: var(--pf-blue);
+    }
+    &:hover .pf-link-arrow {
+        color: var(--pf-blue);
+        transform: rotate(45deg);
+    }
+}
+
 /* Portrait */
 .pf-portrait {
     width: 100%;
@@ -274,20 +315,9 @@ body.layout-portfolio button {
     background: var(--pf-blue);
     z-index: 3;
 }
-.pf-portrait-label {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    z-index: 3;
-    font-size: 10.5px;
-    font-weight: 500;
-    color: var(--pf-ink-3);
-    letter-spacing: 0.02em;
-    background: #fff;
-    padding: 3px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-}
+/* .pf-portrait-label was removed from the markup — placeholder rule kept
+   empty so any leftover spans render invisibly. */
+.pf-portrait-label { display: none; }
 
 /* ============= Section ============= */
 .pf-sec {
@@ -429,35 +459,16 @@ body.layout-portfolio button {
     padding: 2px 6px;
     border-radius: 3px;
 }
-.pf-pub-thumb-name {
-    position: absolute;
-    bottom: 8px;
-    left: 10px;
-    z-index: 3;
-    color: #fff;
-    font-weight: 600;
-    font-size: 18px;
-    letter-spacing: -0.035em;
-    line-height: 1;
-}
+/* The short-title overlay is no longer rendered now that featured tiles
+   show their real cover image — kept hidden in case markup re-emits it. */
+.pf-pub-thumb-name { display: none; }
 
-.pf-pub.is-featured .pf-pub-thumb {
+/* Featured publications keep their actual cover image but get a subtle
+   blue tag to mark venue importance. Earlier the tile was a solid blue
+   panel that hid the image — that hid every CVPR-class paper's figure. */
+.pf-pub.is-featured .pf-pub-thumb-tag {
     background: var(--pf-blue);
-
-    /* Featured tiles are pure design — hide the underlying image and let
-       the radial-gradient highlight + short_title carry the visual. */
-    img { display: none; }
-
-    &::before {
-        background:
-            radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.22), transparent 55%),
-            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.10), transparent 50%);
-    }
-
-    .pf-pub-thumb-tag {
-        background: rgba(255, 255, 255, 0.92);
-        color: var(--pf-blue);
-    }
+    color: #fff;
 }
 
 .pf-pub-body {
@@ -1230,6 +1241,86 @@ body.layout-portfolio button {
 }
 
 /* ============================================================
+   Blog index list
+   ============================================================ */
+.pf-filter-count {
+    font-size: 11px;
+    color: var(--pf-ink-4);
+    margin-left: 4px;
+    font-variant-numeric: tabular-nums;
+}
+.pf-filter-tag.is-active .pf-filter-count { color: rgba(255, 255, 255, 0.7); }
+
+.pf-blog-list {
+    display: flex;
+    flex-direction: column;
+}
+.pf-blog-item {
+    border-top: 1px solid var(--pf-hairline);
+
+    &:first-child { border-top: none; }
+}
+.pf-blog-link {
+    display: grid;
+    grid-template-columns: 140px 1fr 90px;
+    gap: 28px;
+    padding: 22px 0;
+    align-items: baseline;
+    color: inherit;
+    transition: background 0.12s ease;
+
+    &:hover { background: rgba(0, 64, 255, 0.018); }
+    &:hover .pf-blog-title { color: var(--pf-blue); }
+}
+.pf-blog-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.pf-blog-date {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--pf-ink-4);
+    letter-spacing: -0.005em;
+    font-variant-numeric: tabular-nums;
+}
+.pf-blog-cat {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--pf-blue);
+    font-weight: 500;
+}
+.pf-blog-title {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+    color: var(--pf-ink);
+    margin-bottom: 6px;
+    text-wrap: pretty;
+    transition: color 0.12s ease;
+}
+.pf-blog-excerpt {
+    font-size: 13.5px;
+    color: var(--pf-ink-3);
+    line-height: 1.5;
+    text-wrap: pretty;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.pf-blog-read {
+    font-size: 12px;
+    color: var(--pf-ink-4);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.005em;
+}
+
+/* ============================================================
    Responsive overrides for the new pages
    ============================================================ */
 @media (max-width: 1024px) {
@@ -1260,6 +1351,9 @@ body.layout-portfolio button {
     .pf-cv-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
     .pf-cv-skill-row { grid-template-columns: 1fr; gap: 6px; }
     .pf-cv-honors { grid-template-columns: 1fr; }
+
+    .pf-blog-link { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; }
+    .pf-blog-read { text-align: left; }
 }
 
 @media (max-width: 560px) {
