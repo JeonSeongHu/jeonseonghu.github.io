@@ -1,226 +1,120 @@
 ---
-layout: default
+layout: portfolio
 disqus: false
 archive: false
-post_class: post-template
+custom_css_class: portfolio-page
 ---
 
-<!-- Detail Container -->
-<div class="container detail-container">
-    <div class="row">
-        <!-- Sidebar: TOC (Desktop only) -->
-        {% if page.toc %}
-        <div class="col-lg-3 d-none d-lg-block">
-            <div class="detail-sidebar sticky-top">
-                <a href="{{ site.baseurl }}/" class="detail-back-link">← Home</a>
-                <div class="detail-sidebar-section">
-                    <h6 class="detail-sidebar-label">CONTENTS</h6>
-                    <nav class="detail-toc sidebar-toc">
-                        {% include toc_pure_html.html html=content class="toc-list" item_class="toc-item" submenu_class="toc-sub-list" %}
-                    </nav>
-                </div>
-            </div>
+{% assign author = site.authors[page.author] %}
+
+<section class="pf-page-hero pf-post-hero" id="hero">
+    <div class="pf-eyebrow">— Note · {{ page.date | date: "%Y.%m.%d" }}</div>
+    <h1 class="pf-page-h1">{{ page.title }}<span class="pf-blue">.</span></h1>
+
+    <div class="pf-post-meta">
+        {% if page.categories and page.categories.size > 0 %}
+        <div class="pf-post-cats">
+            {% assign titleCats = page.categories | sort %}
+            {% for category in titleCats %}
+            <a href="{{ site.baseurl }}/category/{{ category | slugify }}/">{{ category }}</a>
+            {% endfor %}
         </div>
         {% endif %}
+        <span class="pf-post-meta-divider" aria-hidden="true"></span>
+        <span class="pf-post-meta-item">
+            {% assign words = content | number_of_words %}
+            {% if words < 360 %}1 min read{% else %}{{ words | divided_by: 180 }} min read{% endif %}
+        </span>
+        {% if page.last_modified_at %}
+        <span class="pf-post-meta-item">Updated {{ page.last_modified_at | date: "%Y.%m.%d" }}</span>
+        {% endif %}
+    </div>
+</section>
 
-        <!-- Main Content -->
-        <div class="{% if page.toc %}col-lg-9{% else %}col-lg-12{% endif %}">
-            {% assign author = site.authors[page.author] %}
-            <div class="post-content">
-                <!-- Post Header -->
-                <div class="detail-header">
-                    <h1 class="detail-title">{{ page.title }}</h1>
-                    {% if page.categories %}
-                    <div class="detail-categories">
-                        {% assign titleCats = page.categories | sort %}
-                        {% for category in titleCats %}
-                        <a href="{{site.baseurl}}/category/{{ category | slugify }}/">{{ category }}</a>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <div class="detail-meta-line">
-                        <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date: "%Y.%m.%d" }}</time>
-                        {% if page.last_modified_at %}
-                        · Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%Y.%m.%d" }}</time>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- Adsense if enabled -->
-                {% if site.adsense == "enabled" %}
-                {% include adsense-under-header.html %}
-                {% endif %}
-
-                <!-- Featured Image -->
-                {% if page.image %}
-                <div class="detail-featured-image">
-                    <img class="featured-image img-fluid w-100"
-                        src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}"
-                        alt="{{ page.title }}" fetchpriority="high" decoding="async" onerror="this.style.display='none';">
-                </div>
-                {% endif %}
-
-                <!-- Article Content -->
-                <div class="article-post">
-                    <!-- Inline TOC (Mobile only) -->
-                    {% if page.toc %}
-                    <div class="toc mt-4 mb-4 lead d-lg-none">
-                        <h3 class="font-weight-bold">Table of Contents</h3>
-                        {% include toc.html html=content ordered=true %}
-                    </div>
-                    {% endif %}
-                    {{content}}
-                </div>
-
-                <hr class="detail-divider" />
-
-                {% include series-list.html %}
-
-                <!-- Rating -->
-                {% if page.rating %}
-                <div class="rating mb-4 d-flex align-items-center">
-                    <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
-                </div>
-                {% endif %}
-
-                <!-- Tags -->
-                {% if page.tags %}
-                <div class="detail-tags">
-                    {% assign sortedTags = page.tags | sort %}
-                    {% for tag in sortedTags %}
-                    <a href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>
-                    {% endfor %}
-                </div>
-                {% endif %}
-
-                <!-- Prev/Next -->
-                <div class="post-navigation">
-                    <div class="nav-links">
-                        {% if page.previous.url %}
-                        <a class="nav-previous" href="{{ site.baseurl }}{{page.previous.url}}">
-                            <span class="nav-label">이전 글</span>
-                            <span class="nav-title">&laquo; {{page.previous.title}}</span>
-                        </a>
-                        {% else %}
-                        <div class="nav-previous nav-empty"></div>
-                        {% endif %}
-
-                        {% if page.next.url %}
-                        <a class="nav-next" href="{{ site.baseurl }}{{page.next.url}}">
-                            <span class="nav-label">다음 글</span>
-                            <span class="nav-title">{{page.next.title}} &raquo;</span>
-                        </a>
-                        {% else %}
-                        <div class="nav-next nav-empty"></div>
-                        {% endif %}
-                    </div>
-                </div>
+<section class="pf-sec pf-sec--flush" id="post">
+    <div class="pf-post-grid{% unless page.toc %} is-no-toc{% endunless %}">
+        {% if page.toc %}
+        <aside class="pf-post-side">
+            <div class="pf-post-side-inner">
+                <a href="{{ site.baseurl }}/blog/" class="pf-post-back">← All notes</a>
+                <div class="pf-post-side-label">Contents</div>
+                <nav class="pf-post-toc">
+                    {% include toc_pure_html.html html=content class="pf-post-toc-list" item_class="pf-post-toc-item" submenu_class="pf-post-toc-sub" %}
+                </nav>
             </div>
-        </div>
-    </div>
-</div>
+        </aside>
+        {% endif %}
 
-<!-- Mobile Sidebar (only visible on mobile) -->
-<div class="post-sidebar-mobile d-block d-md-none">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="sidebar-section">
-                    <div class="sidebar-card-simple blog-header">
-                        <img src="{{ site.baseurl }}/{{ site.authors.jeonseonghu.avatar }}"
-                            alt="{{ site.authors.jeonseonghu.display_name }}" class="img-fluid rounded-circle mb-2"
-                            width="120" height="120" loading="lazy" decoding="async"
-                            style="width: 120px; height: 120px; object-fit: contain;">
-                        <h5 class="blog-title">{{ site.title }}</h5>
-                        <p class="blog-description">{{ site.description }}</p>
-                        <a href="{{ site.baseurl }}/" class="sidebar-link">← Home</a>
-                    </div>
-                </div>
+        <div class="pf-post-body">
+            {% if page.image %}
+            <figure class="pf-post-figure">
+                <img class="pf-post-figure-img"
+                    src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}"
+                    alt="{{ page.title }}" fetchpriority="high" decoding="async"
+                    onerror="this.parentElement.style.display='none';">
+            </figure>
+            {% endif %}
 
-                <div class="sidebar-section">
-                    {% include share.html %}
-                </div>
+            {% if page.toc %}
+            <details class="pf-post-toc-mobile">
+                <summary>Contents</summary>
+                {% include toc.html html=content ordered=true %}
+            </details>
+            {% endif %}
 
-                <div class="sidebar-section">
-                    <div class="sidebar-card-simple">
-                        <h6 class="sidebar-title-simple">About Me</h6>
-                        <p class="sidebar-text">Share my research and development experiences.</p>
-                        <a href="{{ site.baseurl }}/about-me" class="sidebar-link">Learn More</a>
-                    </div>
-                </div>
+            <article class="pf-prose">
+                {{ content }}
+            </article>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-card-simple">
-                        <h6 class="sidebar-title-simple">Categories</h6>
-                        <div class="sidebar-list">
-                            {% assign categories = site.categories | sort %}
-                            {% for category in categories limit:4 %}
-                            <div class="sidebar-list-item">
-                                <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="sidebar-link">
-                                    {{ category[0] }} ({{ category[1].size }})
-                                </a>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <a href="{{ site.baseurl }}/categories" class="sidebar-link-small">All Categories</a>
-                    </div>
-                </div>
+            {% include series-list.html %}
 
-                <div class="sidebar-section">
-                    <div class="sidebar-card-simple">
-                        <h6 class="sidebar-title-simple">Recent Posts</h6>
-                        <div class="sidebar-list">
-                            {% assign recent_posts = "" | split: "" %}
-                            {% for post in site.posts %}
-                            {% if post.url != page.url and post.hidden != true and post.hidden != "true" %}
-                            {% assign recent_posts = recent_posts | push: post %}
-                            {% endif %}
-                            {% endfor %}
-                            {% for post in recent_posts limit:3 %}
-                            <div class="sidebar-list-item">
-                                <a href="{{ site.baseurl }}{{ post.url }}" class="sidebar-link">{{ post.title |
-                                    truncate: 25 }}</a>
-                                <small class="sidebar-date">{{ post.date | date: "%Y.%m.%d" }}</small>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+            {% if page.tags and page.tags.size > 0 %}
+            <div class="pf-post-tags">
+                {% assign sortedTags = page.tags | sort %}
+                {% for tag in sortedTags %}
+                <a href="{{ site.baseurl }}/tags#{{ tag | replace: ' ', '-' }}">#{{ tag }}</a>
+                {% endfor %}
             </div>
-        </div>
-    </div>
-</div>
+            {% endif %}
 
-<!-- Comments -->
-{% if page.comments != false %}
-<div class="container detail-container">
-    <div id="comments" class="row justify-content-center mb-5">
-        <div class="col-md-8">
-            {% include utterances.html %}
+            <nav class="pf-post-nav">
+                {% if page.previous.url %}
+                <a class="pf-post-nav-link is-prev" href="{{ site.baseurl }}{{ page.previous.url }}">
+                    <span class="pf-post-nav-label">← Previous</span>
+                    <span class="pf-post-nav-title">{{ page.previous.title }}</span>
+                </a>
+                {% else %}
+                <span class="pf-post-nav-link is-empty"></span>
+                {% endif %}
+
+                {% if page.next.url %}
+                <a class="pf-post-nav-link is-next" href="{{ site.baseurl }}{{ page.next.url }}">
+                    <span class="pf-post-nav-label">Next →</span>
+                    <span class="pf-post-nav-title">{{ page.next.title }}</span>
+                </a>
+                {% else %}
+                <span class="pf-post-nav-link is-empty"></span>
+                {% endif %}
+            </nav>
+
+            {% if page.comments != false %}
+            <div class="pf-post-comments" id="comments">
+                {% include utterances.html %}
+            </div>
+            {% endif %}
         </div>
     </div>
-</div>
-{% endif %}
+</section>
 
 {% if page.rating %}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org/",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "Thing",
-    "name": "{{ page.title }}"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "{{ author.display_name }}"
-  },
-  "datePublished": "{{ page.date | date:"%Y-%m-%d" }}",
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "{{ page.rating }}",
-    "bestRating": "5"
-  }
+  "itemReviewed": { "@type": "Thing", "name": "{{ page.title }}" },
+  "author": { "@type": "Person", "name": "{{ author.display_name }}" },
+  "datePublished": "{{ page.date | date:'%Y-%m-%d' }}",
+  "reviewRating": { "@type": "Rating", "ratingValue": "{{ page.rating }}", "bestRating": "5" }
 }
 </script>
 {% endif %}
@@ -229,41 +123,21 @@ post_class: post-template
 <script src="{{ site.baseurl }}/assets/js/codeblocks.js"></script>
 <script src="{{ site.baseurl }}/assets/js/post-captions.js?v=4"></script>
 
-<!-- ScrollSpy for Sidebar TOC -->
+{% if page.toc %}
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const tocLinks = document.querySelectorAll('.detail-toc a');
-        const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3, .article-post h4, .article-post h5, .article-post h6');
+document.addEventListener('DOMContentLoaded', function () {
+    const tocLinks = document.querySelectorAll('.pf-post-toc a');
+    const sections = document.querySelectorAll('.pf-prose h1, .pf-prose h2, .pf-prose h3, .pf-prose h4');
+    if (!tocLinks.length || !sections.length) return;
 
-        function changeLinkState() {
-            let index = sections.length;
-            while (--index && window.scrollY + 100 < sections[index].offsetTop) { }
-
-            tocLinks.forEach((link) => {
-                link.classList.remove('active');
-                link.style.removeProperty('color');
-                link.style.removeProperty('font-weight');
-            });
-
-            document.querySelectorAll('.detail-toc .active-li').forEach(li => {
-                li.classList.remove('active-li');
-            });
-
-            if (index >= 0 && tocLinks[index]) {
-                const activeLink = tocLinks[index];
-                activeLink.classList.add('active');
-
-                let parent = activeLink.parentElement;
-                while (parent) {
-                    if (parent.tagName === 'LI' && parent.closest('.detail-toc')) {
-                        parent.classList.add('active-li');
-                    }
-                    parent = parent.parentElement;
-                }
-            }
-        }
-
-        changeLinkState();
-        window.addEventListener('scroll', changeLinkState);
-    });
+    function update() {
+        let index = sections.length;
+        while (--index >= 0 && window.scrollY + 120 < sections[index].offsetTop) { }
+        tocLinks.forEach(l => l.classList.remove('is-active'));
+        if (index >= 0 && tocLinks[index]) tocLinks[index].classList.add('is-active');
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+});
 </script>
+{% endif %}

@@ -28,7 +28,7 @@ custom_css_class: portfolio-page
 <section class="pf-sec" id="news">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 02</span>
+			<span class="pf-sec-num">— 01</span>
 			<h2 class="pf-sec-title">News &amp; notes</h2>
 		</div>
 		<span class="pf-sec-aside">most recent first</span>
@@ -56,7 +56,7 @@ custom_css_class: portfolio-page
 <section class="pf-sec" id="publications">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 03</span>
+			<span class="pf-sec-num">— 02</span>
 			<h2 class="pf-sec-title">Selected publications</h2>
 		</div>
 		{% assign pubs = site.projects | where: "type", "publication" | sort: "date" | reverse %}
@@ -79,7 +79,6 @@ custom_css_class: portfolio-page
 				{% if pub.image and pub.image != "" %}
 				<img src="{{ pub.image }}" alt="{{ pub.title }}" loading="lazy">
 				{% endif %}
-				<span class="pf-pub-thumb-tag">fig.{{ forloop.index | prepend: "00" | slice: -2, 2 }}</span>
 				{% if featured and pub.short_title %}
 				<span class="pf-pub-thumb-name">{{ pub.short_title | upcase }}</span>
 				{% endif %}
@@ -107,7 +106,7 @@ custom_css_class: portfolio-page
 <section class="pf-sec" id="focus">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 04</span>
+			<span class="pf-sec-num">— 03</span>
 			<h2 class="pf-sec-title">Focus</h2>
 		</div>
 		<span class="pf-sec-aside">three open threads</span>
@@ -140,14 +139,14 @@ custom_css_class: portfolio-page
 	<aside class="pf-now">
 		<span class="pf-now-tag">/ Now</span>
 		<span class="pf-now-text">Working on a <b>4D scene model</b> that imagines both novel views and their next half-second of motion.</span>
-		<a class="pf-now-arrow" href="{{ site.baseurl }}/projects">read more <span>→</span></a>
+		<a class="pf-now-arrow" href="{{ site.baseurl }}/projects">read more <span aria-hidden="true">↗</span></a>
 	</aside>
 </section>
 
 <section class="pf-sec" id="experience">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 05</span>
+			<span class="pf-sec-num">— 04</span>
 			<h2 class="pf-sec-title">Experience</h2>
 		</div>
 	</header>

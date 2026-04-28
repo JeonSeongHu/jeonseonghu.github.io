@@ -49,7 +49,6 @@ custom_css_class: portfolio-page
                 {% if paper.image and paper.image != "" %}
                 <img src="{{ paper.image }}" alt="{{ paper.title }}" loading="lazy">
                 {% endif %}
-                <span class="pf-pub-thumb-tag">fig.{{ forloop.index | prepend: "00" | slice: -2, 2 }}</span>
                 {% if featured and paper.short_title %}
                 <span class="pf-pub-thumb-name">{{ paper.short_title | upcase }}</span>
                 {% endif %}
