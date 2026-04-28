@@ -28,7 +28,9 @@ body.layout-portfolio {
     padding: 0;
     background: var(--pf-canvas);
     color: var(--pf-ink);
-    font-family: var(--pf-sans);
+    /* Global `body { font-family: ... !important }` from base/global.scss has
+       to be defeated. */
+    font-family: var(--pf-sans) !important;
     font-size: 15px;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
@@ -36,21 +38,40 @@ body.layout-portfolio {
 
     /* Smooth scroll for anchor jumps */
     scroll-behavior: smooth;
+}
 
-    ::selection { background: var(--pf-blue); color: #fff; }
+/* Reset for the layout — :where() keeps these at zero specificity so any
+   .pf-* component class wins by source order without !important. */
+:where(body.layout-portfolio) ::selection { background: var(--pf-blue); color: #fff; }
+:where(body.layout-portfolio) :where(h1, h2, h3, h4, h5, h6, p) {
+    margin: 0;
+    padding: 0;
+}
+:where(body.layout-portfolio) :where(*, *::before, *::after) { box-sizing: border-box; }
+:where(body.layout-portfolio) :where(a) { color: inherit; text-decoration: none; }
+:where(body.layout-portfolio) a:hover { text-decoration: none; }
+:where(body.layout-portfolio) a[target="_blank"]::after,
+:where(body.layout-portfolio) a.external-link::after { content: none; }
 
-    /* Make sure no leftover Bootstrap chrome leaks through */
-    a { color: inherit; text-decoration: none; }
-    a:hover { text-decoration: none !important; /* Override global a:hover underline */ }
-    h1, h2, h3, h4, h5, h6, p { margin: 0; padding: 0; }
-    *, *::before, *::after { box-sizing: border-box; }
-
-    /* Suppress the global external-link arrow in this layout — we render our
-       own ↗ glyph through .pf-pub-links and never want it on bare links. */
-    a[target="_blank"]::after,
-    a.external-link::after {
-        content: none !important;
-    }
+/* The global stylesheet sets a Korean-first font stack on every heading
+   (`h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans-kr) }`) and a
+   bold weight + dark color. We need a selector with higher specificity
+   to defeat that without forcing color/weight on every component. */
+body.layout-portfolio h1,
+body.layout-portfolio h2,
+body.layout-portfolio h3,
+body.layout-portfolio h4,
+body.layout-portfolio h5,
+body.layout-portfolio h6 {
+    font-family: var(--pf-sans);
+    color: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+body.layout-portfolio button {
+    font-family: var(--pf-sans);
+    /* Don't force color/weight here — components like .pf-btn-primary
+       set their own color and would lose the cascade race. */
 }
 
 /* ============= Top nav ============= */
@@ -121,7 +142,7 @@ body.layout-portfolio {
 
 /* ============= Hero ============= */
 .pf-hero {
-    padding: 88px 0 72px;
+    padding: 56px 0 48px;
     display: grid;
     grid-template-columns: 1fr 220px;
     gap: 64px;
@@ -135,7 +156,7 @@ body.layout-portfolio {
     font-weight: 500;
     color: var(--pf-blue);
     letter-spacing: -0.005em;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -149,26 +170,23 @@ body.layout-portfolio {
 }
 
 .pf-h1 {
-    font-size: clamp(56px, 8vw, 88px);
+    font-size: clamp(48px, 6.4vw, 76px);
     font-weight: 500;
-    line-height: 0.96;
-    letter-spacing: -0.05em;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
     color: var(--pf-ink);
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     text-wrap: balance;
-    /* Account for descenders ('g', 'j') under line-height: 0.96 so the deck
-       below doesn't crowd the baseline. */
-    padding-bottom: 6px;
 }
 
 .pf-deck {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.55;
     color: var(--pf-ink-2);
     max-width: 560px;
     text-wrap: pretty;
     letter-spacing: -0.015em;
-    margin-bottom: 28px;
+    margin-bottom: 0;
 
     b { color: var(--pf-ink); font-weight: 600; }
 
@@ -273,14 +291,14 @@ body.layout-portfolio {
 
 /* ============= Section ============= */
 .pf-sec {
-    padding: 72px 0;
+    padding: 48px 0;
     border-bottom: 1px solid var(--pf-hairline);
     scroll-margin-top: 60px;
 
     &:last-of-type { border-bottom: none; }
 }
 .pf-sec-head {
-    margin-bottom: 36px;
+    margin-bottom: 24px;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -662,7 +680,7 @@ body.layout-portfolio {
 .pf-foot {
     background: var(--pf-parchment);
     margin-top: 0;
-    padding: 40px 32px 28px;
+    padding: 28px 32px 24px;
 }
 .pf-foot-inner {
     max-width: 1016px;
@@ -734,28 +752,27 @@ body.layout-portfolio {
    Mirrors the About hero typography but is single-column.
    ============================================================ */
 .pf-page-hero {
-    padding: 88px 0 56px;
+    padding: 56px 0 40px;
     border-bottom: 1px solid var(--pf-hairline);
     scroll-margin-top: 60px;
 }
 .pf-page-h1 {
-    font-size: clamp(48px, 6.4vw, 76px);
+    font-size: clamp(40px, 5.4vw, 64px);
     font-weight: 500;
-    line-height: 0.98;
-    letter-spacing: -0.045em;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
     color: var(--pf-ink);
-    margin-bottom: 24px;
-    padding-bottom: 4px;
+    margin-bottom: 20px;
     text-wrap: balance;
 }
 .pf-page-deck {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.55;
     color: var(--pf-ink-2);
     max-width: 640px;
     text-wrap: pretty;
     letter-spacing: -0.015em;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 
     b { color: var(--pf-ink); font-weight: 600; }
     a {
@@ -767,7 +784,7 @@ body.layout-portfolio {
 }
 
 /* ============= Section without top padding (after page-hero) ============= */
-.pf-sec--flush { padding-top: 36px; }
+.pf-sec--flush { padding-top: 24px; }
 
 /* ============= Empty state ============= */
 .pf-empty {

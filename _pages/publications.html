@@ -27,9 +27,9 @@ custom_css_class: portfolio-page
     <header class="pf-sec-head">
         <div class="pf-sec-lh">
             <span class="pf-sec-num">— {{ year_group.name }}</span>
-            <h2 class="pf-sec-title">{{ year_group.items | size | append: '' }}{% if year_group.items.size == 1 %} paper{% else %} papers{% endif %}</h2>
+            <h2 class="pf-sec-title">{{ year_group.name }}</h2>
         </div>
-        <span class="pf-sec-aside">{{ year_group.name }}</span>
+        <span class="pf-sec-aside">{{ year_group.items | size }}{% if year_group.items.size == 1 %} entry{% else %} entries{% endif %}</span>
     </header>
 
     <div class="pf-pub-list">
