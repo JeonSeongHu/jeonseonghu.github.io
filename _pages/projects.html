@@ -1,17 +1,20 @@
 ---
-layout: default
+layout: portfolio
 title: Projects
 permalink: /projects/
-custom_css_class: with-dot-bg
+custom_css_class: portfolio-page
 ---
 
-<div class="projects-container">
-    <header class="projects-header">
-        <h1 class="projects-title">projects</h1>
-    </header>
+{% assign sorted_projects = site.projects | sort: "date" | reverse %}
 
-    <!-- Filter Tags -->
-    <div class="projects-filter">
+<section class="pf-page-hero" id="hero">
+    <div class="pf-eyebrow">— Projects</div>
+    <h1 class="pf-page-h1">Projects<span class="pf-blue">.</span></h1>
+    <p class="pf-page-deck">
+        Research, side projects, and selected publications. Tap a tag to narrow the grid.
+    </p>
+
+    <div class="pf-filter-row">
         {% assign all_tags = "" | split: "" %}
         {% for project in site.projects %}
             {% for tag in project.tags %}
@@ -22,109 +25,91 @@ custom_css_class: with-dot-bg
         {% endfor %}
         {% assign sorted_tags = all_tags | sort %}
 
-        <button class="filter-tag active" data-filter="all">All</button>
+        <button class="pf-filter-tag is-active" data-filter="all">All</button>
         {% for tag in sorted_tags %}
-        <button class="filter-tag" data-filter="{{ tag | slugify }}">{{ tag }}</button>
+        <button class="pf-filter-tag" data-filter="{{ tag | slugify }}">{{ tag }}</button>
         {% endfor %}
     </div>
-    <button class="filter-toggle-btn" id="filterToggle" style="display:none;">더보기 &#9662;</button>
+    <button class="pf-filter-toggle" id="filterToggle" style="display:none;">More tags &#9662;</button>
+</section>
 
-    <!-- Projects Grid -->
-    <div class="projects-grid">
-        {% assign sorted_projects = site.projects | sort: "date" | reverse %}
+<section class="pf-sec pf-sec--flush" id="projects">
+    <div class="pf-proj-grid">
         {% for project in sorted_projects %}
-        <article class="project-card" data-tags="{% for tag in project.tags %}{{ tag | slugify }} {% endfor %}">
-            <a href="{{ project.url | relative_url }}" class="project-link">
-                <div class="project-image-wrapper">
+        <article class="pf-proj-card" data-tags="{% for tag in project.tags %}{{ tag | slugify }} {% endfor %}">
+            <a href="{{ project.url | relative_url }}" class="pf-proj-link">
+                <div class="pf-proj-thumb">
                     {% if project.image and project.image != "" %}
-                    <img src="{{ project.image }}" alt="{{ project.title }}" class="project-image" loading="lazy">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" loading="lazy">
                     {% else %}
-                    <div class="project-image-placeholder" data-initials="{{ project.short_title | default: project.title | truncate: 1, '' | upcase }}">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                    </div>
+                    <span class="pf-proj-thumb-fallback" data-initials="{{ project.short_title | default: project.title | truncate: 1, '' | upcase }}"></span>
+                    {% endif %}
+                    {% if project.type == "publication" %}
+                    <span class="pf-proj-badge">Publication</span>
+                    {% endif %}
+                </div>
+                <div class="pf-proj-body">
+                    <h3 class="pf-proj-title">{{ project.title }}</h3>
+                    <p class="pf-proj-desc">{{ project.description }}</p>
+                    {% if project.venue %}
+                    <p class="pf-proj-venue">{{ project.venue }}</p>
                     {% endif %}
                 </div>
             </a>
-            <div class="project-content">
-                {% if project.type == "publication" %}
-                <div class="project-type-badge publication-badge">📄 Publication</div>
-                {% endif %}
-                <h3 class="project-title">
-                    <a href="{{ project.url | relative_url }}">
-                        {{ project.title }}
-                    </a>
-                </h3>
-                <p class="project-description">{{ project.description }}</p>
-                {% if project.venue %}
-                <p class="project-venue">{{ project.venue }}</p>
-                {% endif %}
-                <div class="project-tags">
-                    {% for tag in project.tags %}
-                    <span class="project-tag" data-tag="{{ tag | slugify }}">#{{ tag }}</span>
-                    {% endfor %}
-                </div>
+            {% if project.tags and project.tags.size > 0 %}
+            <div class="pf-proj-tags">
+                {% for tag in project.tags %}
+                <span class="pf-proj-tag" data-tag="{{ tag | slugify }}">#{{ tag }}</span>
+                {% endfor %}
             </div>
+            {% endif %}
         </article>
         {% endfor %}
     </div>
 
-    <!-- No Results Message -->
-    <div id="no-projects" class="no-projects" style="display: none;">
-        No projects found for this category.
+    <div id="no-projects" class="pf-empty" style="display: none;">
+        No projects match that filter.
     </div>
-</div>
+</section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-tag');
-    const projectCards = document.querySelectorAll('.project-card');
+    const filterButtons = document.querySelectorAll('.pf-filter-tag');
+    const projectCards = document.querySelectorAll('.pf-proj-card');
     const noProjectsMsg = document.getElementById('no-projects');
 
-    // Function to apply filter
     function applyFilter(filter) {
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        const targetButton = document.querySelector(`.filter-tag[data-filter="${filter}"]`);
+        filterButtons.forEach(btn => btn.classList.remove('is-active'));
+        const targetButton = document.querySelector(`.pf-filter-tag[data-filter="${filter}"]`);
         if (targetButton) {
-            targetButton.classList.add('active');
+            targetButton.classList.add('is-active');
         } else {
-            // Default to 'all' if tag not found
-            document.querySelector('.filter-tag[data-filter="all"]').classList.add('active');
+            document.querySelector('.pf-filter-tag[data-filter="all"]').classList.add('is-active');
             filter = 'all';
         }
 
-        // Filter projects
         let visibleCount = 0;
         projectCards.forEach(card => {
-            const tags = card.getAttribute('data-tags');
-            
+            const tags = card.getAttribute('data-tags') || '';
             if (filter === 'all' || tags.split(' ').indexOf(filter) !== -1) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeInUp 0.4s ease forwards';
+                card.style.display = '';
                 visibleCount++;
             } else {
                 card.style.display = 'none';
             }
         });
 
-        // Show/hide no results message
         noProjectsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    // Check URL parameter on page load
     const urlParams = new URLSearchParams(window.location.search);
     const tagFromUrl = urlParams.get('tag');
-    if (tagFromUrl) {
-        applyFilter(tagFromUrl);
-    }
+    if (tagFromUrl) applyFilter(tagFromUrl);
 
-    // Button click event
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
             applyFilter(filter);
-            
-            // Update URL without reload (optional)
             if (filter === 'all') {
                 history.pushState(null, '', window.location.pathname);
             } else {
@@ -133,8 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Allow clicking on tags to filter
-    document.querySelectorAll('.project-tag').forEach(tag => {
+    document.querySelectorAll('.pf-proj-tag').forEach(tag => {
         tag.addEventListener('click', function(e) {
             e.preventDefault();
             const tagFilter = this.getAttribute('data-tag');
@@ -143,33 +127,5 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
-
-    // Filter toggle button for mobile overflow
-    const filterContainer = document.querySelector('.projects-filter');
-    const filterToggle = document.getElementById('filterToggle');
-
-    function checkFilterOverflow() {
-        if (!filterContainer || !filterToggle) return;
-        // Only show on mobile (matches the 600px breakpoint in SCSS)
-        if (window.innerWidth > 600) {
-            filterToggle.style.display = 'none';
-            return;
-        }
-        // Check if content overflows the max-height
-        const isOverflowing = filterContainer.scrollHeight > filterContainer.clientHeight + 2;
-        const isExpanded = filterContainer.classList.contains('expanded');
-        filterToggle.style.display = (isOverflowing || isExpanded) ? 'block' : 'none';
-    }
-
-    if (filterToggle) {
-        filterToggle.addEventListener('click', function() {
-            filterContainer.classList.toggle('expanded');
-            const isExpanded = filterContainer.classList.contains('expanded');
-            this.textContent = isExpanded ? '접기 \u25B4' : '더보기 \u25BE';
-        });
-    }
-
-    checkFilterOverflow();
-    window.addEventListener('resize', checkFilterOverflow);
 });
 </script>

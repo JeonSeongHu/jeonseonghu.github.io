@@ -1,116 +1,113 @@
 ---
-layout: default
+layout: portfolio
 title: Publications
 permalink: /publications/
-custom_css_class: with-dot-bg
+custom_css_class: portfolio-page
 ---
 
 {% assign highlight_author = "Seonghu Jeon" %}
+{% assign publications = site.projects | where: "type", "publication" | sort: "date" | reverse %}
 
-<div class="publications-container">
-    <header class="publications-header">
-        <h1 class="publications-title">publications</h1>
+<section class="pf-page-hero" id="hero">
+    <div class="pf-eyebrow">— Publications</div>
+    <h1 class="pf-page-h1">Publications<span class="pf-blue">.</span></h1>
+    <p class="pf-page-deck">
+        Peer-reviewed papers, oral presentations, and works currently under review. Filter by keyword, author, or venue.
+    </p>
+    <div class="pf-search">
+        <input type="text" id="publication-search" class="pf-search-input" placeholder="Type to filter — title, author, venue">
+        <span class="pf-search-count">{{ publications | size }} entries</span>
+    </div>
+</section>
+
+{% assign grouped_pubs = publications | group_by_exp: "pub", "pub.date | date: '%Y'" %}
+
+{% for year_group in grouped_pubs %}
+<section class="pf-sec pf-pub-year-section" data-year="{{ year_group.name }}">
+    <header class="pf-sec-head">
+        <div class="pf-sec-lh">
+            <span class="pf-sec-num">— {{ year_group.name }}</span>
+            <h2 class="pf-sec-title">{{ year_group.items | size | append: '' }}{% if year_group.items.size == 1 %} paper{% else %} papers{% endif %}</h2>
+        </div>
+        <span class="pf-sec-aside">{{ year_group.name }}</span>
     </header>
 
-    <!-- Search Filter -->
-    <div class="publications-filter">
-        <input type="text" id="publication-search" class="publication-search-input" placeholder="Type to filter">
-    </div>
-
-    <!-- Publications by Year (Filtered from Projects where type == publication) -->
-    <div class="publications-list">
-        {% assign publications = site.projects | where: "type", "publication" | sort: "date" | reverse %}
-        {% assign grouped_pubs = publications | group_by_exp: "pub", "pub.date | date: '%Y'" %}
-        
-        {% for year_group in grouped_pubs %}
-        <section class="publication-year-section" data-year="{{ year_group.name }}">
-            <div class="year-label">{{ year_group.name }}</div>
-            
-            {% for paper in year_group.items %}
-            <article class="publication-item" data-searchable="{{ paper.title | downcase }} {{ paper.full_title | downcase }} {{ paper.authors | downcase }} {{ paper.venue | downcase }}">
-                <div class="publication-thumbnail">
-                    {% if paper.image and paper.image != "" %}
-                    <img src="{{ paper.image }}" alt="{{ paper.title }}" loading="lazy">
-                    {% else %}
-                    <div class="pub-thumb-placeholder">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                    </div>
-                    {% endif %}
+    <div class="pf-pub-list">
+        {% for paper in year_group.items %}
+        {% assign venue_lower = paper.venue | downcase %}
+        {% assign featured = false %}
+        {% if venue_lower contains "cvpr" or venue_lower contains "iccv" or venue_lower contains "eccv" or venue_lower contains "neurips" or venue_lower contains "siggraph" %}
+            {% assign featured = true %}
+        {% endif %}
+        {% assign hi = false %}
+        {% if featured or venue_lower contains "oral" %}
+            {% assign hi = true %}
+        {% endif %}
+        <article class="pf-pub{% if featured %} is-featured{% endif %}"
+                 data-searchable="{{ paper.title | downcase }} {{ paper.full_title | downcase }} {{ paper.authors | downcase }} {{ paper.venue | downcase }}">
+            <a class="pf-pub-thumb" href="{{ paper.url | relative_url }}">
+                {% if paper.image and paper.image != "" %}
+                <img src="{{ paper.image }}" alt="{{ paper.title }}" loading="lazy">
+                {% endif %}
+                <span class="pf-pub-thumb-tag">fig.{{ forloop.index | prepend: "00" | slice: -2, 2 }}</span>
+                {% if featured and paper.short_title %}
+                <span class="pf-pub-thumb-name">{{ paper.short_title | upcase }}</span>
+                {% endif %}
+            </a>
+            <div class="pf-pub-body">
+                <div class="pf-pub-venue{% if hi %} is-hi{% endif %}">
+                    <span class="pf-pub-pin"></span>{{ paper.venue }}
                 </div>
-                
-                <div class="publication-content">
-                    <h3 class="publication-short-title">
-                        <a href="{{ paper.url | relative_url }}">{{ paper.title }}</a>
-                    </h3>
-                    <p class="publication-full-title-inline">{{ paper.full_title }}</p>
-                    <p class="publication-authors">
-                        {% assign authors_array = paper.authors | split: ", " %}
-                        {% for author in authors_array %}
-                            {% if author contains highlight_author %}
-                                <strong class="highlight-author">{{ author }}</strong>{% unless forloop.last %}, {% endunless %}
-                            {% else %}
-                                <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
-                            {% endif %}
-                        {% endfor %}
-                    </p>
-                    <div class="publication-meta-row">
-                        <span class="publication-venue">{{ paper.venue }}</span>
-                        <span class="publication-date">{{ paper.date | date: "%b. %Y" }}</span>
-                    </div>
-                </div>
-                
-                <a href="{{ paper.url | relative_url }}" class="publication-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                </a>
-            </article>
-            {% endfor %}
-        </section>
+                <h3 class="pf-pub-title"><a href="{{ paper.url | relative_url }}">{{ paper.title }}</a></h3>
+                {% if paper.full_title and paper.full_title != paper.title %}
+                <p class="pf-pub-fulltitle">{{ paper.full_title }}</p>
+                {% endif %}
+                <p class="pf-pub-authors">
+                    {% assign authors = paper.authors | split: ", " %}
+                    {% for author in authors %}{% if author contains highlight_author %}<span class="pf-pub-me">{{ author }}</span>{% else %}{{ author }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+                </p>
+            </div>
+            <div class="pf-pub-links">
+                {% if paper.link and paper.link != "" and paper.link != "#" %}<a href="{{ paper.link }}" target="_blank" rel="noopener">paper</a>{% endif %}
+                {% if paper.arxiv and paper.arxiv != "" and paper.arxiv != "#" %}<a href="{{ paper.arxiv }}" target="_blank" rel="noopener">arxiv</a>{% endif %}
+                {% if paper.project_link and paper.project_link != "" and paper.project_link != "#" %}<a href="{{ paper.project_link }}" target="_blank" rel="noopener">project</a>{% endif %}
+                {% if paper.code and paper.code != "" and paper.code != "#" %}<a href="{{ paper.code }}" target="_blank" rel="noopener">code</a>{% endif %}
+            </div>
+        </article>
         {% endfor %}
     </div>
+</section>
+{% endfor %}
 
-    <!-- No Results Message -->
-    <div id="no-publications" class="no-publications" style="display: none;">
-        No publications found matching your search.
-    </div>
+<div id="no-publications" class="pf-empty" style="display: none;">
+    No publications match that query.
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('publication-search');
-    const publicationItems = document.querySelectorAll('.publication-item');
-    const yearSections = document.querySelectorAll('.publication-year-section');
+    const publicationItems = document.querySelectorAll('.pf-pub');
+    const yearSections = document.querySelectorAll('.pf-pub-year-section');
     const noResultsMsg = document.getElementById('no-publications');
+    if (!searchInput) return;
 
     searchInput.addEventListener('input', function() {
         const query = this.value.toLowerCase().trim();
         let visibleCount = 0;
 
         publicationItems.forEach(item => {
-            const searchable = item.getAttribute('data-searchable');
-            
-            if (query === '' || searchable.includes(query)) {
-                item.style.display = 'flex';
-                visibleCount++;
-            } else {
-                item.style.display = 'none';
-            }
+            const searchable = item.getAttribute('data-searchable') || '';
+            const matches = query === '' || searchable.includes(query);
+            item.style.display = matches ? '' : 'none';
+            if (matches) visibleCount++;
         });
 
-        // Hide year sections with no visible items
         yearSections.forEach(section => {
-            const hiddenItems = section.querySelectorAll('.publication-item[style*="display: none"]');
-            
-            if (hiddenItems.length === section.querySelectorAll('.publication-item').length) {
-                section.style.display = 'none';
-            } else {
-                section.style.display = 'block';
-            }
+            const items = section.querySelectorAll('.pf-pub');
+            const visible = Array.from(items).some(it => it.style.display !== 'none');
+            section.style.display = visible ? '' : 'none';
         });
 
-        // Show/hide no results message
         noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
     });
 });

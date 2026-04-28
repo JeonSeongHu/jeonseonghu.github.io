@@ -1,12 +1,27 @@
 ---
-layout: page
+layout: portfolio
 title: CV
 permalink: /cv/
-custom_css_class: cv-page
+custom_css_class: portfolio-page cv-portfolio
 ---
 
-<div class="cv-wrapper">
-    <nav class="cv-sidebar d-none d-lg-block">
+<section class="pf-page-hero" id="hero">
+    <div class="pf-eyebrow">— Curriculum Vitae</div>
+    <h1 class="pf-page-h1">CV<span class="pf-blue">.</span></h1>
+    <p class="pf-page-deck">
+        Education, research, publications, awards, and community work. A polished one-pager is also available as a PDF.
+    </p>
+    <div class="pf-ctas">
+        <button id="cv-download-pdf" class="pf-btn-primary" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+            <span>Download PDF</span>
+        </button>
+        <a class="pf-btn-secondary" href="mailto:jsh0423@korea.ac.kr">Email me</a>
+    </div>
+</section>
+
+<div class="pf-cv-wrap">
+    <aside class="pf-cv-side" aria-label="CV navigation">
         <ul>
             <li><a href="#education">Education</a></li>
             <li><a href="#research">Research</a></li>
@@ -17,152 +32,249 @@ custom_css_class: cv-page
             <li><a href="#coursework">Coursework</a></li>
             <li><a href="#community">Community</a></li>
         </ul>
-    </nav>
+    </aside>
 
-    <div class="cv-main-content">
-        <header class="cv-page-header">
-            <button id="cv-download-pdf" class="cv-pdf-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
-                DOWNLOAD PDF
-            </button>
-        </header>
-
-        <!-- Education -->
-        <section id="education" class="cv-section">
-            <h2>Education</h2>
-            <div class="cv-edu">
-                <div class="cv-row"><span class="cv-title">Korea Advanced Institute of Science and Technology (KAIST)</span><span class="cv-date">2026 &ndash; Present</span></div>
-                <div class="cv-sub">M.S. in Artificial Intelligence, Seoul</div>
-            </div>
-            <div class="cv-edu">
-                <div class="cv-row"><span class="cv-title">Korea University</span><span class="cv-date">2022 &ndash; 2026</span></div>
-                <div class="cv-sub">B.S. in Computer Science &amp; Engineering &middot; Graduated with Great Honors &middot; GPA 4.46 / 4.50</div>
-            </div>
-        </section>
-
-        <!-- Research Experience -->
-        <section id="research" class="cv-section">
-            <h2>Research Experience</h2>
-            <div class="cv-entry">
-                <div class="cv-row"><span class="cv-title">CVLAB, Korea University &rarr; KAIST</span><span class="cv-date">Dec 2023 &ndash; Present</span></div>
-                <div class="cv-role">Undergraduate Research Intern &middot; Transferred with supervisor, Aug 2024</div>
-                <ul class="cv-bullets">
-                    <li>Conducted research on generative 3D/4D models with physical and perceptual priors</li>
-                    <li>Contributed to multi-view diffusion alignment (CAMEO, CVPR 2026) and flow matching methods</li>
-                    <li>Developed evaluation benchmark for object motion transfer (ReMoTE, ITC-CSCC 2025 Oral, 1st author)</li>
-                    <li>Collaborated on repurposing geometric foundation models for multi-view generation</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Publications -->
-        <section id="publications" class="cv-section">
-            <h2>Publications</h2>
-            <p class="cv-note">* Equal contribution &middot; &dagger; Corresponding author</p>
-            <div class="cv-pub">
-                <div class="cv-pub-id">C2</div>
-                <div class="cv-pub-body">
-                    <div class="cv-pub-title">CAMEO: Correspondence-Attention Alignment for Multi-View Diffusion Models</div>
-                    <div class="cv-pub-authors">Minkyung Kwon*, Jinhyeok Choi*, Jiho Park*, <strong class="cv-me">Seonghu Jeon</strong>, Jinhyuk Jang, Junyoung Seo, Minseop Kwak, Jin-Hwa Kim&dagger;, Seungryong Kim&dagger;</div>
-                    <div class="cv-pub-venue">CVPR 2026 <a href="https://arxiv.org/abs/2512.03045" class="cv-link">Paper &#8599;</a> <a href="https://cvlab-kaist.github.io/CAMEO/" class="cv-link">Project &#8599;</a> <a href="https://github.com/cvlab-kaist/CAMEO" class="cv-link">Code &#8599;</a></div>
+    <div class="pf-cv-body">
+        <section id="education" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 01</span>
+                    <h2 class="pf-sec-title">Education</h2>
                 </div>
-            </div>
-            <div class="cv-pub">
-                <div class="cv-pub-id">C1</div>
-                <div class="cv-pub-body">
-                    <div class="cv-pub-title">ReMoTE: A Benchmark for Object Motion Transfer</div>
-                    <div class="cv-pub-authors"><strong class="cv-me">Seonghu Jeon</strong>, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim&dagger;</div>
-                    <div class="cv-pub-venue">ITC-CSCC 2025 (Oral) <a href="https://ieeexplore.ieee.org/document/11137589" class="cv-link">Paper &#8599;</a></div>
+            </header>
+            <div class="pf-cv-list">
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">2026 — now</div>
+                    <div class="pf-cv-what">
+                        <div class="pf-cv-name">Korea Advanced Institute of Science and Technology (KAIST)</div>
+                        <div class="pf-cv-detail">M.S. in Artificial Intelligence, Seoul</div>
+                    </div>
                 </div>
-            </div>
-            <div class="cv-pub">
-                <div class="cv-pub-id">S2</div>
-                <div class="cv-pub-body">
-                    <div class="cv-pub-title">Repurposing Geometric Foundation Models for Multi-view Diffusion</div>
-                    <div class="cv-pub-authors">Wooseok Jang, <strong class="cv-me">Seonghu Jeon</strong>, Jisang Han, Jinhyeok Choi, Minkyung Kwon, Seungryong Kim, Saining Xie, Sainan Liu</div>
-                    <div class="cv-pub-venue">Under Review, 2026</div>
-                </div>
-            </div>
-            <div class="cv-pub">
-                <div class="cv-pub-id">S1</div>
-                <div class="cv-pub-body">
-                    <div class="cv-pub-title">Better Source, Better Flow: Learning Condition-Dependent Source Distribution for Flow Matching</div>
-                    <div class="cv-pub-authors">Junwan Kim, Jiho Park, <strong class="cv-me">Seonghu Jeon</strong>, Seungryong Kim&dagger;</div>
-                    <div class="cv-pub-venue">Under Review, 2026 <a href="https://arxiv.org/abs/2602.05951" class="cv-link">Paper &#8599;</a> <a href="https://junwankimm.github.io/CSFM/" class="cv-link">Project &#8599;</a> <a href="https://github.com/junwankimm/CSFM" class="cv-link">Code &#8599;</a></div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">2022 — 2026</div>
+                    <div class="pf-cv-what">
+                        <div class="pf-cv-name">Korea University</div>
+                        <div class="pf-cv-detail">B.S. in Computer Science &amp; Engineering · Graduated with Great Honors · GPA 4.46 / 4.50</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Selected Projects -->
-        <section id="projects" class="cv-section">
-            <h2>Selected Projects</h2>
-            <div class="cv-proj">
-                <div class="cv-row"><span class="cv-proj-name">Horang Studio</span><span class="cv-proj-org">Kakao Brain</span><span class="cv-date cv-date-right">2023</span></div>
-                <div class="cv-proj-desc">AI profile generation for 2,000+ university students using identity-preserving Stable Diffusion</div>
-            </div>
-            <div class="cv-proj">
-                <div class="cv-row"><span class="cv-proj-name">LDMs for Domain Adaptation</span><span class="cv-proj-org">CVLAB &times; Hyundai Mobis</span><span class="cv-date cv-date-right">2023</span></div>
-                <div class="cv-proj-desc">Industry-university collaboration; led AIKU team under CVLAB for ControlNet-conditioned LDMs for sim-to-real translation</div>
-            </div>
-            <div class="cv-proj">
-                <div class="cv-row"><span class="cv-proj-name">IConZIC</span><span class="cv-proj-org">NLP (COSE461)</span><span class="cv-date cv-date-right">2023</span></div>
-                <div class="cv-proj-desc">Zero-shot image captioning via Gibbs sampling with masked VLMs; faster and more stable than baselines</div>
-            </div>
-            <div class="cv-proj">
-                <div class="cv-row"><span class="cv-proj-name">MelitsUp / @tune</span><span class="cv-proj-org">Music Recommendation</span><span class="cv-date cv-date-right">2022 &ndash; 2023</span></div>
-                <div class="cv-proj-desc">Recommendation system combining VLM embeddings, BERT lyric analysis, and LLM augmentation</div>
-            </div>
-        </section>
-
-        <!-- Honors & Awards -->
-        <section id="awards" class="cv-section">
-            <h2>Honors &amp; Awards</h2>
-            <div class="cv-honors-grid">
-                <div class="cv-honor"><span><strong>2nd Prize</strong> &mdash; Undergraduate AI Paper Competition (IEIE)</span><span class="cv-date">2025</span></div>
-                <div class="cv-honor"><span><strong>1st Prize</strong> &mdash; Korea-Yonsei University Datathon (FLock.io)</span><span class="cv-date">2025</span></div>
-                <div class="cv-honor"><span><strong>Sangah Scholarship</strong> (Merit-based)</span><span class="cv-date">2024</span></div>
-                <div class="cv-honor"><span><strong>National S&amp;T Scholarship</strong> &mdash; KOSAF</span><span class="cv-date">2024</span></div>
-                <div class="cv-honor"><span><strong>Woonhae Scholarship</strong> (Merit-based)</span><span class="cv-date">2024</span></div>
-                <div class="cv-honor"><span><strong>Grand Prize</strong> &mdash; InThon (KU College of Informatics)</span><span class="cv-date">2023</span></div>
-                <div class="cv-honor"><span><strong>President's List</strong> (2 Semesters) &mdash; Korea University</span><span class="cv-date">2023 Spring, Fall</span></div>
-                <div class="cv-honor"><span><strong>Dean's List</strong> &mdash; Korea University</span><span class="cv-date">2022</span></div>
-                <div class="cv-honor"><span><strong>Semester High Honors</strong> (7 Semesters) &mdash; Korea University</span><span class="cv-date">2022 &ndash; 2025</span></div>
+        <section id="research" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 02</span>
+                    <h2 class="pf-sec-title">Research</h2>
+                </div>
+            </header>
+            <div class="pf-cv-list">
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Dec 2023 — now</div>
+                    <div class="pf-cv-what">
+                        <div class="pf-cv-name">CVLAB · Korea University → KAIST</div>
+                        <div class="pf-cv-detail">Undergraduate Research Intern · Transferred with supervisor, Aug 2024</div>
+                        <ul class="pf-cv-bullets">
+                            <li>Generative 3D/4D models with physical and perceptual priors</li>
+                            <li>Multi-view diffusion alignment (CAMEO, CVPR 2026) and flow-matching methods</li>
+                            <li>Evaluation benchmark for object motion transfer (ReMoTE, ITC-CSCC 2025 Oral, 1st author)</li>
+                            <li>Repurposing geometric foundation models for multi-view generation</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Skills -->
-        <section id="skills" class="cv-section">
-            <h2>Skills</h2>
-            <div class="cv-tags-row">
-                <span class="cv-tag-label">Core</span><span class="cv-tag">Python</span><span class="cv-tag">C/C++</span><span class="cv-tag">PyTorch</span>
-                <span class="cv-tag-sep"></span>
-                <span class="cv-tag-label">Tools</span><span class="cv-tag">Git</span><span class="cv-tag">Figma</span><span class="cv-tag">Premiere</span><span class="cv-tag">AE</span><span class="cv-tag">Photoshop</span>
-                <span class="cv-tag-sep"></span>
-                <span class="cv-tag-label">Exp.</span><span class="cv-tag">JavaScript</span><span class="cv-tag">Dart</span><span class="cv-tag">React</span><span class="cv-tag">Flutter</span>
-                <span class="cv-tag-sep"></span>
-                <span class="cv-tag-label">Lang.</span><span class="cv-tag">Korean (Native)</span><span class="cv-tag">English (TOEIC 970)</span>
+        <section id="publications" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 03</span>
+                    <h2 class="pf-sec-title">Publications</h2>
+                </div>
+                <span class="pf-sec-aside">* equal · † corresponding</span>
+            </header>
+            <div class="pf-cv-pub-list">
+                <article class="pf-cv-pub">
+                    <span class="pf-cv-pub-id">C2</span>
+                    <div class="pf-cv-pub-body">
+                        <div class="pf-cv-pub-title">CAMEO: Correspondence-Attention Alignment for Multi-View Diffusion Models</div>
+                        <div class="pf-cv-pub-authors">Minkyung Kwon*, Jinhyeok Choi*, Jiho Park*, <strong class="pf-cv-me">Seonghu Jeon</strong>, Jinhyuk Jang, Junyoung Seo, Minseop Kwak, Jin-Hwa Kim†, Seungryong Kim†</div>
+                        <div class="pf-cv-pub-venue"><span class="pf-cv-pub-venue-name pf-blue">CVPR 2026</span>
+                            <a href="https://arxiv.org/abs/2512.03045" target="_blank" rel="noopener">paper</a>
+                            <a href="https://cvlab-kaist.github.io/CAMEO/" target="_blank" rel="noopener">project</a>
+                            <a href="https://github.com/cvlab-kaist/CAMEO" target="_blank" rel="noopener">code</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="pf-cv-pub">
+                    <span class="pf-cv-pub-id">C1</span>
+                    <div class="pf-cv-pub-body">
+                        <div class="pf-cv-pub-title">ReMoTE: A Benchmark for Object Motion Transfer</div>
+                        <div class="pf-cv-pub-authors"><strong class="pf-cv-me">Seonghu Jeon</strong>, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim†</div>
+                        <div class="pf-cv-pub-venue"><span class="pf-cv-pub-venue-name pf-blue">ITC-CSCC 2025 (Oral)</span>
+                            <a href="https://ieeexplore.ieee.org/document/11137589" target="_blank" rel="noopener">paper</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="pf-cv-pub">
+                    <span class="pf-cv-pub-id">S2</span>
+                    <div class="pf-cv-pub-body">
+                        <div class="pf-cv-pub-title">Repurposing Geometric Foundation Models for Multi-view Diffusion</div>
+                        <div class="pf-cv-pub-authors">Wooseok Jang, <strong class="pf-cv-me">Seonghu Jeon</strong>, Jisang Han, Jinhyeok Choi, Minkyung Kwon, Seungryong Kim, Saining Xie, Sainan Liu</div>
+                        <div class="pf-cv-pub-venue"><span class="pf-cv-pub-venue-name">Under Review, 2026</span></div>
+                    </div>
+                </article>
+                <article class="pf-cv-pub">
+                    <span class="pf-cv-pub-id">S1</span>
+                    <div class="pf-cv-pub-body">
+                        <div class="pf-cv-pub-title">Better Source, Better Flow: Learning Condition-Dependent Source Distribution for Flow Matching</div>
+                        <div class="pf-cv-pub-authors">Junwan Kim, Jiho Park, <strong class="pf-cv-me">Seonghu Jeon</strong>, Seungryong Kim†</div>
+                        <div class="pf-cv-pub-venue"><span class="pf-cv-pub-venue-name">Under Review, 2026</span>
+                            <a href="https://arxiv.org/abs/2602.05951" target="_blank" rel="noopener">paper</a>
+                            <a href="https://junwankimm.github.io/CSFM/" target="_blank" rel="noopener">project</a>
+                            <a href="https://github.com/junwankimm/CSFM" target="_blank" rel="noopener">code</a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Coursework -->
-        <section id="coursework" class="cv-section">
-            <h2>Coursework</h2>
-            <div class="cv-cw-list">
-                <div class="cv-cw-line"><span class="cv-cw-cat">AI/ML</span> Machine Learning, Deep Learning, Reinforcement Learning, NLP</div>
-                <div class="cv-cw-line"><span class="cv-cw-cat">Vision</span> Computer Vision, Computer Graphics</div>
-                <div class="cv-cw-line"><span class="cv-cw-cat">Core</span> Data Structures, Algorithms, Information Theory, HCI</div>
+        <section id="projects" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 04</span>
+                    <h2 class="pf-sec-title">Selected projects</h2>
+                </div>
+            </header>
+            <div class="pf-cv-list">
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">2023</div>
+                    <div class="pf-cv-what">
+                        <div class="pf-cv-name">Horang Studio <span class="pf-cv-sub">· Kakao Brain</span></div>
+                        <div class="pf-cv-detail">AI profile generation for 2,000+ university students using identity-preserving Stable Diffusion.</div>
+                    </div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">2023</div>
+                    <div class="pf-cv-what">
+                        <div class="pf-cv-name">LDMs for Domain Adaptation <span class="pf-cv-sub">· CVLAB × Hyundai Mobis</span></div>
+                        <div class="pf-cv-detail">Industry collaboration; led AIKU team for ControlNet-conditioned LDMs for sim-to-real translation.</div>
+                    </div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">2023</div>
+                    <div class="pf-cv-what">
+                        <div class="pf-cv-name">IConZIC <span class="pf-cv-sub">· NLP (COSE461)</span></div>
+                        <div class="pf-cv-detail">Zero-shot image captioning via Gibbs sampling with masked VLMs; faster and more stable than baselines.</div>
+                    </div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">2022 — 2023</div>
+                    <div class="pf-cv-what">
+                        <div class="pf-cv-name">MelitsUp / @tune <span class="pf-cv-sub">· Music recommendation</span></div>
+                        <div class="pf-cv-detail">Recommendation system combining VLM embeddings, BERT lyric analysis, and LLM augmentation.</div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Community -->
-        <section id="community" class="cv-section">
-            <h2>Community</h2>
-            <div class="cv-community-list">
-                <div class="cv-community-item"><span class="cv-community-name">AttentionX 7th Cohort</span><span class="cv-date">Mar 2026 &ndash; Present</span></div>
-                <div class="cv-community-item"><span class="cv-community-name">AIKU (Korea University AI Society) &mdash; Lead, Academic Administrator, Founding Member</span><span class="cv-date">Jul 2022 &ndash; Present</span></div>
-                <div class="cv-community-item"><span class="cv-community-name">Google Developer Groups on Campus, Korea University &mdash; DevRel Lead, AI Core Member</span><span class="cv-date">Sep 2022 &ndash; Present</span></div>
-                <div class="cv-community-item"><span class="cv-community-name">Korea University College of Informatics Student Council &mdash; PR &amp; Communication</span><span class="cv-date">Apr 2024 &ndash; Present</span></div>
-                <div class="cv-community-item"><span class="cv-community-name">Korea University Central Student Council &mdash; PR &amp; Communication</span><span class="cv-date">Apr 2024 &ndash; Present</span></div>
+        <section id="awards" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 05</span>
+                    <h2 class="pf-sec-title">Honors &amp; awards</h2>
+                </div>
+            </header>
+            <div class="pf-cv-honors">
+                <div class="pf-cv-honor"><span><strong>2nd Prize</strong> — Undergraduate AI Paper Competition (IEIE)</span><span class="pf-cv-when">2025</span></div>
+                <div class="pf-cv-honor"><span><strong>1st Prize</strong> — Korea-Yonsei University Datathon (FLock.io)</span><span class="pf-cv-when">2025</span></div>
+                <div class="pf-cv-honor"><span><strong>Sangah Scholarship</strong> (Merit-based)</span><span class="pf-cv-when">2024</span></div>
+                <div class="pf-cv-honor"><span><strong>National S&amp;T Scholarship</strong> — KOSAF</span><span class="pf-cv-when">2024</span></div>
+                <div class="pf-cv-honor"><span><strong>Woonhae Scholarship</strong> (Merit-based)</span><span class="pf-cv-when">2024</span></div>
+                <div class="pf-cv-honor"><span><strong>Grand Prize</strong> — InThon (KU College of Informatics)</span><span class="pf-cv-when">2023</span></div>
+                <div class="pf-cv-honor"><span><strong>President's List</strong> (2 Semesters) — Korea University</span><span class="pf-cv-when">2023</span></div>
+                <div class="pf-cv-honor"><span><strong>Dean's List</strong> — Korea University</span><span class="pf-cv-when">2022</span></div>
+                <div class="pf-cv-honor"><span><strong>Semester High Honors</strong> (7 Semesters) — Korea University</span><span class="pf-cv-when">2022 — 2025</span></div>
+            </div>
+        </section>
+
+        <section id="skills" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 06</span>
+                    <h2 class="pf-sec-title">Skills</h2>
+                </div>
+            </header>
+            <div class="pf-cv-skills">
+                <div class="pf-cv-skill-row">
+                    <span class="pf-cv-skill-label">Core</span>
+                    <div class="pf-cv-skill-tags"><span>Python</span><span>C/C++</span><span>PyTorch</span></div>
+                </div>
+                <div class="pf-cv-skill-row">
+                    <span class="pf-cv-skill-label">Tools</span>
+                    <div class="pf-cv-skill-tags"><span>Git</span><span>Figma</span><span>Premiere</span><span>After Effects</span><span>Photoshop</span></div>
+                </div>
+                <div class="pf-cv-skill-row">
+                    <span class="pf-cv-skill-label">Exp.</span>
+                    <div class="pf-cv-skill-tags"><span>JavaScript</span><span>Dart</span><span>React</span><span>Flutter</span></div>
+                </div>
+                <div class="pf-cv-skill-row">
+                    <span class="pf-cv-skill-label">Lang.</span>
+                    <div class="pf-cv-skill-tags"><span>Korean (Native)</span><span>English (TOEIC 970)</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="coursework" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 07</span>
+                    <h2 class="pf-sec-title">Coursework</h2>
+                </div>
+            </header>
+            <div class="pf-cv-list">
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">AI/ML</div>
+                    <div class="pf-cv-what"><div class="pf-cv-detail">Machine Learning, Deep Learning, Reinforcement Learning, NLP.</div></div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Vision</div>
+                    <div class="pf-cv-what"><div class="pf-cv-detail">Computer Vision, Computer Graphics.</div></div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Core</div>
+                    <div class="pf-cv-what"><div class="pf-cv-detail">Data Structures, Algorithms, Information Theory, HCI.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="pf-sec pf-cv-sec">
+            <header class="pf-sec-head">
+                <div class="pf-sec-lh">
+                    <span class="pf-sec-num">— 08</span>
+                    <h2 class="pf-sec-title">Community</h2>
+                </div>
+            </header>
+            <div class="pf-cv-list">
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Mar 2026 — now</div>
+                    <div class="pf-cv-what"><div class="pf-cv-name">AttentionX 7th Cohort</div></div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Jul 2022 — now</div>
+                    <div class="pf-cv-what"><div class="pf-cv-name">AIKU (Korea University AI Society)</div><div class="pf-cv-detail">Lead, Academic Administrator, Founding Member.</div></div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Sep 2022 — now</div>
+                    <div class="pf-cv-what"><div class="pf-cv-name">Google Developer Groups on Campus, Korea University</div><div class="pf-cv-detail">DevRel Lead, AI Core Member.</div></div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Apr 2024 — now</div>
+                    <div class="pf-cv-what"><div class="pf-cv-name">Korea University College of Informatics — Student Council</div><div class="pf-cv-detail">PR &amp; Communication.</div></div>
+                </div>
+                <div class="pf-cv-row">
+                    <div class="pf-cv-when">Apr 2024 — now</div>
+                    <div class="pf-cv-what"><div class="pf-cv-name">Korea University Central Student Council</div><div class="pf-cv-detail">PR &amp; Communication.</div></div>
+                </div>
             </div>
         </section>
     </div>
@@ -503,15 +615,15 @@ custom_css_class: cv-page
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Sidebar scroll spy
-    const sections = document.querySelectorAll(".cv-section");
-    const navLinks = document.querySelectorAll(".cv-sidebar a");
+    const sections = document.querySelectorAll(".pf-cv-sec");
+    const navLinks = document.querySelectorAll(".pf-cv-side a");
 
     function changeActiveLink() {
+        if (!sections.length || !navLinks.length) return;
         let index = sections.length;
-        while(--index && window.scrollY + 150 < sections[index].offsetTop) {}
-        navLinks.forEach((link) => link.classList.remove('active'));
-        if(index >= 0) navLinks[index].classList.add('active');
+        while (--index && window.scrollY + 150 < sections[index].offsetTop) {}
+        navLinks.forEach((link) => link.classList.remove('is-active'));
+        if (index >= 0 && navLinks[index]) navLinks[index].classList.add('is-active');
     }
 
     window.addEventListener('scroll', changeActiveLink);
@@ -519,35 +631,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            window.scrollTo({ top: targetSection.offsetTop - 100, behavior: 'smooth' });
+            if (!targetSection) return;
+            e.preventDefault();
+            window.scrollTo({ top: targetSection.offsetTop - 80, behavior: 'smooth' });
         });
     });
 
-    // PDF download
-    document.getElementById('cv-download-pdf').addEventListener('click', function() {
-        const btn = this;
-        btn.textContent = 'Generating...';
-        btn.disabled = true;
+    const pdfBtn = document.getElementById('cv-download-pdf');
+    if (pdfBtn) {
+        pdfBtn.addEventListener('click', function() {
+            const btn = this;
+            const label = btn.querySelector('span');
+            const originalLabel = label ? label.textContent : '';
+            if (label) label.textContent = 'Generating…';
+            btn.disabled = true;
 
-        const source = document.getElementById('cv-pdf-content').cloneNode(true);
-        source.style.display = 'block';
+            const source = document.getElementById('cv-pdf-content').cloneNode(true);
+            source.style.display = 'block';
 
-        const opt = {
-            margin: 0,
-            filename: 'Seonghu_Jeon_CV.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: ['css', 'legacy'] }
-        };
+            const opt = {
+                margin: 0,
+                filename: 'Seonghu_Jeon_CV.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['css', 'legacy'] }
+            };
 
-        html2pdf().set(opt).from(source).save().then(function() {
-            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg> DOWNLOAD PDF';
-            btn.disabled = false;
+            html2pdf().set(opt).from(source).save().then(function() {
+                if (label) label.textContent = originalLabel || 'Download PDF';
+                btn.disabled = false;
+            });
         });
-    });
+    }
 });
 </script>
