@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="{{ site.active_lang | default: site.default_lang | default: 'en' }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
+    <title>{{ page.title }} | {{ site.name }}</title>
+
+    {% seo %}
+
+    <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
+</head>
+
+<body class="layout-portfolio {% if page.custom_css_class %}{{ page.custom_css_class }}{% endif %}">
+
+    <nav class="pf-nav">
+        <div class="pf-nav-inner">
+            <a class="pf-name" href="{{ site.baseurl }}/">Seonghu Jeon<span class="pf-blue">.</span></a>
+            <div class="pf-nav-links" id="pf-nav-links">
+                <a href="#hero">About</a>
+                <a href="#news">News</a>
+                <a href="#publications">Publications</a>
+                <a href="#focus">Focus</a>
+                <a href="#experience">Experience</a>
+            </div>
+            <a href="mailto:jsh0423@korea.ac.kr" class="pf-pill">Contact</a>
+        </div>
+    </nav>
+
+    <main class="pf-main">
+        {{ content }}
+    </main>
+
+    <footer class="pf-foot">
+        <div class="pf-foot-inner">
+            <span>© {{ site.time | date: "%Y" }} Seonghu Jeon · Daejeon, KR</span>
+            <div class="pf-foot-links">
+                <a href="mailto:jsh0423@korea.ac.kr">email</a>
+                <a href="https://github.com/JeonSeongHu" target="_blank" rel="noopener">github</a>
+                <a href="https://scholar.google.com/citations?user=XavKlZQAAAAJ&hl=ko" target="_blank" rel="noopener">scholar</a>
+                <a href="{{ site.baseurl }}/cv">cv</a>
+            </div>
+            <span><span class="pf-foot-mark">●</span> Last updated {{ site.time | date: "%Y.%m" }}</span>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        var links = document.querySelectorAll('#pf-nav-links a');
+        var ids = ['hero', 'news', 'publications', 'focus', 'experience'];
+        if (!('IntersectionObserver' in window)) return;
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                var id = entry.target.id;
+                links.forEach(function (a) {
+                    a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+                });
+            });
+        }, { rootMargin: '-30% 0px -65% 0px' });
+        ids.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+    })();
+    </script>
+</body>
+</html>

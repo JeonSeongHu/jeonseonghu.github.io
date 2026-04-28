@@ -1,108 +1,181 @@
 ---
-layout: page
-title: About Me
+layout: portfolio
+title: About
 permalink: /about-me/
 comments: false
-custom_css_class: about-page-custom
-github: https://github.com/JeonSeongHu
-linkedin: https://www.linkedin.com/in/seonghu-jeon-3a74402b1/
+custom_css_class: portfolio-page
 ---
 
-<div class="about-page">
-	<div class="about-hero">
-		<div class="about-hero-top">
-			<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa_400.png" alt="Seonghu Jeon" class="about-photo" width="190" height="241" loading="lazy">
-			<div class="about-hero-info">
-				<h1 class="about-name">Seonghu Jeon</h1>
-				<p class="about-role">M.S. Student @ KAIST CVLAB</p>
-				<div class="about-icons">
-					<a href="mailto:jsh0423@korea.ac.kr" class="about-btn"><i class="far fa-envelope"></i><span>Email</span></a>
-					<a href="https://github.com/JeonSeongHu" target="_blank" rel="noopener noreferrer" class="about-btn"><i class="fab fa-github"></i><span>GitHub</span></a>
-					<a href="{{ page.linkedin }}" target="_blank" rel="noopener noreferrer" class="about-btn"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
-					<a href="https://scholar.google.com/citations?user=XavKlZQAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer" class="about-btn"><i class="fas fa-graduation-cap"></i><span>Scholar</span></a>
-					<a href="{{ site.baseurl }}/cv" class="about-btn"><i class="far fa-file-alt"></i><span>CV</span></a>
-				</div>
-			</div>
+<section class="pf-hero" id="hero">
+	<div class="pf-hero-text">
+		<div class="pf-eyebrow">M.S. Researcher · KAIST CVLAB</div>
+		<h1 class="pf-h1">Seonghu Jeon<span class="pf-blue">.</span></h1>
+		<p class="pf-deck">
+			I work on <b>3D &amp; 4D vision</b> and <b>generative models</b> — teaching machines to reconstruct dynamic scenes and act in them through robotics. Currently betting that diffusion, not optimization, is how this loop closes. Reach me at <a href="mailto:jsh0423@korea.ac.kr">jsh0423@korea.ac.kr</a>.
+		</p>
+		<div class="pf-ctas">
+			<a class="pf-btn-primary" href="{{ site.baseurl }}/cv">Curriculum Vitae</a>
+			<a class="pf-btn-secondary" href="https://scholar.google.com/citations?user=XavKlZQAAAAJ&hl=ko" target="_blank" rel="noopener">Google Scholar</a>
 		</div>
-		<p class="about-bio">I study <strong>3D/4D vision</strong> and <strong>generative models</strong>, exploring how AI can understand and reconstruct dynamic 3D environments and interact with them through <strong>robotics</strong>.</p>
 	</div>
+	<div class="pf-portrait">
+		<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa_400.png" alt="Seonghu Jeon" loading="lazy">
+		<span class="pf-portrait-corner" aria-hidden="true"></span>
+		<span class="pf-portrait-label">portrait · 4:5</span>
+	</div>
+</section>
 
-	<div class="about-grid">
-		<div class="about-left">
-			<div class="about-card about-news">
-				<h3 class="card-title">News</h3>
-				<div class="news-item"><span class="news-date">2026.03</span>Joined KAIST CVLAB as an M.S. student!</div>
-				<div class="news-item"><span class="news-date">2026.02</span>CAMEO accepted to CVPR 2026</div>
-				<div class="news-item"><span class="news-date">2025.07</span>ReMoTE accepted to ITC-CSCC as Oral presentation</div>
-			</div>
-
-			<div class="about-card about-exp">
-				<h3 class="card-title">Experience</h3>
-				<div class="exp-group">
-					<img class="exp-logo" src="{{ site.baseurl }}/assets/images/about-me/kaist-logo.png" alt="KAIST">
-					<div class="exp-items">
-						<div class="exp-item">
-							<div class="exp-role">M.S. Student</div>
-							<div class="exp-where">KAIST CVLAB · 2026 -</div>
-						</div>
-						<div class="exp-item">
-							<div class="exp-role">Research Intern</div>
-							<div class="exp-where">KAIST CVLAB · 2023 - 2026</div>
-						</div>
-					</div>
-				</div>
-				<div class="exp-group">
-					<img class="exp-logo" src="{{ site.baseurl }}/assets/images/about-me/korea-univ-logo.png" alt="Korea University">
-					<div class="exp-items">
-						<div class="exp-item">
-							<div class="exp-role">B.S. in Computer Science & Engineering</div>
-							<div class="exp-where">Korea University (4.46/4.50) · 2022 - 2026 · Graduated with Great Honors</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="about-card about-interests">
-				<h3 class="card-title">Research Interests</h3>
-				<div class="interest-tags">
-					<span class="interest-tag">3D/4D Vision</span>
-					<span class="interest-tag">Generative Models</span>
-					<span class="interest-tag">Robotics</span>
-				</div>
-			</div>
+<section class="pf-sec" id="news">
+	<header class="pf-sec-head">
+		<div class="pf-sec-lh">
+			<span class="pf-sec-num">— 02</span>
+			<h2 class="pf-sec-title">News &amp; notes</h2>
 		</div>
+		<span class="pf-sec-aside">most recent first</span>
+	</header>
+	<div class="pf-news-list">
+		<div class="pf-news-item">
+			<span class="pf-news-date">2026.03</span>
+			<span class="pf-news-body">Joined <b>KAIST CVLAB</b> as an M.S. student under Prof. Seungryong Kim.</span>
+		</div>
+		<div class="pf-news-item">
+			<span class="pf-news-date">2026.02</span>
+			<span class="pf-news-body"><b>CAMEO</b> accepted to <span class="pf-blue">CVPR 2026</span> — correspondence-attention alignment for multi-view diffusion.</span>
+		</div>
+		<div class="pf-news-item">
+			<span class="pf-news-date">2025.07</span>
+			<span class="pf-news-body"><b>ReMoTE</b> accepted to ITC-CSCC as oral presentation.</span>
+		</div>
+		<div class="pf-news-item">
+			<span class="pf-news-date">2025.02</span>
+			<span class="pf-news-body">Graduated from <b>Korea University</b>, B.S. in Computer Science &amp; Engineering, with Great Honors.</span>
+		</div>
+	</div>
+</section>
 
-		<div class="about-card about-pubs">
-			<h3 class="card-title card-title-main">Selected Publications</h3>
+<section class="pf-sec" id="publications">
+	<header class="pf-sec-head">
+		<div class="pf-sec-lh">
+			<span class="pf-sec-num">— 03</span>
+			<h2 class="pf-sec-title">Selected publications</h2>
+		</div>
+		{% assign pubs = site.projects | where: "type", "publication" | sort: "date" | reverse %}
+		<span class="pf-sec-aside">{{ pubs | size | prepend: "0" | slice: -2, 2 }} entries</span>
+	</header>
 
-			{% assign publications = site.projects | where: "type", "publication" | sort: "date" | reverse %}
-			{% for pub in publications %}
-			<a href="{{ site.baseurl }}{{ pub.url }}" class="pub-item">
+	<div class="pf-pub-list">
+		{% for pub in pubs %}
+		{% assign venue_lower = pub.venue | downcase %}
+		{% assign featured = false %}
+		{% if venue_lower contains "cvpr" or venue_lower contains "iccv" or venue_lower contains "eccv" or venue_lower contains "neurips" or venue_lower contains "siggraph" %}
+			{% assign featured = true %}
+		{% endif %}
+		{% assign hi = false %}
+		{% if featured or venue_lower contains "oral" %}
+			{% assign hi = true %}
+		{% endif %}
+		<article class="pf-pub{% if featured %} is-featured{% endif %}">
+			<a class="pf-pub-thumb" href="{{ site.baseurl }}{{ pub.url }}">
 				{% if pub.image and pub.image != "" %}
-				<img src="{{ pub.image }}" class="pub-thumb" alt="{{ pub.title }}">
-				{% else %}
-				<div class="pub-thumb pub-thumb-placeholder">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-				</div>
+				<img src="{{ pub.image }}" alt="{{ pub.title }}" loading="lazy">
 				{% endif %}
-				<div class="pub-info">
-					<div class="pub-title">{{ pub.title }}</div>
-					<div class="pub-authors">{{ pub.authors | replace: "Seonghu Jeon", "<b>Seonghu Jeon</b>" }}</div>
-					<div class="pub-meta">{{ pub.venue }} · {{ pub.date | date: "%Y" }}</div>
-					<div class="pub-links">
-						{% if pub.link != "" and pub.link %}<span class="pub-link-btn">Paper</span>{% endif %}
-						{% if pub.project_link != "" and pub.project_link %}<span class="pub-link-btn">Project</span>{% endif %}
-						{% if pub.code != "" and pub.code %}<span class="pub-link-btn">Code</span>{% endif %}
-					</div>
-				</div>
+				<span class="pf-pub-thumb-tag">fig.{{ forloop.index | prepend: "00" | slice: -2, 2 }}</span>
+				{% if featured and pub.short_title %}
+				<span class="pf-pub-thumb-name">{{ pub.short_title | upcase }}</span>
+				{% endif %}
 			</a>
-			{% endfor %}
-
-			<div class="pub-footer">
-				<a href="{{ site.baseurl }}/publications">All Publications ↗</a>
-				<a href="{{ site.baseurl }}/projects">All Projects ↗</a>
-				<a href="{{ site.baseurl }}/cv">Curriculum Vitae ↗</a>
+			<div class="pf-pub-body">
+				<div class="pf-pub-venue{% if hi %} is-hi{% endif %}">
+					<span class="pf-pub-pin"></span>{{ pub.venue }}
+				</div>
+				<h3 class="pf-pub-title"><a href="{{ site.baseurl }}{{ pub.url }}">{{ pub.title }}</a></h3>
+				<p class="pf-pub-authors">
+					{% assign authors = pub.authors | split: ", " %}
+					{% for author in authors %}{% if author contains "Seonghu Jeon" %}<span class="pf-pub-me">{{ author }}</span>{% else %}{{ author }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+				</p>
 			</div>
+			<div class="pf-pub-links">
+				{% if pub.link and pub.link != "" %}<a href="{{ pub.link }}" target="_blank" rel="noopener">paper</a>{% endif %}
+				{% if pub.project_link and pub.project_link != "" %}<a href="{{ pub.project_link }}" target="_blank" rel="noopener">project</a>{% endif %}
+				{% if pub.code and pub.code != "" %}<a href="{{ pub.code }}" target="_blank" rel="noopener">code</a>{% endif %}
+			</div>
+		</article>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="pf-sec" id="focus">
+	<header class="pf-sec-head">
+		<div class="pf-sec-lh">
+			<span class="pf-sec-num">— 04</span>
+			<h2 class="pf-sec-title">Focus</h2>
+		</div>
+		<span class="pf-sec-aside">three open threads</span>
+	</header>
+
+	<div class="pf-focus-list">
+		<div class="pf-focus-item">
+			<div class="pf-focus-head">
+				<span class="pf-focus-num">— 01</span>
+				<span class="pf-focus-label">3D / 4D vision</span>
+			</div>
+			<p class="pf-focus-desc">Reconstructing static and dynamic scenes from sparse views — how foundation models trained on geometry transfer to view-synthesis without optimization.</p>
+		</div>
+		<div class="pf-focus-item">
+			<div class="pf-focus-head">
+				<span class="pf-focus-num">— 02</span>
+				<span class="pf-focus-label">Generative models</span>
+			</div>
+			<p class="pf-focus-desc">Diffusion and flow matching with structured conditioning — correspondence, geometry, motion. Architecture work and better source distributions.</p>
+		</div>
+		<div class="pf-focus-item">
+			<div class="pf-focus-head">
+				<span class="pf-focus-num">— 03</span>
+				<span class="pf-focus-label">Robotics</span>
+			</div>
+			<p class="pf-focus-desc">The destination. If a robot can imagine a scene's geometry forward in time, it can plan in it — and that loop closes through generative models.</p>
 		</div>
 	</div>
-</div>
+
+	<aside class="pf-now">
+		<span class="pf-now-tag">/ Now</span>
+		<span class="pf-now-text">Working on a <b>4D scene model</b> that imagines both novel views and their next half-second of motion.</span>
+		<a class="pf-now-arrow" href="{{ site.baseurl }}/projects">read more <span>→</span></a>
+	</aside>
+</section>
+
+<section class="pf-sec" id="experience">
+	<header class="pf-sec-head">
+		<div class="pf-sec-lh">
+			<span class="pf-sec-num">— 05</span>
+			<h2 class="pf-sec-title">Experience</h2>
+		</div>
+	</header>
+
+	<div class="pf-exp-list">
+		<div class="pf-exp-item">
+			<span class="pf-exp-org">KAIST CVLAB</span>
+			<div class="pf-exp-mid">
+				<div class="pf-exp-role">M.S. Student</div>
+				<div class="pf-exp-detail">Advised by Prof. Seungryong Kim. Multi-view diffusion, geometric foundation models, 4D scene generation.</div>
+			</div>
+			<span class="pf-exp-time">2026 — <span class="pf-now-mark">now</span></span>
+		</div>
+		<div class="pf-exp-item">
+			<span class="pf-exp-org">KAIST CVLAB</span>
+			<div class="pf-exp-mid">
+				<div class="pf-exp-role">Research Intern</div>
+				<div class="pf-exp-detail">Pre-graduate research on motion transfer and correspondence-attention. Multiple co-authored papers from this period.</div>
+			</div>
+			<span class="pf-exp-time">2023 — 2026</span>
+		</div>
+		<div class="pf-exp-item">
+			<span class="pf-exp-org">Korea University</span>
+			<div class="pf-exp-mid">
+				<div class="pf-exp-role">B.S., Computer Science &amp; Engineering</div>
+				<div class="pf-exp-detail">Graduated with Great Honors (4.46 / 4.50). Coursework in vision, graphics, and deep learning.</div>
+			</div>
+			<span class="pf-exp-time">2022 — 2026</span>
+		</div>
+	</div>
+</section>
