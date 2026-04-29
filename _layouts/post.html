@@ -9,7 +9,7 @@ custom_css_class: portfolio-page
 
 <section class="pf-page-hero pf-post-hero" id="hero">
     <div class="pf-eyebrow">— Note · {{ page.date | date: "%Y.%m.%d" }}</div>
-    <h1 class="pf-page-h1">{{ page.title }}<span class="pf-blue">.</span></h1>
+    <h1 class="pf-page-h1 pf-post-title">{{ page.title }}</h1>
 
     <div class="pf-post-meta">
         {% if page.categories and page.categories.size > 0 %}
