@@ -1533,9 +1533,13 @@ body.layout-portfolio button {
     letter-spacing: -0.005em;
     text-wrap: pretty;
 
+    /* Vertical rhythm: zero out browser block margins, then add top
+       margins through a single owl selector so neighbouring elements
+       always have predictable spacing. Element-specific overrides below
+       just bump the gap up — never zero it out. */
+    > * { margin-block: 0; }
+    > *:first-child { margin-top: 0; }
     > * + * { margin-top: 1.1em; }
-    > p { margin: 0; }
-    > p + p { margin-top: 1.1em; }
 
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--pf-sans);
@@ -1545,17 +1549,16 @@ body.layout-portfolio button {
         text-wrap: balance;
         scroll-margin-top: 80px;
     }
-    h1 { font-size: 32px; font-weight: 600; line-height: 1.2; margin-top: 2em; }
+    h1 { font-size: 32px; font-weight: 600; line-height: 1.2; }
     h2 {
         font-size: 24px;
         font-weight: 600;
         line-height: 1.25;
-        margin-top: 2em;
         padding-top: 0.8em;
         border-top: 1px solid var(--pf-hairline);
     }
-    h3 { font-size: 19px; font-weight: 600; line-height: 1.3; margin-top: 1.6em; }
-    h4 { font-size: 16px; font-weight: 600; line-height: 1.4; margin-top: 1.4em; }
+    h3 { font-size: 19px; font-weight: 600; line-height: 1.3; }
+    h4 { font-size: 16px; font-weight: 600; line-height: 1.4; }
     h5, h6 {
         font-size: 13px;
         font-weight: 600;
@@ -1563,8 +1566,30 @@ body.layout-portfolio button {
         letter-spacing: 0.04em;
         text-transform: uppercase;
         color: var(--pf-ink-3);
-        margin-top: 1.4em;
     }
+
+    /* Block-level elements that deserve a bit more breathing room than
+       ordinary inter-paragraph spacing. Wrapped in :where() so their
+       specificity stays at (0,1,0) and the heading rules below — which
+       are (0,1,1) — always win when a heading follows a block element. */
+    > * + :where(blockquote), > :where(blockquote) + * { margin-top: 1.6rem; }
+    > * + :where(.highlighter-rouge), > :where(.highlighter-rouge) + * { margin-top: 1.6rem; }
+    > * + :where(table), > :where(table) + * { margin-top: 1.6rem; }
+    > * + :where(figure), > :where(figure) + * { margin-top: 1.6rem; }
+    > * + :where(hr), > :where(hr) + * { margin-top: 2.4rem; }
+    > * + :where(img), > :where(img) + * { margin-top: 1.4rem; }
+
+    /* Section gaps: headings need more space above than regular siblings.
+       Note: em-based margins on headings resolve against the heading's own
+       font-size, so we use rem (root font-size) for predictable spacing.
+       Defined LAST so they override the block-level rules when a heading
+       follows a blockquote / code block / etc. */
+    > h1 + *, > h2 + *, > h3 + *, > h4 + *, > h5 + *, > h6 + * { margin-top: 0.6rem; }
+    > * + h1 { margin-top: 3rem; }
+    > * + h2 { margin-top: 3rem; }
+    > * + h3 { margin-top: 2rem; }
+    > * + h4 { margin-top: 1.6rem; }
+    > * + h5, > * + h6 { margin-top: 1.4rem; }
 
     a:not(.pf-post-back):not(.pf-post-tag) {
         color: var(--pf-blue);
@@ -1580,40 +1605,38 @@ body.layout-portfolio button {
 
     ul, ol {
         padding-left: 1.4em;
-        margin: 0;
     }
     ul { list-style: disc; }
     ol { list-style: decimal; }
-    li { margin-top: 0.4em; padding-left: 4px; }
+    li { padding-left: 4px; }
+    li + li { margin-top: 0.4em; }
     li > ul, li > ol { margin-top: 0.4em; }
     li::marker { color: var(--pf-ink-4); }
 
     blockquote {
-        margin: 0;
-        padding: 4px 0 4px 20px;
+        padding: 6px 0 6px 20px;
         border-left: 3px solid var(--pf-blue);
         color: var(--pf-ink-2);
         font-style: italic;
 
-        p + p { margin-top: 0.8em; }
+        > * + * { margin-top: 0.8em; }
     }
 
     hr {
         border: none;
         border-top: 1px solid var(--pf-hairline);
-        margin: 2.4em 0;
     }
 
     img {
         max-width: 100%;
         height: auto;
         display: block;
-        margin: 1.4em auto;
+        margin-left: auto;
+        margin-right: auto;
         border-radius: 6px;
     }
 
     figure {
-        margin: 1.6em 0;
         figcaption {
             margin-top: 8px;
             font-size: 12.5px;
@@ -1632,16 +1655,12 @@ body.layout-portfolio button {
         color: var(--pf-ink);
         border: 1px solid var(--pf-hairline);
     }
-    /* Code blocks: defer to components/_code.scss for layout, just give them
-       breathing room above/below. Don't paint background or text color — the
-       Rouge syntax theme is light-bg and we'd otherwise wash out tokens. */
-    .highlighter-rouge { margin: 1.4em 0; }
+    /* Code blocks: defer to components/_code.scss for layout. */
 
     /* Tables (real markdown tables, not Rouge's line-number table) */
     table:not(.rouge-table) {
         width: 100%;
         border-collapse: collapse;
-        margin: 1.4em 0;
         font-size: 14px;
         font-variant-numeric: tabular-nums;
 

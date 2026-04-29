@@ -2,9 +2,9 @@
     function initCaptions() {
         console.log('Caption script initializing...');
 
-        const postContent = document.querySelector('.article-post');
+        const postContent = document.querySelector('.pf-prose, .article-post');
         if (!postContent) {
-            console.log('No .article-post found');
+            console.log('No .pf-prose / .article-post found');
             return;
         }
 
