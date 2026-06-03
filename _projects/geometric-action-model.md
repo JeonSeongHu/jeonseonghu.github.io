@@ -3,12 +3,12 @@ layout: project
 type: publication
 title: "Geometric Action Model for Visuomotor Control"
 short_title: "GAM"
-description: "A geometry-aware action modeling approach for visuomotor control."
+description: "An under-review geometry-aware action modeling approach for visuomotor control."
 image: ""
-authors: "Jisang Han, Seonghu Jeon, Jaewoo Jung, René Zurbrügg, Honggyu An, Tifanny Portela, Marco Hutter, Marc Pollefeys, Seungryong Kim, Sunghwan Hong"
+authors: "Jisang Han*, Seonghu Jeon*, Jaewoo Jung, René Zurbrügg, Honggyu An, Tifanny Portela, Marco Hutter, Marc Pollefeys, Seungryong Kim, Sunghwan Hong"
 venue: "Under Review, 2026"
 date: 2026-06-03
-role: "Co-author"
+role: "Equal Contribution"
 tags: ["Robotics", "Visuomotor Control", "3D Vision"]
 ---
 
