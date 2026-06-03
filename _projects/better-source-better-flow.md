@@ -5,8 +5,8 @@ title: "Better Source, Better Flow: Learning Condition-Dependent Source Distribu
 short_title: "Better Source, Better Flow"
 description: "A method that learns condition-dependent source distributions for flow matching, enabling straighter transport paths and up to 3x faster convergence."
 image: "https://junwankimm.github.io/CSFM/images/main.png"
-authors: "Junwan Kim*, Jiho Park*, Seonghu Jeon, Seungryong Kim"
-venue: "Under Review"
+authors: "Junwan Kim*, Jiho Park*, Seonghu Jeon, Seungryong Kim†"
+venue: "Under Review, 2026"
 date: 2026-01-21
 role: "Research Contributor"
 link: "https://arxiv.org/abs/2602.05951"

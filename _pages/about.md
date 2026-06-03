@@ -165,12 +165,12 @@ custom_css_class: portfolio-page
 			<span class="pf-exp-time">2026 — <span class="pf-now-mark">now</span></span>
 		</div>
 		<div class="pf-exp-item">
-			<span class="pf-exp-org">KAIST CVLAB</span>
+			<span class="pf-exp-org">CVLAB, Korea University → KAIST</span>
 			<div class="pf-exp-mid">
 				<div class="pf-exp-role">Research Intern</div>
 				<div class="pf-exp-detail">Pre-graduate research on motion transfer and correspondence-attention. Multiple co-authored papers from this period.</div>
 			</div>
-			<span class="pf-exp-time">2023 — 2026</span>
+			<span class="pf-exp-time">Dec 2023 — Feb 2026</span>
 		</div>
 		<div class="pf-exp-item">
 			<span class="pf-exp-org">Korea University</span>

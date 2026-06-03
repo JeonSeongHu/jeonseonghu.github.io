@@ -40,8 +40,7 @@ admin/           → Decap CMS config
 
 ## Deployment
 
-- `master` branch → GitHub Pages (auto-deploy)
-- `main` branch → development
+- `main` branch → GitHub Pages source and development
 
 ## License
 

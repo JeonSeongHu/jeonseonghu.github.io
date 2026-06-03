@@ -5,7 +5,7 @@ title: "CAMEO: Correspondence-Attention Alignment for Multi-View Diffusion Model
 short_title: "CAMEO"
 description: "A training technique that supervises attention maps using geometric correspondence, reducing training iterations by half while achieving superior multi-view generation quality."
 image: "https://github.com/cvlab-kaist/CAMEO/raw/main/assets/teaser.png"
-authors: "Minkyung Kwon*, Jinhyeok Choi*, Jiho Park*, Seonghu Jeon, Jinhyuk Jang, Junyoung Seo, Minseop Kwak, Jin-Hwa Kim, Seungryong Kim"
+authors: "Minkyung Kwon*, Jinhyeok Choi*, Jiho Park*, Seonghu Jeon, Jinhyuk Jang, Junyoung Seo, Minseop Kwak, Jin-Hwa Kim†, Seungryong Kim†"
 venue: "CVPR 2026"
 date: 2026-02-01
 role: "Research Contributor"
