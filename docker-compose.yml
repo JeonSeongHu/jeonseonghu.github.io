@@ -1,7 +1,27 @@
-jekyll:
+services:
+  jekyll:
     image: jekyll/jekyll:latest
-    command: jekyll serve --force_polling
+    command: jekyll serve --force_polling --host 0.0.0.0 --livereload --port 4000
     ports:
-        - 4000:4000
+      - "4000:4000"
+      - "35729:35729"
     volumes:
-        - .:/srv/jekyll
+      - .:/srv/jekyll
+
+  decap:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -lc "npx decap-server"
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/app
+
+  upload:
+    image: node:20-alpine
+    working_dir: /app
+    command: node admin/upload-server.js
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/app

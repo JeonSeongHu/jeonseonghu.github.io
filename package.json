@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Automatically paste clipboard images to Jekyll blog",
   "scripts": {
-    "paste": "node paste-image.js"
+    "paste": "node paste-image.js",
+    "editor:cms": "npx decap-server",
+    "editor:upload": "node admin/upload-server.js"
   },
   "dependencies": {
     "clipboardy": "^3.0.0",

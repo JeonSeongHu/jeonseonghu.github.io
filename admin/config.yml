@@ -70,6 +70,7 @@ collections:
         search_fields: ["name"]
         value_field: "name"
         display_fields: ["name"]
+        hint: "High-level section, such as Research, Projects, Education, or Life."
       
       - label: "Sub Category"
         name: "sub_category"
@@ -78,6 +79,7 @@ collections:
         search_fields: ["name"]
         value_field: "name"
         display_fields: ["name"]
+        hint: "More specific topic. Create or edit subcategories first when adding a new topic."
 
       - label: "Featured Image"
         name: "image"
@@ -85,6 +87,7 @@ collections:
         required: false
         media_folder: "/assets/images/posts/{{slug}}"
         public_folder: "/assets/images/posts/{{slug}}"
+        hint: "Optional cover image. Local clipboard paste is handled separately by the upload server."
       
       - label: "Series"
         name: "series"
@@ -106,6 +109,7 @@ collections:
         widget: "markdown"
         media_folder: "/assets/images/posts/{{slug}}"
         public_folder: "/assets/images/posts/{{slug}}"
+        hint: "Markdown supported. For pasted images, use Markdown mode while the local upload server is Online."
 
   # ----------------------------------------
   # Series
@@ -218,7 +222,7 @@ collections:
       - label: "Authors / Team Members"
         name: "authors"
         widget: "string"
-        hint: "Comma-separated list. Use * for equal contribution."
+        hint: "Comma-separated list. Use * for equal contribution and † for corresponding authors. Avoid affiliation superscripts on site cards."
         required: false
       - label: "My Role"
         name: "role"
@@ -228,7 +232,7 @@ collections:
       - label: "Venue"
         name: "venue"
         widget: "string"
-        hint: "e.g., CVPR 2025, Course Project, Personal"
+        hint: "e.g., CVPR 2025, Under Review, Course Project, Personal"
         required: false
       - label: "Featured Image"
         name: "image"
@@ -301,7 +305,7 @@ collections:
       - label: "Authors"
         name: "authors"
         widget: "string"
-        hint: "Comma-separated list of authors. Use * for equal contribution."
+        hint: "Comma-separated list. Use * for equal contribution and † for corresponding authors. Avoid affiliation superscripts on site cards."
       - label: "Venue"
         name: "venue"
         widget: "string"

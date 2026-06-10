@@ -4,33 +4,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
+  <title>Seonghu Jeon CMS</title>
 
-  <!-- Wanted Sans Font (same as blog) -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
 
   <style>
-    /* ============================================
-       DESIGN TOKENS
-       ============================================ */
     :root {
-      --primary: #3539ad;
-      --primary-hover: #3a40e7;
-      --light-primary: #c5cdf968;
-      --text-dark: #1a1a1a;
-      --text-medium: #666666;
-      --text-light: #999999;
-      --bg-white: #ffffff;
-      --bg-light: #f8f9fa;
-      --border-light: #e9ecef;
-      --success: #28a745;
+      --cms-primary: #3539ad;
+      --cms-primary-hover: #3a40e7;
+      --cms-text: #1a1a1a;
+      --cms-muted: #666666;
+      --cms-soft: #f6f7fb;
+      --cms-border: #e4e7ef;
+      --cms-success: #198754;
+      --cms-warning: #9a6700;
+      --cms-danger: #b42318;
+      --cms-shadow: 0 12px 36px rgba(22, 28, 45, 0.16);
     }
 
-    /* ============================================
-       GLOBAL FONT
-       ============================================ */
     body,
     html,
     * {
@@ -45,67 +38,195 @@
       font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
     }
 
-    /* ============================================
-       MINIMAL UI TWEAKS (non-destructive)
-       ============================================ */
-
-    /* Primary buttons */
-    button[class*="css-"][class*="Button"] {
-      border-radius: 6px !important;
-    }
-
-    /* Inputs */
+    button[class*="css-"][class*="Button"],
     input,
     textarea,
     select {
       border-radius: 6px !important;
     }
 
-    /* ============================================
-       SAVE STATUS INDICATOR
-       ============================================ */
-    #save-status {
+    #editor-helper {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--bg-white);
-      border: 1px solid var(--border-light);
+      right: 18px;
+      bottom: 18px;
+      width: min(330px, calc(100vw - 32px));
+      color: var(--cms-text);
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid var(--cms-border);
       border-radius: 8px;
-      padding: 0.6rem 1rem;
-      font-size: 0.75rem;
-      color: var(--text-medium);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      z-index: 9999;
+      box-shadow: var(--cms-shadow);
+      z-index: 99999;
+      overflow: hidden;
+    }
+
+    #editor-helper * {
+      box-sizing: border-box;
+    }
+
+    .editor-helper-head {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--cms-border);
+      background: var(--cms-soft);
     }
 
-    #save-status.saved {
-      border-color: var(--success);
+    .editor-helper-title {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
     }
 
-    #save-status .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--success);
+    .editor-helper-title strong {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
     }
 
-    #save-status.saving .dot {
-      background: #ffc107;
-      animation: pulse 1s infinite;
+    .editor-helper-title span {
+      color: var(--cms-muted);
+      font-size: 11px;
+      line-height: 1.4;
     }
 
-    @keyframes pulse {
+    #editor-helper-toggle {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--cms-border);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--cms-text);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+    }
 
-      0%,
-      100% {
-        opacity: 1;
-      }
+    #editor-helper-toggle:hover {
+      border-color: var(--cms-primary);
+      color: var(--cms-primary);
+    }
 
-      50% {
-        opacity: 0.4;
+    #editor-helper-body {
+      padding: 12px 14px 14px;
+    }
+
+    #editor-helper.collapsed #editor-helper-body {
+      display: none;
+    }
+
+    .editor-helper-grid {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 8px 10px;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .editor-label {
+      color: var(--cms-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .editor-value {
+      min-width: 0;
+      color: var(--cms-text);
+      overflow-wrap: anywhere;
+    }
+
+    .editor-value code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef0fb;
+      color: var(--cms-primary);
+      font-size: 11px;
+    }
+
+    .editor-badge {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.3;
+      background: #eef0fb;
+      color: var(--cms-primary);
+    }
+
+    .editor-badge.online,
+    .editor-badge.saved {
+      background: #e8f5ee;
+      color: var(--cms-success);
+    }
+
+    .editor-badge.offline,
+    .editor-badge.error {
+      background: #fff0ee;
+      color: var(--cms-danger);
+    }
+
+    .editor-badge.checking,
+    .editor-badge.saving {
+      background: #fff8df;
+      color: var(--cms-warning);
+    }
+
+    .editor-helper-note {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--cms-border);
+      color: var(--cms-muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    #upload-toast {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      max-width: min(380px, calc(100vw - 32px));
+      padding: 12px 14px;
+      border: 1px solid var(--cms-border);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--cms-text);
+      box-shadow: var(--cms-shadow);
+      font-size: 13px;
+      line-height: 1.45;
+      z-index: 100000;
+    }
+
+    #upload-toast.success {
+      border-color: #b8dec8;
+      background: #f0fbf5;
+      color: var(--cms-success);
+    }
+
+    #upload-toast.warning {
+      border-color: #f0dd9f;
+      background: #fffaf0;
+      color: var(--cms-warning);
+    }
+
+    #upload-toast.error {
+      border-color: #f2b8b5;
+      background: #fff5f4;
+      color: var(--cms-danger);
+    }
+
+    @media (max-width: 720px) {
+      #editor-helper {
+        right: 12px;
+        bottom: 12px;
       }
     }
   </style>
@@ -113,330 +234,427 @@
 
 <body>
   <div id="nc-root"></div>
-  <div id="save-status" class="saved">
-    <span class="dot"></span>
-    <span id="save-text">저장됨</span>
-    <span id="save-time"></span>
-  </div>
 
+  <aside id="editor-helper" aria-label="CMS helper">
+    <div class="editor-helper-head">
+      <div class="editor-helper-title">
+        <strong>Blog editor</strong>
+        <span>Decap CMS for jeonseonghu.github.io</span>
+      </div>
+      <button id="editor-helper-toggle" type="button" title="Collapse helper" aria-expanded="true">-</button>
+    </div>
+    <div id="editor-helper-body">
+      <div class="editor-helper-grid">
+        <div class="editor-label">Access</div>
+        <div class="editor-value"><code>/admin/</code></div>
+
+        <div class="editor-label">Local</div>
+        <div class="editor-value"><code>http://localhost:4000/admin/</code></div>
+
+        <div class="editor-label">Mode</div>
+        <div class="editor-value"><span id="editor-mode" class="editor-badge checking">Checking</span></div>
+
+        <div class="editor-label">Upload</div>
+        <div class="editor-value"><span id="upload-server-state" class="editor-badge checking">Checking</span></div>
+
+        <div class="editor-label">Save</div>
+        <div class="editor-value">
+          <span id="save-state" class="editor-badge saved">Saved</span>
+          <span id="save-time"></span>
+        </div>
+      </div>
+      <div class="editor-helper-note">
+        Run <code>./start.sh</code> for local editing. Clipboard image paste needs the upload server at
+        <code>localhost:3001</code>; use Markdown mode for direct insertion.
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Auto-save status tracker
-    let lastSaveTime = null;
+    (function () {
+      'use strict';
 
-    function updateSaveStatus(status) {
-      const statusEl = document.getElementById('save-status');
-      const textEl = document.getElementById('save-text');
-      const timeEl = document.getElementById('save-time');
+      const UPLOAD_BASE = 'http://localhost:3001';
+      const UPLOAD_ENDPOINT = `${UPLOAD_BASE}/upload`;
+      let lastSaveTime = null;
+      let cmsReady = false;
 
-      if (status === 'saving') {
-        statusEl.className = 'saving';
-        textEl.textContent = '저장 중...';
-        timeEl.textContent = '';
-      } else if (status === 'saved') {
-        statusEl.className = 'saved';
-        textEl.textContent = '저장됨';
+      function getById(id) {
+        return document.getElementById(id);
+      }
+
+      function formatTime(date) {
+        return [
+          date.getHours().toString().padStart(2, '0'),
+          date.getMinutes().toString().padStart(2, '0'),
+          date.getSeconds().toString().padStart(2, '0')
+        ].join(':');
+      }
+
+      function setBadge(id, label, state) {
+        const element = getById(id);
+        if (!element) return;
+        element.textContent = label;
+        element.className = `editor-badge ${state}`;
+      }
+
+      function updateSaveStatus(status) {
+        if (status === 'saving') {
+          setBadge('save-state', 'Saving', 'saving');
+          const timeElement = getById('save-time');
+          if (timeElement) timeElement.textContent = '';
+          return;
+        }
+
         lastSaveTime = new Date();
-        timeEl.textContent = formatTime(lastSaveTime);
+        setBadge('save-state', 'Saved', 'saved');
+        const timeElement = getById('save-time');
+        if (timeElement) timeElement.textContent = ` ${formatTime(lastSaveTime)}`;
       }
-    }
 
-    function formatTime(date) {
-      const hours = date.getHours().toString().padStart(2, '0');
-      const minutes = date.getMinutes().toString().padStart(2, '0');
-      const seconds = date.getSeconds().toString().padStart(2, '0');
-      return `${hours}:${minutes}:${seconds}`;
-    }
-
-    // Listen for CMS events
-    CMS.registerEventListener({
-      name: 'preSave',
-      handler: () => {
-        updateSaveStatus('saving');
-      }
-    });
-
-    CMS.registerEventListener({
-      name: 'postSave',
-      handler: async () => {
-        updateSaveStatus('saved');
-
-        // Cleanup unused images after save
-        try {
-          const response = await fetch('http://localhost:3001/cleanup', { method: 'POST' });
-          if (response.ok) {
-            const result = await response.json();
-            if (result.deleted > 0) {
-              console.log(`🗑️ Cleaned up ${result.deleted} unused images`);
-            }
-          }
-        } catch (e) {
-          // Cleanup server not running, ignore
+      function setEditorMode() {
+        const isLocal = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+        if (isLocal) {
+          setBadge('editor-mode', 'Local', 'online');
+        } else {
+          setBadge('editor-mode', 'Public', 'checking');
         }
       }
-    });
 
-    // Initialize
-    updateSaveStatus('saved');
+      async function checkUploadServer() {
+        setBadge('upload-server-state', 'Checking', 'checking');
 
-    // Custom preview template
-    const PostPreview = createClass({
-      componentDidMount: function () {
-        this.updateCaptions();
-      },
+        try {
+          const response = await fetch(`${UPLOAD_BASE}/status`, { cache: 'no-store' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          setBadge('upload-server-state', 'Online', 'online');
+        } catch (error) {
+          setBadge('upload-server-state', 'Offline', 'offline');
+        }
+      }
 
-      componentDidUpdate: function () {
-        this.updateCaptions();
-      },
+      function showToast(type, message, timeout) {
+        const existing = getById('upload-toast');
+        if (existing) existing.remove();
 
-      updateCaptions: function () {
-        const container = this.containerRef;
-        if (!container) return;
+        const toast = document.createElement('div');
+        toast.id = 'upload-toast';
+        toast.className = type;
+        toast.textContent = message;
+        document.body.appendChild(toast);
 
-        const images = container.querySelectorAll('img');
-        images.forEach(img => {
-          if (img.closest('figure')) return;
+        if (timeout !== 0) {
+          window.setTimeout(() => toast.remove(), timeout || 4000);
+        }
+      }
 
-          let captionText = img.getAttribute('alt');
-          const titleText = img.getAttribute('title');
+      async function cleanupUnusedImages() {
+        try {
+          const response = await fetch(`${UPLOAD_BASE}/cleanup`, { method: 'POST' });
+          if (!response.ok) return;
 
-          if (!captionText || captionText.trim() === '') {
-            captionText = titleText;
+          const result = await response.json();
+          if (result.deleted > 0) {
+            console.info(`Cleaned up ${result.deleted} unused image(s).`);
           }
+        } catch (error) {
+          // Local upload server is optional outside the dev environment.
+        }
+      }
 
-          if (captionText && captionText.trim() !== '') {
-            const figure = document.createElement('figure');
-            const figcaption = document.createElement('figcaption');
-            figcaption.textContent = captionText;
+      function findCodeMirror() {
+        const editors = Array.from(document.querySelectorAll('.CodeMirror'));
+        return editors.find((editor) => editor.CodeMirror && editor.contains(document.activeElement)) ||
+          editors.find((editor) => editor.CodeMirror);
+      }
 
-            const parent = img.parentNode;
-            if (parent.tagName === 'P' && parent.childNodes.length === 1) {
-              parent.parentNode.insertBefore(figure, parent);
-              figure.appendChild(img);
-              parent.remove();
-            } else {
-              parent.insertBefore(figure, img);
-              figure.appendChild(img);
-            }
+      async function insertImageMarkdown(path, altText) {
+        const imageMarkdown = `\n![${altText}](${path})\n`;
+        const codeMirrorElement = findCodeMirror();
 
-            figure.appendChild(figcaption);
+        if (codeMirrorElement && codeMirrorElement.CodeMirror) {
+          const editor = codeMirrorElement.CodeMirror;
+          editor.replaceRange(imageMarkdown, editor.getCursor());
+          editor.focus();
+          return;
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(imageMarkdown);
+          showToast('warning', 'Image markdown was copied. Switch to Markdown mode and paste it where you want the image.', 6000);
+          return;
+        }
+
+        console.info('Image markdown:', imageMarkdown);
+        showToast('warning', 'Image uploaded, but the markdown could not be inserted automatically. Check the browser console.', 6000);
+      }
+
+      async function handleImagePaste(event) {
+        const items = event.clipboardData && event.clipboardData.items;
+        if (!items) return;
+
+        const imageItem = Array.from(items).find((item) => item.type.indexOf('image') !== -1);
+        if (!imageItem) return;
+
+        event.preventDefault();
+        const blob = imageItem.getAsFile();
+        if (!blob) return;
+
+        const filename = `image-${Date.now()}.png`;
+        showToast('warning', 'Uploading pasted image...', 0);
+
+        try {
+          const formData = new FormData();
+          formData.append('file', blob, filename);
+
+          const response = await fetch(UPLOAD_ENDPOINT, {
+            method: 'POST',
+            body: formData
+          });
+
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const result = await response.json();
+          await insertImageMarkdown(result.path, result.filename || filename);
+          showToast('success', `Uploaded image: ${result.filename || filename}`, 3500);
+          checkUploadServer();
+        } catch (error) {
+          console.error('Image upload failed:', error);
+          showToast('error', 'Image upload failed. Start the local upload server with ./start.sh and try again.', 6000);
+          checkUploadServer();
+        }
+      }
+
+      function setupHelperToggle() {
+        const helper = getById('editor-helper');
+        const toggle = getById('editor-helper-toggle');
+        if (!helper || !toggle) return;
+
+        const collapsed = window.localStorage.getItem('cms-helper-collapsed') === 'true';
+        helper.classList.toggle('collapsed', collapsed);
+        toggle.textContent = collapsed ? '+' : '-';
+        toggle.setAttribute('aria-expanded', String(!collapsed));
+        toggle.title = collapsed ? 'Expand helper' : 'Collapse helper';
+
+        toggle.addEventListener('click', () => {
+          const nextCollapsed = !helper.classList.contains('collapsed');
+          helper.classList.toggle('collapsed', nextCollapsed);
+          toggle.textContent = nextCollapsed ? '+' : '-';
+          toggle.setAttribute('aria-expanded', String(!nextCollapsed));
+          toggle.title = nextCollapsed ? 'Expand helper' : 'Collapse helper';
+          window.localStorage.setItem('cms-helper-collapsed', String(nextCollapsed));
+        });
+      }
+
+      function registerPreviewTemplate(cms) {
+        if (!cms || !window.createClass || !window.h) return false;
+
+        const PostPreview = createClass({
+          componentDidMount: function () {
+            this.updateCaptions();
+          },
+
+          componentDidUpdate: function () {
+            this.updateCaptions();
+          },
+
+          updateCaptions: function () {
+            const container = this.containerRef;
+            if (!container) return;
+
+            const images = container.querySelectorAll('img');
+            images.forEach((img) => {
+              if (img.closest('figure')) return;
+
+              const captionText = img.getAttribute('alt') || img.getAttribute('title');
+              if (!captionText || !captionText.trim()) return;
+
+              const figure = document.createElement('figure');
+              const figcaption = document.createElement('figcaption');
+              figcaption.textContent = captionText;
+
+              const parent = img.parentNode;
+              if (parent && parent.tagName === 'P' && parent.childNodes.length === 1) {
+                parent.parentNode.insertBefore(figure, parent);
+                figure.appendChild(img);
+                parent.remove();
+              } else if (parent) {
+                parent.insertBefore(figure, img);
+                figure.appendChild(img);
+              }
+
+              figure.appendChild(figcaption);
+            });
+          },
+
+          render: function () {
+            const entry = this.props.entry;
+            const title = entry.getIn(['data', 'title']) || '';
+            const body = this.props.widgetFor('body');
+
+            return h('div', {
+              className: 'preview-container',
+              ref: (element) => { this.containerRef = element; }
+            },
+              h('style', {}, `
+                .preview-container {
+                  font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+                  font-size: 1.05rem;
+                  line-height: 1.72;
+                  color: rgba(0, 0, 0, 0.82);
+                  padding: 2rem;
+                  max-width: 920px;
+                  margin: 0 auto;
+                  counter-reset: h1-counter;
+                }
+                .preview-container h1 {
+                  font-size: 1.75rem;
+                  font-weight: 760;
+                  margin: 2rem 0 1rem;
+                  padding-bottom: 0.5rem;
+                  border-bottom: 1px solid rgba(0,0,0,0.1);
+                  counter-reset: h2-counter;
+                  counter-increment: h1-counter;
+                }
+                .preview-container h1::before {
+                  content: counter(h1-counter) ". ";
+                  color: #3539ad;
+                }
+                .preview-container h2 {
+                  font-size: 1.45rem;
+                  font-weight: 740;
+                  margin: 1.6rem 0 0.75rem;
+                  counter-increment: h2-counter;
+                }
+                .preview-container h2::before {
+                  content: counter(h1-counter) "." counter(h2-counter) ". ";
+                  color: #3539ad;
+                }
+                .preview-container p { margin-bottom: 1rem; }
+                .preview-container blockquote {
+                  background: rgba(58, 64, 231, 0.05);
+                  padding: 1rem;
+                  margin: 1rem 0;
+                  border-radius: 8px;
+                }
+                .preview-container code {
+                  background: rgba(0,0,0,0.05);
+                  padding: 0.2em 0.4em;
+                  border-radius: 3px;
+                  font-size: 0.9em;
+                }
+                .preview-container pre {
+                  background: #f8f8f8;
+                  padding: 1rem;
+                  border-radius: 6px;
+                  overflow-x: auto;
+                }
+                .preview-container img {
+                  max-width: 100%;
+                  border-radius: 8px;
+                  margin: 1rem 0;
+                }
+                .preview-container figure {
+                  display: block !important;
+                  margin: 1.5rem 0;
+                  text-align: center;
+                }
+                .preview-container figcaption {
+                  display: block !important;
+                  margin-top: 0.5rem;
+                  font-size: 0.9rem;
+                  color: #666666;
+                  text-align: center;
+                  font-style: italic;
+                  line-height: 1.4;
+                }
+                .preview-title {
+                  font-size: 2rem;
+                  font-weight: 800;
+                  margin-bottom: 1.5rem;
+                  padding-bottom: 0.75rem;
+                  border-bottom: 3px solid #3539ad;
+                }
+              `),
+              h('h1', { className: 'preview-title' }, title),
+              h('div', { className: 'preview-body' }, body)
+            );
           }
         });
-      },
 
-      render: function () {
-        const entry = this.props.entry;
-        const title = entry.getIn(['data', 'title']) || '';
-        const body = this.props.widgetFor('body');
-
-        return h('div', {
-          className: 'preview-container',
-          ref: (el) => { this.containerRef = el; }
-        },
-          h('style', {}, `
-            .preview-container {
-              font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-              font-size: 1.1rem;
-              line-height: 1.7;
-              color: rgba(0, 0, 0, 0.8);
-              padding: 2rem;
-              max-width: 90%;
-              margin: 0 auto;
-              counter-reset: h1-counter;
-            }
-            .preview-container h1 {
-              font-size: 1.75rem;
-              font-weight: 700;
-              margin: 2rem 0 1rem;
-              padding-bottom: 0.5rem;
-              border-bottom: 1px solid rgba(0,0,0,0.1);
-              counter-reset: h2-counter;
-              counter-increment: h1-counter;
-            }
-            .preview-container h1::before {
-              content: counter(h1-counter) ". ";
-              color: #3539ad;
-            }
-            .preview-container h2 {
-              font-size: 1.5rem;
-              font-weight: 700;
-              margin: 1.5rem 0 0.75rem;
-              counter-increment: h2-counter;
-            }
-            .preview-container h2::before {
-              content: counter(h1-counter) "." counter(h2-counter) ". ";
-              color: #3539ad;
-            }
-            .preview-container p { margin-bottom: 1rem; }
-            .preview-container blockquote {
-              background: rgba(58, 64, 231, 0.04);
-              padding: 1rem;
-              margin: 1rem 0;
-              border-radius: 8px;
-            }
-            .preview-container code {
-              background: rgba(0,0,0,0.05);
-              padding: 0.2em 0.4em;
-              border-radius: 3px;
-              font-size: 0.9em;
-            }
-            .preview-container pre {
-              background: #f8f8f8;
-              padding: 1rem;
-              border-radius: 6px;
-              overflow-x: auto;
-            }
-            .preview-container img {
-              max-width: 100%;
-              border-radius: 8px;
-              margin: 1rem 0;
-            }
-            .preview-container figure {
-              display: block !important;
-              margin: 1.5rem 0;
-              text-align: center;
-            }
-            .preview-container figcaption {
-              display: block !important;
-              margin-top: 0.5rem;
-              font-size: 0.9rem;
-              color: #666666;
-              text-align: center;
-              font-style: italic;
-              line-height: 1.4;
-            }
-            .preview-title {
-              font-size: 2rem;
-              font-weight: 800;
-              margin-bottom: 1.5rem;
-              padding-bottom: 0.75rem;
-              border-bottom: 3px solid #3539ad;
-            }
-          `),
-          h('h1', { className: 'preview-title' }, title),
-          h('div', { className: 'preview-body' }, body)
-        );
+        cms.registerPreviewTemplate('posts', PostPreview);
+        return true;
       }
-    });
 
-    CMS.registerPreviewTemplate('posts', PostPreview);
+      function registerCmsEvents(cms) {
+        if (!cms) return false;
 
-    // ============================================
-    // CLIPBOARD IMAGE PASTE HANDLER
-    // Ctrl+V로 이미지 붙여넣기 → 자동 업로드 → 마크다운 삽입
-    // ============================================
-    const UPLOAD_SERVER = 'http://localhost:3001/upload';
+        cms.registerEventListener({
+          name: 'preSave',
+          handler: () => updateSaveStatus('saving')
+        });
 
-    document.addEventListener('paste', async function (e) {
-      const items = e.clipboardData?.items;
-      if (!items) return;
+        cms.registerEventListener({
+          name: 'postSave',
+          handler: async () => {
+            updateSaveStatus('saved');
+            cleanupUnusedImages();
+          }
+        });
 
-      for (let i = 0; i < items.length; i++) {
-        if (items[i].type.indexOf('image') !== -1) {
-          e.preventDefault();
+        return true;
+      }
 
-          const blob = items[i].getAsFile();
-          if (!blob) return;
+      function initCms() {
+        if (cmsReady) return true;
 
-          // Generate unique filename
-          const timestamp = Date.now();
-          const filename = `image-${timestamp}.png`;
+        const cms = window.CMS;
+        if (!cms) return false;
 
-          // Show uploading indicator
-          showUploadStatus('uploading');
+        registerPreviewTemplate(cms);
+        registerCmsEvents(cms);
 
-          try {
-            // Upload to local server
-            const formData = new FormData();
-            formData.append('file', blob, filename);
+        if (typeof window.initCMS === 'function') {
+          window.initCMS();
+        } else if (typeof cms.init === 'function') {
+          cms.init();
+        }
 
-            const response = await fetch(UPLOAD_SERVER, {
-              method: 'POST',
-              body: formData
-            });
+        cmsReady = true;
+        return true;
+      }
 
-            if (response.ok) {
-              const result = await response.json();
-              insertImageMarkdown(result.path, result.filename);
-              showUploadStatus('success', result.filename);
-            } else {
-              throw new Error('Upload failed');
-            }
-          } catch (err) {
-            console.error('Upload error:', err);
-            showUploadStatus('error');
+      function initCmsWhenReady() {
+        if (initCms()) return;
+
+        let attempts = 0;
+        const timer = window.setInterval(() => {
+          attempts += 1;
+
+          if (initCms() || attempts >= 30) {
+            window.clearInterval(timer);
           }
 
-          break;
-        }
-      }
-    });
-
-    function insertImageMarkdown(path, alt) {
-      const imageMarkdown = `\n![${alt}](${path})\n`;
-
-      // Only works in Markdown mode (CodeMirror)
-      const cmElement = document.querySelector('.CodeMirror');
-      if (cmElement && cmElement.CodeMirror) {
-        const cm = cmElement.CodeMirror;
-        const cursor = cm.getCursor();
-        cm.replaceRange(imageMarkdown, cursor);
-        cm.focus();
-        return;
+          if (attempts >= 30 && !cmsReady) {
+            console.warn('Decap CMS global API was not available; helper UI still loaded.');
+          }
+        }, 100);
       }
 
-      // Rich Text mode - copy to clipboard and notify user
-      navigator.clipboard.writeText(imageMarkdown).then(() => {
-        showUploadStatus('clipboard');
-      }).catch(() => {
-        console.log('Image markdown:', imageMarkdown);
-      });
-    }
+      setupHelperToggle();
+      setEditorMode();
+      updateSaveStatus('saved');
+      checkUploadServer();
+      window.setInterval(checkUploadServer, 30000);
+      document.addEventListener('paste', handleImagePaste);
+      initCmsWhenReady();
 
-    function showUploadStatus(status, filename) {
-      // Remove existing toast
-      const existing = document.getElementById('upload-toast');
-      if (existing) existing.remove();
-
-      const toast = document.createElement('div');
-      toast.id = 'upload-toast';
-      toast.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-size: 14px;
-        z-index: 99999;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: opacity 0.3s ease;
-      `;
-
-      if (status === 'uploading') {
-        toast.style.background = '#fff3cd';
-        toast.style.color = '#856404';
-        toast.textContent = '📤 이미지 업로드 중...';
-      } else if (status === 'success') {
-        toast.style.background = '#d4edda';
-        toast.style.color = '#155724';
-        toast.textContent = `✅ 업로드 완료: ${filename}`;
-        setTimeout(() => toast.remove(), 3000);
-      } else if (status === 'clipboard') {
-        toast.style.background = '#cce5ff';
-        toast.style.color = '#004085';
-        toast.textContent = '📋 Rich Text 모드: 마크다운이 클립보드에 복사됨. Markdown 모드로 전환 후 Ctrl+V';
-        setTimeout(() => toast.remove(), 5000);
-      } else if (status === 'error') {
-        toast.style.background = '#f8d7da';
-        toast.style.color = '#721c24';
-        toast.textContent = '❌ 업로드 실패 - 서버가 실행 중인지 확인하세요';
-        setTimeout(() => toast.remove(), 5000);
-      }
-
-      document.body.appendChild(toast);
-    }
-
-    console.log('📋 Clipboard paste enabled: Ctrl+V to auto-upload images');
+      console.info('CMS helper loaded. Open /admin/ locally with ./start.sh for full editing support.');
+    }());
   </script>
 </body>
 
