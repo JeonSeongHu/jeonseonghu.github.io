@@ -1,10 +1,15 @@
 # ============================================
 # DECAP CMS CONFIGURATION
-# Local file system backend for local development
+# GitHub backend for online editing, with local_backend for local development.
 # ============================================
 
 backend:
-  name: git-gateway
+  name: github
+  repo: JeonSeongHu/jeonseonghu.github.io
+  branch: main
+  site_domain: jeonseonghu.github.io
+  # For online editing on GitHub Pages, deploy a GitHub OAuth proxy and set:
+  # base_url: https://your-decap-oauth-worker.workers.dev
 
 local_backend: true
 

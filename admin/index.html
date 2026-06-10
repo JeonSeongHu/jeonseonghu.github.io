@@ -248,13 +248,19 @@
         <div class="editor-label">Access</div>
         <div class="editor-value"><code>/admin/</code></div>
 
+        <div class="editor-label">Online</div>
+        <div class="editor-value"><code>https://jeonseonghu.github.io/admin/</code></div>
+
         <div class="editor-label">Local</div>
         <div class="editor-value"><code>http://localhost:4000/admin/</code></div>
 
         <div class="editor-label">Mode</div>
         <div class="editor-value"><span id="editor-mode" class="editor-badge checking">Checking</span></div>
 
-        <div class="editor-label">Upload</div>
+        <div class="editor-label">Auth</div>
+        <div class="editor-value"><span id="auth-state" class="editor-badge checking">Checking</span></div>
+
+        <div class="editor-label">Paste</div>
         <div class="editor-value"><span id="upload-server-state" class="editor-badge checking">Checking</span></div>
 
         <div class="editor-label">Save</div>
@@ -263,10 +269,7 @@
           <span id="save-time"></span>
         </div>
       </div>
-      <div class="editor-helper-note">
-        Run <code>./start.sh</code> for local editing. Clipboard image paste needs the upload server at
-        <code>localhost:3001</code>; use Markdown mode for direct insertion.
-      </div>
+      <div id="editor-helper-note" class="editor-helper-note"></div>
     </div>
   </aside>
 
@@ -280,6 +283,7 @@
 
       const UPLOAD_BASE = 'http://localhost:3001';
       const UPLOAD_ENDPOINT = `${UPLOAD_BASE}/upload`;
+      const LOCAL_HOSTS = ['localhost', '127.0.0.1', '::1'];
       let lastSaveTime = null;
       let cmsReady = false;
 
@@ -302,6 +306,15 @@
         element.className = `editor-badge ${state}`;
       }
 
+      function isLocalHost() {
+        return LOCAL_HOSTS.includes(window.location.hostname);
+      }
+
+      function setHelperNote(message) {
+        const note = getById('editor-helper-note');
+        if (note) note.innerHTML = message;
+      }
+
       function updateSaveStatus(status) {
         if (status === 'saving') {
           setBadge('save-state', 'Saving', 'saving');
@@ -317,15 +330,21 @@
       }
 
       function setEditorMode() {
-        const isLocal = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
-        if (isLocal) {
+        if (isLocalHost()) {
           setBadge('editor-mode', 'Local', 'online');
+          setHelperNote('Run <code>./start.sh</code> for local editing. Clipboard image paste needs <code>localhost:3001</code>; use Markdown mode for direct insertion.');
         } else {
-          setBadge('editor-mode', 'Public', 'checking');
+          setBadge('editor-mode', 'Online', 'online');
+          setHelperNote('Online editing commits to GitHub after OAuth is configured. Use the CMS Media Library for images on the live site.');
         }
       }
 
       async function checkUploadServer() {
+        if (!isLocalHost()) {
+          setBadge('upload-server-state', 'Media Library', 'checking');
+          return;
+        }
+
         setBadge('upload-server-state', 'Checking', 'checking');
 
         try {
@@ -353,6 +372,8 @@
       }
 
       async function cleanupUnusedImages() {
+        if (!isLocalHost()) return;
+
         try {
           const response = await fetch(`${UPLOAD_BASE}/cleanup`, { method: 'POST' });
           if (!response.ok) return;
@@ -394,6 +415,8 @@
       }
 
       async function handleImagePaste(event) {
+        if (!isLocalHost()) return;
+
         const items = event.clipboardData && event.clipboardData.items;
         if (!items) return;
 
@@ -448,6 +471,32 @@
           toggle.title = nextCollapsed ? 'Expand helper' : 'Collapse helper';
           window.localStorage.setItem('cms-helper-collapsed', String(nextCollapsed));
         });
+      }
+
+      async function checkAuthConfig() {
+        if (isLocalHost()) {
+          setBadge('auth-state', 'Local proxy', 'online');
+          return;
+        }
+
+        try {
+          const response = await fetch('config.yml', { cache: 'no-store' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const config = await response.text();
+          const hasGithubBackend = /^\s*name:\s*github\s*$/m.test(config);
+          const hasActiveBaseUrl = /^\s*base_url:\s*\S+/m.test(config);
+
+          if (hasGithubBackend && hasActiveBaseUrl) {
+            setBadge('auth-state', 'GitHub OAuth', 'online');
+          } else if (hasGithubBackend) {
+            setBadge('auth-state', 'OAuth needed', 'checking');
+          } else {
+            setBadge('auth-state', 'Not online-ready', 'offline');
+          }
+        } catch (error) {
+          setBadge('auth-state', 'Unknown', 'error');
+        }
       }
 
       function registerPreviewTemplate(cms) {
@@ -647,6 +696,7 @@
 
       setupHelperToggle();
       setEditorMode();
+      checkAuthConfig();
       updateSaveStatus('saved');
       checkUploadServer();
       window.setInterval(checkUploadServer, 30000);

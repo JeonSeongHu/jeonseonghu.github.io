@@ -17,12 +17,14 @@ Dev server runs on **http://localhost:4000**.
 
 ## Blog Editor
 
+- Online editor: **https://jeonseonghu.github.io/admin/**
 - Local editor: **http://localhost:4000/admin/**
-- Public path: **/admin/**
 - Local Decap proxy: **http://localhost:8081**
 - Clipboard image upload status: **http://localhost:3001/status**
 
-Use `./start.sh` for local editing so the Jekyll server, Decap local backend, and clipboard image upload server all start together. If image paste fails, check the upload badge in the CMS helper panel or open the `/status` endpoint above.
+The CMS uses the GitHub backend for online editing and keeps `local_backend: true` for local editing. Online login requires a GitHub OAuth proxy; once that proxy URL is added as `backend.base_url` in `admin/config.yml`, `/admin/` can commit edits directly to `main`.
+
+Use `./start.sh` for local editing so the Jekyll server, Decap local backend, and clipboard image upload server all start together. If local image paste fails, check the paste badge in the CMS helper panel or open the `/status` endpoint above. On the live site, use the CMS Media Library for images.
 
 ## Features
 
