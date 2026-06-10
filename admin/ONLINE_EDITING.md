@@ -11,6 +11,7 @@ backend:
   branch: main
   site_domain: jeonseonghu.github.io
   # base_url: https://your-decap-oauth-worker.workers.dev
+  # auth_endpoint: /auth
 
 local_backend: true
 ```
@@ -37,6 +38,7 @@ backend:
   branch: main
   site_domain: jeonseonghu.github.io
   base_url: https://YOUR_WORKER_URL
+  auth_endpoint: /auth
 ```
 
 5. Commit and push.
