@@ -274,6 +274,24 @@
   </aside>
 
   <script>
+    (function completeOAuthFallback() {
+      const marker = '#/oauth-fallback?';
+      if (!window.location.hash.startsWith(marker)) return;
+
+      const params = new URLSearchParams(window.location.hash.slice(marker.length));
+      const token = params.get('token');
+      if (!token) return;
+
+      window.localStorage.setItem('decap-cms-user', JSON.stringify({
+        backendName: 'github',
+        token
+      }));
+      window.history.replaceState(null, document.title, `${window.location.origin}${window.location.pathname}#/`);
+      window.location.reload();
+    }());
+  </script>
+
+  <script>
     window.CMS_MANUAL_INIT = true;
   </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
