@@ -8,9 +8,8 @@ backend:
   repo: JeonSeongHu/jeonseonghu.github.io
   branch: main
   site_domain: jeonseonghu.github.io
-  # For online editing on GitHub Pages, deploy a GitHub OAuth proxy and set:
-  # base_url: https://your-decap-oauth-worker.workers.dev
-  # auth_endpoint: /auth
+  base_url: https://jeonseonghu-decap-oauth.seonghu-jeon.workers.dev
+  auth_endpoint: /auth
 
 local_backend: true
 

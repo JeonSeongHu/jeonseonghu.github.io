@@ -22,7 +22,7 @@ Dev server runs on **http://localhost:4000**.
 - Local Decap proxy: **http://localhost:8081**
 - Clipboard image upload status: **http://localhost:3001/status**
 
-The CMS uses the GitHub backend for online editing and keeps `local_backend: true` for local editing. Online login requires a GitHub OAuth proxy; once that proxy URL is added as `backend.base_url` in `admin/config.yml`, `/admin/` can commit edits directly to `main`.
+The CMS uses the GitHub backend for online editing and keeps `local_backend: true` for local editing. Online login is routed through the deployed Cloudflare Worker at `https://jeonseonghu-decap-oauth.seonghu-jeon.workers.dev`, so `/admin/` can commit edits directly to `main` after GitHub OAuth.
 
 Use `./start.sh` for local editing so the Jekyll server, Decap local backend, and clipboard image upload server all start together. If local image paste fails, check the paste badge in the CMS helper panel or open the `/status` endpoint above. On the live site, use the CMS Media Library for images.
 
@@ -47,6 +47,7 @@ _sass/              SCSS tokens, base, layout, components, pages, utilities
 assets/             CSS, JavaScript, images, PDFs
 .github/workflows/  Translation and image optimization workflows
 admin/              Decap CMS config and local upload server
+cloudflare/         Decap GitHub OAuth Worker source
 ```
 
 ## Deployment

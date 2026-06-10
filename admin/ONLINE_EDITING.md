@@ -1,6 +1,6 @@
 # Online Editing Setup
 
-The `/admin/` page is ready to use the GitHub backend, but GitHub Pages cannot keep an OAuth client secret. To save edits online, deploy a small OAuth proxy and add its public URL to `admin/config.yml`.
+The `/admin/` page uses the GitHub backend. GitHub Pages cannot keep an OAuth client secret, so online auth is handled by a small Cloudflare Worker OAuth proxy.
 
 ## Current CMS Backend
 
@@ -10,39 +10,26 @@ backend:
   repo: JeonSeongHu/jeonseonghu.github.io
   branch: main
   site_domain: jeonseonghu.github.io
-  # base_url: https://your-decap-oauth-worker.workers.dev
-  # auth_endpoint: /auth
+  base_url: https://jeonseonghu-decap-oauth.seonghu-jeon.workers.dev
+  auth_endpoint: /auth
 
 local_backend: true
 ```
 
-`local_backend: true` keeps local editing working through `./start.sh`. Online editing starts working when `base_url` points to a deployed GitHub OAuth proxy.
+`local_backend: true` keeps local editing working through `./start.sh`. The live site uses the configured Worker for GitHub OAuth.
 
-## One-Time Online Setup
+## Deployed OAuth Proxy
 
-1. Deploy a Decap-compatible GitHub OAuth proxy.
-   - Cloudflare Worker is the lightest option.
-   - The proxy must expose `/auth` and `/callback`.
-2. Create a GitHub OAuth App.
-   - Homepage URL: `https://jeonseonghu.github.io`
-   - Authorization callback URL: `https://YOUR_WORKER_URL/callback`
-3. Store OAuth secrets in the proxy environment.
-   - `GITHUB_CLIENT_ID`
-   - `GITHUB_CLIENT_SECRET`
-4. Update `admin/config.yml`.
+- Worker name: `jeonseonghu-decap-oauth`
+- Worker URL: `https://jeonseonghu-decap-oauth.seonghu-jeon.workers.dev`
+- Source: `cloudflare/decap-oauth-worker.js`
+- Runtime bindings:
+  - `GITHUB_OAUTH_ID` as plaintext
+  - `GITHUB_OAUTH_SECRET` as secret
 
-```yml
-backend:
-  name: github
-  repo: JeonSeongHu/jeonseonghu.github.io
-  branch: main
-  site_domain: jeonseonghu.github.io
-  base_url: https://YOUR_WORKER_URL
-  auth_endpoint: /auth
-```
+To redeploy the Worker, run Wrangler against `cloudflare/decap-oauth-worker.js` and keep the runtime bindings configured in Cloudflare.
 
-5. Commit and push.
-6. Open `https://jeonseonghu.github.io/admin/` and sign in with GitHub.
+Open `https://jeonseonghu.github.io/admin/` and sign in with GitHub.
 
 Only GitHub users with push access to `JeonSeongHu/jeonseonghu.github.io` can save through this backend.
 
