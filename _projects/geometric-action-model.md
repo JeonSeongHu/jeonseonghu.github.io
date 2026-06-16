@@ -11,6 +11,7 @@ date: 2026-06-15
 role: "Equal Contribution"
 link: "https://arxiv.org/abs/2606.17046"
 arxiv: "https://arxiv.org/abs/2606.17046"
+huggingface: "https://huggingface.co/papers/2606.17046"
 pdf: "https://arxiv.org/pdf/2606.17046"
 project_link: "https://cvlab-kaist.github.io/Geometric-Action-Model/"
 tags: ["Robot Learning", "Visuomotor Control", "3D Vision", "Geometric Foundation Models"]
@@ -30,5 +31,6 @@ Across simulation and real-robot manipulation benchmarks, GAM improves accuracy,
 ## Links
 
 - [arXiv](https://arxiv.org/abs/2606.17046)
+- [Hugging Face](https://huggingface.co/papers/2606.17046)
 - [PDF](https://arxiv.org/pdf/2606.17046)
 - [Project Page](https://cvlab-kaist.github.io/Geometric-Action-Model/)

@@ -11,6 +11,7 @@ layout: portfolio
 {% if page.link and page.link != "#" %}{% assign has_project_links = true %}{% endif %}
 {% if page.project_link and page.project_link != "#" %}{% assign has_project_links = true %}{% endif %}
 {% if page.arxiv and page.arxiv != "#" %}{% assign has_project_links = true %}{% endif %}
+{% if page.huggingface and page.huggingface != "#" %}{% assign has_project_links = true %}{% endif %}
 {% if page.pdf and page.pdf != "#" %}{% assign has_project_links = true %}{% endif %}
 {% if page.code and page.code != "#" %}{% assign has_project_links = true %}{% endif %}
 
@@ -67,6 +68,7 @@ layout: portfolio
         {% if page.link and page.link != "#" %}<a href="{{ page.link }}" target="_blank" rel="noopener">Paper</a>{% endif %}
         {% if page.project_link and page.project_link != "#" %}<a href="{{ page.project_link }}" target="_blank" rel="noopener">Project Page</a>{% endif %}
         {% if page.arxiv and page.arxiv != "#" %}<a href="{{ page.arxiv }}" target="_blank" rel="noopener">arXiv</a>{% endif %}
+        {% if page.huggingface and page.huggingface != "#" %}<a href="{{ page.huggingface }}" target="_blank" rel="noopener">Hugging Face</a>{% endif %}
         {% if page.pdf and page.pdf != "#" %}<a href="{{ page.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
         {% if page.code and page.code != "#" %}<a href="{{ page.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
     </div>
