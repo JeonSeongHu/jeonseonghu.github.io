@@ -6,7 +6,7 @@ short_title: "GAM"
 description: "A language-conditioned robot policy that repurposes a pretrained geometric foundation model for perception, future geometry prediction, and action decoding."
 image: "/assets/images/projects/gam-teaser.webp"
 authors: "Jisang Han*, Seonghu Jeon*, Jaewoo Jung, René Zurbrügg, Honggyu An, Tifanny Portela, Marco Hutter, Marc Pollefeys, Seungryong Kim†, Sunghwan Hong†"
-venue: "arXiv preprint, under review, 2026"
+venue: "Under Review, 2026"
 date: 2026-06-15
 role: "Equal Contribution"
 link: "https://arxiv.org/abs/2606.17046"

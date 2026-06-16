@@ -6,7 +6,7 @@ short_title: "ReMoTE"
 description: "A benchmark dataset and evaluation protocol for object motion transfer, introducing improved metrics that better correlate with human perception."
 image: "/assets/images/projects/remote-figure1.webp"
 authors: "Seonghu Jeon, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim†"
-venue: "ITC-CSCC 2025 (Oral)"
+venue: "ITC-CSCC 2025"
 date: 2025-06-01
 role: "First Author"
 link: "https://ieeexplore.ieee.org/document/11137589"

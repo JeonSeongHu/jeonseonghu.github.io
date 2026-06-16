@@ -12,7 +12,7 @@ custom_css_class: portfolio-page
     <div class="pf-eyebrow">— Publications</div>
     <h1 class="pf-page-h1">Publications<span class="pf-blue">.</span></h1>
     <p class="pf-page-deck">
-        Peer-reviewed papers, oral presentations, and works currently under review. Filter by keyword, author, or venue.
+        Peer-reviewed papers, preprints, and works currently under review. Filter by keyword, author, or venue.
     </p>
     <div class="pf-search">
         <input type="text" id="publication-search" class="pf-search-input" placeholder="Type to filter — title, author, venue">
@@ -40,7 +40,7 @@ custom_css_class: portfolio-page
             {% assign featured = true %}
         {% endif %}
         {% assign hi = false %}
-        {% if featured or venue_lower contains "oral" %}
+        {% if featured %}
             {% assign hi = true %}
         {% endif %}
         <article class="pf-pub{% if featured %} is-featured{% endif %}"

@@ -290,19 +290,6 @@ body.layout-portfolio button {
         z-index: 2;
     }
 
-    &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: repeating-linear-gradient(
-            135deg,
-            transparent 0,
-            transparent 10px,
-            rgba(29, 29, 31, 0.045) 10px,
-            rgba(29, 29, 31, 0.045) 11px
-        );
-    }
 }
 .pf-portrait-corner {
     position: absolute;

@@ -48,7 +48,7 @@ custom_css_class: portfolio-page
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2025.07</span>
-			<span class="pf-news-body"><b>ReMoTE</b> accepted to ITC-CSCC as oral presentation.</span>
+			<span class="pf-news-body"><b>ReMoTE</b> accepted to ITC-CSCC.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2025.02</span>
@@ -75,7 +75,7 @@ custom_css_class: portfolio-page
 			{% assign featured = true %}
 		{% endif %}
 		{% assign hi = false %}
-		{% if featured or venue_lower contains "oral" %}
+		{% if featured %}
 			{% assign hi = true %}
 		{% endif %}
 		<article class="pf-pub{% if featured %} is-featured{% endif %}">
