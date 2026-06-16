@@ -1462,6 +1462,9 @@ body.layout-portfolio button {
     font-weight: 500;
 
     a {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
         color: var(--pf-ink-3);
         border-bottom: 1px solid transparent;
         transition: color 0.12s ease, border-color 0.12s ease;
@@ -1470,6 +1473,13 @@ body.layout-portfolio button {
             color: var(--pf-blue);
             border-bottom-color: var(--pf-blue);
         }
+    }
+
+    .pf-project-link-logo {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+        object-fit: contain;
     }
 }
 .pf-post-figure.pf-project-figure {

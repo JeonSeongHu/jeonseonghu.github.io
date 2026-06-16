@@ -68,7 +68,7 @@ layout: portfolio
         {% if page.link and page.link != "#" %}<a href="{{ page.link }}" target="_blank" rel="noopener">Paper</a>{% endif %}
         {% if page.project_link and page.project_link != "#" %}<a href="{{ page.project_link }}" target="_blank" rel="noopener">Project Page</a>{% endif %}
         {% if page.arxiv and page.arxiv != "#" %}<a href="{{ page.arxiv }}" target="_blank" rel="noopener">arXiv</a>{% endif %}
-        {% if page.huggingface and page.huggingface != "#" %}<a href="{{ page.huggingface }}" target="_blank" rel="noopener">Hugging Face</a>{% endif %}
+        {% if page.huggingface and page.huggingface != "#" %}<a href="{{ page.huggingface }}" target="_blank" rel="noopener"><img class="pf-project-link-logo" src="{{ site.baseurl }}/assets/images/huggingface-logo.svg" alt="" aria-hidden="true">Hugging Face</a>{% endif %}
         {% if page.pdf and page.pdf != "#" %}<a href="{{ page.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
         {% if page.code and page.code != "#" %}<a href="{{ page.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
     </div>
