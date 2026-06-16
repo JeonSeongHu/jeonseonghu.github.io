@@ -1,204 +1,181 @@
 ---
-layout: default
+layout: portfolio
 ---
 
-<!-- Detail Container -->
-<div class="container detail-container">
-    <div class="row">
-        <!-- Sidebar: TOC (Desktop only) -->
-        <div class="col-lg-3 d-none d-lg-block">
-            <div class="detail-sidebar sticky-top">
-                <a href="{{ site.baseurl }}/projects" class="detail-back-link">← Projects</a>
-                <div class="detail-sidebar-section">
-                    <h6 class="detail-sidebar-label">CONTENTS</h6>
-                    <nav class="detail-toc sidebar-toc">
-                        {% include toc_pure_html.html html=content h_min=1 h_max=3 class="toc-list" item_class="toc-item" submenu_class="toc-sub-list" %}
-                    </nav>
-                </div>
-            </div>
+{% assign project_kind = "Project" %}
+{% if page.type == "publication" %}
+    {% assign project_kind = "Publication" %}
+{% endif %}
+
+{% assign has_project_links = false %}
+{% if page.link and page.link != "#" %}{% assign has_project_links = true %}{% endif %}
+{% if page.project_link and page.project_link != "#" %}{% assign has_project_links = true %}{% endif %}
+{% if page.arxiv and page.arxiv != "#" %}{% assign has_project_links = true %}{% endif %}
+{% if page.pdf and page.pdf != "#" %}{% assign has_project_links = true %}{% endif %}
+{% if page.code and page.code != "#" %}{% assign has_project_links = true %}{% endif %}
+
+<section class="pf-page-hero pf-post-hero pf-project-hero" id="hero">
+    <div class="pf-eyebrow">{{ project_kind }} / {{ page.date | date: "%Y.%m" }}</div>
+    <h1 class="pf-page-h1 pf-post-title">{{ page.title }}</h1>
+
+    {% if page.full_title and page.full_title != page.title %}
+    <p class="pf-page-deck pf-project-deck">{{ page.full_title }}</p>
+    {% elsif page.description %}
+    <p class="pf-page-deck pf-project-deck">{{ page.description }}</p>
+    {% endif %}
+
+    <div class="pf-project-meta">
+        {% if page.role %}
+        <div class="pf-project-meta-item">
+            <span class="pf-project-meta-label">Role</span>
+            <span class="pf-project-meta-value">{{ page.role }}</span>
         </div>
+        {% endif %}
 
-        <!-- Main Content -->
-        <div class="col-lg-9">
-            <div class="post-content project-content-left-aligned">
-                <!-- Project Header -->
-                <div class="detail-header">
-                    {% if page.type == "publication" %}
-                    <span class="project-type-label mb-2 d-inline-block">Publication</span>
-                    {% endif %}
+        {% if page.venue %}
+        <div class="pf-project-meta-item">
+            <span class="pf-project-meta-label">Venue</span>
+            <span class="pf-project-meta-value">{{ page.venue }}</span>
+        </div>
+        {% endif %}
 
-                    <h1 class="detail-title">{{ page.title }}</h1>
-
-                    {% if page.full_title %}
-                    <p class="project-full-title mb-4">{{ page.full_title }}</p>
-                    {% elsif page.description %}
-                    <p class="project-full-title mb-4">{{ page.description }}</p>
-                    {% endif %}
-
-                    <!-- Meta Grid -->
-                    <div class="project-meta-grid">
-                        {% if page.authors %}
-                        <div class="meta-item mb-2">
-                            <span class="meta-label">AUTHORS</span>
-                            <span class="meta-value">
-                                {% assign highlight_author = "Seonghu Jeon" %}
-                                {% assign authors_array = page.authors | split: ", " %}
-                                {% for author in authors_array %}
-                                    {% if author contains highlight_author %}
-                                        <strong>{{ author }}</strong>{% unless forloop.last %}, {% endunless %}
-                                    {% else %}
-                                        {{ author }}{% unless forloop.last %}, {% endunless %}
-                                    {% endif %}
-                                {% endfor %}
-                            </span>
-                        </div>
-                        {% endif %}
-
-                        <div class="meta-row-inline mb-2">
-                            {% if page.role %}
-                            <div class="meta-inline-item">
-                                <span class="meta-label">MY ROLE</span>
-                                <span class="meta-value">{{ page.role }}</span>
-                            </div>
-                            {% endif %}
-
-                            {% if page.venue %}
-                            <div class="meta-inline-item">
-                                <span class="meta-label">VENUE</span>
-                                <span class="meta-value">{{ page.venue }}</span>
-                            </div>
-                            {% endif %}
-
-                            <div class="meta-inline-item">
-                                <span class="meta-label">DATE</span>
-                                <span class="meta-value">{{ page.date | date: "%B %Y" }}</span>
-                            </div>
-                        </div>
-
-                        {% if page.link or page.project_link or page.arxiv or page.pdf or page.code %}
-                        <div class="meta-item mb-2">
-                            <span class="meta-label">LINKS</span>
-                            <span class="meta-value meta-links">
-                                {% assign has_prev_link = false %}
-                                {% if page.link and page.link != "#" %}<a href="{{ page.link }}" target="_blank">Paper</a>{% assign has_prev_link = true %}{% endif %}
-                                {% if page.project_link and page.project_link != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.project_link }}" target="_blank">Project Page</a>{% assign has_prev_link = true %}{% endif %}
-                                {% if page.arxiv and page.arxiv != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.arxiv }}" target="_blank">arXiv</a>{% assign has_prev_link = true %}{% endif %}
-                                {% if page.pdf and page.pdf != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.pdf }}" target="_blank">PDF</a>{% assign has_prev_link = true %}{% endif %}
-                                {% if page.code and page.code != "#" %}{% if has_prev_link %} · {% endif %}<a href="{{ page.code }}" target="_blank">Code</a>{% endif %}
-                            </span>
-                        </div>
-                        {% endif %}
-
-                        {% if page.tags %}
-                        <div class="meta-item mt-4">
-                            <div class="detail-tags">
-                                {% assign sortedTags = page.tags | sort %}
-                                {% for tag in sortedTags %}
-                                <a href="{{site.baseurl}}/projects/?tag={{ tag | slugify }}">#{{ tag }}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- Featured Image -->
-                {% if page.image %}
-                <div class="detail-featured-image">
-                    <img class="featured-image img-fluid w-100" src="{{ page.image }}" alt="{{ page.title }}" style="object-fit: cover;">
-                </div>
-                {% endif %}
-
-                <!-- Inline TOC (Mobile only) -->
-                <div class="toc mt-4 mb-4 d-lg-none">
-                    <h3 class="font-weight-bold">Contents</h3>
-                    {% include toc.html html=content h_min=1 h_max=3 ordered=true %}
-                </div>
-
-                <!-- Article Content -->
-                <div class="article-post content-body text-start">
-                    {{ content }}
-                </div>
-
-                <hr class="detail-divider" />
-
-                <!-- Prev/Next Navigation -->
-                <div class="post-navigation">
-                    <div class="nav-links">
-                        {% assign sorted_projects = site.projects | sort: "date" | reverse %}
-                        {% assign prev_project = nil %}
-                        {% assign next_project = nil %}
-                        {% assign found_current = false %}
-
-                        {% for project in sorted_projects %}
-                            {% if found_current and next_project == nil %}
-                                {% assign next_project = project %}
-                            {% endif %}
-                            {% if project.url == page.url %}
-                                {% assign found_current = true %}
-                            {% endif %}
-                            {% unless found_current %}
-                                {% assign prev_project = project %}
-                            {% endunless %}
-                        {% endfor %}
-
-                        {% if prev_project %}
-                        <a class="nav-previous" href="{{ site.baseurl }}{{ prev_project.url }}">
-                            <span class="nav-label">Previous</span>
-                            <span class="nav-title">&laquo; {{ prev_project.title }}</span>
-                        </a>
-                        {% else %}
-                        <div class="nav-previous nav-empty"></div>
-                        {% endif %}
-
-                        {% if next_project %}
-                        <a class="nav-next" href="{{ site.baseurl }}{{ next_project.url }}">
-                            <span class="nav-label">Next</span>
-                            <span class="nav-title">{{ next_project.title }} &raquo;</span>
-                        </a>
-                        {% else %}
-                        <div class="nav-next nav-empty"></div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+        <div class="pf-project-meta-item">
+            <span class="pf-project-meta-label">Date</span>
+            <span class="pf-project-meta-value">{{ page.date | date: "%B %Y" }}</span>
         </div>
     </div>
-</div>
 
-<!-- ScrollSpy for Sidebar TOC -->
+    {% if page.authors %}
+    <div class="pf-project-authors">
+        <span class="pf-project-meta-label">Authors</span>
+        <span class="pf-project-authors-list">
+            {% assign highlight_author = "Seonghu Jeon" %}
+            {% assign authors_array = page.authors | split: ", " %}
+            {% for author in authors_array %}
+                {% if author contains highlight_author %}
+                    <strong>{{ author }}</strong>{% unless forloop.last %}, {% endunless %}
+                {% else %}
+                    {{ author }}{% unless forloop.last %}, {% endunless %}
+                {% endif %}
+            {% endfor %}
+        </span>
+    </div>
+    {% endif %}
+
+    {% if has_project_links %}
+    <div class="pf-project-links">
+        {% if page.link and page.link != "#" %}<a href="{{ page.link }}" target="_blank" rel="noopener">Paper</a>{% endif %}
+        {% if page.project_link and page.project_link != "#" %}<a href="{{ page.project_link }}" target="_blank" rel="noopener">Project Page</a>{% endif %}
+        {% if page.arxiv and page.arxiv != "#" %}<a href="{{ page.arxiv }}" target="_blank" rel="noopener">arXiv</a>{% endif %}
+        {% if page.pdf and page.pdf != "#" %}<a href="{{ page.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
+        {% if page.code and page.code != "#" %}<a href="{{ page.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
+    </div>
+    {% endif %}
+</section>
+
+<section class="pf-sec pf-sec--flush" id="project">
+    <div class="pf-post-grid">
+        <aside class="pf-post-side">
+            <div class="pf-post-side-inner">
+                <a href="{{ site.baseurl }}/projects/" class="pf-post-back">Back to projects</a>
+                <div class="pf-post-side-label">Contents</div>
+                <nav class="pf-post-toc">
+                    {% include toc_pure_html.html html=content h_min=1 h_max=3 class="pf-post-toc-list" item_class="pf-post-toc-item" submenu_class="pf-post-toc-sub" %}
+                </nav>
+            </div>
+        </aside>
+
+        <div class="pf-post-body">
+            {% if page.image %}
+            {% assign project_image = page.image %}
+            {% unless project_image contains "://" %}
+                {% assign image_first = project_image | slice: 0, 1 %}
+                {% if image_first == "/" %}
+                    {% assign project_image = project_image | prepend: site.baseurl %}
+                {% else %}
+                    {% assign project_image = project_image | prepend: "/" | prepend: site.baseurl %}
+                {% endif %}
+            {% endunless %}
+            <figure class="pf-post-figure pf-project-figure">
+                <img class="pf-post-figure-img"
+                    src="{{ project_image }}"
+                    alt="{{ page.title }}" fetchpriority="high" decoding="async"
+                    onerror="this.parentElement.style.display='none';">
+            </figure>
+            {% endif %}
+
+            <details class="pf-post-toc-mobile">
+                <summary>Contents</summary>
+                {% include toc.html html=content h_min=1 h_max=3 ordered=true %}
+            </details>
+
+            <article class="pf-prose pf-project-prose">
+                {{ content }}
+            </article>
+
+            {% if page.tags and page.tags.size > 0 %}
+            <div class="pf-post-tags pf-project-tags">
+                {% assign sortedTags = page.tags | sort %}
+                {% for tag in sortedTags %}
+                <a href="{{ site.baseurl }}/projects/?tag={{ tag | slugify }}">#{{ tag }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <nav class="pf-post-nav">
+                {% assign sorted_projects = site.projects | sort: "date" | reverse %}
+                {% assign prev_project = nil %}
+                {% assign next_project = nil %}
+                {% assign found_current = false %}
+
+                {% for project in sorted_projects %}
+                    {% if found_current and next_project == nil %}
+                        {% assign next_project = project %}
+                    {% endif %}
+                    {% if project.url == page.url %}
+                        {% assign found_current = true %}
+                    {% endif %}
+                    {% unless found_current %}
+                        {% assign prev_project = project %}
+                    {% endunless %}
+                {% endfor %}
+
+                {% if prev_project %}
+                <a class="pf-post-nav-link is-prev" href="{{ site.baseurl }}{{ prev_project.url }}">
+                    <span class="pf-post-nav-label">Previous</span>
+                    <span class="pf-post-nav-title">{{ prev_project.title }}</span>
+                </a>
+                {% else %}
+                <span class="pf-post-nav-link is-empty"></span>
+                {% endif %}
+
+                {% if next_project %}
+                <a class="pf-post-nav-link is-next" href="{{ site.baseurl }}{{ next_project.url }}">
+                    <span class="pf-post-nav-label">Next</span>
+                    <span class="pf-post-nav-title">{{ next_project.title }}</span>
+                </a>
+                {% else %}
+                <span class="pf-post-nav-link is-empty"></span>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+</section>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const tocLinks = document.querySelectorAll('.detail-toc a');
-        const sections = document.querySelectorAll('.article-post h1, .article-post h2, .article-post h3');
+document.addEventListener('DOMContentLoaded', function () {
+    const tocLinks = document.querySelectorAll('.pf-post-toc a');
+    const sections = document.querySelectorAll('.pf-prose h1, .pf-prose h2, .pf-prose h3');
+    if (!tocLinks.length || !sections.length) return;
 
-        function changeLinkState() {
-            let index = sections.length;
-            while (--index && window.scrollY + 100 < sections[index].offsetTop) { }
+    function updateToc() {
+        let index = sections.length;
+        while (--index >= 0 && window.scrollY + 120 < sections[index].offsetTop) { }
+        tocLinks.forEach(link => link.classList.remove('is-active'));
+        if (index >= 0 && tocLinks[index]) tocLinks[index].classList.add('is-active');
+    }
 
-            tocLinks.forEach((link) => {
-                link.classList.remove('active');
-            });
-
-            document.querySelectorAll('.detail-toc .active-li').forEach(li => {
-                li.classList.remove('active-li');
-            });
-
-            if (index >= 0 && tocLinks[index]) {
-                const activeLink = tocLinks[index];
-                activeLink.classList.add('active');
-
-                let parent = activeLink.parentElement;
-                while (parent) {
-                    if (parent.tagName === 'LI' && parent.closest('.detail-toc')) {
-                        parent.classList.add('active-li');
-                    }
-                    parent = parent.parentElement;
-                }
-            }
-        }
-
-        changeLinkState();
-        window.addEventListener('scroll', changeLinkState);
-    });
+    updateToc();
+    window.addEventListener('scroll', updateToc, { passive: true });
+});
 </script>
