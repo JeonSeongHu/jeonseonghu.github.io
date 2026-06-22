@@ -7,5 +7,23 @@
     "loss-mle.svg": "slides 61-66",
     "optimization-backprop.svg": "slides 72-86"
   },
-  "style": "minimal gray/blue palette, red only for samples/errors/gradients, noun-phrase labels only"
+  "style": {
+    "skill": "paper-figure-diagrams",
+    "font": "Paperlogy",
+    "palette": [
+      "neutral gray",
+      "accent blue",
+      "semantic red"
+    ],
+    "layout": "1600 px wide canvases, short noun-phrase labels, no long equations in diagrams",
+    "plots": "Axes, points, curves, residuals, and update paths use each figure's Plot coordinate transform."
+  },
+  "figures": {
+    "data-as-matrix.svg": "Student sample vector to dataset matrix",
+    "sampling-modeling.svg": "Population distribution to sample-based model distribution",
+    "modeling-types.svg": "Generative distribution fitting and discriminative conditional prediction",
+    "linear-regression-loss.svg": "Candidate regression lines, residual aggregation, and loss curve",
+    "loss-mle.svg": "Normal error with MSE and Laplace error with MAE",
+    "optimization-backprop.svg": "Gradient descent path and backpropagation graph"
+  }
 }

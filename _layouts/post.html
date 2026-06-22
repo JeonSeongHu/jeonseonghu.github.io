@@ -122,6 +122,24 @@ custom_css_class: portfolio-page
 <script src="{{ site.baseurl }}/assets/js/reading.js"></script>
 <script src="{{ site.baseurl }}/assets/js/codeblocks.js"></script>
 <script src="{{ site.baseurl }}/assets/js/post-captions.js?v=4"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const root = document.querySelector('.pf-prose');
+    if (!root || !window.renderMathInElement) return;
+    window.renderMathInElement(root, {
+        delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false,
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    });
+});
+</script>
 
 {% if page.toc %}
 <script>
