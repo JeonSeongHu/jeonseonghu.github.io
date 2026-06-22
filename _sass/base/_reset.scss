@@ -21,6 +21,10 @@ body {
     font-family: var(--font-sans) !important; /* Bootstrap CDN override */
     color: var(--color-text-primary);
     line-height: 1.6;
+    letter-spacing: 0;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     background-color: var(--color-surface-primary);
     overflow-x: hidden;
     min-height: 100vh;

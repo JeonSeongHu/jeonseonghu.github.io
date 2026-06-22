@@ -482,11 +482,12 @@ custom_css_class: portfolio-page cv-portfolio
 </div>
 
 <style>
-/* ===== Modern CV PDF — Single-Column, Inter + Playfair Display ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+/* ===== Modern CV PDF, aligned with portfolio typography ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 #cv-pdf-content {
-    font-family: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, "Helvetica Neue", sans-serif;
     color: #111827;
     background: #fff;
     padding: 14mm 16mm 12mm;
@@ -494,7 +495,10 @@ custom_css_class: portfolio-page cv-portfolio
     box-sizing: border-box;
     font-size: 8.5pt;
     line-height: 1.5;
+    letter-spacing: 0;
+    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 #cv-pdf-content * { box-sizing: border-box; }
 
@@ -505,13 +509,13 @@ custom_css_class: portfolio-page cv-portfolio
     border-bottom: 0.5px solid #E5E7EB;
 }
 .p-name {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 28pt; font-weight: 700; color: #111827;
-    letter-spacing: -0.02em; line-height: 1.1;
+    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, sans-serif;
+    font-size: 28pt; font-weight: 800; color: #111827;
+    letter-spacing: 0; line-height: 1.1;
 }
 .p-tagline {
     font-size: 9pt; color: #6B7280; font-weight: 400;
-    margin-top: 4px; letter-spacing: 0.005em;
+    margin-top: 4px; letter-spacing: 0;
 }
 .p-contact-row {
     display: flex; gap: 16px; margin-top: 10px;
@@ -535,8 +539,8 @@ custom_css_class: portfolio-page cv-portfolio
     padding-top: 14mm;
 }
 .p-section-title {
-    font-family: "Inter", sans-serif;
-    font-size: 10pt; font-weight: 700;
+    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, sans-serif;
+    font-size: 10pt; font-weight: 800;
     letter-spacing: 0; color: #111827;
     margin-top: 18px; margin-bottom: 7px; padding-bottom: 5px;
     border-bottom: 1px solid #E5E7EB;
@@ -562,22 +566,22 @@ custom_css_class: portfolio-page cv-portfolio
 .p-bullets li { font-size: 8.5pt; line-height: 1.55; margin-bottom: 1px; color: #374151; }
 
 /* --- Publications --- */
-.p-note { font-size: 6pt; color: #9CA3AF; margin-bottom: 5px; letter-spacing: 0.02em; }
+.p-note { font-size: 6pt; color: #9CA3AF; margin-bottom: 5px; letter-spacing: 0; }
 .p-pub { display: flex; gap: 6px; margin-bottom: 10px; }
 .p-pub-id {
     font-size: 6.5pt; font-weight: 700; color: #4F46E5;
     min-width: 18px; padding-top: 1px;
-    font-family: "Inter", sans-serif;
+    font-family: "JetBrains Mono", "Pretendard Variable", "Pretendard", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 .p-pub-body { flex: 1; min-width: 0; }
-.p-pub-title { font-size: 9pt; font-weight: 600; color: #111827; line-height: 1.35; }
-.p-pub-authors { font-size: 8pt; color: #6B7280; line-height: 1.5; margin-top: 1px; }
+.p-pub-title { font-size: 9pt; font-weight: 700; color: #111827; line-height: 1.35; }
+.p-pub-authors { font-size: 8pt; color: #6B7280; line-height: 1.52; margin-top: 1px; }
 .p-pub-venue { font-size: 7.5pt; color: #9CA3AF; margin-top: 1px; }
 .p-venue-blue { color: #0040FF; font-weight: 600; }
 .p-me { font-weight: 700; color: #111827; }
 .p-link {
     font-size: 7pt; color: #4F46E5; text-decoration: none;
-    font-weight: 600; margin-left: 4px; letter-spacing: 0.01em;
+    font-weight: 600; margin-left: 4px; letter-spacing: 0;
     border-bottom: 1px dotted #4F46E5; padding-bottom: 0.5px;
 }
 
@@ -606,7 +610,7 @@ custom_css_class: portfolio-page cv-portfolio
 }
 .p-tag-label {
     font-size: 6pt; font-weight: 600; color: #9CA3AF;
-    text-transform: uppercase; letter-spacing: 0.06em;
+    text-transform: uppercase; letter-spacing: 0;
     margin-right: 2px;
 }
 .p-tag {
@@ -627,7 +631,7 @@ custom_css_class: portfolio-page cv-portfolio
 .p-cw-line { margin-bottom: 2px; }
 .p-cw-cat {
     font-weight: 600; color: #9CA3AF; font-size: 6.5pt;
-    text-transform: uppercase; letter-spacing: 0.04em;
+    text-transform: uppercase; letter-spacing: 0;
     margin-right: 4px;
 }
 </style>

@@ -19,7 +19,7 @@
     overflow-wrap: break-word;
 }
 
-/* Force children to use Wanted Sans */
+/* Force children to inherit the site typography stack */
 .article-post * {
     font-family: var(--font-sans) !important; /* Bootstrap CDN override — font inheritance */
 }
@@ -46,7 +46,7 @@
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--gray-25);
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
 }
 
 .article-post h1::before {
@@ -64,7 +64,7 @@
     margin-top: 3rem;
     margin-bottom: 0.8rem;
     padding-bottom: 0.3rem;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
 }
 
 .article-post h2::before {
