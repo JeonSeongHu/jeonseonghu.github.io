@@ -33,26 +33,30 @@ svg{font-family:'Paperlogy','Pretendard Variable',Pretendard,'Apple SD Gothic Ne
 <text class="tiny" x="420.0" y="446.0" text-anchor="middle" dominant-baseline="middle" style="fill:#667085;font-weight:620">전체 분포</text>
 <rect x="840.0" y="70.0" width="680.0" height="420.0" rx="14.0" fill="#F8FAFC" stroke="#A9B4C4" stroke-width="2"/>
 <text class="label" x="1180.0" y="126.0" text-anchor="middle" dominant-baseline="middle">판별 모델링</text>
-<text class="small" x="1180.0" y="168.0" text-anchor="middle" dominant-baseline="middle">조건부 예측</text>
-<line x1="945.0" y1="400.0" x2="1355.0" y2="400.0" stroke="#667085" stroke-width="2.3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="945.0" y1="400.0" x2="945.0" y2="225.0" stroke="#667085" stroke-width="2.3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text class="axis" x="1389.0" y="408.0" text-anchor="start" dominant-baseline="middle">키 X</text>
-<text class="axis" x="935.0" y="203.0" text-anchor="end" dominant-baseline="middle">몸무게 Y</text>
-<circle cx="980.1" cy="373.9" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<circle cx="1027.0" cy="359.0" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<circle cx="1062.1" cy="344.1" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<circle cx="1109.0" cy="336.7" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<circle cx="1144.1" cy="314.4" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<circle cx="1191.0" cy="295.7" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<circle cx="1237.9" cy="277.1" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<circle cx="1284.7" cy="288.3" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
-<line x1="968.4" y1="377.7" x2="1308.1" y2="258.5" stroke="#2F6FEB" stroke-width="3" stroke-linecap="round"/>
-<line x1="1062.1" y1="400.0" x2="1062.1" y2="225.0" stroke="#D94E4E" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="6 6"/>
-<text class="tiny" x="1062.1" y="203.0" text-anchor="middle" dominant-baseline="middle" style="fill:#D94E4E;font-weight:620">X=165</text>
-<circle cx="1062.1" cy="344.1" r="6.5" fill="#2F6FEB" stroke="white" stroke-width="2"/>
-<line x1="1237.9" y1="400.0" x2="1237.9" y2="225.0" stroke="#D94E4E" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="6 6"/>
-<text class="tiny" x="1237.9" y="203.0" text-anchor="middle" dominant-baseline="middle" style="fill:#D94E4E;font-weight:620">X=180</text>
-<circle cx="1237.9" cy="288.3" r="6.5" fill="#2F6FEB" stroke="white" stroke-width="2"/>
-<rect x="1112.0" y="424.0" width="136.0" height="42.0" rx="9.0" fill="#fff" stroke="#A9B4C4" stroke-width="2"/>
-<text class="tiny" x="1180.0" y="446.0" text-anchor="middle" dominant-baseline="middle" style="fill:#667085;font-weight:620">입력별 출력</text>
+<text class="small" x="1180.0" y="168.0" text-anchor="middle" dominant-baseline="middle">조건부 분포</text>
+<line x1="940.0" y1="400.0" x2="1290.0" y2="400.0" stroke="#667085" stroke-width="2.3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="940.0" y1="400.0" x2="940.0" y2="225.0" stroke="#667085" stroke-width="2.3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text class="axis" x="1324.0" y="408.0" text-anchor="start" dominant-baseline="middle">키 X</text>
+<text class="axis" x="930.0" y="203.0" text-anchor="end" dominant-baseline="middle">몸무게 Y</text>
+<ellipse cx="1100.0" cy="325.5" rx="150.0" ry="62.0" transform="rotate(-32 1100.0 325.5)" fill="#F1F5FF" opacity="0.82"/>
+<ellipse cx="1120.0" cy="318.1" rx="108.0" ry="47.0" transform="rotate(-32 1120.0 318.1)" fill="#DDE9FF" opacity="0.82"/>
+<ellipse cx="1140.0" cy="310.6" rx="66.0" ry="32.0" transform="rotate(-32 1140.0 310.6)" fill="#C8DBFF" opacity="0.82"/>
+<circle cx="970.0" cy="373.9" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<circle cx="1010.0" cy="359.0" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<circle cx="1040.0" cy="344.1" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<circle cx="1080.0" cy="336.7" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<circle cx="1110.0" cy="314.4" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<circle cx="1150.0" cy="295.7" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<circle cx="1190.0" cy="277.1" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<circle cx="1230.0" cy="288.3" r="5.4" fill="#D94E4E" stroke="white" stroke-width="2"/>
+<line x1="1040.0" y1="400.0" x2="1040.0" y2="225.0" stroke="#D94E4E" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="6 6"/>
+<text class="tiny" x="1040.0" y="203.0" text-anchor="middle" dominant-baseline="middle" style="fill:#D94E4E;font-weight:660">X=165</text>
+<line x1="1340.0" y1="390.0" x2="1445.0" y2="390.0" stroke="#667085" stroke-width="2.3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1340.0" y1="390.0" x2="1340.0" y2="230.0" stroke="#667085" stroke-width="2.3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M 1341.0 390.0 L 1341.2 388.7 L 1341.4 387.3 L 1341.7 386.0 L 1342.0 384.6 L 1342.3 383.3 L 1342.7 381.9 L 1343.1 380.6 L 1343.6 379.2 L 1344.1 377.9 L 1344.8 376.6 L 1345.4 375.2 L 1346.2 373.9 L 1347.1 372.5 L 1348.0 371.2 L 1349.1 369.8 L 1350.2 368.5 L 1351.5 367.1 L 1352.9 365.8 L 1354.4 364.5 L 1356.0 363.1 L 1357.8 361.8 L 1359.7 360.4 L 1361.7 359.1 L 1363.8 357.7 L 1366.1 356.4 L 1368.5 355.0 L 1371.1 353.7 L 1373.7 352.4 L 1376.5 351.0 L 1379.3 349.7 L 1382.3 348.3 L 1385.3 347.0 L 1388.4 345.6 L 1391.5 344.3 L 1394.6 342.9 L 1397.8 341.6 L 1400.9 340.3 L 1404.1 338.9 L 1407.1 337.6 L 1410.1 336.2 L 1413.0 334.9 L 1415.8 333.5 L 1418.4 332.2 L 1420.8 330.8 L 1423.1 329.5 L 1425.1 328.2 L 1427.0 326.8 L 1428.6 325.5 L 1429.9 324.1 L 1430.9 322.8 L 1431.7 321.4 L 1432.2 320.1 L 1432.4 318.7 L 1432.3 317.4 L 1431.9 316.1 L 1431.2 314.7 L 1430.3 313.4 L 1429.0 312.0 L 1427.5 310.7 L 1425.8 309.3 L 1423.8 308.0 L 1421.6 306.6 L 1419.2 305.3 L 1416.7 303.9 L 1413.9 302.6 L 1411.1 301.3 L 1408.1 299.9 L 1405.1 298.6 L 1402.0 297.2 L 1398.9 295.9 L 1395.7 294.5 L 1392.5 293.2 L 1389.4 291.8 L 1386.3 290.5 L 1383.3 289.2 L 1380.3 287.8 L 1377.4 286.5 L 1374.6 285.1 L 1371.9 283.8 L 1369.4 282.4 L 1366.9 281.1 L 1364.6 279.7 L 1362.4 278.4 L 1360.4 277.1 L 1358.4 275.7 L 1356.6 274.4 L 1354.9 273.0 L 1353.4 271.7 L 1352.0 270.3 L 1350.7 269.0 L 1349.5 267.6 L 1348.4 266.3 L 1347.4 265.0 L 1346.5 263.6 L 1345.7 262.3 L 1345.0 260.9 L 1344.3 259.6 L 1343.8 258.2 L 1343.3 256.9 L 1342.8 255.5 L 1342.4 254.2 L 1342.1 252.9 L 1341.8 251.5 L 1341.5 250.2 L 1341.3 248.8 L 1341.1 247.5 L 1340.9 246.1 L 1340.8 244.8 L 1340.6 243.4 L 1340.5 242.1 L 1340.5 240.8 L 1340.4 239.4 L 1340.3 238.1 L 1340.3 236.7 L 1340.2 235.4 L 1340.2 234.0 L 1340.1 232.7 L 1340.1 231.3 L 1340.1 230.0" fill="none" stroke="#D94E4E" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="1052.0" y1="312.5" x2="1320.0" y2="310.0" stroke="#D94E4E" stroke-width="2.3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text class="tiny" text-anchor="middle" dominant-baseline="middle" style="fill:#D94E4E;font-weight:640"><tspan x="1400.0" y="191.5">P(Y | X=165)</tspan>
+<tspan x="1400.0" y="218.5">세로 단면</tspan></text>
+<rect x="1076.0" y="424.0" width="208.0" height="42.0" rx="9.0" fill="#fff" stroke="#A9B4C4" stroke-width="2"/>
+<text class="tiny" x="1180.0" y="446.0" text-anchor="middle" dominant-baseline="middle" style="fill:#667085;font-weight:620">입력값별 출력 분포</text>
 </svg>
