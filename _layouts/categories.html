@@ -1,100 +1,36 @@
 ---
 title: "Categories"
-layout: default
+layout: portfolio
 permalink: "/categories.html"
 ---
 
-<!-- Categories Header -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="page-title">Categories</h1>
-            <p class="lead">Explore all posts categorized by topics and categories.</p>
-        </div>
-    </div>
-</div>
-
-<!-- Category Cards Overview -->
-<section class="categories-overview mb-5">
-    <div class="row">
-        {% assign categories = site.categories | sort %}
-        {% for category in categories %}
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column">
-                    <div class="category-header mb-3">
-                        <h5 class="card-title">
-                            <i class="fas fa-folder-open" style="color: var(--primary);"></i>
-                             {{ category[0] }}
-                        </h5>
-                        <span class="badge badge-primary">{{ category[1].size }} posts</span>
-                    </div>
-                    
-                    <div class="category-posts mb-3 flex-grow-1">
-                        <small class="text-muted">Recent Posts</small>
-                        <ul class="list-unstyled mt-2">
-                            {% for post in category[1] limit:3 %}
-                            <li class="mb-1">
-                                <small>
-                            <a href="{{ site.baseurl }}{{ post.url }}" class="text-decoration-none">
-                                        {{ post.title | truncate: 40 }}
-                                    </a>
-                                </small>
-                            </li>
-                            {% endfor %}
-                            {% if category[1].size > 3 %}
-                            <li><small class="text-muted">+ {{ category[1].size | minus: 3 }} more</small></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    
-                    <div class="mt-auto">
-                        <a href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/" class="btn btn-outline-primary btn-sm">
-                            View All <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+<section class="pf-page-hero" id="hero">
+    <div class="pf-eyebrow">Archive / Topics</div>
+    <h1 class="pf-page-h1">Categories<span class="pf-blue">.</span></h1>
+    <p class="pf-page-deck">Browse notes by research area, project work, study material, and personal writing.</p>
 </section>
 
-<!-- All Posts by Category (Traditional View) -->
-<section class="categories-detailed">
-    <div class="card">
-        <div class="card-header">
-            <h4 class="mb-0">
-                <i class="fas fa-list" style="color: var(--primary);"></i>
-                All Posts by Category
-            </h4>
-        </div>
-        <div class="card-body">
-            <div class="row listrecent">
-            {% for category in site.categories %}
-            <div class="col-12">
-                <div class="section-title mt-4">
-                    <h3 id="{{ category[0] | replace: " ","-" }}">
-                        <i class="fas fa-tag" style="color: var(--primary);"></i>
-                        {{ category[0] }}
-                        <small class="text-muted">({{ category[1].size }} posts)</small>
-                    </h3>
-                    <hr>
+<section class="pf-sec pf-sec--flush">
+    <div class="pf-blog-list">
+        {% assign categories = site.categories | sort %}
+        {% for category in categories %}
+        <article class="pf-blog-item">
+            <a class="pf-blog-link" href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/">
+                <div class="pf-blog-meta">
+                    <span class="pf-blog-date">{{ category[1].size }} posts</span>
+                    <span class="pf-blog-cat">Category</span>
                 </div>
-            </div>
-            
-            {% assign pages_list = category[1] %}
-            {% for post in pages_list %}
-                {% if post.title != null %}
-                    {% if group == null or group == post.group %}
-                        {% include postbox.html %}
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-            {% assign pages_list = nil %}
-            {% assign group = nil %}
-            {% endfor %}
-            </div>
-        </div>
+                <div>
+                    <h2 class="pf-blog-title">{{ category[0] }}</h2>
+                    <p class="pf-blog-excerpt">
+                        {% for post in category[1] limit:3 %}
+                            {{ post.title }}{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </p>
+                </div>
+                <span class="pf-blog-read">View</span>
+            </a>
+        </article>
+        {% endfor %}
     </div>
 </section>

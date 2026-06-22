@@ -1,23 +1,36 @@
 ---
 title: "Tags"
-layout: default
+layout: portfolio
 permalink: "/tags.html"
 ---
 
-<div class="row listrecent">
-{% for tag in site.tags %}
-<div class="section-title col-md-12 mt-4">
-<h2 id="{{ tag[0] | replace: " ","-" }}">Tags <span class="text-capitalize">{{ tag[0] }}</span></h2>
-</div>
-{% assign pages_list = tag[1] %}
-{% for post in pages_list %}
-{% if post.title != null %}
-{% if group == null or group == post.group %}
-{% include postbox.html %}
-{% endif %}
-{% endif %}
-{% endfor %}
-{% assign pages_list = nil %}
-{% assign group = nil %}
-{% endfor %}
-</div>
+<section class="pf-page-hero" id="hero">
+    <div class="pf-eyebrow">Archive / Tags</div>
+    <h1 class="pf-page-h1">Tags<span class="pf-blue">.</span></h1>
+    <p class="pf-page-deck">A compact index of notes grouped by keywords.</p>
+</section>
+
+<section class="pf-sec pf-sec--flush">
+    <div class="pf-blog-list">
+        {% assign sorted_tags = site.tags | sort %}
+        {% for tag in sorted_tags %}
+        <article class="pf-blog-item" id="{{ tag[0] | replace: ' ', '-' }}">
+            <a class="pf-blog-link" href="{{ site.baseurl }}/tags#{{ tag[0] | replace: ' ', '-' }}">
+                <div class="pf-blog-meta">
+                    <span class="pf-blog-date">{{ tag[1].size }} posts</span>
+                    <span class="pf-blog-cat">Tag</span>
+                </div>
+                <div>
+                    <h2 class="pf-blog-title">#{{ tag[0] }}</h2>
+                    <p class="pf-blog-excerpt">
+                        {% for post in tag[1] limit:3 %}
+                            {{ post.title }}{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </p>
+                </div>
+                <span class="pf-blog-read">View</span>
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+</section>
