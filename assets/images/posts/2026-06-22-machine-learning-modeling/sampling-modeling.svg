@@ -19,12 +19,12 @@ svg { font-family: Paperlogy, 'Pretendard Variable', Pretendard, 'Apple SD Gothi
 <circle cx="266.0" cy="290.0" r="5" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
 <circle cx="286.0" cy="290.0" r="5" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
 <text class="label" x="225" y="42" text-anchor="middle" dominant-baseline="middle">모집단의 숨겨진 분포</text>
-<text class="small" x="225" y="320" text-anchor="middle" dominant-baseline="middle">우리가 보는 것은 전체가 아니라 샘플 몇 개다</text>
+<text class="small" x="225" y="320" text-anchor="middle" dominant-baseline="middle">관측 대상: 전체가 아닌 일부 샘플</text>
 <line x1="405.0" y1="184.0" x2="500.0" y2="184.0" stroke="#2F6FEB" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="520" y="84" width="245" height="190" rx="12" fill="#F8FAFC" stroke="#A9B4C4" stroke-width="2"/>
 <text class="label" x="642" y="128" text-anchor="middle" dominant-baseline="middle">샘플링</text>
-<text class="small" x="642" y="168" text-anchor="middle" dominant-baseline="middle">모집단에서 관측치를 뽑는다</text>
-<text class="small" x="642" y="204" text-anchor="middle" dominant-baseline="middle">분포 자체는 보이지 않는다</text>
+<text class="small" x="642" y="168" text-anchor="middle" dominant-baseline="middle">모집단 관측치 추출</text>
+<text class="small" x="642" y="204" text-anchor="middle" dominant-baseline="middle">숨겨진 분포</text>
 <line x1="790.0" y1="184.0" x2="885.0" y2="184.0" stroke="#2F6FEB" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="905.0" y1="274.0" x2="1165.0" y2="274.0" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow)"/><line x1="905.0" y1="274.0" x2="905.0" y2="84.0" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow)"/><text class="small" x="1183" y="278" text-anchor="start" dominant-baseline="middle">x</text><text class="small" x="895" y="72" text-anchor="end" dominant-baseline="middle">Pθ(x)</text>
 <path d="M 921.0 280.5 L 923.9 280.1 L 926.8 279.7 L 929.7 279.1 L 932.5 278.4 L 935.4 277.6 L 938.3 276.7 L 941.2 275.6 L 944.1 274.3 L 947.0 272.8 L 949.9 271.0 L 952.7 269.0 L 955.6 266.8 L 958.5 264.2 L 961.4 261.3 L 964.3 258.1 L 967.2 254.5 L 970.1 250.7 L 972.9 246.4 L 975.8 241.8 L 978.7 236.9 L 981.6 231.7 L 984.5 226.2 L 987.4 220.4 L 990.3 214.5 L 993.2 208.4 L 996.0 202.2 L 998.9 196.0 L 1001.8 189.8 L 1004.7 183.8 L 1007.6 177.9 L 1010.5 172.4 L 1013.4 167.2 L 1016.2 162.5 L 1019.1 158.3 L 1022.0 154.7 L 1024.9 151.7 L 1027.8 149.4 L 1030.7 147.9 L 1033.6 147.1 L 1036.4 147.1 L 1039.3 147.9 L 1042.2 149.4 L 1045.1 151.7 L 1048.0 154.7 L 1050.9 158.3 L 1053.8 162.5 L 1056.6 167.2 L 1059.5 172.4 L 1062.4 177.9 L 1065.3 183.8 L 1068.2 189.8 L 1071.1 196.0 L 1074.0 202.2 L 1076.8 208.4 L 1079.7 214.5 L 1082.6 220.4 L 1085.5 226.2 L 1088.4 231.7 L 1091.3 236.9 L 1094.2 241.8 L 1097.1 246.4 L 1099.9 250.7 L 1102.8 254.5 L 1105.7 258.1 L 1108.6 261.3 L 1111.5 264.2 L 1114.4 266.8 L 1117.3 269.0 L 1120.1 271.0 L 1123.0 272.8 L 1125.9 274.3 L 1128.8 275.6 L 1131.7 276.7 L 1134.6 277.6 L 1137.5 278.4 L 1140.3 279.1 L 1143.2 279.7 L 1146.1 280.1 L 1149.0 280.5" fill="none" stroke="#2F6FEB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -37,5 +37,5 @@ svg { font-family: Paperlogy, 'Pretendard Variable', Pretendard, 'Apple SD Gothi
 <circle cx="1061.0" cy="290.0" r="5" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
 <circle cx="1081.0" cy="290.0" r="5" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
 <text class="label" x="1035" y="42" text-anchor="middle" dominant-baseline="middle">모델링</text>
-<text class="small" x="1035" y="320" text-anchor="middle" dominant-baseline="middle">샘플을 설명하는 분포나 규칙을 고른다</text>
+<text class="small" x="1035" y="320" text-anchor="middle" dominant-baseline="middle">샘플 설명 분포/규칙 선택</text>
 </svg>

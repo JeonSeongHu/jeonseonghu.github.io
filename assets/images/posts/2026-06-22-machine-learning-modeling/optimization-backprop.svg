@@ -20,7 +20,7 @@ svg { font-family: Paperlogy, 'Pretendard Variable', Pretendard, 'Apple SD Gothi
 <line x1="170.0" y1="270.0" x2="215.0" y2="286.0" stroke="#D94E4E" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="215.0" y1="286.0" x2="255.0" y2="292.0" stroke="#D94E4E" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="255.0" y1="292.0" x2="292.0" y2="292.0" stroke="#D94E4E" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text class="small" x="300" y="342" text-anchor="middle" dominant-baseline="middle">gradient의 반대 방향으로 내려간다</text>
+<text class="small" x="300" y="342" text-anchor="middle" dominant-baseline="middle">gradient 반대 방향 이동</text>
 <rect x="635" y="48" width="520" height="335" rx="12" fill="#F8FAFC" stroke="#A9B4C4" stroke-width="2"/>
 <text class="label" x="895" y="84" text-anchor="middle" dominant-baseline="middle">Backpropagation</text>
 <rect x="677" y="165" width="56" height="40" rx="9" fill="#FFFFFF" stroke="#A9B4C4" stroke-width="2"/>
@@ -44,5 +44,5 @@ svg { font-family: Paperlogy, 'Pretendard Variable', Pretendard, 'Apple SD Gothi
 <line x1="932.0" y1="303.0" x2="853.0" y2="248.0" stroke="#D94E4E" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <text class="small" x="860" y="150" text-anchor="middle" dominant-baseline="middle" style="fill:#2F6FEB">forward</text>
 <text class="small" x="985" y="326" text-anchor="middle" dominant-baseline="middle" style="fill:#D94E4E">backward</text>
-<text class="small" x="895" y="355" text-anchor="middle" dominant-baseline="middle">중간 미분값을 재사용해서 gradient를 계산한다</text>
+<text class="small" x="895" y="355" text-anchor="middle" dominant-baseline="middle">중간 미분값 재사용과 gradient 계산</text>
 </svg>

@@ -7,5 +7,5 @@
     "loss-mle.svg": "slides 61-66",
     "optimization-backprop.svg": "slides 72-86"
   },
-  "style": "minimal gray/blue palette, red only for samples/errors/gradients, no decorative titles or bottom captions"
+  "style": "minimal gray/blue palette, red only for samples/errors/gradients, noun-phrase labels only"
 }
