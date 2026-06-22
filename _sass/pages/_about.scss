@@ -730,7 +730,32 @@ body.layout-portfolio button {
 
 /* ============= Responsive ============= */
 @media (max-width: 860px) {
-    .pf-nav-links { display: none; }
+    .pf-nav-inner {
+        height: auto;
+        min-height: 52px;
+        padding: 0 20px;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 14px;
+    }
+
+    .pf-nav-links {
+        order: 3;
+        flex: 0 0 100%;
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        padding: 0 0 10px;
+        margin-top: -4px;
+        font-size: 12.5px;
+        white-space: nowrap;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .pf-nav-links::-webkit-scrollbar { display: none; }
+
+    .pf-pill { padding: 4px 11px; }
 
     .pf-hero {
         grid-template-columns: 1fr;
@@ -762,6 +787,7 @@ body.layout-portfolio button {
 @media (max-width: 560px) {
     .pf-main { padding: 0 16px; }
     .pf-nav-inner { padding: 0 16px; }
+    .pf-nav-links { gap: 14px; padding-bottom: 9px; }
     .pf-foot { padding: 32px 16px 24px; }
     .pf-sec { padding: 56px 0; }
     .pf-h1 { font-size: 34px; }
