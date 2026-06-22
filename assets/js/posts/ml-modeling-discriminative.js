@@ -182,18 +182,7 @@
                         center: { x: 0, y: 0, z: -0.08 }
                     },
                     aspectratio: { x: 1.15, y: 1, z: 0.62 },
-                    annotations: [
-                        {
-                            x: x0,
-                            y: 53,
-                            z: maxJoint * 0.92,
-                            text: 'X=' + x0 + '에서 자른 출력 분포',
-                            showarrow: true,
-                            arrowcolor: '#D94E4E',
-                            arrowwidth: 2,
-                            font: { size: 15, color: '#D94E4E', family: 'Paperlogy, Pretendard, system-ui, sans-serif' }
-                        }
-                    ]
+                    annotations: []
                 },
                 font: {
                     family: 'Paperlogy, Pretendard, system-ui, sans-serif',

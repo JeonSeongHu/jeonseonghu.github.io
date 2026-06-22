@@ -101,7 +101,7 @@ $$
 </div>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="/assets/js/posts/ml-modeling-discriminative.js?v=4"></script>
+<script src="/assets/js/posts/ml-modeling-discriminative.js?v=5"></script>
 
 Bayesian note는 파라미터를 보는 관점의 차이를 다룹니다. 빈도주의 관점에서는 $\theta$를 찾아야 할 숨겨진 상수로 둡니다. 베이지안 관점에서는 prior $P(\theta)$를 두고 관측 $X$에 따라 믿음을 갱신합니다.
 
