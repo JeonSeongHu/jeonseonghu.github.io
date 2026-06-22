@@ -133,7 +133,11 @@
 }
 
 /* --- Focus Accessibility --- */
-*:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 1px solid var(--color-primary-tint-30);
+    outline-offset: 3px;
 }

@@ -56,6 +56,17 @@ body.layout-portfolio {
 :where(body.layout-portfolio) a:hover { text-decoration: none; }
 :where(body.layout-portfolio) a[target="_blank"]::after,
 :where(body.layout-portfolio) a.external-link::after { content: none; }
+:where(body.layout-portfolio) :where(a, button, input, textarea, select, summary, [role="button"], [tabindex]) {
+    -webkit-tap-highlight-color: transparent;
+}
+body.layout-portfolio :where(a, button, input, textarea, select, summary, [role="button"], [tabindex]):focus:not(:focus-visible) {
+    outline: none !important;
+}
+body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):focus-visible {
+    outline: 1px solid rgba(63, 95, 156, 0.28);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
 
 @media (pointer: fine) and (hover: hover) {
     body.layout-portfolio.has-pf-cursor,
