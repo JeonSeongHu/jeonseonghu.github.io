@@ -1,6 +1,6 @@
 /* ============================================
    FILE: base/_global.scss
-   PURPOSE: Global element styles — links, site-content,
+   PURPOSE: Global element styles - links, site-content,
             section-title, mainheading, share, wrapfooter, etc.
    DEPENDS ON: tokens/colors, tokens/typography, tokens/transitions
    USED BY: all pages
@@ -16,7 +16,7 @@ a {
 }
 
 a:hover {
-    color: var(--color-primary) !important; /* Bootstrap CDN override — a:hover color */
+    color: var(--color-primary) !important; /* Bootstrap CDN override - a:hover color */
     text-decoration: underline;
 }
 
@@ -64,8 +64,8 @@ a.external-link:hover::after {
 }
 
 .site-content > .container {
-    margin-left: auto !important; /* Bootstrap CDN override — container centering */
-    margin-right: auto !important; /* Bootstrap CDN override — container centering */
+    margin-left: auto !important; /* Bootstrap CDN override - container centering */
+    margin-right: auto !important; /* Bootstrap CDN override - container centering */
 }
 
 .main-content {
@@ -76,7 +76,7 @@ a.external-link:hover::after {
 .layout-post #bg-canvas,
 .layout-project #bg-canvas,
 .layout-page:not(.about-page-custom) #bg-canvas {
-    display: none !important; /* Bootstrap CDN override — must hide canvas on non-dot-bg pages */
+    display: none !important; /* Bootstrap CDN override - must hide canvas on non-dot-bg pages */
 }
 
 /* --- Mainheading --- */
@@ -501,7 +501,7 @@ ul.tags li a:hover {
 
 /* --- Misc Utilities --- */
 .mb-30px {
-    margin-bottom: 30px !important; /* Bootstrap CDN override — utility class */
+    margin-bottom: 30px !important; /* Bootstrap CDN override - utility class */
 }
 
 .flex-first {

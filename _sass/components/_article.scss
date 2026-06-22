@@ -1,6 +1,6 @@
 /* ============================================
    FILE: components/_article.scss
-   PURPOSE: Article body content styling — headings, p, lists,
+   PURPOSE: Article body content styling - headings, p, lists,
             blockquote, images, tables, heading numbering
    DEPENDS ON: tokens/colors, tokens/typography
    USED BY: _layouts/post.html, _layouts/project.html
@@ -9,7 +9,7 @@
    ============================================ */
 
 .article-post {
-    font-family: var(--font-sans) !important; /* Bootstrap CDN override — font inheritance */
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override - font inheritance */
     font-size: var(--text-2xl);
     line-height: var(--leading-article);
     color: var(--gray-800);
@@ -21,7 +21,7 @@
 
 /* Force children to inherit the site typography stack */
 .article-post * {
-    font-family: var(--font-sans) !important; /* Bootstrap CDN override — font inheritance */
+    font-family: var(--font-sans) !important; /* Bootstrap CDN override - font inheritance */
 }
 
 /* Exception for code blocks */
@@ -30,7 +30,7 @@
 .article-post code,
 .article-post kbd,
 .article-post samp {
-    font-family: var(--font-mono) !important; /* Bootstrap CDN override — code font */
+    font-family: var(--font-mono) !important; /* Bootstrap CDN override - code font */
 }
 
 /* --- Heading Numbering System --- */

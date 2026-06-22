@@ -1,6 +1,6 @@
 /* ============================================
    FILE: layout/_navigation.scss
-   PURPOSE: Navigation bar — desktop centered menu, mobile collapse
+   PURPOSE: Navigation bar - desktop centered menu, mobile collapse
    DEPENDS ON: tokens/colors, tokens/typography
    USED BY: _layouts/default.html
    KEY CLASSES: .mediumnavigation, .navbar-brand, .navbar-nav,
@@ -44,7 +44,7 @@ nav.mediumnavigation .container.pr-0,
     padding-right: 0;
 }
 
-/* Wrapper for search + hamburger — keeps them grouped on the right */
+/* Wrapper for search + hamburger - keeps them grouped on the right */
 .navbar-actions {
     display: flex;
     align-items: center;
@@ -89,12 +89,12 @@ nav.mediumnavigation .container.pr-0,
     }
 
     .navbar-collapse.collapse:not(.show) {
-        display: none !important; /* Bootstrap CDN override — force collapse */
+        display: none !important; /* Bootstrap CDN override - force collapse */
     }
 
     .navbar-collapse.collapse.show,
     .navbar-collapse.collapsing {
-        display: block !important; /* Bootstrap CDN override — force show */
+        display: block !important; /* Bootstrap CDN override - force show */
     }
 
     .mediumnavigation .navbar-collapse {

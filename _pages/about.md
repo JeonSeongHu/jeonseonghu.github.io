@@ -28,7 +28,7 @@ custom_css_class: portfolio-page
 <section class="pf-sec" id="news">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 01</span>
+			<span class="pf-sec-num">01</span>
 			<h2 class="pf-sec-title">News &amp; notes</h2>
 		</div>
 		<span class="pf-sec-aside">most recent first</span>
@@ -40,7 +40,7 @@ custom_css_class: portfolio-page
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.06</span>
-			<span class="pf-news-body"><b>GAM</b> is under review — geometric action modeling for visuomotor control.</span>
+			<span class="pf-news-body"><b>GAM</b> is under review for geometric action modeling in visuomotor control.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.03</span>
@@ -48,7 +48,7 @@ custom_css_class: portfolio-page
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.02</span>
-			<span class="pf-news-body"><b>CAMEO</b> accepted to <span class="pf-blue">CVPR 2026</span> — correspondence-attention alignment for multi-view diffusion.</span>
+			<span class="pf-news-body"><b>CAMEO</b> accepted to <span class="pf-blue">CVPR 2026</span> for correspondence-attention alignment in multi-view diffusion.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2025.07</span>
@@ -64,7 +64,7 @@ custom_css_class: portfolio-page
 <section class="pf-sec" id="publications">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 02</span>
+			<span class="pf-sec-num">02</span>
 			<h2 class="pf-sec-title">Selected publications</h2>
 		</div>
 		{% assign pubs = site.projects | where: "type", "publication" | sort: "date" | reverse %}
@@ -114,7 +114,7 @@ custom_css_class: portfolio-page
 <section class="pf-sec" id="focus">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 03</span>
+			<span class="pf-sec-num">03</span>
 			<h2 class="pf-sec-title">Focus</h2>
 		</div>
 		<span class="pf-sec-aside">three open threads</span>
@@ -123,38 +123,32 @@ custom_css_class: portfolio-page
 	<div class="pf-focus-list">
 		<div class="pf-focus-item">
 			<div class="pf-focus-head">
-				<span class="pf-focus-num">— 01</span>
+				<span class="pf-focus-num">01</span>
 				<span class="pf-focus-label">3D / 4D vision</span>
 			</div>
-			<p class="pf-focus-desc">Reconstructing static and dynamic scenes from sparse views — how foundation models trained on geometry transfer to view-synthesis, including GLD at ECCV 2026.</p>
+			<p class="pf-focus-desc">Reconstructing static and dynamic scenes from sparse views, and studying how geometry-trained foundation models transfer to view synthesis, including GLD at ECCV 2026.</p>
 		</div>
 		<div class="pf-focus-item">
 			<div class="pf-focus-head">
-				<span class="pf-focus-num">— 02</span>
+				<span class="pf-focus-num">02</span>
 				<span class="pf-focus-label">Generative models</span>
 			</div>
-			<p class="pf-focus-desc">Diffusion and flow matching with structured conditioning — correspondence, geometry, motion. Architecture work and better source distributions.</p>
+			<p class="pf-focus-desc">Diffusion and flow matching with structured conditioning across correspondence, geometry, and motion. Architecture work and better source distributions.</p>
 		</div>
 		<div class="pf-focus-item">
 			<div class="pf-focus-head">
-				<span class="pf-focus-num">— 03</span>
+				<span class="pf-focus-num">03</span>
 				<span class="pf-focus-label">Robotics</span>
 			</div>
-			<p class="pf-focus-desc">The destination. If a robot can imagine a scene's geometry forward in time, it can plan in it — and that loop closes through generative models.</p>
+			<p class="pf-focus-desc">The destination. If a robot can imagine a scene's geometry forward in time, it can plan in it, and that loop closes through generative models.</p>
 		</div>
 	</div>
-
-	<aside class="pf-now">
-		<span class="pf-now-tag">/ Now</span>
-		<span class="pf-now-text">Connecting <b>3D foundation models</b> and <b>geometric action models</b> to robotics — turning learned geometric priors into actionable scene understanding for embodied agents.</span>
-		<a class="pf-now-arrow" href="{{ site.baseurl }}/projects">read more <span aria-hidden="true">↗</span></a>
-	</aside>
 </section>
 
 <section class="pf-sec" id="experience">
 	<header class="pf-sec-head">
 		<div class="pf-sec-lh">
-			<span class="pf-sec-num">— 04</span>
+			<span class="pf-sec-num">04</span>
 			<h2 class="pf-sec-title">Experience</h2>
 		</div>
 	</header>
@@ -166,7 +160,7 @@ custom_css_class: portfolio-page
 				<div class="pf-exp-role">M.S. Student</div>
 				<div class="pf-exp-detail">Advised by Prof. Seungryong Kim. Multi-view diffusion, geometric foundation models, 4D scene generation.</div>
 			</div>
-			<span class="pf-exp-time">2026 — <span class="pf-now-mark">now</span></span>
+			<span class="pf-exp-time">2026 - <span class="pf-now-mark">now</span></span>
 		</div>
 		<div class="pf-exp-item">
 			<span class="pf-exp-org">CVLAB, Korea University → KAIST</span>
@@ -174,7 +168,7 @@ custom_css_class: portfolio-page
 				<div class="pf-exp-role">Research Intern</div>
 				<div class="pf-exp-detail">Pre-graduate research on motion transfer and correspondence-attention. Multiple co-authored papers from this period.</div>
 			</div>
-			<span class="pf-exp-time">Dec 2023 — Feb 2026</span>
+			<span class="pf-exp-time">Dec 2023 - Feb 2026</span>
 		</div>
 		<div class="pf-exp-item">
 			<span class="pf-exp-org">Korea University</span>
@@ -182,7 +176,7 @@ custom_css_class: portfolio-page
 				<div class="pf-exp-role">B.S., Computer Science &amp; Engineering</div>
 				<div class="pf-exp-detail">Graduated with Great Honors (4.46 / 4.50). Coursework in vision, graphics, and deep learning.</div>
 			</div>
-			<span class="pf-exp-time">2022 — 2026</span>
+			<span class="pf-exp-time">2022 - 2026</span>
 		</div>
 	</div>
 </section>

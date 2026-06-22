@@ -1,6 +1,6 @@
 /* ============================================
    FILE: pages/_about.scss
-   PURPOSE: Portfolio (about) page — editorial / Apple-flavored layout.
+   PURPOSE: Portfolio (about) page - editorial / Apple-flavored layout.
             Top-level rules under body.layout-portfolio.
    DEPENDS ON: nothing (defines its own design tokens)
    USED BY: _layouts/portfolio.html, _pages/about.md
@@ -44,7 +44,7 @@ body.layout-portfolio {
     scroll-behavior: smooth;
 }
 
-/* Reset for the layout — :where() keeps these at zero specificity so any
+/* Reset for the layout - :where() keeps these at zero specificity so any
    .pf-* component class wins by source order without !important. */
 :where(body.layout-portfolio) ::selection { background: var(--pf-blue); color: #fff; }
 :where(body.layout-portfolio) :where(h1, h2, h3, h4, h5, h6, p) {
@@ -56,6 +56,63 @@ body.layout-portfolio {
 :where(body.layout-portfolio) a:hover { text-decoration: none; }
 :where(body.layout-portfolio) a[target="_blank"]::after,
 :where(body.layout-portfolio) a.external-link::after { content: none; }
+
+@media (pointer: fine) and (hover: hover) {
+    body.layout-portfolio.has-pf-cursor,
+    body.layout-portfolio.has-pf-cursor * {
+        cursor: none !important;
+    }
+
+    .pf-cursor-dot,
+    .pf-cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        pointer-events: none;
+        opacity: 0;
+        transform: translate3d(-50px, -50px, 0);
+        will-change: transform, opacity, width, height;
+    }
+
+    .pf-cursor-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(29, 29, 31, 0.92);
+        transition: opacity 0.12s ease, background 0.12s ease;
+    }
+
+    .pf-cursor-ring {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid rgba(29, 29, 31, 0.7);
+        transition: opacity 0.12s ease, width 0.16s ease, height 0.16s ease, border-color 0.16s ease;
+    }
+
+    body.layout-portfolio.is-pf-cursor-visible .pf-cursor-dot,
+    body.layout-portfolio.is-pf-cursor-visible .pf-cursor-ring {
+        opacity: 1;
+    }
+
+    body.layout-portfolio.is-pf-cursor-hover .pf-cursor-dot {
+        background: var(--pf-blue);
+    }
+
+    body.layout-portfolio.is-pf-cursor-hover .pf-cursor-ring {
+        width: 36px;
+        height: 36px;
+        border-color: rgba(63, 95, 156, 0.65);
+    }
+}
+
+@media (pointer: coarse), (hover: none) {
+    .pf-cursor-dot,
+    .pf-cursor-ring {
+        display: none;
+    }
+}
 
 /* The global stylesheet sets a site-wide font stack on every heading
    (`h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans) }`) and a
@@ -72,7 +129,7 @@ body.layout-portfolio h6 {
 }
 body.layout-portfolio button {
     font-family: var(--pf-sans);
-    /* Don't force color/weight here — components like .pf-btn-primary
+    /* Don't force color/weight here - components like .pf-btn-primary
        set their own color and would lose the cascade race. */
 }
 
@@ -318,7 +375,7 @@ body.layout-portfolio button {
     background: var(--pf-blue);
     z-index: 3;
 }
-/* .pf-portrait-label was removed from the markup — placeholder rule kept
+/* .pf-portrait-label was removed from the markup - placeholder rule kept
    empty so any leftover spans render invisibly. */
 .pf-portrait-label { display: none; }
 
@@ -372,9 +429,9 @@ body.layout-portfolio button {
     display: grid;
     grid-template-columns: 80px 1fr;
     gap: 28px;
-    padding: 7px 0;
+    padding: 6px 0;
     font-size: 14.5px;
-    line-height: 1.5;
+    line-height: 1.36;
     align-items: baseline;
 }
 .pf-news-date {
@@ -386,6 +443,7 @@ body.layout-portfolio button {
 }
 .pf-news-body {
     color: var(--pf-ink-2);
+    line-height: 1.38;
     text-wrap: pretty;
 
     b { color: var(--pf-ink); font-weight: 600; }
@@ -424,7 +482,7 @@ body.layout-portfolio button {
     overflow: hidden;
     display: block;
 
-    /* Hatched placeholder pattern — fills the tile when no image is present.
+    /* Hatched placeholder pattern - fills the tile when no image is present.
        When an <img> is rendered, it covers this layer naturally. */
     &::before {
         content: '';
@@ -464,12 +522,12 @@ body.layout-portfolio button {
     border-radius: 3px;
 }
 /* The short-title overlay is no longer rendered now that featured tiles
-   show their real cover image — kept hidden in case markup re-emits it. */
+   show their real cover image - kept hidden in case markup re-emits it. */
 .pf-pub-thumb-name { display: none; }
 
 /* Featured publications keep their actual cover image but get a subtle
    blue tag to mark venue importance. Earlier the tile was a solid blue
-   panel that hid the image — that hid every CVPR-class paper's figure. */
+   panel that hid the image - that hid every CVPR-class paper's figure. */
 .pf-pub.is-featured .pf-pub-thumb-tag {
     background: var(--pf-blue);
     color: #fff;
@@ -536,7 +594,7 @@ body.layout-portfolio button {
         gap: 3px;
         letter-spacing: 0;
 
-        /* Force the arrow on every link, including external ones — the
+        /* Force the arrow on every link, including external ones - the
            layout-wide `a[target="_blank"]::after { content: none }` reset
            uses !important, so we have to match it here. */
         &::after,
@@ -1662,7 +1720,7 @@ body.layout-portfolio button {
     /* Vertical rhythm: zero out browser block margins, then add top
        margins through a single owl selector so neighbouring elements
        always have predictable spacing. Element-specific overrides below
-       just bump the gap up — never zero it out. */
+       just bump the gap up - never zero it out. */
     > * { margin-block: 0; }
     > *:first-child { margin-top: 0; }
     > * + * { margin-top: 1.1em; }
@@ -1697,8 +1755,8 @@ body.layout-portfolio button {
 
     /* Block-level elements that deserve a bit more breathing room than
        ordinary inter-paragraph spacing. Wrapped in :where() so their
-       specificity stays at (0,1,0) and the heading rules below — which
-       are (0,1,1) — always win when a heading follows a block element. */
+       specificity stays at (0,1,0) and the heading rules below - which
+       are (0,1,1) - always win when a heading follows a block element. */
     > * + :where(blockquote), > :where(blockquote) + * { margin-top: 1.6rem; }
     > * + :where(.highlighter-rouge), > :where(.highlighter-rouge) + * { margin-top: 1.6rem; }
     > * + :where(table), > :where(table) + * { margin-top: 1.6rem; }
@@ -1774,7 +1832,7 @@ body.layout-portfolio button {
         }
     }
 
-    /* Inline code only — scoped to NOT match code inside <pre> or rouge tables */
+    /* Inline code only - scoped to NOT match code inside <pre> or rouge tables */
     :not(pre):not(.rouge-code):not(.rouge-gutter) > code {
         font-family: var(--pf-mono);
         font-size: 0.88em;

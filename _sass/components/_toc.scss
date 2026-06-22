@@ -1,6 +1,6 @@
 /* ============================================
    FILE: components/_toc.scss
-   PURPOSE: Table of contents — inline TOC, sidebar TOC, detail TOC
+   PURPOSE: Table of contents - inline TOC, sidebar TOC, detail TOC
    DEPENDS ON: tokens/colors, tokens/typography
    USED BY: _layouts/post.html, _layouts/project.html
    KEY CLASSES: .toc, .sidebar-toc, .detail-toc, .detail-toc-inline
@@ -35,7 +35,7 @@
 
 /* Prevent TOC header from getting numbered */
 .toc h3::before {
-    content: none !important; /* Bootstrap CDN override — counter content */
+    content: none !important; /* Bootstrap CDN override - counter content */
 }
 
 .toc ol {

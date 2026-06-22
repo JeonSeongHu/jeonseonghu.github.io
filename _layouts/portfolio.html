@@ -25,6 +25,9 @@
     {% assign is_about = false %}
     {% if nav_path == '/about-me/' or nav_path == '/' %}{% assign is_about = true %}{% endif %}
 
+    <div class="pf-cursor-dot" aria-hidden="true"></div>
+    <div class="pf-cursor-ring" aria-hidden="true"></div>
+
     <nav class="pf-nav">
         <div class="pf-nav-inner">
             <a class="pf-name" href="{{ site.baseurl }}/about-me/">Seonghu Jeon<span class="pf-blue">.</span></a>
@@ -55,6 +58,65 @@
             <span><span class="pf-foot-mark">*</span> Last updated {{ site.time | date: "%Y.%m" }}</span>
         </div>
     </footer>
+
+    <script>
+    (function () {
+        var media = window.matchMedia && window.matchMedia('(pointer: fine) and (hover: hover)');
+        if (!media || !media.matches) return;
+
+        var dot = document.querySelector('.pf-cursor-dot');
+        var ring = document.querySelector('.pf-cursor-ring');
+        if (!dot || !ring) return;
+
+        var body = document.body;
+        var x = window.innerWidth / 2;
+        var y = window.innerHeight / 2;
+        var ringX = x;
+        var ringY = y;
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var hoverTargets = 'a, button, input, textarea, select, summary, [role="button"], [tabindex]:not([tabindex="-1"])';
+
+        body.classList.add('has-pf-cursor');
+
+        function place(el, nextX, nextY) {
+            el.style.transform = 'translate3d(' + nextX + 'px, ' + nextY + 'px, 0) translate(-50%, -50%)';
+        }
+
+        function syncHover(target) {
+            var node = target && target.closest ? target : target && target.parentElement;
+            body.classList.toggle('is-pf-cursor-hover', !!(node && node.closest(hoverTargets)));
+        }
+
+        function onMove(event) {
+            x = event.clientX;
+            y = event.clientY;
+            place(dot, x, y);
+            syncHover(event.target);
+            body.classList.add('is-pf-cursor-visible');
+            if (reduceMotion) {
+                ringX = x;
+                ringY = y;
+                place(ring, ringX, ringY);
+            }
+        }
+
+        function animate() {
+            if (!reduceMotion) {
+                ringX += (x - ringX) * 0.22;
+                ringY += (y - ringY) * 0.22;
+                place(ring, ringX, ringY);
+            }
+            window.requestAnimationFrame(animate);
+        }
+
+        document.addEventListener('pointermove', onMove, { passive: true });
+        document.addEventListener('pointerleave', function () {
+            body.classList.remove('is-pf-cursor-visible', 'is-pf-cursor-hover');
+        }, { passive: true });
+
+        animate();
+    })();
+    </script>
 
     {% if is_about %}
     <script>

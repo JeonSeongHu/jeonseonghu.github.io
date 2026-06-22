@@ -1,5 +1,5 @@
 (function(){
-  // reading time (words / 200 wpm) – counts visible article text
+  // reading time (words / 200 wpm) - counts visible article text
   function estimateReadingTime() {
     var article = document.querySelector('.pf-prose, .article-post');
     if (!article) return null;
