@@ -139,7 +139,7 @@
 
         function placeHandle(handle, x, y, height) {
             if (!handle) return;
-            handle.style.height = Math.max(18, Math.round(height)) + 'px';
+            handle.style.height = Math.round(height) + 'px';
             handle.style.transform = 'translate3d(' + Math.round(x) + 'px, ' + Math.round(y) + 'px, 0)';
         }
 
