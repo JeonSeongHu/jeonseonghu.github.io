@@ -10,27 +10,45 @@ permalink: "/categories.html"
     <p class="pf-page-deck">Browse notes by research area, project work, study material, and personal writing.</p>
 </section>
 
-<section class="pf-sec pf-sec--flush">
+{% assign categories = site.categories | sort %}
+{% for category in categories %}
+{% assign category_posts = "" | split: "" %}
+{% for post in category[1] %}
+    {% if post.hidden != true and post.hidden != "true" %}
+        {% assign category_posts = category_posts | push: post %}
+    {% endif %}
+{% endfor %}
+{% assign category_count = category_posts | size %}
+{% if category_count > 0 %}
+<section class="pf-sec{% if forloop.first %} pf-sec--flush{% endif %}" id="{{ category[0] | slugify }}">
+    <div class="pf-sec-head">
+        <div class="pf-sec-lh">
+            <span class="pf-sec-num">{{ category_count }} posts</span>
+            <h2 class="pf-sec-title">{{ category[0] }}</h2>
+        </div>
+    </div>
+
     <div class="pf-blog-list">
-        {% assign categories = site.categories | sort %}
-        {% for category in categories %}
+        {% for post in category_posts %}
         <article class="pf-blog-item">
-            <a class="pf-blog-link" href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/">
+            <a class="pf-blog-link" href="{{ site.baseurl }}{{ post.url }}">
                 <div class="pf-blog-meta">
-                    <span class="pf-blog-date">{{ category[1].size }} posts</span>
-                    <span class="pf-blog-cat">Category</span>
+                    <span class="pf-blog-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+                    {% if post.categories and post.categories.size > 0 %}
+                    <span class="pf-blog-cat">{{ post.categories | first }}</span>
+                    {% endif %}
                 </div>
                 <div>
-                    <h2 class="pf-blog-title">{{ category[0] }}</h2>
-                    <p class="pf-blog-excerpt">
-                        {% for post in category[1] limit:3 %}
-                            {{ post.title }}{% unless forloop.last %}, {% endunless %}
-                        {% endfor %}
-                    </p>
+                    <h3 class="pf-blog-title">{{ post.title }}</h3>
+                    {% if post.excerpt %}
+                    <p class="pf-blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 28 }}</p>
+                    {% endif %}
                 </div>
-                <span class="pf-blog-read">View</span>
+                <span class="pf-blog-read">Read</span>
             </a>
         </article>
         {% endfor %}
     </div>
 </section>
+{% endif %}
+{% endfor %}

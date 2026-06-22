@@ -16,7 +16,7 @@ custom_css_class: portfolio-page
         <div class="pf-post-cats">
             {% assign titleCats = page.categories | sort %}
             {% for category in titleCats %}
-            <a href="{{ site.baseurl }}/category/{{ category | slugify }}/">{{ category }}</a>
+            <a href="{{ site.baseurl }}/categories#{{ category | slugify }}">{{ category }}</a>
             {% endfor %}
         </div>
         {% endif %}

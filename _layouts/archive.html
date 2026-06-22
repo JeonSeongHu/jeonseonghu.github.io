@@ -58,7 +58,7 @@ title: Archive
         {% assign categories = site.categories | sort %}
         {% for category in categories %}
             {% unless category[0] == page.title %}
-            <a class="pf-filter-tag" href="{{ site.baseurl }}/category/{{ category[0] | slugify }}/">
+            <a class="pf-filter-tag" href="{{ site.baseurl }}/categories#{{ category[0] | slugify }}">
                 {{ category[0] }} <span class="pf-filter-count">{{ category[1].size }}</span>
             </a>
             {% endunless %}
