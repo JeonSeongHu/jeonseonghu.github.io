@@ -1724,10 +1724,12 @@ body.layout-portfolio button {
     li::marker { color: var(--pf-ink-4); }
 
     blockquote {
-        padding: 6px 0 6px 20px;
-        border-left: 3px solid var(--pf-blue);
+        padding: 14px 16px;
+        border: 1px solid rgba(63, 95, 156, 0.16);
+        border-radius: 6px;
+        background: rgba(63, 95, 156, 0.045);
         color: var(--pf-ink-2);
-        font-style: italic;
+        font-style: normal;
 
         > * + * { margin-top: 0.8em; }
     }
