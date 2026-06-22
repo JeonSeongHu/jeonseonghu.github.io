@@ -45,7 +45,10 @@ body.layout-portfolio {
 
 /* Reset for the layout - :where() keeps these at zero specificity so any
    .pf-* component class wins by source order without !important. */
-:where(body.layout-portfolio) ::selection { background: var(--pf-blue); color: #fff; }
+:where(body.layout-portfolio) ::selection {
+    background: rgba(63, 95, 156, 0.2);
+    color: var(--pf-ink);
+}
 :where(body.layout-portfolio) :where(h1, h2, h3, h4, h5, h6, p) {
     margin: 0;
     padding: 0;
@@ -112,14 +115,87 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
         transform: scale(1.35);
     }
 
+    body.layout-portfolio.is-pf-cursor-text .pf-cursor-dot {
+        width: 13px;
+        height: 25px;
+        color: rgba(29, 29, 31, 0.82);
+    }
+
+    body.layout-portfolio.is-pf-cursor-text .pf-cursor-dot::before {
+        inset: auto;
+        left: 50%;
+        top: 2px;
+        bottom: 2px;
+        width: 2px;
+        border-radius: 999px;
+        transform: translateX(-50%);
+    }
+
+    body.layout-portfolio.is-pf-cursor-text .pf-cursor-dot::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: 0 21px 0 currentColor;
+        opacity: 0.82;
+        transform: translateX(-50%);
+    }
+
+    body.layout-portfolio.is-pf-cursor-text.is-pf-cursor-hover .pf-cursor-dot {
+        color: rgba(29, 29, 31, 0.82);
+    }
+
     body.layout-portfolio.is-pf-cursor-down .pf-cursor-dot::before {
         transform: scale(0.72);
         opacity: 0.78;
     }
+
+    body.layout-portfolio.is-pf-cursor-text.is-pf-cursor-down .pf-cursor-dot::before {
+        transform: translateX(-50%) scaleY(0.82);
+    }
+
+    .pf-selection-handle {
+        position: fixed;
+        z-index: 9999;
+        width: 2px;
+        min-height: 18px;
+        border-radius: 999px;
+        background: rgba(63, 95, 156, 0.92);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transform: translate3d(-999px, -999px, 0);
+        transition: opacity 0.08s ease;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(63, 95, 156, 0.92);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.58);
+            transform: translateX(-50%);
+        }
+
+        &::before { top: -4px; }
+        &::after { bottom: -4px; }
+    }
+
+    body.layout-portfolio.has-pf-selection .pf-selection-handle {
+        opacity: 1;
+    }
 }
 
 @media (pointer: coarse), (hover: none) {
-    .pf-cursor-dot {
+    .pf-cursor-dot,
+    .pf-selection-handle {
         display: none;
     }
 }
