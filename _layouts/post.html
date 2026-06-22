@@ -77,20 +77,42 @@ custom_css_class: portfolio-page
             </div>
             {% endif %}
 
+            {% assign previous_visible_post = false %}
+            {% assign next_visible_post = false %}
+            {% unless page.hidden == true or page.hidden == "true" %}
+                {% assign visible_posts = "" | split: "" %}
+                {% for post in site.posts %}
+                    {% if post.hidden != true and post.hidden != "true" %}
+                        {% assign visible_posts = visible_posts | push: post %}
+                    {% endif %}
+                {% endfor %}
+                {% assign visible_posts = visible_posts | sort: "date" %}
+                {% assign current_post_found = false %}
+                {% for post in visible_posts %}
+                    {% if post.url == page.url %}
+                        {% assign current_post_found = true %}
+                    {% elsif current_post_found and next_visible_post == false %}
+                        {% assign next_visible_post = post %}
+                    {% elsif current_post_found == false %}
+                        {% assign previous_visible_post = post %}
+                    {% endif %}
+                {% endfor %}
+            {% endunless %}
+
             <nav class="pf-post-nav">
-                {% if page.previous.url %}
-                <a class="pf-post-nav-link is-prev" href="{{ site.baseurl }}{{ page.previous.url }}">
+                {% if previous_visible_post.url %}
+                <a class="pf-post-nav-link is-prev" href="{{ site.baseurl }}{{ previous_visible_post.url }}">
                     <span class="pf-post-nav-label">← Previous</span>
-                    <span class="pf-post-nav-title">{{ page.previous.title }}</span>
+                    <span class="pf-post-nav-title">{{ previous_visible_post.title }}</span>
                 </a>
                 {% else %}
                 <span class="pf-post-nav-link is-empty"></span>
                 {% endif %}
 
-                {% if page.next.url %}
-                <a class="pf-post-nav-link is-next" href="{{ site.baseurl }}{{ page.next.url }}">
+                {% if next_visible_post.url %}
+                <a class="pf-post-nav-link is-next" href="{{ site.baseurl }}{{ next_visible_post.url }}">
                     <span class="pf-post-nav-label">Next →</span>
-                    <span class="pf-post-nav-title">{{ page.next.title }}</span>
+                    <span class="pf-post-nav-title">{{ next_visible_post.title }}</span>
                 </a>
                 {% else %}
                 <span class="pf-post-nav-link is-empty"></span>

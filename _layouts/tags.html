@@ -14,16 +14,24 @@ permalink: "/tags.html"
     <div class="pf-blog-list">
         {% assign sorted_tags = site.tags | sort %}
         {% for tag in sorted_tags %}
+        {% assign tag_posts = "" | split: "" %}
+        {% for post in tag[1] %}
+            {% if post.hidden != true and post.hidden != "true" %}
+                {% assign tag_posts = tag_posts | push: post %}
+            {% endif %}
+        {% endfor %}
+        {% assign tag_post_count = tag_posts | size %}
+        {% if tag_post_count > 0 %}
         <article class="pf-blog-item" id="{{ tag[0] | replace: ' ', '-' }}">
             <a class="pf-blog-link" href="{{ site.baseurl }}/tags#{{ tag[0] | replace: ' ', '-' }}">
                 <div class="pf-blog-meta">
-                    <span class="pf-blog-date">{{ tag[1].size }} posts</span>
+                    <span class="pf-blog-date">{{ tag_post_count }} posts</span>
                     <span class="pf-blog-cat">Tag</span>
                 </div>
                 <div>
                     <h2 class="pf-blog-title">#{{ tag[0] }}</h2>
                     <p class="pf-blog-excerpt">
-                        {% for post in tag[1] limit:3 %}
+                        {% for post in tag_posts limit:3 %}
                             {{ post.title }}{% unless forloop.last %}, {% endunless %}
                         {% endfor %}
                     </p>
@@ -31,6 +39,7 @@ permalink: "/tags.html"
                 <span class="pf-blog-read">View</span>
             </a>
         </article>
+        {% endif %}
         {% endfor %}
     </div>
 </section>

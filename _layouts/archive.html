@@ -58,9 +58,18 @@ title: Archive
         {% assign categories = site.categories | sort %}
         {% for category in categories %}
             {% unless category[0] == page.title %}
+            {% assign category_visible_posts = "" | split: "" %}
+            {% for post in category[1] %}
+                {% if post.hidden != true and post.hidden != "true" %}
+                    {% assign category_visible_posts = category_visible_posts | push: post %}
+                {% endif %}
+            {% endfor %}
+            {% assign category_visible_count = category_visible_posts | size %}
+            {% if category_visible_count > 0 %}
             <a class="pf-filter-tag" href="{{ site.baseurl }}/categories#{{ category[0] | slugify }}">
-                {{ category[0] }} <span class="pf-filter-count">{{ category[1].size }}</span>
+                {{ category[0] }} <span class="pf-filter-count">{{ category_visible_count }}</span>
             </a>
+            {% endif %}
             {% endunless %}
         {% endfor %}
     </div>

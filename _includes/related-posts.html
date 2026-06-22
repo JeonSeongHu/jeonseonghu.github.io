@@ -10,7 +10,7 @@
     {% assign sorted = site.posts | sort: "date" | reverse %}
     {% if page.series %}
       {% for p in sorted %}
-        {% if p.url != page.url and p.series == page.series and count < max_related %}
+        {% if p.hidden != true and p.hidden != "true" and p.url != page.url and p.series == page.series and count < max_related %}
           <li>
             <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
             <small>{{ p.date | date: "%Y.%m.%d" }}</small>
@@ -20,7 +20,7 @@
       {% endfor %}
     {% elsif page.tags %}
       {% for p in sorted %}
-        {% if p.url != page.url and p.tags and page.tags %}
+        {% if p.hidden != true and p.hidden != "true" and p.url != page.url and p.tags and page.tags %}
           {% assign matched = false %}
           {% for t in page.tags %}
             {% if p.tags contains t %}
