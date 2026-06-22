@@ -483,11 +483,11 @@ custom_css_class: portfolio-page cv-portfolio
 
 <style>
 /* ===== Modern CV PDF, aligned with portfolio typography ===== */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 #cv-pdf-content {
-    font-family: "Inter", "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, "Helvetica Neue", sans-serif;
     color: #111827;
     background: #fff;
     padding: 14mm 16mm 12mm;
@@ -509,8 +509,8 @@ custom_css_class: portfolio-page cv-portfolio
     border-bottom: 0.5px solid #E5E7EB;
 }
 .p-name {
-    font-family: "Instrument Serif", "Inter", "Pretendard Variable", "Pretendard", Georgia, serif;
-    font-size: 30pt; font-weight: 400; color: #111827;
+    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, sans-serif;
+    font-size: 25pt; font-weight: 700; color: #111827;
     letter-spacing: 0; line-height: 1;
 }
 .p-tagline {
@@ -539,8 +539,8 @@ custom_css_class: portfolio-page cv-portfolio
     padding-top: 14mm;
 }
 .p-section-title {
-    font-family: "Inter", "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", system-ui, sans-serif;
-    font-size: 10pt; font-weight: 600;
+    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, sans-serif;
+    font-size: 9pt; font-weight: 600;
     letter-spacing: 0; color: #111827;
     margin-top: 18px; margin-bottom: 7px; padding-bottom: 5px;
     border-bottom: 1px solid #E5E7EB;
@@ -550,14 +550,14 @@ custom_css_class: portfolio-page cv-portfolio
 /* --- Education --- */
 .p-edu { margin-bottom: 10px; }
 .p-edu-row { display: flex; justify-content: space-between; align-items: baseline; }
-.p-edu-name { font-size: 9.5pt; font-weight: 500; color: #111827; }
+.p-edu-name { font-size: 9pt; font-weight: 500; color: #111827; }
 .p-edu-date { font-size: 7.5pt; color: #9CA3AF; font-weight: 400; white-space: nowrap; margin-left: 12px; }
 .p-edu-detail { font-size: 8.5pt; color: #6B7280; margin-top: 1px; }
 
 /* --- Research / Entries --- */
 .p-entry { margin-bottom: 8px; }
 .p-entry-row { display: flex; justify-content: space-between; align-items: baseline; }
-.p-entry-org { font-size: 9.5pt; font-weight: 500; color: #111827; }
+.p-entry-org { font-size: 9pt; font-weight: 500; color: #111827; }
 .p-entry-date { font-size: 7.5pt; color: #9CA3AF; white-space: nowrap; margin-left: 12px; }
 .p-entry-role { font-size: 8.5pt; color: #6B7280; font-style: italic; margin-top: 1px; }
 
@@ -574,7 +574,7 @@ custom_css_class: portfolio-page cv-portfolio
     font-family: "Inter", "Pretendard Variable", "Pretendard", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 .p-pub-body { flex: 1; min-width: 0; }
-.p-pub-title { font-size: 9pt; font-weight: 600; color: #111827; line-height: 1.35; }
+.p-pub-title { font-size: 8.5pt; font-weight: 500; color: #111827; line-height: 1.35; }
 .p-pub-authors { font-size: 8pt; color: #6B7280; line-height: 1.52; margin-top: 1px; }
 .p-pub-venue { font-size: 7.5pt; color: #9CA3AF; margin-top: 1px; }
 .p-venue-blue { color: #0040FF; font-weight: 600; }
@@ -588,7 +588,7 @@ custom_css_class: portfolio-page cv-portfolio
 /* --- Projects --- */
 .p-proj { margin-bottom: 10px; }
 .p-proj-row { display: flex; align-items: baseline; gap: 0; }
-.p-proj-name { font-size: 9pt; font-weight: 600; color: #111827; white-space: nowrap; }
+.p-proj-name { font-size: 8.5pt; font-weight: 500; color: #111827; white-space: nowrap; }
 .p-proj-org { font-size: 7.5pt; color: #9CA3AF; margin-left: 8px; white-space: nowrap; }
 .p-proj-date { font-size: 7.5pt; color: #9CA3AF; margin-left: auto; flex-shrink: 0; }
 .p-proj-desc { font-size: 8pt; color: #4B5563; line-height: 1.5; margin-top: 1px; }

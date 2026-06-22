@@ -22,9 +22,9 @@ body.layout-portfolio {
     --pf-blue:         #0040FF;
     --pf-blue-on-dark: #5C7CFF;
     --pf-blue-soft:    #E6EDFF;
-    --pf-sans: "Inter", "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --pf-display: "Instrument Serif", "Inter", "Pretendard Variable", "Pretendard", Georgia, serif;
-    --pf-mono: "Inter", "Pretendard Variable", "Pretendard", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --pf-sans: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --pf-display: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --pf-mono: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
     margin: 0;
     padding: 0;
@@ -33,8 +33,8 @@ body.layout-portfolio {
     /* Global `body { font-family: ... !important }` from base/global.scss has
        to be defeated. */
     font-family: var(--pf-sans) !important;
-    font-size: 15.5px;
-    line-height: 1.64;
+    font-size: 15px;
+    line-height: 1.62;
     letter-spacing: 0;
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
@@ -190,9 +190,9 @@ body.layout-portfolio button {
 
 .pf-h1 {
     font-family: var(--pf-display);
-    font-size: 64px;
-    font-weight: 400;
-    line-height: 0.98;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.08;
     letter-spacing: 0;
     color: var(--pf-ink);
     margin-bottom: 24px;
@@ -200,8 +200,8 @@ body.layout-portfolio button {
 }
 
 .pf-deck {
-    font-size: 15.5px;
-    line-height: 1.85;
+    font-size: 15px;
+    line-height: 1.76;
     color: var(--pf-ink-2);
     max-width: 560px;
     text-wrap: pretty;
@@ -354,8 +354,8 @@ body.layout-portfolio button {
 }
 .pf-sec-title {
     font-family: var(--pf-display);
-    font-size: 42px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: 700;
     color: var(--pf-ink);
     letter-spacing: 0;
     line-height: 1.05;
@@ -377,7 +377,7 @@ body.layout-portfolio button {
     grid-template-columns: 80px 1fr;
     gap: 28px;
     padding: 7px 0;
-    font-size: 15px;
+    font-size: 14.5px;
     line-height: 1.55;
     align-items: baseline;
 }
@@ -504,7 +504,7 @@ body.layout-portfolio button {
     display: inline-block;
 }
 .pf-pub-title {
-    font-size: 17px;
+    font-size: 15.5px;
     font-weight: 500;
     line-height: 1.35;
     letter-spacing: 0;
@@ -588,7 +588,7 @@ body.layout-portfolio button {
     margin-bottom: 6px;
 }
 .pf-focus-label {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--pf-ink);
     letter-spacing: 0;
@@ -622,7 +622,7 @@ body.layout-portfolio button {
     color: rgba(255, 255, 255, 0.75);
 }
 .pf-now-text {
-    font-size: 17px;
+    font-size: 15.5px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.45;
@@ -678,7 +678,7 @@ body.layout-portfolio button {
     color: var(--pf-ink-3);
 }
 .pf-exp-role {
-    font-size: 17px;
+    font-size: 15.5px;
     color: var(--pf-ink);
     font-weight: 500;
     letter-spacing: 0;
@@ -742,7 +742,7 @@ body.layout-portfolio button {
         padding: 56px 0 48px;
     }
     .pf-portrait { max-width: 200px; }
-    .pf-h1 { font-size: 52px; }
+    .pf-h1 { font-size: 42px; }
 
     .pf-pub {
         grid-template-columns: 1fr;
@@ -768,8 +768,8 @@ body.layout-portfolio button {
     .pf-nav-inner { padding: 0 16px; }
     .pf-foot { padding: 32px 16px 24px; }
     .pf-sec { padding: 56px 0; }
-    .pf-h1 { font-size: 42px; }
-    .pf-sec-title { font-size: 28px; }
+    .pf-h1 { font-size: 34px; }
+    .pf-sec-title { font-size: 24px; }
 }
 
 /* ============================================================
@@ -783,17 +783,17 @@ body.layout-portfolio button {
 }
 .pf-page-h1 {
     font-family: var(--pf-display);
-    font-size: 56px;
-    font-weight: 400;
-    line-height: 1;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.14;
     letter-spacing: 0;
     color: var(--pf-ink);
     margin-bottom: 20px;
     text-wrap: balance;
 }
 .pf-page-deck {
-    font-size: 15.5px;
-    line-height: 1.85;
+    font-size: 15px;
+    line-height: 1.76;
     color: var(--pf-ink-2);
     max-width: 640px;
     text-wrap: pretty;
@@ -997,7 +997,7 @@ body.layout-portfolio button {
     gap: 6px;
 }
 .pf-proj-title {
-    font-size: 17px;
+    font-size: 15.5px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 1.3;
@@ -1096,7 +1096,7 @@ body.layout-portfolio button {
 }
 .pf-cv-what { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .pf-cv-name {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--pf-ink);
     letter-spacing: 0;
@@ -1162,8 +1162,8 @@ body.layout-portfolio button {
 }
 .pf-cv-pub-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .pf-cv-pub-title {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
     letter-spacing: 0;
     line-height: 1.35;
     color: var(--pf-ink);
@@ -1310,7 +1310,7 @@ body.layout-portfolio button {
     font-weight: 500;
 }
 .pf-blog-title {
-    font-size: 17px;
+    font-size: 15.5px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 1.3;
@@ -1362,7 +1362,7 @@ body.layout-portfolio button {
 
 @media (max-width: 860px) {
     .pf-page-hero { padding: 56px 0 40px; }
-    .pf-page-h1 { font-size: 46px; }
+    .pf-page-h1 { font-size: 34px; }
 
     .pf-proj-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 20px; }
 
@@ -1376,7 +1376,7 @@ body.layout-portfolio button {
 
 @media (max-width: 560px) {
     .pf-page-hero { padding: 40px 0 32px; }
-    .pf-page-h1 { font-size: 38px; }
+    .pf-page-h1 { font-size: 30px; }
     .pf-proj-grid { grid-template-columns: 1fr; }
     .pf-search-input { max-width: 100%; }
 }
@@ -1388,8 +1388,8 @@ body.layout-portfolio button {
     border-bottom: 1px solid var(--pf-hairline);
 
     .pf-page-h1 {
-        font-size: 54px;
-        line-height: 1.06;
+        font-size: 38px;
+        line-height: 1.14;
         margin-bottom: 20px;
     }
 }
@@ -1631,8 +1631,8 @@ body.layout-portfolio button {
    Article body typography (.pf-prose)
    ============================================================ */
 .pf-prose {
-    font-size: 15.5px;
-    line-height: 1.85;
+    font-size: 14.5px;
+    line-height: 1.72;
     color: var(--pf-ink-2);
     letter-spacing: 0;
     text-wrap: pretty;
@@ -1648,21 +1648,21 @@ body.layout-portfolio button {
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--pf-display);
         color: var(--pf-ink);
-        font-weight: 400;
+        font-weight: 700;
         line-height: 1.18;
         letter-spacing: 0;
         text-wrap: balance;
         scroll-margin-top: 80px;
     }
-    h1 { font-size: 34px; line-height: 1.12; }
+    h1 { font-size: 26px; line-height: 1.18; }
     h2 {
-        font-size: 28px;
+        font-size: 22px;
         line-height: 1.18;
         padding-top: 0.8em;
         border-top: 1px solid var(--pf-hairline);
     }
-    h3 { font-size: 22px; line-height: 1.22; }
-    h4 { font-family: var(--pf-sans); font-size: 16px; font-weight: 600; line-height: 1.4; }
+    h3 { font-size: 18px; line-height: 1.24; }
+    h4 { font-family: var(--pf-sans); font-size: 15.5px; font-weight: 600; line-height: 1.4; }
     h5, h6 {
         font-family: var(--pf-sans);
         font-size: 13px;
@@ -1875,7 +1875,7 @@ body.layout-portfolio button {
 }
 
 @media (max-width: 1024px) {
-    .pf-post-hero .pf-page-h1 { font-size: 46px; }
+    .pf-post-hero .pf-page-h1 { font-size: 34px; }
 
     .pf-post-grid {
         grid-template-columns: 1fr;
@@ -1897,13 +1897,13 @@ body.layout-portfolio button {
 }
 
 @media (max-width: 640px) {
-    .pf-post-hero .pf-page-h1 { font-size: 38px; }
+    .pf-post-hero .pf-page-h1 { font-size: 30px; }
     .pf-post-nav { grid-template-columns: 1fr; }
     .pf-post-nav-link.is-next { text-align: left; }
     .pf-prose {
-        font-size: 15.5px;
-        h1 { font-size: 26px; }
-        h2 { font-size: 21px; }
-        h3 { font-size: 17.5px; }
+        font-size: 14.5px;
+        h1 { font-size: 23px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 17px; }
     }
 }
