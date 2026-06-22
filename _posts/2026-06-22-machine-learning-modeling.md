@@ -8,6 +8,9 @@ toc: true
 comments: false
 main_category: Education
 sub_category: ML/DL Basics
+series: ml-dl-basics
+series_title: 머신러닝 기초
+series_order: 2
 categories:
   - Education
 tags:

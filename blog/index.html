@@ -12,79 +12,178 @@ custom_css_class: portfolio-page
     {% endif %}
 {% endfor %}
 
-<section class="pf-page-hero" id="hero">
-    <div class="pf-eyebrow">— Blog</div>
-    <h1 class="pf-page-h1">Notes<span class="pf-blue">.</span></h1>
+{% assign lecture_posts = "" | split: "" %}
+{% assign reflection_posts = "" | split: "" %}
+{% assign hobby_posts = "" | split: "" %}
+{% for post in all_posts %}
+    {% assign main_slug = post.main_category | slugify %}
+    {% if main_slug == "education" %}
+        {% assign lecture_posts = lecture_posts | push: post %}
+    {% elsif main_slug == "hobbies" or main_slug == "life" %}
+        {% assign hobby_posts = hobby_posts | push: post %}
+    {% else %}
+        {% assign reflection_posts = reflection_posts | push: post %}
+    {% endif %}
+{% endfor %}
+
+{% assign education_meta = site.data.categories.categories | where: "slug", "education" | first %}
+{% assign reflection_years = reflection_posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+
+<section class="pf-page-hero pf-blog-hero" id="hero">
+    <div class="pf-eyebrow">Blog</div>
+    <h1 class="pf-page-h1">Writing Index<span class="pf-blue">.</span></h1>
     <p class="pf-page-deck">
-        Working notes on research, projects, and the occasional aside. Filter by category below.
+        강의 노트는 시리즈별로, 회고와 메모는 연도별로, 취미 글은 느슨한 목록으로 묶었습니다.
     </p>
 
-    <div class="pf-filter-row" id="blog-filter">
-        <button class="pf-filter-tag is-active" data-filter="all">All <span class="pf-filter-count">{{ all_posts | size }}</span></button>
-        {% for category in site.data.categories.categories %}
-            {% assign cat_count = 0 %}
-            {% for post in all_posts %}
-                {% assign main_slug = post.main_category | slugify %}
-                {% if main_slug == category.slug %}
-                    {% assign cat_count = cat_count | plus: 1 %}
-                {% endif %}
-            {% endfor %}
-            {% if cat_count > 0 %}
-            <button class="pf-filter-tag" data-filter="{{ category.slug }}">{{ category.name }} <span class="pf-filter-count">{{ cat_count }}</span></button>
-            {% endif %}
-        {% endfor %}
-    </div>
+    <nav class="pf-blog-overview" aria-label="Blog categories">
+        <a href="#lecture-notes" class="pf-blog-overview-pill">
+            강의 노트 <span>{{ lecture_posts | size }}</span>
+        </a>
+        <a href="#reflections" class="pf-blog-overview-pill">
+            회고와 메모 <span>{{ reflection_posts | size }}</span>
+        </a>
+        <a href="#hobbies" class="pf-blog-overview-pill">
+            취미와 기타 <span>{{ hobby_posts | size }}</span>
+        </a>
+    </nav>
 </section>
 
-<section class="pf-sec pf-sec--flush" id="posts">
-    <div class="pf-blog-list">
-        {% for post in all_posts %}
-        {% assign main_slug = post.main_category | slugify %}
-        {% assign sub_slug = post.sub_category | slugify %}
-        <article class="pf-blog-item" data-categories="{{ main_slug }} {{ sub_slug }}">
-            <a href="{{ post.url | relative_url }}" class="pf-blog-link">
-                <div class="pf-blog-meta">
-                    <time class="pf-blog-date">{{ post.date | date: "%Y.%m.%d" }}</time>
-                    {% if post.main_category %}
-                    <span class="pf-blog-cat">{{ post.main_category }}</span>
+<section class="pf-sec pf-blog-index-sec" id="posts">
+    <div class="pf-blog-board" aria-label="Categorized blog index">
+        <article class="pf-blog-column is-open" id="lecture-notes" data-blog-column>
+            <button class="pf-blog-column-toggle" type="button" aria-expanded="true" aria-controls="lecture-notes-panel">
+                <span class="pf-blog-column-kicker">Series order</span>
+                <span class="pf-blog-column-title">강의 노트</span>
+                <span class="pf-blog-column-desc">강의별 흐름을 끊지 않도록 시리즈 단위로 정리합니다.</span>
+                <span class="pf-blog-column-count">{{ lecture_posts | size }}</span>
+            </button>
+            <div class="pf-blog-column-shell" id="lecture-notes-panel">
+                <div class="pf-blog-column-inner">
+                    {% if lecture_posts.size > 0 %}
+                        {% for subcategory in education_meta.subcategories %}
+                            {% assign series_posts = "" | split: "" %}
+                            {% for post in lecture_posts %}
+                                {% assign sub_slug = post.sub_category | slugify %}
+                                {% if sub_slug == subcategory.slug %}
+                                    {% assign series_posts = series_posts | push: post %}
+                                {% endif %}
+                            {% endfor %}
+                            {% assign series_posts = series_posts | sort: "series_order" %}
+                            {% if series_posts.size > 0 %}
+                            {% assign series_lead = series_posts | first %}
+                            {% assign series_label = series_lead.series_title | default: subcategory.name %}
+                            <section class="pf-blog-group">
+                                <div class="pf-blog-group-head">
+                                    <h2>{{ series_label }}</h2>
+                                    <span>{{ series_posts | size }} posts</span>
+                                </div>
+                                <div class="pf-blog-mini-list">
+                                    {% for post in series_posts %}
+                                    <a class="pf-blog-mini" href="{{ post.url | relative_url }}">
+                                        <span class="pf-blog-mini-step">
+                                            {% if post.series_order %}
+                                                {% if post.series_order < 10 %}0{{ post.series_order }}{% else %}{{ post.series_order }}{% endif %}
+                                            {% else %}
+                                                {{ post.date | date: "%m.%d" }}
+                                            {% endif %}
+                                        </span>
+                                        <span class="pf-blog-mini-body">
+                                            <span class="pf-blog-mini-title">{{ post.title }}</span>
+                                            <span class="pf-blog-mini-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</span>
+                                        </span>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </section>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p class="pf-blog-empty">공개된 강의 노트가 아직 없습니다.</p>
                     {% endif %}
                 </div>
-                <h3 class="pf-blog-title">{{ post.title }}</h3>
-                <p class="pf-blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 26 }}</p>
-                <span class="pf-blog-read">
-                    {% assign words = post.content | number_of_words %}
-                    {% if words < 360 %}1 min read{% else %}{{ words | divided_by: 180 }} min read{% endif %}
-                </span>
-            </a>
+            </div>
         </article>
-        {% endfor %}
-    </div>
 
-    <div id="no-blog-results" class="pf-empty"{% if all_posts.size > 0 %} style="display: none;"{% endif %}>
-        {% if all_posts.size > 0 %}No posts in that category yet.{% else %}No published posts yet — drafts in flight.{% endif %}
+        <article class="pf-blog-column is-open" id="reflections" data-blog-column>
+            <button class="pf-blog-column-toggle" type="button" aria-expanded="true" aria-controls="reflections-panel">
+                <span class="pf-blog-column-kicker">By year</span>
+                <span class="pf-blog-column-title">회고와 메모</span>
+                <span class="pf-blog-column-desc">프로젝트, 연구 메모, 사이트 실험 글은 시간순으로 묶습니다.</span>
+                <span class="pf-blog-column-count">{{ reflection_posts | size }}</span>
+            </button>
+            <div class="pf-blog-column-shell" id="reflections-panel">
+                <div class="pf-blog-column-inner">
+                    {% if reflection_posts.size > 0 %}
+                        {% for year in reflection_years %}
+                        <section class="pf-blog-group">
+                            <div class="pf-blog-group-head">
+                                <h2>{{ year.name }}</h2>
+                                <span>{{ year.items | size }} posts</span>
+                            </div>
+                            <div class="pf-blog-mini-list">
+                                {% for post in year.items %}
+                                <a class="pf-blog-mini" href="{{ post.url | relative_url }}">
+                                    <span class="pf-blog-mini-step">{{ post.date | date: "%m.%d" }}</span>
+                                    <span class="pf-blog-mini-body">
+                                        <span class="pf-blog-mini-title">{{ post.title }}</span>
+                                        <span class="pf-blog-mini-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</span>
+                                    </span>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </section>
+                        {% endfor %}
+                    {% else %}
+                        <p class="pf-blog-empty">공개된 회고 글이 아직 없습니다.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+
+        <article class="pf-blog-column is-open" id="hobbies" data-blog-column>
+            <button class="pf-blog-column-toggle" type="button" aria-expanded="true" aria-controls="hobbies-panel">
+                <span class="pf-blog-column-kicker">Loose shelf</span>
+                <span class="pf-blog-column-title">취미와 기타</span>
+                <span class="pf-blog-column-desc">음악, 디자인, 생각 조각은 가볍게 쌓아 둡니다.</span>
+                <span class="pf-blog-column-count">{{ hobby_posts | size }}</span>
+            </button>
+            <div class="pf-blog-column-shell" id="hobbies-panel">
+                <div class="pf-blog-column-inner">
+                    {% if hobby_posts.size > 0 %}
+                        <div class="pf-blog-mini-list">
+                            {% for post in hobby_posts %}
+                            <a class="pf-blog-mini" href="{{ post.url | relative_url }}">
+                                <span class="pf-blog-mini-step">{{ post.date | date: "%m.%d" }}</span>
+                                <span class="pf-blog-mini-body">
+                                    <span class="pf-blog-mini-title">{{ post.title }}</span>
+                                    <span class="pf-blog-mini-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</span>
+                                </span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="pf-blog-empty">취미 글은 아직 공개하지 않았습니다.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
     </div>
 </section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    var buttons = document.querySelectorAll('#blog-filter .pf-filter-tag');
-    var items = document.querySelectorAll('.pf-blog-item');
-    var empty = document.getElementById('no-blog-results');
+    var columns = document.querySelectorAll('[data-blog-column]');
 
-    function apply(slug) {
-        buttons.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-filter') === slug); });
-        var visible = 0;
-        items.forEach(function (item) {
-            var cats = (item.getAttribute('data-categories') || '').split(' ');
-            var match = slug === 'all' || cats.indexOf(slug) !== -1;
-            item.style.display = match ? '' : 'none';
-            if (match) visible++;
+    columns.forEach(function (column) {
+        var toggle = column.querySelector('.pf-blog-column-toggle');
+        if (!toggle) return;
+
+        toggle.addEventListener('click', function () {
+            var isOpen = column.classList.toggle('is-open');
+            column.classList.toggle('is-collapsed', !isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
-        empty.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    buttons.forEach(function (b) {
-        b.addEventListener('click', function () { apply(b.getAttribute('data-filter')); });
     });
 });
 </script>
