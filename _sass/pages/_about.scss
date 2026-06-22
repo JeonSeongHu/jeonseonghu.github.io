@@ -181,16 +181,7 @@ body.layout-portfolio button {
     color: var(--pf-blue);
     letter-spacing: 0;
     margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    &::before {
-        content: '';
-        width: 24px;
-        height: 1px;
-        background: var(--pf-blue);
-    }
+    display: block;
 }
 
 .pf-h1 {
