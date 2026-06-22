@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Portfolio 레이아웃 미리보기 — 임시 포스트"
+title: "Portfolio 레이아웃 미리보기: 임시 포스트"
 author: jeonseonghu
 date: 2026-04-28 14:00:00 +0900
 hidden: false
@@ -20,16 +20,16 @@ excerpt: 새로 다듬은 .pf-prose 본문 타이포그래피와 사이드바 TO
 
 ## 본문 타이포그래피
 
-본문 폰트는 DM Sans 16px / line-height 1.7 입니다. 단락 간격은 `1.1em`, 한국어 *italic*과 **bold**, 그리고 [외부 링크](https://example.com)는 파란색 밑줄로 구분됩니다.
+본문 폰트는 Pretendard 14.5px / line-height 1.72 입니다. 단락 간격은 `1.1em`, 한국어 *italic*과 **bold**, 그리고 [외부 링크](https://example.com)는 파란색 밑줄로 구분됩니다.
 
-> 인용문은 왼쪽에 파란 3px 보더가 붙고, italic으로 표시됩니다. 두 줄 이상이어도 부드럽게 흐릅니다 — 본문 흐름을 끊지 않으면서 강조하는 데 적합합니다.
+> 인용문은 왼쪽에 파란 3px 보더가 붙고, italic으로 표시됩니다. 두 줄 이상이어도 부드럽게 흐릅니다. 본문 흐름을 끊지 않으면서 강조하는 데 적합합니다.
 
 ### 리스트
 
 순서 없는 리스트:
 
-- 항목 1 — 일반 텍스트
-- 항목 2 — `inline code`가 섞인 항목
+- 항목 1: 일반 텍스트
+- 항목 2: `inline code`가 섞인 항목
 - 항목 3
   - 중첩된 항목
   - 또 다른 중첩
@@ -65,7 +65,7 @@ bundle exec jekyll serve --livereload
 
 ## 이미지와 figure
 
-키보드 단축키도 가능합니다 — <kbd>Cmd</kbd> + <kbd>K</kbd> 로 검색을 열 수 있고, ==하이라이트== 텍스트도 지원합니다.
+키보드 단축키도 가능합니다. <kbd>Cmd</kbd> + <kbd>K</kbd> 로 검색을 열 수 있고, ==하이라이트== 텍스트도 지원합니다.
 
 ---
 
