@@ -1,0 +1,56 @@
+{
+  "width": 1600,
+  "height": 520,
+  "nodes": [
+    {
+      "id": "world",
+      "label": "Population",
+      "x": 110,
+      "y": 185,
+      "w": 250,
+      "h": 160,
+      "tone": "gray"
+    },
+    {
+      "id": "data",
+      "label": "Data matrix",
+      "x": 470,
+      "y": 185,
+      "w": 250,
+      "h": 160,
+      "tone": "blue"
+    },
+    {
+      "id": "model",
+      "label": "Model + loss",
+      "x": 830,
+      "y": 185,
+      "w": 280,
+      "h": 160,
+      "tone": "blue"
+    },
+    {
+      "id": "trained",
+      "label": "Trained model",
+      "x": 1220,
+      "y": 185,
+      "w": 270,
+      "h": 160,
+      "tone": "blue"
+    }
+  ],
+  "edges": [
+    {
+      "from": "world",
+      "to": "data"
+    },
+    {
+      "from": "data",
+      "to": "model"
+    },
+    {
+      "from": "model",
+      "to": "trained"
+    }
+  ]
+}
