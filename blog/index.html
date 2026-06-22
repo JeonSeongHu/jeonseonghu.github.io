@@ -32,19 +32,16 @@ custom_css_class: portfolio-page
 <section class="pf-page-hero pf-blog-hero" id="hero">
     <div class="pf-eyebrow">Blog</div>
     <h1 class="pf-page-h1">Writing Index<span class="pf-blue">.</span></h1>
-    <p class="pf-page-deck">
-        강의 노트는 시리즈별로, 회고와 메모는 연도별로, 취미 글은 느슨한 목록으로 묶었습니다.
-    </p>
 
     <nav class="pf-blog-overview" aria-label="Blog categories">
         <a href="#lecture-notes" class="pf-blog-overview-pill">
-            강의 노트 <span>{{ lecture_posts | size }}</span>
+            Lecture Notes <span>{{ lecture_posts | size }}</span>
         </a>
         <a href="#reflections" class="pf-blog-overview-pill">
-            회고와 메모 <span>{{ reflection_posts | size }}</span>
+            Reflections <span>{{ reflection_posts | size }}</span>
         </a>
         <a href="#hobbies" class="pf-blog-overview-pill">
-            취미와 기타 <span>{{ hobby_posts | size }}</span>
+            Hobbies <span>{{ hobby_posts | size }}</span>
         </a>
     </nav>
 </section>
@@ -53,9 +50,8 @@ custom_css_class: portfolio-page
     <div class="pf-blog-board" aria-label="Categorized blog index">
         <article class="pf-blog-column is-open" id="lecture-notes" data-blog-column>
             <button class="pf-blog-column-toggle" type="button" aria-expanded="true" aria-controls="lecture-notes-panel">
-                <span class="pf-blog-column-kicker">Series order</span>
-                <span class="pf-blog-column-title">강의 노트</span>
-                <span class="pf-blog-column-desc">강의별 흐름을 끊지 않도록 시리즈 단위로 정리합니다.</span>
+                <span class="pf-blog-column-kicker">Series</span>
+                <span class="pf-blog-column-title">Lecture Notes</span>
                 <span class="pf-blog-column-count">{{ lecture_posts | size }}</span>
             </button>
             <div class="pf-blog-column-shell" id="lecture-notes-panel">
@@ -90,7 +86,6 @@ custom_css_class: portfolio-page
                                         </span>
                                         <span class="pf-blog-mini-body">
                                             <span class="pf-blog-mini-title">{{ post.title }}</span>
-                                            <span class="pf-blog-mini-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</span>
                                         </span>
                                     </a>
                                     {% endfor %}
@@ -99,7 +94,7 @@ custom_css_class: portfolio-page
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <p class="pf-blog-empty">공개된 강의 노트가 아직 없습니다.</p>
+                        <p class="pf-blog-empty">No posts.</p>
                     {% endif %}
                 </div>
             </div>
@@ -108,8 +103,7 @@ custom_css_class: portfolio-page
         <article class="pf-blog-column is-open" id="reflections" data-blog-column>
             <button class="pf-blog-column-toggle" type="button" aria-expanded="true" aria-controls="reflections-panel">
                 <span class="pf-blog-column-kicker">By year</span>
-                <span class="pf-blog-column-title">회고와 메모</span>
-                <span class="pf-blog-column-desc">프로젝트, 연구 메모, 사이트 실험 글은 시간순으로 묶습니다.</span>
+                <span class="pf-blog-column-title">Reflections</span>
                 <span class="pf-blog-column-count">{{ reflection_posts | size }}</span>
             </button>
             <div class="pf-blog-column-shell" id="reflections-panel">
@@ -127,7 +121,6 @@ custom_css_class: portfolio-page
                                     <span class="pf-blog-mini-step">{{ post.date | date: "%m.%d" }}</span>
                                     <span class="pf-blog-mini-body">
                                         <span class="pf-blog-mini-title">{{ post.title }}</span>
-                                        <span class="pf-blog-mini-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</span>
                                     </span>
                                 </a>
                                 {% endfor %}
@@ -135,7 +128,7 @@ custom_css_class: portfolio-page
                         </section>
                         {% endfor %}
                     {% else %}
-                        <p class="pf-blog-empty">공개된 회고 글이 아직 없습니다.</p>
+                        <p class="pf-blog-empty">No posts.</p>
                     {% endif %}
                 </div>
             </div>
@@ -143,9 +136,8 @@ custom_css_class: portfolio-page
 
         <article class="pf-blog-column is-open" id="hobbies" data-blog-column>
             <button class="pf-blog-column-toggle" type="button" aria-expanded="true" aria-controls="hobbies-panel">
-                <span class="pf-blog-column-kicker">Loose shelf</span>
-                <span class="pf-blog-column-title">취미와 기타</span>
-                <span class="pf-blog-column-desc">음악, 디자인, 생각 조각은 가볍게 쌓아 둡니다.</span>
+                <span class="pf-blog-column-kicker">Shelf</span>
+                <span class="pf-blog-column-title">Hobbies</span>
                 <span class="pf-blog-column-count">{{ hobby_posts | size }}</span>
             </button>
             <div class="pf-blog-column-shell" id="hobbies-panel">
@@ -157,13 +149,12 @@ custom_css_class: portfolio-page
                                 <span class="pf-blog-mini-step">{{ post.date | date: "%m.%d" }}</span>
                                 <span class="pf-blog-mini-body">
                                     <span class="pf-blog-mini-title">{{ post.title }}</span>
-                                    <span class="pf-blog-mini-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</span>
                                 </span>
                             </a>
                             {% endfor %}
                         </div>
                     {% else %}
-                        <p class="pf-blog-empty">취미 글은 아직 공개하지 않았습니다.</p>
+                        <p class="pf-blog-empty">No posts.</p>
                     {% endif %}
                 </div>
             </div>
