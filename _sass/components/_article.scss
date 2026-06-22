@@ -38,8 +38,8 @@
 /* H1 - resets H2 counter */
 .article-post h1 {
     counter-reset: article-h2;
-    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
-    font-weight: var(--weight-bold);
+    font-family: var(--font-display) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-regular);
     color: var(--color-text-primary);
     font-size: var(--text-6xl);
     margin-top: 3.5rem;
@@ -57,8 +57,8 @@
 .article-post h2 {
     counter-reset: article-h3;
     counter-increment: article-h2;
-    font-family: var(--font-sans) !important; /* Bootstrap CDN override */
-    font-weight: var(--weight-semibold);
+    font-family: var(--font-display) !important; /* Bootstrap CDN override */
+    font-weight: var(--weight-regular);
     color: var(--color-text-primary);
     font-size: var(--text-5xl);
     margin-top: 3rem;
@@ -78,7 +78,7 @@
     counter-reset: article-h4;
     counter-increment: article-h3;
     font-family: var(--font-sans) !important; /* Bootstrap CDN override */
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-medium);
     color: var(--gray-900);
     font-size: var(--text-3xl-plus);
     margin-top: 2.5rem;
@@ -96,7 +96,7 @@
 .article-post h4 {
     counter-increment: article-h4;
     font-family: var(--font-sans) !important; /* Bootstrap CDN override */
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-medium);
     color: var(--gray-800);
     font-size: var(--text-xl-plus);
     margin-top: 2rem;
@@ -254,7 +254,8 @@
 /* --- Section Titles (component override) --- */
 .section-title h2 {
     font-size: var(--text-6xl);
-    font-weight: var(--weight-extrabold);
+    font-family: var(--font-display);
+    font-weight: var(--weight-regular);
     color: var(--color-text-primary);
     padding-bottom: 0.75rem;
     margin-bottom: 2rem;
@@ -263,8 +264,8 @@
 
 /* --- Page Title --- */
 .page-title {
-    font-family: var(--font-sans);
-    font-weight: var(--weight-extrabold);
+    font-family: var(--font-display);
+    font-weight: var(--weight-regular);
     font-size: var(--text-8xl);
     color: var(--color-text-primary);
     margin-top: 0;
@@ -377,7 +378,7 @@
 
 /* --- Layout Page overrides --- */
 .layout-page .article-post {
-    font-family: var(--font-sans-kr);
+    font-family: var(--font-sans);
     font-size: var(--text-md);
 }
 

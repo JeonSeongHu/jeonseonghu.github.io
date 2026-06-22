@@ -89,14 +89,14 @@ a.external-link:hover::after {
 }
 
 .mainheading h1.posttitle {
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     margin-bottom: 1rem;
 }
 
 /* --- Section Title --- */
 .section-title h2 {
     margin-bottom: 25px;
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     font-size: 1.4rem;
     margin-bottom: 27px;
 }
@@ -254,7 +254,7 @@ span.post-read-more a:hover {
 
 /* --- Author Page --- */
 .authorpage h1 {
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     font-size: 30px;
 }
 
@@ -555,7 +555,7 @@ ul.tags li a:hover {
 span.navigation {
     display: inline-block;
     font-size: 0.93rem;
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     text-align: center;
 }
 

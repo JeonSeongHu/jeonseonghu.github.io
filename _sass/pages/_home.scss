@@ -49,7 +49,7 @@ body.with-dot-bg {
 
 .sidebar-header {
     font-size: var(--text-sm);
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     text-transform: uppercase;
     color: var(--gray-100);
     margin-bottom: 1.5rem;
@@ -61,7 +61,7 @@ body.with-dot-bg {
 }
 
 .category-major {
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     color: var(--color-text-primary);
     display: flex;
     align-items: center;
@@ -92,7 +92,7 @@ body.with-dot-bg {
 }
 
 .category-major-title {
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     color: var(--color-text-primary);
     font-size: var(--text-md);
     margin-bottom: 0.6rem;
@@ -214,7 +214,8 @@ body.with-dot-bg {
 
 .current-category-header h2 {
     font-size: var(--text-7xl);
-    font-weight: var(--weight-extrabold);
+    font-family: var(--font-display);
+    font-weight: var(--weight-regular);
     color: var(--color-text-primary);
     margin: 0;
     letter-spacing: 0;
@@ -296,7 +297,7 @@ body.with-dot-bg {
 
 .blog-title {
     font-size: var(--text-3xl-plus);
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     margin: 0.5rem 0 0.8rem 0;
     line-height: var(--leading-snug);
     color: var(--color-text-primary);

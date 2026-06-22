@@ -30,7 +30,7 @@
     margin-bottom: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 0;
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
 }
 
 /* Prevent TOC header from getting numbered */
@@ -140,7 +140,7 @@
 
 .sidebar-toc .toc-list > ul > li > a {
     color: var(--color-text-secondary);
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-medium);
     font-size: var(--text-base-plus);
     display: block;
     line-height: 1.4;
@@ -156,12 +156,12 @@
 /* Active State - Level 1 */
 .sidebar-toc .toc-list > ul > li > a.active {
     color: var(--color-primary);
-    font-weight: var(--weight-extrabold);
+    font-weight: var(--weight-semibold);
 }
 
 .sidebar-toc .toc-list > ul > li > a.active::before {
     color: var(--color-primary);
-    font-weight: var(--weight-extrabold);
+    font-weight: var(--weight-semibold);
 }
 
 /* 2nd Level */
@@ -314,7 +314,7 @@
 
         &.active {
             color: var(--gray-900);
-            font-weight: var(--weight-bold);
+            font-weight: var(--weight-semibold);
             border-left-color: var(--gray-900);
         }
     }
@@ -339,7 +339,7 @@
     h3 {
         margin-top: 0;
         font-size: var(--text-md);
-        font-weight: var(--weight-bold);
+        font-weight: var(--weight-medium);
         color: var(--gray-700);
         text-transform: uppercase;
         letter-spacing: 0;
