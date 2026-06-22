@@ -11,7 +11,7 @@ custom_css_class: portfolio-page
 		<div class="pf-eyebrow">M.S. Researcher · KAIST CVLAB</div>
 		<h1 class="pf-h1">Seonghu Jeon<span class="pf-blue">.</span></h1>
 		<p class="pf-deck">
-			I'm interested in how machines come to understand and represent the physical world, and how they can build on that to generate and act in it. I'm a first-year M.S. researcher at KAIST CVLAB. My research so far has centered on <b>multi-view diffusion and 4D generation</b>, including GLD at <b>ECCV 2026</b> and CAMEO at <b>CVPR 2026</b>, and I'm now exploring <b>3D foundation models and geometric action models for robotics</b>, including GAM, currently under review. Reach me at <a href="mailto:seonghu.jeon@kaist.ac.kr">seonghu.jeon@kaist.ac.kr</a>.
+			I'm interested in how machines come to understand and represent the physical world, and how they can build on that to generate and act in it. I'm a first-year M.S. researcher at KAIST CVLAB. My research so far has centered on <b>multi-view diffusion and 4D generation</b>, and I'm now exploring <b>3D foundation models and geometric action models for robotics</b>, including GAM, currently under review. Reach me at <a href="mailto:seonghu.jeon@kaist.ac.kr">seonghu.jeon@kaist.ac.kr</a>.
 		</p>
 		<div class="pf-links">
 			<a class="pf-link" href="{{ site.baseurl }}/cv/">Curriculum Vitae<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
