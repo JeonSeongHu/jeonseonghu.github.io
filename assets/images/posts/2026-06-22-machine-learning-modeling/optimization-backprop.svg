@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img">
+<defs>
+<style>
+svg { font-family: Paperlogy, 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', Inter, system-ui, sans-serif; background: #fff; }
+.label { font-size: 20px; font-weight: 650; fill: #111827; }
+.small { font-size: 15px; font-weight: 520; fill: #6B7280; }
+.math { font-size: 17px; font-weight: 560; fill: #3F4654; }
+</style>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L10,6 L2,10" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="45" y="48" width="520" height="335" rx="12" fill="#F8FAFC" stroke="#A9B4C4" stroke-width="2"/>
+<text class="label" x="305" y="84" text-anchor="middle" dominant-baseline="middle">Gradient descent</text>
+<line x1="115.0" y1="320.0" x2="480.0" y2="320.0" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow)"/><line x1="115.0" y1="320.0" x2="115.0" y2="130.0" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow)"/><text class="small" x="498" y="324" text-anchor="start" dominant-baseline="middle">w</text><text class="small" x="105" y="118" text-anchor="end" dominant-baseline="middle">Loss</text>
+<path d="M 125.0 179.3 L 127.9 183.0 L 130.7 186.7 L 133.6 190.4 L 136.4 193.9 L 139.3 197.4 L 142.1 200.9 L 145.0 204.2 L 147.9 207.6 L 150.7 210.8 L 153.6 214.0 L 156.4 217.1 L 159.3 220.2 L 162.1 223.2 L 165.0 226.1 L 167.9 229.0 L 170.7 231.8 L 173.6 234.5 L 176.4 237.2 L 179.3 239.8 L 182.1 242.3 L 185.0 244.8 L 187.9 247.2 L 190.7 249.6 L 193.6 251.9 L 196.4 254.1 L 199.3 256.3 L 202.1 258.4 L 205.0 260.4 L 207.9 262.4 L 210.7 264.3 L 213.6 266.1 L 216.4 267.9 L 219.3 269.6 L 222.1 271.3 L 225.0 272.9 L 227.9 274.4 L 230.7 275.9 L 233.6 277.3 L 236.4 278.6 L 239.3 279.9 L 242.1 281.1 L 245.0 282.2 L 247.9 283.3 L 250.7 284.4 L 253.6 285.3 L 256.4 286.2 L 259.3 287.0 L 262.1 287.8 L 265.0 288.5 L 267.9 289.1 L 270.7 289.7 L 273.6 290.2 L 276.4 290.7 L 279.3 291.0 L 282.1 291.4 L 285.0 291.6 L 287.9 291.8 L 290.7 291.9 L 293.6 292.0 L 296.4 292.0 L 299.3 291.9 L 302.1 291.8 L 305.0 291.6 L 307.9 291.4 L 310.7 291.0 L 313.6 290.7 L 316.4 290.2 L 319.3 289.7 L 322.1 289.1 L 325.0 288.5 L 327.9 287.8 L 330.7 287.0 L 333.6 286.2 L 336.4 285.3 L 339.3 284.4 L 342.1 283.3 L 345.0 282.2 L 347.9 281.1 L 350.7 279.9 L 353.6 278.6 L 356.4 277.3 L 359.3 275.9 L 362.1 274.4 L 365.0 272.9 L 367.9 271.3 L 370.7 269.6 L 373.6 267.9 L 376.4 266.1 L 379.3 264.3 L 382.1 262.4 L 385.0 260.4 L 387.9 258.4 L 390.7 256.3 L 393.6 254.1 L 396.4 251.9 L 399.3 249.6 L 402.1 247.2 L 405.0 244.8 L 407.9 242.3 L 410.7 239.8 L 413.6 237.2 L 416.4 234.5 L 419.3 231.8 L 422.1 229.0 L 425.0 226.1 L 427.9 223.2 L 430.7 220.2 L 433.6 217.1 L 436.4 214.0 L 439.3 210.8 L 442.1 207.6 L 445.0 204.2 L 447.9 200.9 L 450.7 197.4 L 453.6 193.9 L 456.4 190.4 L 459.3 186.7 L 462.1 183.0 L 465.0 179.3" fill="none" stroke="#2F6FEB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="170.0" cy="270.0" r="4" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
+<circle cx="215.0" cy="286.0" r="4" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
+<circle cx="255.0" cy="292.0" r="4" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
+<circle cx="292.0" cy="292.0" r="4" fill="#D94E4E" stroke="white" stroke-width="1.5"/>
+<line x1="170.0" y1="270.0" x2="215.0" y2="286.0" stroke="#D94E4E" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="215.0" y1="286.0" x2="255.0" y2="292.0" stroke="#D94E4E" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="255.0" y1="292.0" x2="292.0" y2="292.0" stroke="#D94E4E" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text class="small" x="300" y="342" text-anchor="middle" dominant-baseline="middle">gradient의 반대 방향으로 내려간다</text>
+<rect x="635" y="48" width="520" height="335" rx="12" fill="#F8FAFC" stroke="#A9B4C4" stroke-width="2"/>
+<text class="label" x="895" y="84" text-anchor="middle" dominant-baseline="middle">Backpropagation</text>
+<rect x="677" y="165" width="56" height="40" rx="9" fill="#FFFFFF" stroke="#A9B4C4" stroke-width="2"/>
+<text class="label" x="705" y="185" text-anchor="middle" dominant-baseline="middle">x</text>
+<rect x="677" y="240" width="56" height="40" rx="9" fill="#FFFFFF" stroke="#A9B4C4" stroke-width="2"/>
+<text class="label" x="705" y="260" text-anchor="middle" dominant-baseline="middle">y</text>
+<rect x="677" y="315" width="56" height="40" rx="9" fill="#FFFFFF" stroke="#A9B4C4" stroke-width="2"/>
+<text class="label" x="705" y="335" text-anchor="middle" dominant-baseline="middle">z</text>
+<circle cx="825" cy="222" r="28" fill="#EAF2FF" stroke="#2F6FEB" stroke-width="2"/>
+<text class="label" x="825" y="222" text-anchor="middle" dominant-baseline="middle">×</text>
+<circle cx="960" cy="260" r="28" fill="#EAF2FF" stroke="#2F6FEB" stroke-width="2"/>
+<text class="label" x="960" y="260" text-anchor="middle" dominant-baseline="middle">+</text>
+<rect x="1052" y="240" width="56" height="40" rx="9" fill="#FFFFFF" stroke="#A9B4C4" stroke-width="2"/>
+<text class="label" x="1080" y="260" text-anchor="middle" dominant-baseline="middle">f</text>
+<line x1="733.0" y1="185.0" x2="797.0" y2="210.0" stroke="#3F4654" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="733.0" y1="260.0" x2="797.0" y2="235.0" stroke="#3F4654" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="853.0" y1="222.0" x2="932.0" y2="250.0" stroke="#3F4654" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="733.0" y1="335.0" x2="932.0" y2="275.0" stroke="#3F4654" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="988.0" y1="260.0" x2="1052.0" y2="260.0" stroke="#3F4654" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1052.0" y1="282.0" x2="988.0" y2="282.0" stroke="#D94E4E" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="932.0" y1="303.0" x2="853.0" y2="248.0" stroke="#D94E4E" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text class="small" x="860" y="150" text-anchor="middle" dominant-baseline="middle" style="fill:#2F6FEB">forward</text>
+<text class="small" x="985" y="326" text-anchor="middle" dominant-baseline="middle" style="fill:#D94E4E">backward</text>
+<text class="small" x="895" y="355" text-anchor="middle" dominant-baseline="middle">중간 미분값을 재사용해서 gradient를 계산한다</text>
+</svg>
