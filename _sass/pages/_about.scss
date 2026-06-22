@@ -171,7 +171,7 @@ body.layout-portfolio button {
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 .pf-nav-inner {
-    max-width: 1080px;
+    max-width: 1160px;
     margin: 0 auto;
     height: 52px;
     padding: 0 32px;
@@ -184,6 +184,7 @@ body.layout-portfolio button {
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0;
+    line-height: normal;
     color: var(--pf-ink);
     white-space: nowrap;
 }
@@ -194,6 +195,8 @@ body.layout-portfolio button {
     gap: 28px;
     font-size: 12px;
     font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
     color: var(--pf-ink-2);
 
     a {
@@ -212,6 +215,8 @@ body.layout-portfolio button {
     border: 1px solid var(--pf-hairline);
     font-size: 12px;
     font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
     padding: 5px 13px;
     border-radius: 9999px;
     transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease, transform 0.12s ease;
@@ -226,7 +231,7 @@ body.layout-portfolio button {
 
 /* ============= Page shell ============= */
 .pf-main {
-    max-width: 1080px;
+    max-width: 1160px;
     margin: 0 auto;
     padding: 0 32px;
 }
@@ -266,7 +271,7 @@ body.layout-portfolio button {
     font-size: 15.5px;
     line-height: 1.85;
     color: var(--pf-ink-2);
-    max-width: 560px;
+    max-width: 720px;
     text-wrap: pretty;
     letter-spacing: 0;
     margin-bottom: 22px;
@@ -454,6 +459,7 @@ body.layout-portfolio button {
 .pf-news-body {
     color: var(--pf-ink-2);
     line-height: 1.75;
+    letter-spacing: 0;
     text-wrap: pretty;
 
     b { color: var(--pf-ink); font-weight: 600; }
@@ -885,7 +891,7 @@ body.layout-portfolio button {
     font-size: 15.5px;
     line-height: 1.85;
     color: var(--pf-ink-2);
-    max-width: 640px;
+    max-width: 720px;
     text-wrap: pretty;
     letter-spacing: 0;
     margin-bottom: 24px;
@@ -1524,7 +1530,7 @@ body.layout-portfolio button {
     .pf-page-h1 { max-width: 920px; }
 }
 .pf-project-deck {
-    max-width: 760px;
+    max-width: 860px;
     margin-bottom: 28px;
 }
 .pf-project-meta {
@@ -1613,14 +1619,14 @@ body.layout-portfolio button {
 
 .pf-post-grid {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 56px;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 48px;
     padding: 48px 0;
     align-items: start;
 
     &.is-no-toc {
         grid-template-columns: 1fr;
-        max-width: 720px;
+        max-width: 860px;
         margin: 0 auto;
     }
 }
@@ -1721,8 +1727,8 @@ body.layout-portfolio button {
    Article body typography (.pf-prose)
    ============================================================ */
 .pf-prose {
-    font-size: 14.5px;
-    line-height: 1.7;
+    font-size: 15.5px;
+    line-height: 1.85;
     color: var(--pf-ink-2);
     letter-spacing: 0;
     text-wrap: pretty;
@@ -1972,7 +1978,7 @@ body.layout-portfolio button {
     .pf-post-grid {
         grid-template-columns: 1fr;
         gap: 0;
-        max-width: 720px;
+        max-width: 860px;
         margin: 0 auto;
         padding: 32px 0;
     }
