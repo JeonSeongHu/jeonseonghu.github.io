@@ -19,9 +19,9 @@ body.layout-portfolio {
     --pf-ink-4:        #A1A4AB;
     --pf-on-dark:      #F5F5F7;
     --pf-on-dark-2:    #B8B9BD;
-    --pf-blue:         #0040FF;
-    --pf-blue-on-dark: #5C7CFF;
-    --pf-blue-soft:    #E6EDFF;
+    --pf-blue:         #3F5F9C;
+    --pf-blue-on-dark: #A9BAD9;
+    --pf-blue-soft:    #EEF3FA;
     --pf-sans: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --pf-display: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --pf-mono: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -34,7 +34,7 @@ body.layout-portfolio {
        to be defeated. */
     font-family: var(--pf-sans) !important;
     font-size: 15px;
-    line-height: 1.62;
+    line-height: 1.56;
     letter-spacing: 0;
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
@@ -115,7 +115,7 @@ body.layout-portfolio button {
 }
 .pf-name {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0;
     color: var(--pf-ink);
     white-space: nowrap;
@@ -140,15 +140,20 @@ body.layout-portfolio button {
 }
 
 .pf-pill {
-    background: var(--pf-blue);
-    color: #fff;
+    background: #fff;
+    color: var(--pf-ink-2);
+    border: 1px solid var(--pf-hairline);
     font-size: 13px;
-    font-weight: 500;
-    padding: 6px 14px;
+    font-weight: 400;
+    padding: 5px 13px;
     border-radius: 9999px;
-    transition: opacity 0.12s ease, transform 0.12s ease;
+    transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease, transform 0.12s ease;
 
-    &:hover { opacity: 0.9; color: #fff; }
+    &:hover {
+        color: var(--pf-blue);
+        border-color: var(--pf-blue);
+        background: var(--pf-blue-soft);
+    }
     &:active { transform: scale(0.96); }
 }
 
@@ -191,7 +196,7 @@ body.layout-portfolio button {
 .pf-h1 {
     font-family: var(--pf-display);
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.08;
     letter-spacing: 0;
     color: var(--pf-ink);
@@ -201,7 +206,7 @@ body.layout-portfolio button {
 
 .pf-deck {
     font-size: 15px;
-    line-height: 1.76;
+    line-height: 1.64;
     color: var(--pf-ink-2);
     max-width: 560px;
     text-wrap: pretty;
@@ -355,7 +360,7 @@ body.layout-portfolio button {
 .pf-sec-title {
     font-family: var(--pf-display);
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--pf-ink);
     letter-spacing: 0;
     line-height: 1.05;
@@ -378,7 +383,7 @@ body.layout-portfolio button {
     gap: 28px;
     padding: 7px 0;
     font-size: 14.5px;
-    line-height: 1.55;
+    line-height: 1.5;
     align-items: baseline;
 }
 .pf-news-date {
@@ -416,7 +421,7 @@ body.layout-portfolio button {
     }
 
     &:hover {
-        background: rgba(0, 64, 255, 0.018);
+        background: rgba(63, 95, 156, 0.018);
     }
 }
 
@@ -522,7 +527,7 @@ body.layout-portfolio button {
 
     .pf-pub-me {
         color: var(--pf-blue);
-        font-weight: 600;
+        font-weight: 500;
     }
 }
 .pf-pub-links {
@@ -784,7 +789,7 @@ body.layout-portfolio button {
 .pf-page-h1 {
     font-family: var(--pf-display);
     font-size: 38px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.14;
     letter-spacing: 0;
     color: var(--pf-ink);
@@ -793,7 +798,7 @@ body.layout-portfolio button {
 }
 .pf-page-deck {
     font-size: 15px;
-    line-height: 1.76;
+    line-height: 1.64;
     color: var(--pf-ink-2);
     max-width: 640px;
     text-wrap: pretty;
@@ -1287,7 +1292,7 @@ body.layout-portfolio button {
     color: inherit;
     transition: background 0.12s ease;
 
-    &:hover { background: rgba(0, 64, 255, 0.018); }
+    &:hover { background: rgba(63, 95, 156, 0.018); }
     &:hover .pf-blog-title { color: var(--pf-blue); }
 }
 .pf-blog-meta {
@@ -1418,7 +1423,7 @@ body.layout-portfolio button {
         border-radius: 999px;
         transition: background 0.12s ease, border-color 0.12s ease;
 
-        &:hover { background: rgba(0, 64, 255, 0.06); border-color: var(--pf-blue); }
+        &:hover { background: rgba(63, 95, 156, 0.06); border-color: var(--pf-blue); }
     }
 }
 .pf-post-meta-divider {
@@ -1471,12 +1476,12 @@ body.layout-portfolio button {
 .pf-project-authors-list {
     display: block;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--pf-ink-3);
 }
 .pf-project-authors strong {
     color: var(--pf-blue);
-    font-weight: 600;
+    font-weight: 500;
 }
 .pf-project-links {
     display: flex;
@@ -1632,7 +1637,7 @@ body.layout-portfolio button {
    ============================================================ */
 .pf-prose {
     font-size: 14.5px;
-    line-height: 1.72;
+    line-height: 1.64;
     color: var(--pf-ink-2);
     letter-spacing: 0;
     text-wrap: pretty;
@@ -1648,7 +1653,7 @@ body.layout-portfolio button {
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--pf-display);
         color: var(--pf-ink);
-        font-weight: 700;
+        font-weight: 600;
         line-height: 1.18;
         letter-spacing: 0;
         text-wrap: balance;
@@ -1698,7 +1703,7 @@ body.layout-portfolio button {
 
     a:not(.pf-post-back):not(.pf-post-tag) {
         color: var(--pf-blue);
-        border-bottom: 1px solid rgba(0, 64, 255, 0.25);
+        border-bottom: 1px solid rgba(63, 95, 156, 0.25);
         transition: border-color 0.12s ease;
 
         &:hover { border-bottom-color: var(--pf-blue); }
@@ -1779,7 +1784,7 @@ body.layout-portfolio button {
             color: var(--pf-ink);
             border-bottom-color: var(--pf-ink-4);
         }
-        tr:hover td { background: rgba(0, 64, 255, 0.025); }
+        tr:hover td { background: rgba(63, 95, 156, 0.025); }
     }
 
     kbd {
@@ -1794,7 +1799,7 @@ body.layout-portfolio button {
     }
 
     mark {
-        background: rgba(0, 64, 255, 0.12);
+        background: rgba(63, 95, 156, 0.12);
         color: var(--pf-ink);
         padding: 0 3px;
         border-radius: 3px;
@@ -1821,7 +1826,7 @@ body.layout-portfolio button {
         border-radius: 999px;
         transition: color 0.12s ease, background 0.12s ease;
 
-        &:hover { color: var(--pf-blue); background: rgba(0, 64, 255, 0.06); }
+        &:hover { color: var(--pf-blue); background: rgba(63, 95, 156, 0.06); }
     }
 }
 
@@ -1848,7 +1853,7 @@ body.layout-portfolio button {
 
     &:hover {
         border-color: var(--pf-blue);
-        background: rgba(0, 64, 255, 0.025);
+        background: rgba(63, 95, 156, 0.025);
     }
     &:hover .pf-post-nav-title { color: var(--pf-blue); }
 }
