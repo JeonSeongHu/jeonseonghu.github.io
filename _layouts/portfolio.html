@@ -110,9 +110,18 @@
         }
 
         document.addEventListener('pointermove', onMove, { passive: true });
-        document.addEventListener('pointerleave', function () {
-            body.classList.remove('is-pf-cursor-visible', 'is-pf-cursor-hover');
+        document.addEventListener('pointerdown', function () {
+            body.classList.add('is-pf-cursor-down');
         }, { passive: true });
+        document.addEventListener('pointerup', function () {
+            body.classList.remove('is-pf-cursor-down');
+        }, { passive: true });
+        document.addEventListener('pointerleave', function () {
+            body.classList.remove('is-pf-cursor-visible', 'is-pf-cursor-hover', 'is-pf-cursor-down');
+        }, { passive: true });
+        window.addEventListener('blur', function () {
+            body.classList.remove('is-pf-cursor-down');
+        });
 
         animate();
     })();

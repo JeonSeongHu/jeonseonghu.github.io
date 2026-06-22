@@ -82,23 +82,77 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
         pointer-events: none;
         opacity: 0;
         transform: translate3d(-50px, -50px, 0);
-        will-change: transform, opacity, width, height;
+        will-change: transform, opacity, width, height, border-color;
     }
 
     .pf-cursor-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(29, 29, 31, 0.92);
-        transition: opacity 0.12s ease, background 0.12s ease;
+        width: 10px;
+        height: 10px;
+        color: rgba(29, 29, 31, 0.94);
+        transition: opacity 0.12s ease, color 0.12s ease;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 1px;
+            background: currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.14s ease, border-radius 0.14s ease;
+        }
     }
 
     .pf-cursor-ring {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
-        border: 1px solid rgba(29, 29, 31, 0.7);
-        transition: opacity 0.12s ease, width 0.16s ease, height 0.16s ease, border-color 0.16s ease;
+        border: 1px solid rgba(29, 29, 31, 0.48);
+        color: rgba(29, 29, 31, 0.62);
+        background: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        transition: opacity 0.12s ease, width 0.16s ease, height 0.16s ease, border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            opacity: 0.9;
+            transition: opacity 0.16s ease, width 0.16s ease, height 0.16s ease;
+        }
+
+        &::before {
+            width: 46px;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                currentColor 0,
+                currentColor 7px,
+                transparent 7px,
+                transparent 39px,
+                currentColor 39px,
+                currentColor 46px
+            );
+            transform: translate(-50%, -50%);
+        }
+
+        &::after {
+            width: 1px;
+            height: 46px;
+            background: linear-gradient(
+                180deg,
+                currentColor 0,
+                currentColor 7px,
+                transparent 7px,
+                transparent 39px,
+                currentColor 39px,
+                currentColor 46px
+            );
+            transform: translate(-50%, -50%);
+        }
     }
 
     body.layout-portfolio.is-pf-cursor-visible .pf-cursor-dot,
@@ -107,13 +161,34 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
     }
 
     body.layout-portfolio.is-pf-cursor-hover .pf-cursor-dot {
-        background: var(--pf-blue);
+        color: var(--pf-blue);
     }
 
     body.layout-portfolio.is-pf-cursor-hover .pf-cursor-ring {
-        width: 36px;
-        height: 36px;
-        border-color: rgba(63, 95, 156, 0.65);
+        width: 40px;
+        height: 40px;
+        border-color: rgba(63, 95, 156, 0.52);
+        color: rgba(63, 95, 156, 0.72);
+        background: rgba(63, 95, 156, 0.055);
+    }
+
+    body.layout-portfolio.is-pf-cursor-hover .pf-cursor-ring::before {
+        width: 56px;
+    }
+
+    body.layout-portfolio.is-pf-cursor-hover .pf-cursor-ring::after {
+        height: 56px;
+    }
+
+    body.layout-portfolio.is-pf-cursor-down .pf-cursor-dot::before {
+        border-radius: 50%;
+        transform: rotate(0deg) scale(0.72);
+    }
+
+    body.layout-portfolio.is-pf-cursor-down .pf-cursor-ring {
+        width: 24px;
+        height: 24px;
+        background: rgba(63, 95, 156, 0.08);
     }
 }
 
