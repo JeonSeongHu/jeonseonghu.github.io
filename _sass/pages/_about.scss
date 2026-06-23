@@ -88,7 +88,6 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
     }
 
     .pf-cursor-dot {
-        --pf-cursor-pointer-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath d='M3.3 2.4c-.9-.6-2.1.1-2 1.2l1.9 17.2c.1 1.2 1.7 1.5 2.3.5l3.1-5.2 4 6.1c.5.8 1.6 1 2.3.5l1.8-1.2c.8-.5 1-1.6.5-2.3l-4-6.1 5.9-.5c1.2-.1 1.7-1.6.7-2.3L3.3 2.4z' fill='black'/%3E%3C/svg%3E");
         width: 32px;
         height: 36px;
         color: rgba(29, 29, 31, 0.94);
@@ -100,8 +99,8 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
             position: absolute;
             left: 50%;
             top: 50%;
-            -webkit-mask: var(--pf-cursor-pointer-mask) center / contain no-repeat;
-            mask: var(--pf-cursor-pointer-mask) center / contain no-repeat;
+            -webkit-clip-path: path("M3.3 2.4c-.9-.6-2.1.1-2 1.2l1.9 17.2c.1 1.2 1.7 1.5 2.3.5l3.1-5.2 4 6.1c.5.8 1.6 1 2.3.5l1.8-1.2c.8-.5 1-1.6.5-2.3l-4-6.1 5.9-.5c1.2-.1 1.7-1.6.7-2.3L3.3 2.4z");
+            clip-path: path("M3.3 2.4c-.9-.6-2.1.1-2 1.2l1.9 17.2c.1 1.2 1.7 1.5 2.3.5l3.1-5.2 4 6.1c.5.8 1.6 1 2.3.5l1.8-1.2c.8-.5 1-1.6.5-2.3l-4-6.1 5.9-.5c1.2-.1 1.7-1.6.7-2.3L3.3 2.4z");
             transform-origin: 3px 2px;
             transition: transform 0.12s ease, opacity 0.12s ease;
         }
@@ -153,8 +152,8 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
         bottom: 2px;
         width: 2px;
         border-radius: 999px;
-        -webkit-mask: none;
-        mask: none;
+        -webkit-clip-path: none;
+        clip-path: none;
         transform: translateX(-50%);
     }
 
@@ -168,8 +167,8 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
         border-radius: 50%;
         background: currentColor;
         box-shadow: 0 21px 0 currentColor;
-        -webkit-mask: none;
-        mask: none;
+        -webkit-clip-path: none;
+        clip-path: none;
         filter: none;
         opacity: 0.82;
         transform: translateX(-50%);
