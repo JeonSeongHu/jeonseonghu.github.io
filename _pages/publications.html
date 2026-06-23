@@ -26,7 +26,6 @@ custom_css_class: portfolio-page
 <section class="pf-sec pf-pub-year-section" data-year="{{ year_group.name }}">
     <header class="pf-sec-head">
         <div class="pf-sec-lh">
-            <span class="pf-sec-num">{{ year_group.name }}</span>
             <h2 class="pf-sec-title">{{ year_group.name }}</h2>
         </div>
         <span class="pf-sec-aside">{{ year_group.items | size }}{% if year_group.items.size == 1 %} entry{% else %} entries{% endif %}</span>
