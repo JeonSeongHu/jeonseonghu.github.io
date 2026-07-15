@@ -8,10 +8,10 @@ custom_css_class: portfolio-page
 
 <section class="pf-hero" id="hero">
 	<div class="pf-hero-text">
-		<div class="pf-eyebrow">M.S. Researcher · KAIST CVLAB</div>
+		<div class="pf-eyebrow">M.S. Researcher · KAIST CVLAB · MAUM AI</div>
 		<h1 class="pf-h1">Seonghu Jeon<span class="pf-blue">.</span></h1>
 		<p class="pf-deck">
-			I'm interested in how machines come to understand and represent the physical world, and how they can build on that to generate and act in it. I'm a first-year M.S. researcher at KAIST CVLAB. My research so far has centered on <b>multi-view diffusion and 4D generation</b>, and I'm now exploring <b>3D foundation models and geometric action models for robotics</b>, including GAM, currently under review. Reach me at <a href="mailto:seonghu.jeon@kaist.ac.kr">seonghu.jeon@kaist.ac.kr</a>.
+			I'm interested in how machines come to understand and represent the physical world, and how they can build on that to generate and act in it. I'm a first-year M.S. researcher at KAIST CVLAB and currently a research intern at MAUM AI's WoRV Division, Future Intelligence Lab. My research so far has centered on <b>multi-view diffusion and 4D generation</b>, and I'm now exploring <b>3D foundation models, geometric action models, and Robotics Foundation Model development</b>. Reach me at <a href="mailto:seonghu.jeon@kaist.ac.kr">seonghu.jeon@kaist.ac.kr</a>.
 		</p>
 		<div class="pf-links">
 			<a class="pf-link" href="{{ site.baseurl }}/cv/">Curriculum Vitae<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
@@ -154,6 +154,14 @@ custom_css_class: portfolio-page
 	</header>
 
 	<div class="pf-exp-list">
+		<div class="pf-exp-item">
+			<span class="pf-exp-org">MAUM AI · WoRV Division, Future Intelligence Lab</span>
+			<div class="pf-exp-mid">
+				<div class="pf-exp-role">Research Intern</div>
+				<div class="pf-exp-detail">Participating in Robotics Foundation Model development.</div>
+			</div>
+			<span class="pf-exp-time">Jul 2026 - <span class="pf-now-mark">now</span></span>
+		</div>
 		<div class="pf-exp-item">
 			<span class="pf-exp-org">KAIST CVLAB</span>
 			<div class="pf-exp-mid">
