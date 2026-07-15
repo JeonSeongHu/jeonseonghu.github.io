@@ -1284,7 +1284,7 @@ body.layout-portfolio button {
 }
 .pf-cv-body {
     min-width: 0;
-    .pf-sec:first-of-type { padding-top: 24px; }
+    .pf-sec:first-of-type { padding-top: 0; }
 }
 .pf-cv-sec { scroll-margin-top: 80px; }
 
@@ -1804,7 +1804,7 @@ body.layout-portfolio button {
             gap: 8px 16px;
         }
     }
-    .pf-cv-body .pf-sec:first-of-type { padding-top: 48px; }
+    .pf-cv-body .pf-sec:first-of-type { padding-top: 24px; }
 
     .pf-blog-board {
         grid-template-columns: 1fr;
