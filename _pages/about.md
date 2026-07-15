@@ -35,6 +35,10 @@ custom_css_class: portfolio-page
 	</header>
 	<div class="pf-news-list">
 		<div class="pf-news-item">
+			<span class="pf-news-date">2026.07</span>
+			<span class="pf-news-body">Joined <b>MAUM AI</b>'s WoRV Division, Future Intelligence Lab as a research intern for Robotics Foundation Model development.</span>
+		</div>
+		<div class="pf-news-item">
 			<span class="pf-news-date">2026.06</span>
 			<span class="pf-news-body"><b>GLD</b> accepted to <span class="pf-blue">ECCV 2026</span> for repurposing geometric foundation models for multi-view diffusion.</span>
 		</div>
