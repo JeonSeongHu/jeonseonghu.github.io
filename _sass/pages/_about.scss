@@ -592,6 +592,14 @@ body.layout-portfolio button {
     b { color: var(--pf-ink); font-weight: 600; }
     .pf-blue { color: var(--pf-blue); font-weight: 500; }
 }
+.pf-news-item--oral .pf-news-body {
+    color: #b0443a;
+
+    b {
+        color: #922f28;
+        font-weight: 700;
+    }
+}
 /* ============= Publications ============= */
 .pf-pub-list {
     display: flex;
