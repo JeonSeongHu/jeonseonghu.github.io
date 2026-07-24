@@ -34,9 +34,9 @@ custom_css_class: portfolio-page
 		<span class="pf-sec-aside">most recent first</span>
 	</header>
 	<div class="pf-news-list">
-		<div class="pf-news-item pf-news-item--highlight">
+		<div class="pf-news-item">
 			<span class="pf-news-date">2026.07</span>
-			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎤</span><b>GLD</b> was selected for an <span class="pf-oral-inline">Oral Presentation</span> at <span class="pf-blue">ECCV 2026</span>.</span>
+			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎤</span><b>GLD</b> was selected for an <b>Oral Presentation</b> at <span class="pf-blue">ECCV 2026</span>.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.07</span>
