@@ -4,10 +4,11 @@ type: publication
 title: "Repurposing Geometric Foundation Models for Multi-view Diffusion"
 short_title: "GLD"
 full_title: "Repurposing Geometric Foundation Models for Multi-view Diffusion"
-description: "Accepted to ECCV 2026. We repurpose geometric foundation model features as latent space for multi-view diffusion, achieving 4.4× faster training convergence and zero-shot geometry decoding."
+description: "Selected for an Oral Presentation at ECCV 2026. We repurpose geometric foundation model features as latent space for multi-view diffusion, achieving 4.4× faster training convergence and zero-shot geometry decoding."
 image: "https://cvlab-kaist.github.io/GLD/assets/img-000.png"
 authors: "Wooseok Jang, Seonghu Jeon, Jisang Han, Jinhyeok Choi, Minkyung Kwon, Seungryong Kim, Saining Xie, Sainan Liu"
 venue: "ECCV 2026"
+oral: true
 date: 2026-03-25
 role: "Research Contributor"
 tags: ["3D Vision", "Diffusion Models", "Generative AI"]

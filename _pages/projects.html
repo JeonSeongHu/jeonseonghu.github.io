@@ -52,7 +52,7 @@ custom_css_class: portfolio-page
                     <h3 class="pf-proj-title">{{ project.title }}</h3>
                     <p class="pf-proj-desc">{{ project.description }}</p>
                     {% if project.venue %}
-                    <p class="pf-proj-venue">{{ project.venue }}</p>
+                    <p class="pf-proj-venue">{{ project.venue }}{% if project.oral %}<span class="pf-oral-badge">Oral</span>{% endif %}</p>
                     {% endif %}
                 </div>
             </a>

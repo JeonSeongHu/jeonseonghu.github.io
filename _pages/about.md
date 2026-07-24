@@ -34,13 +34,13 @@ custom_css_class: portfolio-page
 		<span class="pf-sec-aside">most recent first</span>
 	</header>
 	<div class="pf-news-list">
+		<div class="pf-news-item pf-news-item--highlight">
+			<span class="pf-news-date">2026.07</span>
+			<span class="pf-news-body"><b>GLD</b> was selected for an <span class="pf-oral-inline">Oral Presentation</span> at <span class="pf-blue">ECCV 2026</span>.</span>
+		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.07</span>
 			<span class="pf-news-body">Joined <b>MAUM AI</b>'s WoRV Division, Future Intelligence Lab as a research intern for Robotics Foundation Model development.</span>
-		</div>
-		<div class="pf-news-item">
-			<span class="pf-news-date">2026.06</span>
-			<span class="pf-news-body"><b>GLD</b> accepted to <span class="pf-blue">ECCV 2026</span> for repurposing geometric foundation models for multi-view diffusion.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.06</span>
@@ -98,6 +98,7 @@ custom_css_class: portfolio-page
 			<div class="pf-pub-body">
 				<div class="pf-pub-venue{% if hi %} is-hi{% endif %}">
 					<span class="pf-pub-pin"></span>{{ pub.venue }}
+					{% if pub.oral %}<span class="pf-oral-badge">Oral</span>{% endif %}
 				</div>
 				<h3 class="pf-pub-title"><a href="{{ site.baseurl }}{{ pub.url }}">{{ pub.title }}</a></h3>
 				<p class="pf-pub-authors">
@@ -130,7 +131,7 @@ custom_css_class: portfolio-page
 				<span class="pf-focus-num">01</span>
 				<span class="pf-focus-label">3D / 4D vision</span>
 			</div>
-			<p class="pf-focus-desc">Reconstructing static and dynamic scenes from sparse views, and studying how geometry-trained foundation models transfer to view synthesis, including GLD at ECCV 2026.</p>
+			<p class="pf-focus-desc">Reconstructing static and dynamic scenes from sparse views, and studying how geometry-trained foundation models transfer to view synthesis, including GLD, an ECCV 2026 Oral Presentation.</p>
 		</div>
 		<div class="pf-focus-item">
 			<div class="pf-focus-head">

@@ -43,7 +43,7 @@ custom_css_class: portfolio-page
             {% assign hi = true %}
         {% endif %}
         <article class="pf-pub{% if featured %} is-featured{% endif %}"
-                 data-searchable="{{ paper.title | downcase }} {{ paper.full_title | downcase }} {{ paper.authors | downcase }} {{ paper.venue | downcase }}">
+                 data-searchable="{{ paper.title | downcase }} {{ paper.full_title | downcase }} {{ paper.authors | downcase }} {{ paper.venue | downcase }}{% if paper.oral %} oral presentation{% endif %}">
             <a class="pf-pub-thumb" href="{{ paper.url | relative_url }}">
                 {% if paper.image and paper.image != "" %}
                 <img src="{{ paper.image }}" alt="{{ paper.title }}" loading="lazy">
@@ -55,6 +55,7 @@ custom_css_class: portfolio-page
             <div class="pf-pub-body">
                 <div class="pf-pub-venue{% if hi %} is-hi{% endif %}">
                     <span class="pf-pub-pin"></span>{{ paper.venue }}
+                    {% if paper.oral %}<span class="pf-oral-badge">Oral</span>{% endif %}
                 </div>
                 <h3 class="pf-pub-title"><a href="{{ paper.url | relative_url }}">{{ paper.title }}</a></h3>
                 {% if paper.full_title and paper.full_title != paper.title %}

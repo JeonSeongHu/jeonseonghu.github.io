@@ -36,7 +36,7 @@ layout: portfolio
         {% if page.venue %}
         <div class="pf-project-meta-item">
             <span class="pf-project-meta-label">Venue</span>
-            <span class="pf-project-meta-value">{{ page.venue }}</span>
+            <span class="pf-project-meta-value">{{ page.venue }}{% if page.oral %}<span class="pf-oral-badge">Oral Presentation</span>{% endif %}</span>
         </div>
         {% endif %}
 
