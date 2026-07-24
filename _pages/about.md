@@ -36,37 +36,30 @@ custom_css_class: portfolio-page
 	<div class="pf-news-list">
 		<div class="pf-news-item pf-news-item--highlight">
 			<span class="pf-news-date">2026.07</span>
-			<span class="pf-news-icon" aria-hidden="true">🎤</span>
-			<span class="pf-news-body"><b>GLD</b> was selected for an <span class="pf-oral-inline">Oral Presentation</span> at <span class="pf-blue">ECCV 2026</span>.</span>
+			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎤</span><b>GLD</b> was selected for an <span class="pf-oral-inline">Oral Presentation</span> at <span class="pf-blue">ECCV 2026</span>.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.07</span>
-			<span class="pf-news-icon" aria-hidden="true">🤖</span>
-			<span class="pf-news-body">Joined <b>MAUM AI</b>'s WoRV Division, Future Intelligence Lab as a research intern for Robotics Foundation Model development.</span>
+			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🤖</span>Joined <b>MAUM AI</b>'s WoRV Division, Future Intelligence Lab as a research intern for Robotics Foundation Model development.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.06</span>
-			<span class="pf-news-icon" aria-hidden="true">🧭</span>
 			<span class="pf-news-body"><b>GAM</b> is under review for geometric action modeling in visuomotor control.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.03</span>
-			<span class="pf-news-icon" aria-hidden="true">🎓</span>
-			<span class="pf-news-body">Joined <b>KAIST CVLAB</b> as an M.S. student under Prof. Seungryong Kim.</span>
+			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎓</span>Joined <b>KAIST CVLAB</b> as an M.S. student under Prof. Seungryong Kim.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.02</span>
-			<span class="pf-news-icon" aria-hidden="true">🎉</span>
-			<span class="pf-news-body"><b>CAMEO</b> accepted to <span class="pf-blue">CVPR 2026</span> for correspondence-attention alignment in multi-view diffusion.</span>
+			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎉</span><b>CAMEO</b> accepted to <span class="pf-blue">CVPR 2026</span> for correspondence-attention alignment in multi-view diffusion.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2025.07</span>
-			<span class="pf-news-icon" aria-hidden="true">📄</span>
 			<span class="pf-news-body"><b>ReMoTE</b> accepted to ITC-CSCC.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2025.02</span>
-			<span class="pf-news-icon" aria-hidden="true">🏅</span>
 			<span class="pf-news-body">Graduated from <b>Korea University</b>, B.S. in Computer Science &amp; Engineering, with Great Honors.</span>
 		</div>
 	</div>
