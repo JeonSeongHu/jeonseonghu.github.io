@@ -656,7 +656,6 @@ custom_css_class: portfolio-page cv-portfolio
 }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll(".pf-cv-sec");
@@ -683,6 +682,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // html2pdf (~900KB) is only fetched when the button is actually clicked
+    let html2pdfLoading = null;
+    function loadHtml2pdf() {
+        if (window.html2pdf) return Promise.resolve();
+        if (!html2pdfLoading) {
+            html2pdfLoading = new Promise(function(resolve, reject) {
+                const s = document.createElement('script');
+                s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+                s.onload = resolve;
+                s.onerror = reject;
+                document.head.appendChild(s);
+            });
+        }
+        return html2pdfLoading;
+    }
+
     const pdfBtn = document.getElementById('cv-download-pdf');
     if (pdfBtn) {
         pdfBtn.addEventListener('click', function() {
@@ -692,21 +707,28 @@ document.addEventListener('DOMContentLoaded', function() {
             if (label) label.textContent = 'Generating…';
             btn.disabled = true;
 
-            const source = document.getElementById('cv-pdf-content').cloneNode(true);
-            source.style.display = 'block';
-
-            const opt = {
-                margin: 0,
-                filename: 'Seonghu_Jeon_CV.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak: { mode: ['css', 'legacy'] }
-            };
-
-            html2pdf().set(opt).from(source).save().then(function() {
+            function restore() {
                 if (label) label.textContent = originalLabel || 'Download PDF';
                 btn.disabled = false;
+            }
+
+            loadHtml2pdf().then(function() {
+                const source = document.getElementById('cv-pdf-content').cloneNode(true);
+                source.style.display = 'block';
+
+                const opt = {
+                    margin: 0,
+                    filename: 'Seonghu_Jeon_CV.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    pagebreak: { mode: ['css', 'legacy'] }
+                };
+
+                return html2pdf().set(opt).from(source).save();
+            }).then(restore).catch(function() {
+                restore();
+                window.print();
             });
         });
     }

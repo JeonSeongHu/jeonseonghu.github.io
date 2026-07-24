@@ -5,7 +5,7 @@ title: "Repurposing Geometric Foundation Models for Multi-view Diffusion"
 short_title: "GLD"
 full_title: "Repurposing Geometric Foundation Models for Multi-view Diffusion"
 description: "Selected for an Oral Presentation at ECCV 2026. We repurpose geometric foundation model features as latent space for multi-view diffusion, achieving 4.4× faster training convergence and zero-shot geometry decoding."
-image: "https://cvlab-kaist.github.io/GLD/assets/img-000.png"
+image: "/assets/images/projects/gld-teaser.webp"
 authors: "Wooseok Jang, Seonghu Jeon, Jisang Han, Jinhyeok Choi, Minkyung Kwon, Seungryong Kim, Saining Xie, Sainan Liu"
 venue: "ECCV 2026"
 oral: true
@@ -17,6 +17,13 @@ project_link: "https://cvlab-kaist.github.io/GLD/"
 arxiv: "https://arxiv.org/abs/2603.22275"
 pdf: "https://arxiv.org/pdf/2603.22275"
 code: "https://github.com/cvlab-kaist/GLD/"
+bibtex: |
+  @inproceedings{jang2026gld,
+    title     = {Repurposing Geometric Foundation Models for Multi-view Diffusion},
+    author    = {Jang, Wooseok and Jeon, Seonghu and Han, Jisang and Choi, Jinhyeok and Kwon, Minkyung and Kim, Seungryong and Xie, Saining and Liu, Sainan},
+    booktitle = {European Conference on Computer Vision (ECCV)},
+    year      = {2026}
+  }
 ---
 
 ## Abstract

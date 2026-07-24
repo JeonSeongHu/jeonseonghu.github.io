@@ -1,6 +1,6 @@
 ---
 layout: post
-hidden: true
+hidden: false
 title: 호랑이사진관 회고
 author: jeonseonghu
 main_category: Projects

@@ -71,6 +71,7 @@ custom_css_class: portfolio-page
                 {% if paper.arxiv and paper.arxiv != "" and paper.arxiv != "#" %}<a href="{{ paper.arxiv }}" target="_blank" rel="noopener">arxiv</a>{% endif %}
                 {% if paper.project_link and paper.project_link != "" and paper.project_link != "#" %}<a href="{{ paper.project_link }}" target="_blank" rel="noopener">project</a>{% endif %}
                 {% if paper.code and paper.code != "" and paper.code != "#" %}<a href="{{ paper.code }}" target="_blank" rel="noopener">code</a>{% endif %}
+                {% if paper.bibtex %}<a href="#" class="pf-bib-copy" data-bibtex="{{ paper.bibtex | escape }}">bibtex</a>{% endif %}
             </div>
         </article>
         {% endfor %}
@@ -108,6 +109,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+
+    document.querySelectorAll('.pf-bib-copy').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var bib = this.getAttribute('data-bibtex') || '';
+            var self = this;
+            navigator.clipboard.writeText(bib).then(function() {
+                var original = self.textContent;
+                self.textContent = 'copied!';
+                setTimeout(function() { self.textContent = original; }, 1500);
+            });
+        });
     });
 });
 </script>

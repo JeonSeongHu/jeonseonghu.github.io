@@ -21,4 +21,5 @@ group :jekyll_plugins do
     gem 'kramdown'
     gem 'rouge'
     gem 'jekyll-polyglot'
+    gem 'jekyll-redirect-from'
 end

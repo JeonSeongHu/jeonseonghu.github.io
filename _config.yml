@@ -1,7 +1,7 @@
 # Site
-name: "@jeonseonghu"
-title: "@jeonseonghu"
-description: "Research."
+name: "Seonghu Jeon"
+title: "Seonghu Jeon"
+description: "Seonghu Jeon — M.S. researcher at KAIST CVLAB working on 3D/4D vision, generative models, and robotics foundation models."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 url: "https://jeonseonghu.github.io"
@@ -19,12 +19,12 @@ authors:
   jeonseonghu:
     name: Seonghu Jeon
     display_name: Seonghu Jeon
-    avatar: assets/images/seonghu_jeungsa_sm.png
-    gravatar: 
-    email: 
+    avatar: assets/images/profile_sm.png
+    gravatar:
+    email:
     web: https://jeonseonghu.github.io
-    twitter: 
-    description: "Research."
+    twitter:
+    description: "M.S. researcher at KAIST CVLAB — 3D/4D vision, generative models, robotics."
 
 # Plugins
 plugins:
@@ -34,6 +34,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-archives
   - jekyll-polyglot
+  - jekyll-redirect-from
     
 # Archives
 jekyll-archives:
@@ -65,7 +66,7 @@ adsense-data-ad-slot: "1363087678"
 # Lazy Images ("enabled" or "disabled")
 lazyimages: "enabled"
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, vendor, _site, node_modules, .sass-cache, .jekyll-cache, .jekyll-metadata]
+exclude: [changelog.md, LICENSE.txt, README.md, DESIGN.md, IMAGE_PASTE_README.md, admin/ONLINE_EDITING.md, admin/cleanup-images.js, admin/upload-server.js, Gemfile, Gemfile.lock, vendor, _site, node_modules, .sass-cache, .jekyll-cache, .jekyll-metadata]
 
 # Internationalization (jekyll-polyglot)
 languages: ["ko", "en"]
@@ -93,8 +94,14 @@ defaults:
     values:
       layout: "post"
       toc: true
+      lang: "ko"
   - scope:
       path: ""
       type: "projects"
     values:
       layout: "project"
+  # Keep the CMS entry point and its assets out of the sitemap
+  - scope:
+      path: "admin"
+    values:
+      sitemap: false

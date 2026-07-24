@@ -1,7 +1,10 @@
 ---
 layout: post
-hidden: true
+hidden: false
 title: "논문 Figure에 관하여: (2) 실제 예시 살펴보기"
+slug: paper-figure-2
+redirect_from:
+  - "/논문-figure에-관하여-2-실제-예시-살펴보기/"
 author: jeonseonghu
 main_category: Research
 toc: true

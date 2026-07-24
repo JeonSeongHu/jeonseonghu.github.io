@@ -4,7 +4,7 @@ type: publication
 title: "Better Source, Better Flow: Learning Condition-Dependent Source Distribution for Flow Matching"
 short_title: "Better Source, Better Flow"
 description: "A method that learns condition-dependent source distributions for flow matching, enabling straighter transport paths and up to 3x faster convergence."
-image: "https://junwankimm.github.io/CSFM/images/main.png"
+image: "/assets/images/projects/csfm-teaser.webp"
 authors: "Junwan Kim*, Jiho Park*, Seonghu Jeon, Seungryong Kim†"
 venue: "Under Review, 2026"
 date: 2026-01-21
@@ -15,6 +15,15 @@ pdf: "https://arxiv.org/pdf/2602.05951"
 project_link: "https://junwankimm.github.io/CSFM/"
 code: "https://github.com/junwankimm/CSFM"
 tags: ["Generative AI", "Flow Matching"]
+bibtex: |
+  @misc{kim2026bettersource,
+    title  = {Better Source, Better Flow: Learning Condition-Dependent Source Distribution for Flow Matching},
+    author = {Kim, Junwan and Park, Jiho and Jeon, Seonghu and Kim, Seungryong},
+    year   = {2026},
+    eprint = {2602.05951},
+    archivePrefix = {arXiv},
+    primaryClass  = {cs.CV}
+  }
 ---
 
 ## Abstract

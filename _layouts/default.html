@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.active_lang | default: site.default_lang | default: 'ko' }}">
+<html lang="{{ page.lang | default: site.active_lang | default: 'en' }}">
 
 <head>
     <meta charset="utf-8">
@@ -48,6 +48,7 @@
     <title>{{ page.title }} | {{site.name}}</title>
 
     {% seo %}
+    {% if page.image == nil or page.image == "" %}<meta property="og:image" content="{{ '/assets/images/profile_400.png' | absolute_url }}">{% endif %}
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">

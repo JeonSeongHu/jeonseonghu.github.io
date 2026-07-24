@@ -12,6 +12,13 @@ role: "First Author"
 link: "https://ieeexplore.ieee.org/document/11137589"
 pdf: "https://ieeexplore.ieee.org/document/11137589"
 tags: ["Benchmark", "Motion Transfer", "Computer Vision"]
+bibtex: |
+  @inproceedings{jeon2025remote,
+    title     = {ReMoTE: A Benchmark for Object Motion Transfer},
+    author    = {Jeon, Seonghu and Choi, Jinhyeok and Hwang, Junghyun and Kim, Seungryong},
+    booktitle = {International Technical Conference on Circuits/Systems, Computers and Communications (ITC-CSCC)},
+    year      = {2025}
+  }
 ---
 
 ## Abstract

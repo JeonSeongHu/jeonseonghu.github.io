@@ -1,7 +1,9 @@
 ---
 layout: portfolio
 title: About
-permalink: /about-me/
+permalink: /
+redirect_from:
+  - /about-me/
 comments: false
 custom_css_class: portfolio-page
 ---
@@ -15,12 +17,12 @@ custom_css_class: portfolio-page
 		</p>
 		<div class="pf-links">
 			<a class="pf-link" href="{{ site.baseurl }}/cv/">Curriculum Vitae<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
-			<a class="pf-link" href="https://scholar.google.com/citations?user=XavKlZQAAAAJ&hl=ko" target="_blank" rel="noopener">Google Scholar<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
+			<a class="pf-link" href="https://scholar.google.com/citations?user=XavKlZQAAAAJ" target="_blank" rel="noopener">Google Scholar<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
 			<a class="pf-link" href="https://github.com/JeonSeongHu" target="_blank" rel="noopener">GitHub<span class="pf-link-arrow" aria-hidden="true">↗</span></a>
 		</div>
 	</div>
 	<div class="pf-portrait">
-		<img src="{{ site.baseurl }}/assets/images/seonghu_jeungsa_400.png" alt="Seonghu Jeon" loading="lazy">
+		<img src="{{ site.baseurl }}/assets/images/profile_400.png" alt="Seonghu Jeon" loading="lazy">
 		<span class="pf-portrait-corner" aria-hidden="true"></span>
 	</div>
 </section>

@@ -15,6 +15,15 @@ huggingface: "https://huggingface.co/papers/2606.17046"
 pdf: "https://arxiv.org/pdf/2606.17046"
 project_link: "https://cvlab-kaist.github.io/Geometric-Action-Model/"
 tags: ["Robot Learning", "Visuomotor Control", "3D Vision", "Geometric Foundation Models"]
+bibtex: |
+  @misc{han2026gam,
+    title  = {Geometric Action Model for Robot Policy Learning},
+    author = {Han, Jisang and Jeon, Seonghu and Jung, Jaewoo and Zurbr{\"u}gg, Ren{'e} and An, Honggyu and Portela, Tifanny and Hutter, Marco and Pollefeys, Marc and Kim, Seungryong and Hong, Sunghwan},
+    year   = {2026},
+    eprint = {2606.17046},
+    archivePrefix = {arXiv},
+    primaryClass  = {cs.RO}
+  }
 ---
 
 ## Abstract

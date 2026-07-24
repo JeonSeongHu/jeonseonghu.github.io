@@ -1,6 +1,6 @@
 ---
 layout: post
-hidden: true
+hidden: false
 title: "논문 Figure에 관하여: (1) 원리와 원칙"
 author: jeonseonghu
 main_category: Research

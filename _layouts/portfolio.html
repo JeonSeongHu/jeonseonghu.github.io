@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.active_lang | default: site.default_lang | default: 'en' }}">
+<html lang="{{ page.lang | default: site.active_lang | default: 'en' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 
     {% seo %}
+    {% if page.image == nil or page.image == "" %}<meta property="og:image" content="{{ '/assets/images/profile_400.png' | absolute_url }}">{% endif %}
 
     <link href="{{ site.baseurl }}/assets/css/main.css?v={{ site.time | date: '%s' }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
@@ -33,9 +34,9 @@
 
     <nav class="pf-nav">
         <div class="pf-nav-inner">
-            <a class="pf-name" href="{{ site.baseurl }}/about-me/">Seonghu Jeon<span class="pf-blue">.</span></a>
+            <a class="pf-name" href="{{ site.baseurl }}/">Seonghu Jeon<span class="pf-blue">.</span></a>
             <div class="pf-nav-links" id="pf-nav-links">
-                <a href="{{ site.baseurl }}/about-me/" data-nav="about" {% if is_about %}class="is-active"{% endif %}>About</a>
+                <a href="{{ site.baseurl }}/" data-nav="about" {% if is_about %}class="is-active"{% endif %}>About</a>
                 <a href="{{ site.baseurl }}/publications/" data-nav="publications" {% if nav_path contains '/publications' %}class="is-active"{% endif %}>Publications</a>
                 <a href="{{ site.baseurl }}/projects/" data-nav="projects" {% if nav_path contains '/projects' %}class="is-active"{% endif %}>Projects</a>
                 <a href="{{ site.baseurl }}/cv/" data-nav="cv" {% if nav_path contains '/cv' %}class="is-active"{% endif %}>CV</a>
@@ -55,7 +56,7 @@
             <div class="pf-foot-links">
                 <a href="mailto:seonghu.jeon@kaist.ac.kr">email</a>
                 <a href="https://github.com/JeonSeongHu" target="_blank" rel="noopener">github</a>
-                <a href="https://scholar.google.com/citations?user=XavKlZQAAAAJ&hl=ko" target="_blank" rel="noopener">scholar</a>
+                <a href="https://scholar.google.com/citations?user=XavKlZQAAAAJ" target="_blank" rel="noopener">scholar</a>
                 <a href="{{ site.baseurl }}/cv/">cv</a>
             </div>
             <span><span class="pf-foot-mark">*</span> Last updated {{ site.time | date: "%Y.%m" }}</span>
