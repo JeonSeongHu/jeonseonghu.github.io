@@ -561,12 +561,12 @@ body.layout-portfolio button {
 }
 .pf-news-item {
     display: grid;
-    grid-template-columns: 72px 1fr;
-    gap: 20px;
+    grid-template-columns: 72px 30px minmax(0, 1fr);
+    gap: 12px;
     padding: 4px 0;
     font-size: 14.5px;
     line-height: 1.5;
-    align-items: baseline;
+    align-items: start;
 }
 .pf-news-date {
     font-size: 12px;
@@ -574,6 +574,18 @@ body.layout-portfolio button {
     color: var(--pf-ink-4);
     letter-spacing: 0;
     font-variant-numeric: tabular-nums;
+    padding-top: 5px;
+}
+.pf-news-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(63, 95, 156, 0.12);
+    border-radius: 50%;
+    background: rgba(63, 95, 156, 0.055);
+    font-size: 14px;
+    line-height: 1;
 }
 .pf-news-body {
     color: var(--pf-ink-2);
@@ -1079,13 +1091,21 @@ body.layout-portfolio button {
     }
 
     .pf-news-item {
-        grid-template-columns: 62px minmax(0, 1fr);
-        gap: 12px;
+        grid-template-columns: 54px 27px minmax(0, 1fr);
+        gap: 9px;
         padding: 7px 0;
         align-items: start;
     }
+    .pf-news-date {
+        padding-top: 4px;
+    }
+    .pf-news-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 12.5px;
+    }
     .pf-news-item--highlight {
-        padding: 11px 12px;
+        padding: 11px 10px;
     }
 }
 
