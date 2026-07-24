@@ -7,11 +7,7 @@
     <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/subsets/Paperlogy-dynamic-subset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 
     {% seo %}
@@ -27,10 +23,6 @@
     {% assign nav_path = page.url | default: '/' %}
     {% assign is_about = false %}
     {% if nav_path == '/about-me/' or nav_path == '/' %}{% assign is_about = true %}{% endif %}
-
-    <div class="pf-cursor-dot" aria-hidden="true"></div>
-    <div class="pf-selection-handle pf-selection-handle-start" aria-hidden="true"></div>
-    <div class="pf-selection-handle pf-selection-handle-end" aria-hidden="true"></div>
 
     <nav class="pf-nav">
         <div class="pf-nav-inner">
@@ -62,127 +54,6 @@
             <span><span class="pf-foot-mark">*</span> Last updated {{ site.time | date: "%Y.%m" }}</span>
         </div>
     </footer>
-
-    <script>
-    (function () {
-        var media = window.matchMedia && window.matchMedia('(pointer: fine) and (hover: hover)');
-        if (!media || !media.matches) return;
-
-        var dot = document.querySelector('.pf-cursor-dot');
-        if (!dot) return;
-
-        var body = document.body;
-        var hoverTargets = 'a, button, input, textarea, select, summary, [role="button"], [tabindex]:not([tabindex="-1"])';
-        var textTargets = [
-            '.pf-main p',
-            '.pf-main li',
-            '.pf-main blockquote',
-            '.pf-main figcaption',
-            '.pf-main h1',
-            '.pf-main h2',
-            '.pf-main h3',
-            '.pf-main h4',
-            '.pf-main h5',
-            '.pf-main h6',
-            '.pf-deck',
-            '.pf-page-deck',
-            '.pf-news-body',
-            '.pf-pub-title',
-            '.pf-pub-authors',
-            '.pf-proj-title',
-            '.pf-proj-desc',
-            '.pf-blog-title',
-            '.pf-blog-excerpt',
-            '.pf-project-meta-value',
-            '.pf-cv-name',
-            '.pf-cv-detail',
-            '.pf-cv-pub-title',
-            '.pf-cv-pub-authors'
-        ].join(', ');
-        var selectionStart = document.querySelector('.pf-selection-handle-start');
-        var selectionEnd = document.querySelector('.pf-selection-handle-end');
-
-        body.classList.add('has-pf-cursor');
-
-        function place(el, nextX, nextY) {
-            el.style.transform = 'translate3d(' + nextX + 'px, ' + nextY + 'px, 0) translate(-50%, -50%)';
-        }
-
-        function syncHover(target) {
-            var node = target && target.closest ? target : target && target.parentElement;
-            var isHover = !!(node && node.closest(hoverTargets));
-            var isText = !isHover && !!(node && node.closest(textTargets));
-            body.classList.toggle('is-pf-cursor-hover', isHover);
-            body.classList.toggle('is-pf-cursor-text', isText);
-        }
-
-        function onMove(event) {
-            place(dot, event.clientX, event.clientY);
-            syncHover(event.target);
-            body.classList.add('is-pf-cursor-visible');
-        }
-
-        document.addEventListener('pointermove', onMove, { passive: true });
-        document.addEventListener('pointerdown', function () {
-            body.classList.add('is-pf-cursor-down');
-        }, { passive: true });
-        document.addEventListener('pointerup', function () {
-            body.classList.remove('is-pf-cursor-down');
-        }, { passive: true });
-        document.addEventListener('pointerleave', function () {
-            body.classList.remove('is-pf-cursor-visible', 'is-pf-cursor-hover', 'is-pf-cursor-text', 'is-pf-cursor-down');
-        }, { passive: true });
-        window.addEventListener('blur', function () {
-            body.classList.remove('is-pf-cursor-down');
-        });
-
-        function clearSelectionHandles() {
-            body.classList.remove('has-pf-selection');
-        }
-
-        function placeHandle(handle, x, y, height) {
-            if (!handle) return;
-            handle.style.height = Math.round(height) + 'px';
-            handle.style.transform = 'translate3d(' + Math.round(x) + 'px, ' + Math.round(y) + 'px, 0)';
-        }
-
-        function syncSelectionHandles() {
-            if (!selectionStart || !selectionEnd) return;
-            var selection = window.getSelection && window.getSelection();
-            if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
-                clearSelectionHandles();
-                return;
-            }
-
-            var range = selection.getRangeAt(0);
-            var owner = range.commonAncestorContainer.nodeType === 1
-                ? range.commonAncestorContainer
-                : range.commonAncestorContainer.parentElement;
-            if (!owner || !owner.closest || !owner.closest('.pf-main')) {
-                clearSelectionHandles();
-                return;
-            }
-
-            var rects = Array.prototype.filter.call(range.getClientRects(), function (rect) {
-                return rect.width > 0 && rect.height > 0;
-            });
-            if (!rects.length) {
-                clearSelectionHandles();
-                return;
-            }
-
-            var first = rects[0];
-            var last = rects[rects.length - 1];
-            placeHandle(selectionStart, first.left - 3, first.top, first.height);
-            placeHandle(selectionEnd, last.right + 1, last.top, last.height);
-            body.classList.add('has-pf-selection');
-        }
-
-        document.addEventListener('selectionchange', syncSelectionHandles);
-        window.addEventListener('scroll', syncSelectionHandles, { passive: true });
-        window.addEventListener('resize', syncSelectionHandles);
-    })();
-    </script>
 
     {% if is_about %}
     <script>

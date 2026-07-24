@@ -16,7 +16,7 @@ body.layout-portfolio {
     --pf-ink:          #0A0A0A;
     --pf-ink-2:        #0A0A0A;
     --pf-ink-3:        #6E6E6E;
-    --pf-ink-4:        #8A8A8A;
+    --pf-ink-4:        #75757A; /* ≥4.5:1 on white so 12px meta text passes AA */
     --pf-on-dark:      #F5F5F7;
     --pf-on-dark-2:    #B8B9BD;
     --pf-blue:         #3F5F9C;
@@ -24,7 +24,7 @@ body.layout-portfolio {
     --pf-blue-soft:    #EEF3FA;
     --pf-sans: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --pf-display: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --pf-mono: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Inter", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --pf-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
     margin: 0;
     padding: 0;
@@ -68,178 +68,6 @@ body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):fo
     outline: 1px solid rgba(63, 95, 156, 0.28);
     outline-offset: 4px;
     border-radius: 4px;
-}
-
-@media (pointer: fine) and (hover: hover) {
-    body.layout-portfolio.has-pf-cursor,
-    body.layout-portfolio.has-pf-cursor * {
-        cursor: none !important;
-    }
-
-    .pf-cursor-dot {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10000;
-        pointer-events: none;
-        opacity: 0;
-        transform: translate3d(-50px, -50px, 0);
-        will-change: transform, opacity;
-    }
-
-    .pf-cursor-dot {
-        width: 32px;
-        height: 36px;
-        color: rgba(29, 29, 31, 0.94);
-        transition: opacity 0.12s ease, color 0.12s ease;
-
-        &::after,
-        &::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            -webkit-clip-path: path("M3.3 2.4c-.9-.6-2.1.1-2 1.2l1.9 17.2c.1 1.2 1.7 1.5 2.3.5l3.1-5.2 4 6.1c.5.8 1.6 1 2.3.5l1.8-1.2c.8-.5 1-1.6.5-2.3l-4-6.1 5.9-.5c1.2-.1 1.7-1.6.7-2.3L3.3 2.4z");
-            clip-path: path("M3.3 2.4c-.9-.6-2.1.1-2 1.2l1.9 17.2c.1 1.2 1.7 1.5 2.3.5l3.1-5.2 4 6.1c.5.8 1.6 1 2.3.5l1.8-1.2c.8-.5 1-1.6.5-2.3l-4-6.1 5.9-.5c1.2-.1 1.7-1.6.7-2.3L3.3 2.4z");
-            transform-origin: 3px 2px;
-            transition: transform 0.12s ease, opacity 0.12s ease;
-        }
-
-        &::before {
-            z-index: 2;
-            width: 18px;
-            height: 22px;
-            background: currentColor;
-            transform: translate(-3px, -2px);
-        }
-
-        &::after {
-            z-index: 1;
-            width: 20px;
-            height: 24px;
-            background: rgba(255, 255, 255, 0.9);
-            filter: drop-shadow(0 1px 1px rgba(29, 29, 31, 0.2));
-            transform: translate(-4px, -3px);
-        }
-    }
-
-    body.layout-portfolio.is-pf-cursor-visible .pf-cursor-dot {
-        opacity: 1;
-    }
-
-    body.layout-portfolio.is-pf-cursor-hover .pf-cursor-dot {
-        color: var(--pf-blue);
-    }
-
-    body.layout-portfolio.is-pf-cursor-hover .pf-cursor-dot::before {
-        transform: translate(-3px, -2px) scale(1.08);
-    }
-
-    body.layout-portfolio.is-pf-cursor-hover .pf-cursor-dot::after {
-        transform: translate(-4px, -3px) scale(1.08);
-    }
-
-    body.layout-portfolio.is-pf-cursor-text .pf-cursor-dot {
-        width: 13px;
-        height: 25px;
-        color: rgba(29, 29, 31, 0.82);
-    }
-
-    body.layout-portfolio.is-pf-cursor-text .pf-cursor-dot::before {
-        inset: auto;
-        left: 50%;
-        top: 2px;
-        bottom: 2px;
-        width: 2px;
-        border-radius: 999px;
-        -webkit-clip-path: none;
-        clip-path: none;
-        transform: translateX(-50%);
-    }
-
-    body.layout-portfolio.is-pf-cursor-text .pf-cursor-dot::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 0;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: currentColor;
-        box-shadow: 0 21px 0 currentColor;
-        -webkit-clip-path: none;
-        clip-path: none;
-        filter: none;
-        opacity: 0.82;
-        transform: translateX(-50%);
-    }
-
-    body.layout-portfolio.is-pf-cursor-text.is-pf-cursor-hover .pf-cursor-dot {
-        color: rgba(29, 29, 31, 0.82);
-    }
-
-    body.layout-portfolio.is-pf-cursor-down .pf-cursor-dot::before {
-        transform: translate(-3px, -2px) scale(0.92);
-        opacity: 0.78;
-    }
-
-    body.layout-portfolio.is-pf-cursor-down .pf-cursor-dot::after {
-        transform: translate(-4px, -3px) scale(0.92);
-        opacity: 0.78;
-    }
-
-    body.layout-portfolio.is-pf-cursor-text.is-pf-cursor-down .pf-cursor-dot::before {
-        transform: translateX(-50%) scaleY(0.82);
-    }
-
-    body.layout-portfolio.is-pf-cursor-text.is-pf-cursor-down .pf-cursor-dot::after {
-        transform: translateX(-50%) scale(0.9);
-    }
-
-    .pf-selection-handle {
-        position: fixed;
-        z-index: 9999;
-        width: 2px;
-        border-radius: 999px;
-        background: rgba(63, 95, 156, 0.92);
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
-        opacity: 0;
-        pointer-events: none;
-        transform: translate3d(-999px, -999px, 0);
-        transition: opacity 0.08s ease;
-
-        &::before,
-        &::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(63, 95, 156, 0.92);
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.58);
-            transform: translateX(-50%);
-        }
-
-        &::before { top: -5px; }
-        &::after { bottom: -5px; }
-    }
-
-    .pf-selection-handle-start::after,
-    .pf-selection-handle-end::before {
-        display: none;
-    }
-
-    body.layout-portfolio.has-pf-selection .pf-selection-handle {
-        opacity: 1;
-    }
-}
-
-@media (pointer: coarse), (hover: none) {
-    .pf-cursor-dot,
-    .pf-selection-handle {
-        display: none;
-    }
 }
 
 /* The global stylesheet sets a site-wide font stack on every heading
@@ -299,7 +127,7 @@ body.layout-portfolio button {
     gap: 16px;
 }
 .pf-name {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
@@ -310,14 +138,19 @@ body.layout-portfolio button {
 
 .pf-nav-links {
     display: flex;
-    gap: 28px;
-    font-size: 12px;
+    gap: 16px;
+    font-size: 13px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
     color: var(--pf-ink-2);
 
     a {
+        /* Padding + negative margin widens the hit target without
+           changing the visual gap between links. */
+        display: inline-block;
+        padding: 14px 6px;
+        margin: -14px -6px;
         transition: color 0.12s ease;
 
         &:hover,
@@ -387,10 +220,10 @@ body.layout-portfolio button {
 }
 
 .pf-deck {
-    font-size: 15.5px;
+    font-size: 16px;
     line-height: 1.85;
     color: var(--pf-ink-2);
-    max-width: 720px;
+    max-width: 640px;
     text-wrap: pretty;
     letter-spacing: 0;
     margin-bottom: 22px;
@@ -1021,10 +854,10 @@ body.layout-portfolio button {
         padding: 0 14px;
         gap: 12px;
     }
-    .pf-name { font-size: 11px; }
+    .pf-name { font-size: 12px; }
     .pf-nav-links {
         gap: clamp(7px, 2.25vw, 13px);
-        font-size: 11px;
+        font-size: 12px;
     }
     .pf-foot { padding: 32px 16px 24px; }
     .pf-foot-inner {
@@ -2170,7 +2003,7 @@ body.layout-portfolio button {
 
     &.is-no-toc {
         grid-template-columns: 1fr;
-        max-width: 860px;
+        max-width: 680px;
         margin: 0 auto;
     }
 }
@@ -2271,11 +2104,13 @@ body.layout-portfolio button {
    Article body typography (.pf-prose)
    ============================================================ */
 .pf-prose {
-    font-size: 15.5px;
-    line-height: 1.85;
+    font-size: 17px;
+    line-height: 1.8;
     color: var(--pf-ink-2);
     letter-spacing: 0;
     text-wrap: pretty;
+    /* Comfortable measure for long-form Korean prose (~40 chars/line) */
+    max-width: 680px;
 
     /* Vertical rhythm: zero out browser block margins, then add top
        margins through a single owl selector so neighbouring elements
@@ -2294,15 +2129,15 @@ body.layout-portfolio button {
         text-wrap: balance;
         scroll-margin-top: 80px;
     }
-    h1 { font-size: 24px; line-height: 1.25; }
+    h1 { font-size: 26px; line-height: 1.25; }
     h2 {
-        font-size: 18px;
+        font-size: 23px;
         line-height: 1.25;
         padding-top: 0.8em;
         border-top: 1px solid var(--pf-hairline);
     }
-    h3 { font-size: 18px; line-height: 1.25; }
-    h4 { font-family: var(--pf-sans); font-size: 15.5px; font-weight: 700; line-height: 1.45; }
+    h3 { font-size: 19px; line-height: 1.25; }
+    h4 { font-family: var(--pf-sans); font-size: 17px; font-weight: 700; line-height: 1.45; }
     h5, h6 {
         font-family: var(--pf-sans);
         font-size: 13px;
@@ -2690,10 +2525,10 @@ body.layout-portfolio button {
     .pf-prose .ml-modeling-plot { min-height: 390px; }
     .pf-post-nav-link.is-next { text-align: left; }
     .pf-prose {
-        font-size: 14.5px;
-        h1 { font-size: 22px; }
-        h2 { font-size: 18px; }
-        h3 { font-size: 17px; }
+        font-size: 16px;
+        h1 { font-size: 23px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
     }
 }
 
