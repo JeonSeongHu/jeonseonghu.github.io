@@ -6,7 +6,8 @@
     if (!launch || !panel) return;
 
     var ENABLED_KEY = 'seonghu-type-lab-enabled';
-    var CONFIG_KEY = 'seonghu-type-lab-config-v2';
+    var CONFIG_KEY = 'seonghu-type-lab-config-v3';
+    var PREVIOUS_CONFIG_KEY = 'seonghu-type-lab-config-v2';
     var LEGACY_CONFIG_KEY = 'seonghu-type-lab-config-v1';
     var FONT_DB_NAME = 'seonghu-type-lab-fonts';
     var FONT_STORE_NAME = 'font-files';
@@ -61,6 +62,7 @@
         pubBodyGap: ['--tl-pub-body-gap', 'px'],
         expDetailGap: ['--tl-exp-detail-gap', 'px'],
         heroTop: ['--tl-hero-top', 'px'],
+        pageHeroTop: ['--tl-page-hero-top', 'px'],
         heroBottom: ['--tl-hero-bottom', 'px'],
         pageHeroBottom: ['--tl-page-hero-bottom', 'px'],
         heroColumnGap: ['--tl-hero-column-gap', 'px'],
@@ -104,8 +106,9 @@
         pubBodyGap: 0,
         expDetailGap: 0,
         heroTop: 0,
+        pageHeroTop: 28,
         heroBottom: 31,
-        pageHeroBottom: 0,
+        pageHeroBottom: 24,
         heroColumnGap: 12,
         sectionPadding: 17,
         flushSectionTop: 25,
@@ -247,6 +250,21 @@
                 return normalize(JSON.parse(raw));
             } catch (error) {
                 storageRemove(CONFIG_KEY);
+            }
+        }
+
+        var previous = storageGet(PREVIOUS_CONFIG_KEY);
+        if (previous) {
+            try {
+                var upgraded = JSON.parse(previous);
+                upgraded.pageHeroTop = defaults.pageHeroTop;
+                upgraded.pageHeroBottom = defaults.pageHeroBottom;
+                var migrated = normalize(upgraded);
+                storageSet(CONFIG_KEY, JSON.stringify(migrated));
+                storageRemove(PREVIOUS_CONFIG_KEY);
+                return migrated;
+            } catch (error) {
+                storageRemove(PREVIOUS_CONFIG_KEY);
             }
         }
 
@@ -583,6 +601,7 @@
     function disableLab() {
         storageRemove(ENABLED_KEY);
         storageRemove(CONFIG_KEY);
+        storageRemove(PREVIOUS_CONFIG_KEY);
         storageRemove(LEGACY_CONFIG_KEY);
         config = clone(defaults);
         comparing = false;
@@ -655,7 +674,7 @@
             '',
             '.pf-sec-head { margin-bottom: ' + config.sectionHeadGap + 'px; }',
             '.pf-hero { padding-top: ' + config.heroTop + 'px; padding-bottom: ' + config.heroBottom + 'px; column-gap: ' + config.heroColumnGap + 'px; }',
-            '.pf-page-hero { padding-top: ' + config.heroTop + 'px; padding-bottom: ' + config.pageHeroBottom + 'px; }',
+            '.pf-page-hero { padding-top: ' + config.pageHeroTop + 'px; padding-bottom: ' + config.pageHeroBottom + 'px; }',
             '.pf-sec { padding-top: ' + config.sectionPadding + 'px; padding-bottom: ' + config.sectionPadding + 'px; }',
             '.pf-sec.pf-sec--flush { padding-top: ' + config.flushSectionTop + 'px; }',
             '.pf-news-item { padding-top: ' + config.newsRowPadding + 'px; padding-bottom: ' + config.newsRowPadding + 'px; }',
