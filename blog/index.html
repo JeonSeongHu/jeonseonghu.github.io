@@ -33,7 +33,7 @@ custom_css_class: portfolio-page
 {% assign research_years = research_posts | sort: "date" | group_by_exp: "post", "post.date | date: '%Y'" %}
 {% assign reflection_years = reflection_posts | group_by_exp: "post", "post.date | date: '%Y'" %}
 
-<section class="pf-page-hero pf-blog-hero" id="hero">
+<section class="pf-page-hero pf-page-hero--spacious pf-blog-hero" id="hero">
     <div class="pf-eyebrow">Blog</div>
     <h1 class="pf-page-h1">Writing Index<span class="pf-blue">.</span></h1>
 

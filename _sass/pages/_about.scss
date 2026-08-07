@@ -927,6 +927,7 @@ body.layout-portfolio button {
     border-bottom: 1px solid var(--pf-hairline);
     scroll-margin-top: 60px;
 }
+.pf-page-hero--spacious { padding: 28px 0 24px; }
 .pf-page-h1 {
     font-family: var(--pf-display);
     font-size: 33.75px;
@@ -1488,7 +1489,7 @@ body.layout-portfolio button {
 }
 
 .pf-blog-hero {
-    padding-bottom: 30px;
+    padding: 28px 0 24px;
 }
 
 .pf-blog-overview {
