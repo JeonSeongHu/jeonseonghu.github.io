@@ -1,9 +1,10 @@
 ---
 layout: post
+published: false
 title: "머신러닝과 모델링: 2강 정리"
 author: jeonseonghu
 date: 2026-06-22 18:00:00 +0900
-hidden: false
+hidden: true
 toc: true
 comments: false
 main_category: Education

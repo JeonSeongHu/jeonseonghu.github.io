@@ -1,6 +1,7 @@
 ---
 layout: post
-hidden: false
+published: false
+hidden: true
 title: "논문 Figure에 관하여: (2) 실제 예시 살펴보기"
 slug: paper-figure-2
 redirect_from:
@@ -37,5 +38,4 @@ categories:
    - denoising을 timestep을 "-1"을 더하는 식으로 표현 어찌보면 더 엄밀하나; 이런 표기는 거의 안 쓰임
 - 글자의 정렬 
   - 가장 심각한 문제 ! 어찌보면 가장 심각한 문제! 누가 봐도 시각적으로 튀는 misalignment는 논문의 신뢰도 자체에 큰 문제를 줄 수 있다.
-
 
