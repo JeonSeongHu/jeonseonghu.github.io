@@ -7,6 +7,7 @@ description: "A visual builder for creating academic research project pages — 
 image: "/assets/images/projects/project-page-builder.webp"
 date: 2026-03-15
 tags: ["Web Development", "HCI", "Developer Tools"]
+categories: ["Systems/Web"]
 project_link: "https://project-page-builder.vercel.app/"
 code: "https://github.com/JeonSeongHu/project-page-builder"
 ---

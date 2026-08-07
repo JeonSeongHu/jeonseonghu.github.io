@@ -687,7 +687,7 @@
             '  letter-spacing: ' + config.copyTracking + 'em;',
             '}',
             '.pf-pub-body { gap: ' + config.pubBodyGap + 'px; }',
-            '.pf-exp-detail { margin-top: ' + config.expDetailGap + 'px; }'
+            '.pf-focus-desc, .pf-exp-detail { margin-top: ' + config.expDetailGap + 'px; }'
         ];
 
         if (config.advancedCss.trim()) {

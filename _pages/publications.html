@@ -3,6 +3,7 @@ layout: portfolio
 title: Publications
 permalink: /publications/
 custom_css_class: portfolio-page
+lang: en
 ---
 
 {% assign highlight_author = "Seonghu Jeon" %}
@@ -12,12 +13,8 @@ custom_css_class: portfolio-page
     <div class="pf-eyebrow">Publications</div>
     <h1 class="pf-page-h1">Publications<span class="pf-blue">.</span></h1>
     <p class="pf-page-deck">
-        Peer-reviewed papers, preprints, and works currently under review. Filter by keyword, author, or venue.
+        Peer-reviewed papers, preprints, and works currently under review.
     </p>
-    <div class="pf-search">
-        <input type="text" id="publication-search" class="pf-search-input" placeholder="Type to filter - title, author, venue">
-        <span class="pf-search-count">{{ publications | size }} entries</span>
-    </div>
 </section>
 
 {% assign grouped_pubs = publications | group_by_exp: "pub", "pub.date | date: '%Y'" %}
@@ -71,7 +68,7 @@ custom_css_class: portfolio-page
                 {% if paper.arxiv and paper.arxiv != "" and paper.arxiv != "#" %}<a href="{{ paper.arxiv }}" target="_blank" rel="noopener">arxiv</a>{% endif %}
                 {% if paper.project_link and paper.project_link != "" and paper.project_link != "#" %}<a href="{{ paper.project_link }}" target="_blank" rel="noopener">project</a>{% endif %}
                 {% if paper.code and paper.code != "" and paper.code != "#" %}<a href="{{ paper.code }}" target="_blank" rel="noopener">code</a>{% endif %}
-                {% if paper.bibtex %}<a href="#" class="pf-bib-copy" data-bibtex="{{ paper.bibtex | escape }}">bibtex</a>{% endif %}
+                {% if paper.bibtex %}<button type="button" class="pf-bib-copy" data-bibtex="{{ paper.bibtex | escape }}" aria-label="Copy BibTeX for {{ paper.title }}">bibtex</button>{% endif %}
             </div>
         </article>
         {% endfor %}
@@ -79,47 +76,19 @@ custom_css_class: portfolio-page
 </section>
 {% endfor %}
 
-<div id="no-publications" class="pf-empty" style="display: none;">
-    No publications match that query.
-</div>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('publication-search');
-    const publicationItems = document.querySelectorAll('.pf-pub');
-    const yearSections = document.querySelectorAll('.pf-pub-year-section');
-    const noResultsMsg = document.getElementById('no-publications');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase().trim();
-        let visibleCount = 0;
-
-        publicationItems.forEach(item => {
-            const searchable = item.getAttribute('data-searchable') || '';
-            const matches = query === '' || searchable.includes(query);
-            item.style.display = matches ? '' : 'none';
-            if (matches) visibleCount++;
-        });
-
-        yearSections.forEach(section => {
-            const items = section.querySelectorAll('.pf-pub');
-            const visible = Array.from(items).some(it => it.style.display !== 'none');
-            section.style.display = visible ? '' : 'none';
-        });
-
-        noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
-    });
-
     document.querySelectorAll('.pf-bib-copy').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
+        btn.addEventListener('click', function() {
             var bib = this.getAttribute('data-bibtex') || '';
             var self = this;
             navigator.clipboard.writeText(bib).then(function() {
                 var original = self.textContent;
+                var originalLabel = self.getAttribute('aria-label');
                 self.textContent = 'copied!';
+                self.setAttribute('aria-label', 'BibTeX copied');
                 setTimeout(function() { self.textContent = original; }, 1500);
+                setTimeout(function() { self.setAttribute('aria-label', originalLabel); }, 1500);
             });
         });
     });

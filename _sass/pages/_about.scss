@@ -136,6 +136,36 @@ body.layout-portfolio button {
 }
 .pf-blue { color: var(--pf-blue); }
 
+.pf-skip-link,
+.pf-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.pf-skip-link:focus {
+    position: fixed;
+    z-index: 200;
+    top: 12px;
+    left: 12px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 10px 14px;
+    overflow: visible;
+    clip: auto;
+    border: 1px solid var(--pf-blue);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--pf-ink);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
 .pf-nav-links {
     display: flex;
     gap: 16px;
@@ -192,7 +222,7 @@ body.layout-portfolio button {
 .pf-hero {
     padding: 0 0 31px;
     display: grid;
-    grid-template-columns: 1fr 210px;
+    grid-template-columns: 1fr 132px;
     column-gap: 12px;
     align-items: end;
     border-bottom: 1px solid var(--pf-hairline);
@@ -358,20 +388,30 @@ body.layout-portfolio button {
     display: flex;
     align-items: baseline;
     gap: 12px;
+    min-width: 0;
 }
 .pf-sec-num {
+    display: block;
+    flex: 0 0 34px;
+    width: 34px;
     font-size: 13.5px;
     font-weight: 400;
     color: var(--pf-blue);
     letter-spacing: 0;
+    line-height: 1;
+    text-align: left;
 }
 .pf-sec-title {
+    display: block;
     font-family: var(--pf-display);
     font-size: 26.75px;
     font-weight: 500;
     color: var(--pf-ink);
     letter-spacing: -0.06em;
     line-height: 1.05;
+    text-align: left;
+    font-style: normal;
+    text-transform: none;
 }
 .pf-sec-aside {
     font-size: 11.5px;
@@ -527,6 +567,12 @@ body.layout-portfolio button {
 
     &.is-hi { color: var(--pf-blue); }
 }
+.pf-pub-venue.is-hi {
+    font-family: var(--pf-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
 .pf-pub-pin {
     width: 5px;
     height: 5px;
@@ -540,7 +586,7 @@ body.layout-portfolio button {
     min-height: 18px;
     margin-left: 6px;
     padding: 2px 7px;
-    border-radius: 999px;
+    border-radius: 4px;
     background: var(--pf-blue);
     color: #fff;
     font-family: var(--pf-sans);
@@ -582,13 +628,35 @@ body.layout-portfolio button {
     font-weight: 500;
     flex-shrink: 0;
 
-    a {
+    a,
+    button {
         color: var(--pf-ink-3);
         transition: color 0.12s ease;
         display: inline-flex;
         align-items: center;
         gap: 3px;
         letter-spacing: 0;
+
+        &:hover {
+            color: var(--pf-blue);
+        }
+    }
+
+    button {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        font: inherit;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: 2px solid var(--pf-blue);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+    }
+
+    a {
 
         /* Force the arrow on every link, including external ones - the
            layout-wide `a[target="_blank"]::after { content: none }` reset
@@ -604,7 +672,6 @@ body.layout-portfolio button {
             transform: none;
         }
 
-        &:hover,
         &:hover::after {
             color: var(--pf-blue);
         }
@@ -616,38 +683,50 @@ body.layout-portfolio button {
     display: flex;
     flex-direction: column;
 }
-.pf-focus-item {
+.pf-focus-item,
+.pf-exp-item {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 32px;
-    padding: 4px 0;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 20px;
+    padding: 10px 0;
     border-top: 1px solid var(--pf-hairline);
-    align-items: baseline;
+    align-items: start;
 
     &:first-child {
         border-top: none;
-        padding-top: 4px;
+        padding-top: 10px;
     }
 }
-.pf-focus-num {
+.pf-focus-mid,
+.pf-exp-mid {
+    min-width: 0;
+}
+.pf-focus-num,
+.pf-exp-index {
+    font-family: var(--pf-mono);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--pf-blue);
     letter-spacing: 0;
     display: block;
-    margin-bottom: 6px;
+    line-height: 1.5;
 }
-.pf-focus-label {
+.pf-focus-label,
+.pf-exp-role {
+    display: block;
+    font-family: var(--pf-sans);
     font-size: 16px;
     font-weight: 700;
     color: var(--pf-ink);
     letter-spacing: 0;
     line-height: 1.25;
 }
-.pf-focus-desc {
-    font-size: 15.5px;
-    color: var(--pf-ink-2);
-    line-height: 1.75;
+.pf-focus-desc,
+.pf-exp-detail {
+    margin: 4px 0 0;
+    font-size: 14.5px;
+    color: var(--pf-ink-3);
+    line-height: 1.6;
     text-wrap: pretty;
     letter-spacing: -0.005em;
 }
@@ -709,45 +788,29 @@ body.layout-portfolio button {
     display: flex;
     flex-direction: column;
 }
-.pf-exp-item {
-    display: grid;
-    grid-template-columns: 200px 1fr 100px;
-    gap: 32px;
-    padding: 4px 0;
+.pf-exp-meta {
+    display: flex;
     align-items: baseline;
-    font-size: 14px;
-    border-top: 1px solid var(--pf-hairline);
-
-    &:first-child {
-        border-top: none;
-        padding-top: 4px;
-    }
+    gap: 10px 16px;
+    margin-top: 4px;
+    min-width: 0;
 }
 .pf-exp-org {
+    min-width: 0;
+    color: var(--pf-ink-3);
     font-size: 13.5px;
-    color: var(--pf-ink-3);
-}
-.pf-exp-role {
-    font-size: 15px;
-    color: var(--pf-ink);
-    font-weight: 700;
-    letter-spacing: 0;
-}
-.pf-exp-detail {
-    font-size: 14.5px;
-    color: var(--pf-ink-3);
-    line-height: 1.75;
-    letter-spacing: -0.005em;
-    margin-top: 0;
-    text-wrap: pretty;
+    font-weight: 400;
+    line-height: 1.5;
 }
 .pf-exp-time {
+    margin-left: auto;
     font-size: 12.5px;
     font-weight: 500;
     color: var(--pf-ink-4);
-    text-align: right;
+    line-height: 1.5;
     letter-spacing: 0;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 .pf-now-mark { color: var(--pf-blue); }
 
@@ -815,12 +878,52 @@ body.layout-portfolio button {
     .pf-pill { display: none; }
 
     .pf-hero {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 48px 0 44px;
+        grid-template-columns: minmax(0, 1fr) 94px;
+        grid-template-rows: auto auto auto auto;
+        column-gap: 24px;
+        row-gap: 0;
+        align-items: center;
+        padding: 36px 0 44px;
     }
-    .pf-portrait { max-width: 172px; }
+    .pf-portrait { max-width: 108px; }
     .pf-h1 { font-size: 30.72px; }
+
+    /* Keep the portrait beside the role line and name at tablet-width
+       mobile sizes. The description and links then use the full width below,
+       so the image does not become a detached block on the left. */
+    .pf-hero-text { display: contents; }
+    .pf-hero .pf-eyebrow {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: end;
+        margin-bottom: 8px;
+    }
+    .pf-hero .pf-h1 {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+        margin-bottom: 0;
+    }
+    .pf-hero .pf-deck {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        margin-top: 24px;
+        margin-bottom: 17px;
+        max-width: none;
+    }
+    .pf-hero .pf-links {
+        grid-column: 1 / -1;
+        grid-row: 4;
+        gap: 14px 18px;
+    }
+    .pf-hero .pf-portrait {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        width: 94px;
+        max-width: none;
+        justify-self: end;
+        border-radius: 8px;
+    }
 
     .pf-pub {
         grid-template-columns: 1fr;
@@ -832,6 +935,15 @@ body.layout-portfolio button {
     .pf-exp-item {
         grid-template-columns: 1fr;
         gap: 6px;
+    }
+    .pf-focus-mid {
+        display: block;
+    }
+    .pf-focus-time {
+        display: none;
+    }
+    .pf-focus-desc {
+        margin-top: 6px;
     }
     .pf-exp-time { text-align: left; }
 
@@ -866,7 +978,7 @@ body.layout-portfolio button {
     .pf-sec-title { font-size: 24px; }
 
     .pf-hero {
-        grid-template-columns: minmax(0, 1fr) 102px;
+        grid-template-columns: minmax(0, 1fr) 64px;
         grid-template-rows: auto auto auto auto;
         column-gap: 18px;
         row-gap: 0;
@@ -902,7 +1014,7 @@ body.layout-portfolio button {
     .pf-hero .pf-portrait {
         grid-column: 2;
         grid-row: 1 / 3;
-        width: 102px;
+        width: 64px;
         max-width: none;
         border-radius: 7px;
     }
@@ -1178,12 +1290,22 @@ body.layout-portfolio button {
     gap: 6px;
 }
 .pf-proj-tag {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    font: inherit;
     font-size: 11.5px;
     color: var(--pf-ink-3);
     cursor: pointer;
     transition: color 0.12s ease;
 
     &:hover { color: var(--pf-blue); }
+    &:focus-visible {
+        outline: 2px solid var(--pf-blue);
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
 }
 
 /* ============================================================
@@ -2535,10 +2657,10 @@ body.layout-portfolio button {
         gap: 8px;
     }
     .pf-hero {
-        grid-template-columns: minmax(0, 1fr) 88px;
+        grid-template-columns: minmax(0, 1fr) 55px;
         column-gap: 14px;
     }
-    .pf-hero .pf-portrait { width: 88px; }
+    .pf-hero .pf-portrait { width: 55px; }
     .pf-proj-card {
         grid-template-columns: 96px minmax(0, 1fr);
         gap: 8px 12px;

@@ -9,6 +9,7 @@ authors: "Seonghu Jeon, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim†"
 venue: "IEIE 2025 Undergraduate Paper Competition (Excellence Award)"
 date: 2025-12-01
 tags: ["Motion Transfer", "Video Generation", "Computer Vision", "Diffusion Models"]
+categories: ["Vision", "Generative Models"]
 link: ""
 ---
 

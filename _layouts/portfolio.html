@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.active_lang | default: 'en' }}">
+<html lang="{{ page.lang | default: 'en' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 
     {% seo %}
+    {% if page.noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
     {% if page.image == nil or page.image == "" %}<meta property="og:image" content="{{ '/assets/images/profile_400.png' | absolute_url }}">{% endif %}
 
     <link href="{{ site.baseurl }}/assets/css/main.css?v={{ site.time | date: '%s' }}" rel="stylesheet">
@@ -21,25 +22,26 @@
 
 <body class="layout-portfolio {% if page.custom_css_class %}{{ page.custom_css_class }}{% endif %}">
 
+    <a class="pf-skip-link" href="#main-content">Skip to main content</a>
+
     {% assign nav_path = page.url | default: '/' %}
     {% assign is_about = false %}
     {% if nav_path == '/about-me/' or nav_path == '/' %}{% assign is_about = true %}{% endif %}
 
-    <nav class="pf-nav">
+    <nav class="pf-nav" aria-label="Primary navigation">
         <div class="pf-nav-inner">
             <a class="pf-name" href="{{ site.baseurl }}/">Seonghu Jeon<span class="pf-blue">.</span></a>
             <div class="pf-nav-links" id="pf-nav-links">
-                <a href="{{ site.baseurl }}/" data-nav="about" {% if is_about %}class="is-active"{% endif %}>About</a>
-                <a href="{{ site.baseurl }}/publications/" data-nav="publications" {% if nav_path contains '/publications' %}class="is-active"{% endif %}>Publications</a>
-                <a href="{{ site.baseurl }}/projects/" data-nav="projects" {% if nav_path contains '/projects' %}class="is-active"{% endif %}>Projects</a>
-                <a href="{{ site.baseurl }}/cv/" data-nav="cv" {% if nav_path contains '/cv' %}class="is-active"{% endif %}>CV</a>
-                <a href="{{ site.baseurl }}/blog/" data-nav="blog" {% if nav_path contains '/blog' %}class="is-active"{% endif %}>Blog</a>
+                <a href="{{ site.baseurl }}/" data-nav="about"{% if is_about %} class="is-active" aria-current="page"{% endif %}>About</a>
+                <a href="{{ site.baseurl }}/publications/" data-nav="publications"{% if nav_path contains '/publications' %} class="is-active" aria-current="page"{% endif %}>Publications</a>
+                <a href="{{ site.baseurl }}/projects/" data-nav="projects"{% if nav_path contains '/projects' %} class="is-active" aria-current="page"{% endif %}>Projects</a>
+                <a href="{{ site.baseurl }}/cv/" data-nav="cv"{% if nav_path contains '/cv' %} class="is-active" aria-current="page"{% endif %}>CV</a>
             </div>
             <a href="mailto:seonghu.jeon@kaist.ac.kr" class="pf-pill">Contact</a>
         </div>
     </nav>
 
-    <main class="pf-main">
+    <main class="pf-main" id="main-content" tabindex="-1">
         {{ content }}
     </main>
 
@@ -56,8 +58,10 @@
         </div>
     </footer>
 
+    {% if jekyll.environment == "development" %}
     {% include type-lab.html %}
     <script src="{{ site.baseurl }}/assets/js/type-lab.js" defer></script>
+    {% endif %}
 
     {% if is_about %}
     <script>

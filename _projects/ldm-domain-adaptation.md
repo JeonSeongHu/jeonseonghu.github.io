@@ -7,6 +7,7 @@ description: "Finetuned semantic map-conditioned LDMs with ControlNet for unsupe
 image: ""
 date: 2023-08-01
 tags: ["Domain Adaptation", "Diffusion Models", "ControlNet"]
+categories: ["Vision", "Generative Models"]
 ---
 
 ## Overview

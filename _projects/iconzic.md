@@ -13,6 +13,7 @@ tags:
   - VLM
   - Image Captioning
 date: 2023-03-01
+categories: ["Vision"]
 ---
 
 # **Introduction**

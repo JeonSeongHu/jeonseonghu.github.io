@@ -3,6 +3,8 @@ layout: portfolio
 title: Blog
 permalink: /blog/
 custom_css_class: portfolio-page
+lang: en
+noindex: true
 ---
 
 {% assign all_posts = "" | split: "" %}
@@ -36,6 +38,9 @@ custom_css_class: portfolio-page
 <section class="pf-page-hero pf-page-hero--spacious pf-blog-hero" id="hero">
     <div class="pf-eyebrow">Blog</div>
     <h1 class="pf-page-h1">Writing Index<span class="pf-blue">.</span></h1>
+    {% if all_posts.size == 0 %}
+    <p class="pf-page-deck">Research notes on 3D/4D vision, generative models, and robot learning are being prepared.</p>
+    {% endif %}
 
     <nav class="pf-blog-overview" aria-label="Blog categories">
         {% if lecture_posts.size > 0 %}

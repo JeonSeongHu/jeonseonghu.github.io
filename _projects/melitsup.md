@@ -7,6 +7,7 @@ description: "Music recommendation service using VLM and LLM-based lyrics augmen
 image: ""
 date: 2022-09-01
 tags: ["Music RecSys", "LLM", "VLM"]
+categories: ["Other"]
 ---
 
 ## Overview

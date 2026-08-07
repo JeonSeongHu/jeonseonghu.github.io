@@ -9,6 +9,7 @@ authors: "Seonghu Jeon, Seohyun Park, Namseok Lee"
 venue: "AIKU (Korea University AI Society) Internal Project"
 date: 2026-01-09
 tags: ["Semantic Segmentation", "Autonomous Driving", "Deep Learning", "Computer Vision"]
+categories: ["Vision"]
 link: ""
 ---
 

@@ -7,6 +7,7 @@ description: "AI profile picture generation service for Korea University festiva
 image: "/assets/images/projects/horang-studio-thumb.webp"
 date: 2023-08-01
 tags: ["Generative AI", "Stable Diffusion", "Web Service"]
+categories: ["Generative Models", "Systems/Web"]
 ---
 
 ## Overview

@@ -3,31 +3,32 @@ layout: portfolio
 title: Projects
 permalink: /projects/
 custom_css_class: portfolio-page
+lang: en
 ---
 
-{% assign sorted_projects = site.projects | sort: "date" | reverse %}
+{% assign sorted_projects = site.projects | where_exp: "project", "project.type != 'publication'" | sort: "date" | reverse %}
 
 <section class="pf-page-hero" id="hero">
     <div class="pf-eyebrow">Projects</div>
     <h1 class="pf-page-h1">Projects<span class="pf-blue">.</span></h1>
     <p class="pf-page-deck">
-        Research, side projects, and selected publications. Tap a tag to narrow the grid.
+        Research, systems, and side projects. Filter by broad area or browse the full collection.
     </p>
 
     <div class="pf-filter-row">
-        {% assign all_tags = "" | split: "" %}
-        {% for project in site.projects %}
-            {% for tag in project.tags %}
-                {% unless all_tags contains tag %}
-                    {% assign all_tags = all_tags | push: tag %}
+        {% assign all_categories = "" | split: "" %}
+        {% for project in sorted_projects %}
+            {% for category in project.categories %}
+                {% unless all_categories contains category %}
+                    {% assign all_categories = all_categories | push: category %}
                 {% endunless %}
             {% endfor %}
         {% endfor %}
-        {% assign sorted_tags = all_tags | sort %}
+        {% assign sorted_categories = all_categories | sort %}
 
-        <button class="pf-filter-tag is-active" data-filter="all">All</button>
-        {% for tag in sorted_tags %}
-        <button class="pf-filter-tag" data-filter="{{ tag | slugify }}">{{ tag }}</button>
+        <button class="pf-filter-tag is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        {% for category in sorted_categories %}
+        <button class="pf-filter-tag" type="button" data-filter="{{ category | slugify }}" aria-pressed="false">{{ category }}</button>
         {% endfor %}
     </div>
     <button class="pf-filter-toggle" id="filterToggle" style="display:none;">More tags &#9662;</button>
@@ -36,16 +37,13 @@ custom_css_class: portfolio-page
 <section class="pf-sec pf-sec--flush" id="projects">
     <div class="pf-proj-grid">
         {% for project in sorted_projects %}
-        <article class="pf-proj-card" data-tags="{% for tag in project.tags %}{{ tag | slugify }} {% endfor %}">
+        <article class="pf-proj-card" data-tags="{% for category in project.categories %}{{ category | slugify }} {% endfor %}">
             <a href="{{ project.url | relative_url }}" class="pf-proj-link">
                 <div class="pf-proj-thumb">
                     {% if project.image and project.image != "" %}
                     <img src="{{ project.image }}" alt="{{ project.title }}" loading="lazy">
                     {% else %}
                     <span class="pf-proj-thumb-fallback" data-initials="{{ project.short_title | default: project.title | truncate: 1, '' | upcase }}"></span>
-                    {% endif %}
-                    {% if project.type == "publication" %}
-                    <span class="pf-proj-badge">Publication</span>
                     {% endif %}
                 </div>
                 <div class="pf-proj-body">
@@ -59,7 +57,7 @@ custom_css_class: portfolio-page
             {% if project.tags and project.tags.size > 0 %}
             <div class="pf-proj-tags">
                 {% for tag in project.tags %}
-                <span class="pf-proj-tag" data-tag="{{ tag | slugify }}">#{{ tag }}</span>
+                <button class="pf-proj-tag" type="button" data-tag="{{ tag | slugify }}">#{{ tag }}</button>
                 {% endfor %}
             </div>
             {% endif %}
@@ -79,14 +77,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const noProjectsMsg = document.getElementById('no-projects');
 
     function applyFilter(filter) {
-        filterButtons.forEach(btn => btn.classList.remove('is-active'));
         const targetButton = document.querySelector(`.pf-filter-tag[data-filter="${filter}"]`);
         if (targetButton) {
-            targetButton.classList.add('is-active');
         } else {
-            document.querySelector('.pf-filter-tag[data-filter="all"]').classList.add('is-active');
             filter = 'all';
         }
+        const activeButton = targetButton || document.querySelector('.pf-filter-tag[data-filter="all"]');
+        filterButtons.forEach(btn => {
+            const isActive = btn === activeButton;
+            btn.classList.toggle('is-active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
 
         let visibleCount = 0;
         projectCards.forEach(card => {
