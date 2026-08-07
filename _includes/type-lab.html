@@ -1,0 +1,539 @@
+<button
+    class="type-lab-launch"
+    type="button"
+    data-type-lab-launch
+    aria-label="Open typography lab"
+    aria-controls="type-lab"
+    aria-expanded="false"
+    hidden>Aa</button>
+
+<aside
+    class="type-lab"
+    id="type-lab"
+    data-type-lab
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="type-lab-title"
+    hidden>
+    <div class="type-lab__scroll">
+        <header class="type-lab__head">
+            <div>
+                <span class="type-lab__kicker">Live preview</span>
+                <h2 class="type-lab__title" id="type-lab-title">Type Lab</h2>
+            </div>
+            <button class="type-lab__close" type="button" data-tl-action="close" aria-label="Close typography lab">&times;</button>
+        </header>
+
+        <p class="type-lab__intro">
+            Tune every text role separately. Changes stay in this browser and follow you across portfolio pages.
+        </p>
+
+        <section class="type-lab__section" aria-labelledby="type-lab-presets">
+            <div class="type-lab__section-head">
+                <h3 class="type-lab__label" id="type-lab-presets">Directions</h3>
+                <span class="type-lab__hint">starting points</span>
+            </div>
+            <div class="type-lab__presets">
+                <button class="type-lab__preset" type="button" data-preset="working" aria-pressed="true">
+                    <span class="type-lab__preset-sample" aria-hidden="true">Ag</span>
+                    <span class="type-lab__preset-copy">
+                        <span class="type-lab__preset-name">Working choice</span>
+                        <span class="type-lab__preset-meta">Your selected Wanted Sans setup</span>
+                    </span>
+                </button>
+                <button class="type-lab__preset" type="button" data-preset="original" aria-pressed="false">
+                    <span class="type-lab__preset-sample" aria-hidden="true">Ag</span>
+                    <span class="type-lab__preset-copy">
+                        <span class="type-lab__preset-name">Site baseline</span>
+                        <span class="type-lab__preset-meta">Current default style</span>
+                    </span>
+                </button>
+                <button class="type-lab__preset" type="button" data-preset="editorial" aria-pressed="false">
+                    <span class="type-lab__preset-sample" aria-hidden="true">Ag</span>
+                    <span class="type-lab__preset-copy">
+                        <span class="type-lab__preset-name">Editorial</span>
+                        <span class="type-lab__preset-meta">Instrument / Inter</span>
+                    </span>
+                </button>
+                <button class="type-lab__preset" type="button" data-preset="geometric" aria-pressed="false">
+                    <span class="type-lab__preset-sample" aria-hidden="true">Ag</span>
+                    <span class="type-lab__preset-copy">
+                        <span class="type-lab__preset-name">Geometric</span>
+                        <span class="type-lab__preset-meta">Space Grotesk / Plex</span>
+                    </span>
+                </button>
+                <button class="type-lab__preset" type="button" data-preset="humanist" aria-pressed="false">
+                    <span class="type-lab__preset-sample" aria-hidden="true">Ag</span>
+                    <span class="type-lab__preset-copy">
+                        <span class="type-lab__preset-name">Humanist</span>
+                        <span class="type-lab__preset-meta">Newsreader / Manrope</span>
+                    </span>
+                </button>
+                <button class="type-lab__preset" type="button" data-preset="korean" aria-pressed="false">
+                    <span class="type-lab__preset-sample" aria-hidden="true">가A</span>
+                    <span class="type-lab__preset-copy">
+                        <span class="type-lab__preset-name">Korean balance</span>
+                        <span class="type-lab__preset-meta">Paperlogy / Pretendard</span>
+                    </span>
+                </button>
+                <button class="type-lab__preset" type="button" data-preset="native" aria-pressed="false">
+                    <span class="type-lab__preset-sample" aria-hidden="true">Ag</span>
+                    <span class="type-lab__preset-copy">
+                        <span class="type-lab__preset-name">Native classic</span>
+                        <span class="type-lab__preset-meta">Georgia / System</span>
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <details class="type-lab__group" open>
+            <summary class="type-lab__group-summary">
+                <span>Fonts and weights</span>
+                <span class="type-lab__group-meta">local fonts supported</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <div class="type-lab__local-font-head">
+                    <span>Installed on this computer</span>
+                    <span data-tl-local-font-count aria-live="polite">Not loaded</span>
+                </div>
+                <div class="type-lab__local-font-toolbar">
+                    <input
+                        class="type-lab__text-input"
+                        type="search"
+                        data-tl-local-font-search
+                        autocomplete="off"
+                        placeholder="Search installed fonts"
+                        aria-label="Search installed fonts">
+                    <button type="button" data-tl-action="scan-fonts">Load fonts</button>
+                </div>
+                <div class="type-lab__font-targets" role="group" aria-label="Local font application target">
+                    <button type="button" data-tl-font-target="both" aria-pressed="true">All text</button>
+                    <button type="button" data-tl-font-target="display" aria-pressed="false">Headings</button>
+                    <button type="button" data-tl-font-target="body" aria-pressed="false">Body</button>
+                </div>
+                <div class="type-lab__local-font-list" data-tl-local-font-list>
+                    <div class="type-lab__local-font-empty">
+                        Select <b>Load fonts</b> to see every installed family with a live preview.
+                    </div>
+                </div>
+                <p class="type-lab__microcopy type-lab__microcopy--local-browser">
+                    Your browser asks for local-font permission once. Font names and previews stay on this device.
+                </p>
+
+                <div class="type-lab__local-font-head type-lab__local-font-head--web">
+                    <span>Web font shortcuts</span>
+                    <span>font only</span>
+                </div>
+                <div class="type-lab__font-pairs" aria-label="Quick font choices">
+                    <button type="button" data-tl-font-pair="wanted:wanted" aria-pressed="true">
+                        <span class="type-lab__font-pair-sample">Ag가</span>
+                        <span>Wanted Sans</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="paperlogy:paperlogy" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag가</span>
+                        <span>Paperlogy</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="pretendard:pretendard" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag가</span>
+                        <span>Pretendard</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="inter:inter" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>Inter</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="plex:plex" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>IBM Plex</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="manrope:manrope" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>Manrope</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="space:space" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>Space Grotesk</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="newsreader:newsreader" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>Newsreader</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="instrument:inter" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>Instrument + Inter</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="georgia:system" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>Georgia + System</span>
+                    </button>
+                    <button type="button" data-tl-font-pair="system:system" aria-pressed="false">
+                        <span class="type-lab__font-pair-sample">Ag</span>
+                        <span>System</span>
+                    </button>
+                </div>
+                <p class="type-lab__microcopy type-lab__microcopy--font-pairs">
+                    Quick choices change only the fonts. Your current sizes, line heights, tracking, and spacing stay unchanged.
+                </p>
+
+                <div class="type-lab__selects">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Display preset</span>
+                        <select data-tl-key="display" aria-label="Display font preset">
+                            <option value="wanted">Wanted Sans</option>
+                            <option value="paperlogy">Paperlogy</option>
+                            <option value="pretendard">Pretendard</option>
+                            <option value="instrument">Instrument Serif</option>
+                            <option value="space">Space Grotesk</option>
+                            <option value="newsreader">Newsreader</option>
+                            <option value="inter">Inter</option>
+                            <option value="plex">IBM Plex Sans</option>
+                            <option value="manrope">Manrope</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="system">System sans</option>
+                        </select>
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Body preset</span>
+                        <select data-tl-key="body" aria-label="Body font preset">
+                            <option value="wanted">Wanted Sans</option>
+                            <option value="paperlogy">Paperlogy</option>
+                            <option value="pretendard">Pretendard</option>
+                            <option value="inter">Inter</option>
+                            <option value="plex">IBM Plex Sans</option>
+                            <option value="manrope">Manrope</option>
+                            <option value="space">Space Grotesk</option>
+                            <option value="newsreader">Newsreader</option>
+                            <option value="instrument">Instrument Serif</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="system">System sans</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="type-lab__selects type-lab__local-fonts">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Local display family</span>
+                        <input
+                            class="type-lab__text-input"
+                            type="text"
+                            data-tl-key="customDisplay"
+                            data-tl-custom-font="display"
+                            list="type-lab-local-fonts"
+                            autocomplete="off"
+                            placeholder="e.g. Aptos Display"
+                            aria-label="Custom local display font family">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Local body family</span>
+                        <input
+                            class="type-lab__text-input"
+                            type="text"
+                            data-tl-key="customBody"
+                            data-tl-custom-font="body"
+                            list="type-lab-local-fonts"
+                            autocomplete="off"
+                            placeholder="e.g. Avenir Next"
+                            aria-label="Custom local body font family">
+                    </label>
+                </div>
+                <datalist id="type-lab-local-fonts">
+                    <option value="Arial"></option>
+                    <option value="Aptos"></option>
+                    <option value="Aptos Display"></option>
+                    <option value="Calibri"></option>
+                    <option value="Cambria"></option>
+                    <option value="Georgia"></option>
+                    <option value="Noto Sans KR"></option>
+                    <option value="Noto Serif KR"></option>
+                    <option value="NanumGothic"></option>
+                    <option value="NanumMyeongjo"></option>
+                    <option value="Apple SD Gothic Neo"></option>
+                    <option value="Malgun Gothic"></option>
+                    <option value="Segoe UI"></option>
+                    <option value="Times New Roman"></option>
+                </datalist>
+
+                <p class="type-lab__microcopy">
+                    You can also type an exact family name when the browser does not provide the full installed-font list.
+                </p>
+
+                <div class="type-lab__font-files">
+                    <label class="type-lab__file-button">
+                        <span>Load display font file</span>
+                        <span class="type-lab__file-name" data-tl-upload-label="display">TTF, OTF, WOFF</span>
+                        <input type="file" data-tl-font-file="display" accept=".ttf,.otf,.woff,.woff2,font/ttf,font/otf,font/woff,font/woff2">
+                    </label>
+                    <label class="type-lab__file-button">
+                        <span>Load body font file</span>
+                        <span class="type-lab__file-name" data-tl-upload-label="body">TTF, OTF, WOFF</span>
+                        <input type="file" data-tl-font-file="body" accept=".ttf,.otf,.woff,.woff2,font/ttf,font/otf,font/woff,font/woff2">
+                    </label>
+                </div>
+                <p class="type-lab__microcopy">
+                    Font files stay in this browser. Type Lab does not upload them.
+                </p>
+            </div>
+        </details>
+
+        <details class="type-lab__group">
+            <summary class="type-lab__group-summary">
+                <span>Role line</span>
+                <span class="type-lab__group-meta">M.S. Researcher, KAIST…</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <div class="type-lab__range-grid">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Size <output class="type-lab__value" data-tl-output="eyebrowSize"></output></span>
+                        <input type="range" min="9" max="20" step="0.25" data-tl-key="eyebrowSize" aria-label="Role line font size">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Weight</span>
+                        <select data-tl-key="eyebrowWeight" aria-label="Role line font weight">
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                            <option value="600">600</option>
+                            <option value="700">700</option>
+                            <option value="800">800</option>
+                        </select>
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Line height <output class="type-lab__value" data-tl-output="eyebrowLine"></output></span>
+                        <input type="range" min="1" max="2.2" step="0.05" data-tl-key="eyebrowLine" aria-label="Role line line height">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Tracking <output class="type-lab__value" data-tl-output="eyebrowTracking"></output></span>
+                        <input type="range" min="-0.08" max="0.25" step="0.005" data-tl-key="eyebrowTracking" aria-label="Role line letter spacing">
+                    </label>
+                    <label class="type-lab__field type-lab__field--wide">
+                        <span class="type-lab__field-label">Gap below <output class="type-lab__value" data-tl-output="eyebrowBottom"></output></span>
+                        <input type="range" min="0" max="48" step="1" data-tl-key="eyebrowBottom" aria-label="Space below role line">
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <details class="type-lab__group">
+            <summary class="type-lab__group-summary">
+                <span>Main title</span>
+                <span class="type-lab__group-meta">Seonghu Jeon.</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <div class="type-lab__range-grid">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Size <output class="type-lab__value" data-tl-output="titleSize"></output></span>
+                        <input type="range" min="22" max="72" step="0.25" data-tl-key="titleSize" aria-label="Main title font size">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Weight</span>
+                        <select data-tl-key="titleWeight" aria-label="Main title font weight">
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                            <option value="600">600</option>
+                            <option value="700">700</option>
+                            <option value="800">800</option>
+                        </select>
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Line height <output class="type-lab__value" data-tl-output="titleLine"></output></span>
+                        <input type="range" min="0.9" max="1.7" step="0.025" data-tl-key="titleLine" aria-label="Main title line height">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Tracking <output class="type-lab__value" data-tl-output="titleTracking"></output></span>
+                        <input type="range" min="-0.08" max="0.1" step="0.005" data-tl-key="titleTracking" aria-label="Main title letter spacing">
+                    </label>
+                    <label class="type-lab__field type-lab__field--wide">
+                        <span class="type-lab__field-label">Gap below <output class="type-lab__value" data-tl-output="titleBottom"></output></span>
+                        <input type="range" min="0" max="60" step="1" data-tl-key="titleBottom" aria-label="Space below main title">
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <details class="type-lab__group" open>
+            <summary class="type-lab__group-summary">
+                <span>Intro paragraph</span>
+                <span class="type-lab__group-meta">About deck</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <div class="type-lab__range-grid">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Size <output class="type-lab__value" data-tl-output="deckSize"></output></span>
+                        <input type="range" min="12" max="22" step="0.25" data-tl-key="deckSize" aria-label="About intro font size">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Weight</span>
+                        <select data-tl-key="deckWeight" aria-label="About intro font weight">
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                            <option value="600">600</option>
+                        </select>
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Line height <output class="type-lab__value" data-tl-output="deckLine"></output></span>
+                        <input type="range" min="1.1" max="2.2" step="0.025" data-tl-key="deckLine" aria-label="About intro line height">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Tracking <output class="type-lab__value" data-tl-output="deckTracking"></output></span>
+                        <input type="range" min="-0.08" max="0.1" step="0.005" data-tl-key="deckTracking" aria-label="About intro letter spacing">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Measure <output class="type-lab__value" data-tl-output="deckMeasure"></output></span>
+                        <input type="range" min="420" max="900" step="10" data-tl-key="deckMeasure" aria-label="About intro text width">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Gap below <output class="type-lab__value" data-tl-output="deckBottom"></output></span>
+                        <input type="range" min="0" max="64" step="1" data-tl-key="deckBottom" aria-label="Space below About intro">
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <details class="type-lab__group">
+            <summary class="type-lab__group-summary">
+                <span>Section headings</span>
+                <span class="type-lab__group-meta">News, Publications…</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <div class="type-lab__range-grid">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Size <output class="type-lab__value" data-tl-output="sectionTitleSize"></output></span>
+                        <input type="range" min="18" max="48" step="0.25" data-tl-key="sectionTitleSize" aria-label="Section title font size">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Weight</span>
+                        <select data-tl-key="sectionTitleWeight" aria-label="Section title font weight">
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                            <option value="600">600</option>
+                            <option value="700">700</option>
+                            <option value="800">800</option>
+                        </select>
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Line height <output class="type-lab__value" data-tl-output="sectionTitleLine"></output></span>
+                        <input type="range" min="1" max="1.8" step="0.025" data-tl-key="sectionTitleLine" aria-label="Section title line height">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Tracking <output class="type-lab__value" data-tl-output="sectionTitleTracking"></output></span>
+                        <input type="range" min="-0.08" max="0.1" step="0.005" data-tl-key="sectionTitleTracking" aria-label="Section title letter spacing">
+                    </label>
+                    <label class="type-lab__field type-lab__field--wide">
+                        <span class="type-lab__field-label">Gap below heading row <output class="type-lab__value" data-tl-output="sectionHeadGap"></output></span>
+                        <input type="range" min="0" max="60" step="1" data-tl-key="sectionHeadGap" aria-label="Space below section heading row">
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <details class="type-lab__group">
+            <summary class="type-lab__group-summary">
+                <span>Supporting copy</span>
+                <span class="type-lab__group-meta">news, authors, descriptions</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <div class="type-lab__range-grid">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Line height <output class="type-lab__value" data-tl-output="copyLine"></output></span>
+                        <input type="range" min="1.1" max="2.2" step="0.025" data-tl-key="copyLine" aria-label="Supporting copy line height">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Tracking <output class="type-lab__value" data-tl-output="copyTracking"></output></span>
+                        <input type="range" min="-0.06" max="0.08" step="0.005" data-tl-key="copyTracking" aria-label="Supporting copy letter spacing">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Publication text gap <output class="type-lab__value" data-tl-output="pubBodyGap"></output></span>
+                        <input type="range" min="0" max="28" step="1" data-tl-key="pubBodyGap" aria-label="Publication text block gap">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Experience detail gap <output class="type-lab__value" data-tl-output="expDetailGap"></output></span>
+                        <input type="range" min="0" max="24" step="1" data-tl-key="expDetailGap" aria-label="Experience detail top gap">
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <details class="type-lab__group">
+            <summary class="type-lab__group-summary">
+                <span>Page spacing</span>
+                <span class="type-lab__group-meta">sections and list rows</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <div class="type-lab__range-grid">
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Hero top <output class="type-lab__value" data-tl-output="heroTop"></output></span>
+                        <input type="range" min="0" max="120" step="1" data-tl-key="heroTop" aria-label="Hero top spacing">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Hero bottom <output class="type-lab__value" data-tl-output="heroBottom"></output></span>
+                        <input type="range" min="0" max="120" step="1" data-tl-key="heroBottom" aria-label="About hero bottom spacing">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Page hero bottom <output class="type-lab__value" data-tl-output="pageHeroBottom"></output></span>
+                        <input type="range" min="0" max="120" step="1" data-tl-key="pageHeroBottom" aria-label="Other page hero bottom spacing">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Hero column gap <output class="type-lab__value" data-tl-output="heroColumnGap"></output></span>
+                        <input type="range" min="12" max="120" step="2" data-tl-key="heroColumnGap" aria-label="Hero column gap">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Section padding <output class="type-lab__value" data-tl-output="sectionPadding"></output></span>
+                        <input type="range" min="12" max="100" step="1" data-tl-key="sectionPadding" aria-label="Section vertical padding">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">First section top <output class="type-lab__value" data-tl-output="flushSectionTop"></output></span>
+                        <input type="range" min="0" max="80" step="1" data-tl-key="flushSectionTop" aria-label="First section top spacing">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">News row <output class="type-lab__value" data-tl-output="newsRowPadding"></output></span>
+                        <input type="range" min="0" max="30" step="1" data-tl-key="newsRowPadding" aria-label="News row vertical padding">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Publication row <output class="type-lab__value" data-tl-output="pubRowPadding"></output></span>
+                        <input type="range" min="4" max="60" step="1" data-tl-key="pubRowPadding" aria-label="Publication row vertical padding">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Focus row <output class="type-lab__value" data-tl-output="focusRowPadding"></output></span>
+                        <input type="range" min="4" max="60" step="1" data-tl-key="focusRowPadding" aria-label="Focus row vertical padding">
+                    </label>
+                    <label class="type-lab__field">
+                        <span class="type-lab__field-label">Experience row <output class="type-lab__value" data-tl-output="expRowPadding"></output></span>
+                        <input type="range" min="4" max="50" step="1" data-tl-key="expRowPadding" aria-label="Experience row vertical padding">
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <details class="type-lab__group">
+            <summary class="type-lab__group-summary">
+                <span>Advanced CSS</span>
+                <span class="type-lab__group-meta">anything not covered above</span>
+            </summary>
+            <div class="type-lab__group-body">
+                <label class="type-lab__field">
+                    <span class="type-lab__field-label">Live override</span>
+                    <textarea
+                        class="type-lab__code-input"
+                        data-tl-key="advancedCss"
+                        aria-label="Advanced CSS override"
+                        spellcheck="false"
+                        placeholder=".pf-news-body { font-size: 13px; }&#10;.pf-exp-item { grid-template-columns: 180px 1fr 90px; }"></textarea>
+                </label>
+                <p class="type-lab__microcopy">
+                    The CSS applies immediately and is included when you copy the final settings.
+                </p>
+            </div>
+        </details>
+
+        <div class="type-lab__actions">
+            <button class="type-lab__button" type="button" data-tl-action="compare" aria-pressed="false">Show site baseline</button>
+            <button class="type-lab__button type-lab__button--primary" type="button" data-tl-action="copy">Copy CSS</button>
+            <button class="type-lab__button" type="button" data-tl-action="reset">Reset working choice</button>
+            <button class="type-lab__button" type="button" data-tl-action="disable">Exit lab</button>
+            <p class="type-lab__status" data-tl-status role="status" aria-live="polite"></p>
+            <p class="type-lab__footnote">Open again with <strong>?typelab=1</strong>. Preview settings stay only on this device.</p>
+        </div>
+    </div>
+</aside>

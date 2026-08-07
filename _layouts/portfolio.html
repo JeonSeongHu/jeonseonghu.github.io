@@ -7,6 +7,7 @@
     <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 
@@ -54,6 +55,9 @@
             <span><span class="pf-foot-mark">*</span> Last updated {{ site.time | date: "%Y.%m" }}</span>
         </div>
     </footer>
+
+    {% include type-lab.html %}
+    <script src="{{ site.baseurl }}/assets/js/type-lab.js" defer></script>
 
     {% if is_about %}
     <script>

@@ -54,3 +54,7 @@
 /* 8. Utilities (last - can override anything) */
 @import "utilities/responsive";
 @import "utilities/animations";
+
+/* Opt-in typography playground. Kept last so its preview variables can
+   override page-level typography without changing the public default. */
+@import "components/type-lab";

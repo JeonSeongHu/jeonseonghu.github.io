@@ -96,7 +96,7 @@ so existing components keep working until they are migrated.
   `--ink` and `.blue` for emphasised venues.
 
 ### Publications
-- Three-column rows: thumbnail · body · links. Hairline `border-top` between
+- Three-column rows: thumbnail, body, links. Hairline `border-top` between
   rows; subtle `rgba(0,64,255,0.018)` hover wash on the entire row.
 - Thumbnail: 16:11 aspect, parchment with hatched overlay, `fig.NN` tag in
   the top-left.

@@ -10,7 +10,7 @@ custom_css_class: portfolio-page
 
 <section class="pf-hero" id="hero">
 	<div class="pf-hero-text">
-		<div class="pf-eyebrow">M.S. Researcher · KAIST CVLAB · MAUM AI</div>
+		<div class="pf-eyebrow">M.S. Researcher, KAIST CVLAB, MAUM AI</div>
 		<h1 class="pf-h1">Seonghu Jeon<span class="pf-blue">.</span></h1>
 		<p class="pf-deck">
 			I'm interested in how machines come to understand and represent the physical world, and how they can build on that to generate and act in it. I'm a first-year M.S. researcher at KAIST CVLAB and currently a research intern at MAUM AI's WoRV Division, Future Intelligence Lab. My research so far has centered on <b>multi-view diffusion and 4D generation</b>, and I'm now exploring <b>3D foundation models, geometric action models, and Robotics Foundation Model development</b>. Reach me at <a href="mailto:seonghu.jeon@kaist.ac.kr">seonghu.jeon@kaist.ac.kr</a>.
@@ -23,7 +23,6 @@ custom_css_class: portfolio-page
 	</div>
 	<div class="pf-portrait">
 		<img src="{{ site.baseurl }}/assets/images/profile_400.png" alt="Seonghu Jeon" loading="lazy">
-		<span class="pf-portrait-corner" aria-hidden="true"></span>
 	</div>
 </section>
 
@@ -38,11 +37,11 @@ custom_css_class: portfolio-page
 	<div class="pf-news-list">
 		<div class="pf-news-item pf-news-item--oral">
 			<span class="pf-news-date">2026.07</span>
-			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎤</span><b>GLD</b> was selected for an <b>Oral Presentation</b> at <b>ECCV 2026</b>.</span>
+			<span class="pf-news-body"><b>GLD</b> was selected for a <span class="pf-oral-highlight">Long Oral Presentation</span> at <b>ECCV 2026</b>.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.07</span>
-			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🤖</span>Joined <b>MAUM AI</b>'s WoRV Division, Future Intelligence Lab as a research intern for Robotics Foundation Model development.</span>
+			<span class="pf-news-body">Joined <b>MAUM AI</b>'s WoRV Division, Future Intelligence Lab as a research intern for Robotics Foundation Model development.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.06</span>
@@ -50,11 +49,11 @@ custom_css_class: portfolio-page
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.03</span>
-			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎓</span>Joined <b>KAIST CVLAB</b> as an M.S. student under Prof. Seungryong Kim.</span>
+			<span class="pf-news-body">Joined <b>KAIST CVLAB</b> as an M.S. student under Prof. Seungryong Kim.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2026.02</span>
-			<span class="pf-news-body"><span class="pf-news-icon" aria-hidden="true">🎉</span><b>CAMEO</b> accepted to <span class="pf-blue">CVPR 2026</span> for correspondence-attention alignment in multi-view diffusion.</span>
+			<span class="pf-news-body"><b>CAMEO</b> accepted to <span class="pf-blue">CVPR 2026</span> for correspondence-attention alignment in multi-view diffusion.</span>
 		</div>
 		<div class="pf-news-item">
 			<span class="pf-news-date">2025.07</span>
@@ -100,7 +99,7 @@ custom_css_class: portfolio-page
 			<div class="pf-pub-body">
 				<div class="pf-pub-venue{% if hi %} is-hi{% endif %}">
 					<span class="pf-pub-pin"></span>{{ pub.venue }}
-					{% if pub.oral %}<span class="pf-oral-badge">Oral</span>{% endif %}
+					{% if pub.oral %}<span class="pf-oral-badge">Long Oral</span>{% endif %}
 				</div>
 				<h3 class="pf-pub-title"><a href="{{ site.baseurl }}{{ pub.url }}">{{ pub.title }}</a></h3>
 				<p class="pf-pub-authors">
@@ -133,7 +132,7 @@ custom_css_class: portfolio-page
 				<span class="pf-focus-num">01</span>
 				<span class="pf-focus-label">3D / 4D vision</span>
 			</div>
-			<p class="pf-focus-desc">Reconstructing static and dynamic scenes from sparse views, and studying how geometry-trained foundation models transfer to view synthesis, including GLD, an ECCV 2026 Oral Presentation.</p>
+			<p class="pf-focus-desc">Reconstructing static and dynamic scenes from sparse views, and studying how geometry-trained foundation models transfer to view synthesis, including GLD, an ECCV 2026 Long Oral Presentation.</p>
 		</div>
 		<div class="pf-focus-item">
 			<div class="pf-focus-head">
@@ -162,7 +161,7 @@ custom_css_class: portfolio-page
 
 	<div class="pf-exp-list">
 		<div class="pf-exp-item">
-			<span class="pf-exp-org">MAUM AI · WoRV Division, Future Intelligence Lab</span>
+			<span class="pf-exp-org">MAUM AI, WoRV Division, Future Intelligence Lab</span>
 			<div class="pf-exp-mid">
 				<div class="pf-exp-role">Research Intern</div>
 				<div class="pf-exp-detail">Participating in Robotics Foundation Model development.</div>
