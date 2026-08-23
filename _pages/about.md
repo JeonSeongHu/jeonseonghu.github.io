@@ -76,6 +76,10 @@ lang: en
 		</div>
 	</header>
 	<div class="pf-news-list">
+		<div class="pf-news-item">
+			<span class="pf-news-date">2026.08</span>
+			<span class="pf-news-body"><b>GAM</b> was accepted to <a href="https://eccv2026-3d-world-models.github.io/" target="_blank" rel="noopener"><b>3DWM @ ECCV 2026</b></a>.</span>
+		</div>
 		<div class="pf-news-item pf-news-item--oral">
 			<span class="pf-news-date">2026.07</span>
 			<span class="pf-news-body"><b>GLD</b> was selected for a <span class="pf-oral-highlight">Long Oral Presentation</span> at <b>ECCV 2026</b>.</span>

@@ -6,7 +6,7 @@ short_title: "GAM"
 description: "A language-conditioned robot policy that repurposes a pretrained geometric foundation model for perception, future geometry prediction, and action decoding."
 image: "/assets/images/projects/gam-teaser.webp"
 authors: "Jisang Han*, Seonghu Jeon*, Jaewoo Jung, René Zurbrügg, Honggyu An, Tifanny Portela, Marco Hutter, Marc Pollefeys, Seungryong Kim†, Sunghwan Hong†"
-venue: "Under Review, 2026"
+venue: "3DWM @ ECCV 2026"
 date: 2026-06-15
 role: "Equal Contribution"
 link: "https://arxiv.org/abs/2606.17046"
@@ -45,3 +45,4 @@ Across simulation and real-robot manipulation benchmarks, GAM improves accuracy,
 - [PDF](https://arxiv.org/pdf/2606.17046)
 - [Project Page](https://cvlab-kaist.github.io/Geometric-Action-Model/)
 - [Code](https://github.com/cvlab-kaist/Geometric-Action-Model)
+- [3DWM @ ECCV 2026](https://eccv2026-3d-world-models.github.io/)
