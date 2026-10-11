@@ -57,7 +57,7 @@ Home-only tokens on `.pf-home`: `--h-hover #F6F7F9` (news row hover),
 | Intro `.pf-deck` | 17px / 400 / 1.6 |
 | Section title | 25px / 500 / 1.25, -0.02em |
 | Nav links | 16px / 400, grey; active blue |
-| Hero quick links | 15px / 500 / 1.3; group label 12.5px / 500 grey |
+| Hero quick links | 14.5px / 400 / 1.3, `--pf-ink-2`, arrows only on hover; group label 12.5px / 500 grey |
 | News sentence | 15px / 400 / 24px; newest item 16px / 500 ink |
 | News detail | 14px / 400 / 1.55 grey; links 13px / 500 blue |
 | News category | 13px / 500 with 14px icon; Paper and Honor blue |

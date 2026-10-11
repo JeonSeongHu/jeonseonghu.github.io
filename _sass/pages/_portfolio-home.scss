@@ -47,31 +47,33 @@
     grid-row: 1;
     align-self: end;
     display: flex;
-    gap: 40px;
+    gap: 56px;
 }
+/* Regular weight, arrows only on hover: the group labels already say
+   which links stay on the page and which leave it. */
 .pf-hero-group {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
 
     a {
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        font-size: 15px;
-        font-weight: 500;
+        font-size: 14.5px;
+        font-weight: 400;
         line-height: 1.3;
-        color: var(--pf-ink);
+        color: var(--pf-ink-2);
         white-space: nowrap;
         transition: color 0.12s ease;
 
-        .pf-arr { margin-left: -1px; }
-        .pf-icon { color: var(--pf-ink-3); }
+        .pf-arr { margin-left: -1px; opacity: 0; transition: opacity 0.12s ease, color 0.12s ease, transform 0.15s ease; }
+        .pf-icon { color: var(--pf-ink-4); }
 
-        &:hover { color: var(--pf-blue); }
-        &:hover .pf-arr { color: var(--pf-blue); }
-        &:hover .pf-icon { color: var(--pf-blue); }
+        &:hover, &:focus-visible { color: var(--pf-blue); }
+        &:hover .pf-arr, &:focus-visible .pf-arr { color: var(--pf-blue); opacity: 1; }
+        &:hover .pf-icon, &:focus-visible .pf-icon { color: var(--pf-blue); }
     }
 }
 .pf-hero-group--page a:hover .pf-arr { transform: translateY(2px); }
@@ -80,7 +82,7 @@
     font-size: 12.5px;
     font-weight: 500;
     color: var(--pf-ink-4);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 /* ============= Section heads ============= */

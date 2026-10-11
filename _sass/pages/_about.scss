@@ -22,6 +22,9 @@ body.layout-portfolio {
     --pf-blue:         #2F58C9;
     --pf-blue-on-dark: #9DB3F0;
     --pf-blue-soft:    #EAEEF9;
+    /* base/global.scss has `a:hover { color: var(--color-primary) !important }`;
+       point it at the portfolio accent so hovers are not the old theme blue. */
+    --color-primary:   var(--pf-blue);
     --pf-sans: "Wanted Sans", "Wanted Sans Variable", Paperlogy, "Pretendard Variable", "Pretendard", system-ui, sans-serif;
     --pf-display: "Wanted Sans", "Wanted Sans Variable", Paperlogy, "Pretendard Variable", "Pretendard", system-ui, sans-serif;
     --pf-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", SFMono-Regular, Menlo, Consolas, monospace;
