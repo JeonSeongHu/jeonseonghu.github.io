@@ -87,7 +87,29 @@
     });
   }
 
-  // ---------- Mobile section menu ----------
+  // ---------- Sidebar: highlight the section in view ----------
+  var toc = document.querySelector('[data-toc]');
+  if (toc) {
+    var tocLinks = Array.prototype.slice.call(toc.querySelectorAll('a'));
+    var tocSecs = tocLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var spy = function () {
+      var line = window.innerHeight * 0.35;
+      var idx = -1;
+      tocSecs.forEach(function (sec, i) { if (sec && sec.getBoundingClientRect().top <= line) idx = i; });
+      // the last section is short; mark it once the page bottom is reached
+      if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 2) idx = tocSecs.length - 1;
+      tocLinks.forEach(function (a, i) {
+        a.classList.toggle('is-active', i === idx);
+        if (i === idx) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      });
+    };
+    // scroll events already arrive at most once per frame; four rect reads are cheap
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
+  }
+
+  // ---------- Floating section menu ----------
   var fab = document.querySelector('[data-fab]');
   if (fab) {
     var btn = fab.querySelector('.pf-fab-btn');

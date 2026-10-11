@@ -11,6 +11,18 @@ lang: en
 
 <div class="pf-home">
 
+<nav class="pf-toc" aria-label="On this page" data-toc>
+	<div class="pf-toc-inner">
+		<span class="pf-toc-label">On this page</span>
+		<ul class="pf-toc-list">
+			<li><a href="#news">News</a></li>
+			<li><a href="#publications">Research</a></li>
+			<li><a href="#focus">Focus</a></li>
+			<li><a href="#experience">Experience</a></li>
+		</ul>
+	</div>
+</nav>
+
 <section class="pf-hero" id="hero">
 	<div class="pf-hero-text">
 		<div class="pf-eyebrow">Integrated M.S./Ph.D. Student<span class="pf-eyebrow-sep">, </span><span class="pf-eyebrow-org">KAIST CVLAB</span></div>
@@ -20,13 +32,6 @@ lang: en
 		</p>
 	</div>
 	<nav class="pf-hero-nav" aria-label="Quick links">
-		<div class="pf-hero-group pf-hero-group--page">
-			<span class="pf-hero-label">On this page</span>
-			<a href="#news">News<span class="pf-arr" aria-hidden="true">↓</span></a>
-			<a href="#publications">Research<span class="pf-arr" aria-hidden="true">↓</span></a>
-			<a href="#focus">Focus<span class="pf-arr" aria-hidden="true">↓</span></a>
-			<a href="#experience">Experience<span class="pf-arr" aria-hidden="true">↓</span></a>
-		</div>
 		<div class="pf-hero-group pf-hero-group--ext">
 			<span class="pf-hero-label">Elsewhere</span>
 			<a href="{{ site.baseurl }}/cv/">{% include icon.html name="cv" size=15 %}CV<span class="pf-arr" aria-hidden="true">↗</span></a>

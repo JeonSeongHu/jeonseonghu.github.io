@@ -76,7 +76,6 @@
         &:hover .pf-icon, &:focus-visible .pf-icon { color: var(--pf-blue); }
     }
 }
-.pf-hero-group--page a:hover .pf-arr { transform: translateY(2px); }
 .pf-hero-label {
     line-height: 1.3;
     font-size: 12.5px;
@@ -477,36 +476,58 @@
     li + li { margin-top: 3px; }
 }
 
-/* ============= Mobile section menu ============= */
+/* ============= Section sidebar (wide screens) ============= */
+/* Sits in the left margin, outside the 960px content box, and follows the
+   reader down the page. Below 1264px the floating menu takes over. */
+.pf-toc { display: none; }
+@media (min-width: 1264px) {
+    .pf-home { position: relative; }
+    .pf-toc {
+        display: block;
+        position: absolute;
+        top: 56px;              /* level with the hero eyebrow */
+        bottom: 0;
+        right: 100%;
+        width: 92px;
+        margin-right: 32px;
+    }
+}
+.pf-toc-inner {
+    position: sticky;
+    top: 96px;
+}
+.pf-toc-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--pf-ink-4);
+}
+.pf-toc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 1px solid var(--pf-hairline);
+
+    a {
+        display: block;
+        margin-left: -1px;
+        padding: 5px 0 5px 12px;
+        border-left: 2px solid transparent;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--pf-ink-3);
+        transition: color 0.12s ease, border-color 0.12s ease;
+
+        &:hover { text-decoration: none; }  // colour comes from the global a:hover (accent)
+        &.is-active { color: var(--pf-blue); border-left-color: var(--pf-blue); }
+    }
+}
+
+/* ============= Floating section menu (below 1264px) ============= */
 .pf-fab { display: none; }
-
-/* ============= Tablet ============= */
-@media (max-width: 860px) {
-    .pf-home .pf-hero {
-        grid-template-columns: minmax(0, 1fr) 96px;
-        column-gap: 24px;
-    }
-    .pf-home .pf-hero-text { display: contents; }
-    .pf-home .pf-portrait { grid-column: 2; grid-row: 1 / 3; }
-    .pf-hero-nav { grid-column: 1 / -1; grid-row: 4; padding-top: 20px; }
-    .pf-hero-group--page { display: none; }
-    .pf-hero-group--ext {
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px 20px;
-
-        .pf-hero-label { display: none; }
-        a { font-size: 14px; }
-        .pf-arr { display: none; }
-    }
-
-    .pf-hhead--row { flex-direction: column; align-items: flex-start; gap: 12px; }
-
-    .pf-focus { grid-template-columns: minmax(0, 1fr) 112px minmax(0, 1fr); }
-    .pf-fpanel { padding: 20px; }
-    .pf-loop-svg--h { width: 100px; height: 56px; }
-
+@media (max-width: 1263px) {
     .pf-fab {
         position: fixed;
         z-index: 90;
@@ -566,6 +587,33 @@
             &:hover { background: var(--h-model-bg); }
         }
     }
+}
+
+/* ============= Tablet ============= */
+@media (max-width: 860px) {
+    .pf-home .pf-hero {
+        grid-template-columns: minmax(0, 1fr) 96px;
+        column-gap: 24px;
+    }
+    .pf-home .pf-hero-text { display: contents; }
+    .pf-home .pf-portrait { grid-column: 2; grid-row: 1 / 3; }
+    .pf-hero-nav { grid-column: 1 / -1; grid-row: 4; padding-top: 20px; }
+    .pf-hero-group--ext {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+
+        .pf-hero-label { display: none; }
+        a { font-size: 14px; }
+        .pf-arr { display: none; }
+    }
+
+    .pf-hhead--row { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+    .pf-focus { grid-template-columns: minmax(0, 1fr) 112px minmax(0, 1fr); }
+    .pf-fpanel { padding: 20px; }
+    .pf-loop-svg--h { width: 100px; height: 56px; }
 }
 
 /* ============= Narrow: Focus panels stack, loop turns vertical ============= */

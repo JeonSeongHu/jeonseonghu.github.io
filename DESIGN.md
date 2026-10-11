@@ -57,7 +57,8 @@ Home-only tokens on `.pf-home`: `--h-hover #F6F7F9` (news row hover),
 | Intro `.pf-deck` | 17px / 400 / 1.6 |
 | Section title | 25px / 500 / 1.25, -0.02em |
 | Nav links | 16px / 400, grey; active blue |
-| Hero quick links | 14.5px / 400 / 1.3, `--pf-ink-2`, arrows only on hover; group label 12.5px / 500 grey |
+| Hero "Elsewhere" links | 14.5px / 400 / 1.3, `--pf-ink-2`, arrows only on hover; label 12.5px / 500 grey |
+| Sidebar links | 14px / 400 / 1.4 grey; active blue with a 2px blue bar; label 12.5px / 500 grey |
 | News sentence | 15px / 400 / 24px; newest item 16px / 500 ink |
 | News detail | 14px / 400 / 1.55 grey; links 13px / 500 blue |
 | News category | 13px / 500 with 14px icon; Paper and Honor blue |
@@ -75,8 +76,11 @@ Home-only tokens on `.pf-home`: `--h-hover #F6F7F9` (news row hover),
 - Section order on the home page: Hero, News & notes, Featured research,
   Focus, Experience. Sections use `padding: 40px 0` and a 20px gap under the
   title.
-- Hero grid: text, quick links ("On this page" and "Elsewhere"), 148px 4:5
+- Hero grid: text, "Elsewhere" links (CV, Google Scholar, GitHub), 148px 4:5
   portrait, 48px gaps, bottoms aligned.
+- Section sidebar ("On this page"): 92px wide, in the left margin 32px outside
+  the content box, starting level with the portrait and sticking 96px from the
+  top while the page scrolls. Shown from 1264px up.
 - Timelines (News and Experience) share one rail: 128px right-aligned date,
   28px track with the dot and a 1px line, then content. News adds a 104px
   category column.
@@ -106,18 +110,24 @@ Home-only tokens on `.pf-home`: `--h-hover #F6F7F9` (news row hover),
   panel.
 - **Experience**: entries from `_data/experience.yml` (dates, now, role, org,
   bullets). Current positions get a blue dot and a blue "Present".
-- **Mobile section menu**: a round ink button fixed bottom right, shown once
-  the hero scrolls out of view. It opens a panel of section links and closes
-  on a link click or Escape.
+- **Section sidebar**: News, Research, Focus, Experience on a 1px hairline.
+  The section whose top has passed 35% of the viewport height is marked
+  active; at the page bottom, Experience is.
+- **Floating section menu**: below 1264px, where the sidebar does not fit, a
+  round ink button fixed bottom right, shown once the hero scrolls out of
+  view. It opens a panel of section links and closes on a link click or
+  Escape.
 - **Behaviour**: `assets/js/home.js` runs the filter, collapse, Details
-  toggles, Focus hover state and the section menu.
+  toggles, Focus hover state, the sidebar highlight and the section menu.
 - **Footer**: parchment band with copyright, links and "Last updated".
 
 ## 5. Responsive
 
 | Breakpoint | Behavior |
 | --- | --- |
-| `≤ 860px` | Gutter 20px. Contact pill hidden. Portrait (96px) beside the name. "On this page" links hidden; external links in one row. Filter pills move under the title. Thumbnails 168px. Focus loop column 112px. Section menu button appears. Name 34px. |
+| `≥ 1264px` | Section sidebar in the left margin. |
+| `≤ 1263px` | Sidebar hidden; floating section menu instead. |
+| `≤ 860px` | Gutter 20px. Contact pill hidden. Portrait (96px) beside the name. External links in one row. Filter pills move under the title. Thumbnails 168px. Focus loop column 112px. Name 34px. |
 | `≤ 640px` | Focus panels stack and the loop turns vertical. Publication thumbnails 88px on the right. |
 | `≤ 560px` | Gutter 16px. Portrait 76px. News shows date over sentence, no category, no detail; collapses to three rows plus a faded row. Authors, links and experience bullets fold behind "Details". Name 30px, section titles 20px. Footer stacks. |
 | `≤ 360px` | Name in the nav hidden. |
