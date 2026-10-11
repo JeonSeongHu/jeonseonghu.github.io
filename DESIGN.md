@@ -1,165 +1,123 @@
-# Portfolio Redesign — Design Spec
+# Portfolio Design Spec
 
-A documentation of the new editorial / Apple-flavored portfolio design that
-replaces the previous "card grid" about page. This file is the single source of
-truth for the visual language; SCSS tokens and page templates should mirror it.
+The visual language of the portfolio layout (`_layouts/portfolio.html`), used by
+the About, Publications, Projects, CV and blog pages. Shared SCSS lives in
+`_sass/pages/_about.scss`; the home page components (hero links, News, Focus,
+Experience, mobile menu) live in `_sass/pages/_portfolio-home.scss`. This file
+must mirror both. The Figma source is the "jeonseonghu.github.io" page, frames
+"Home / Desktop 1440 (v10)" and "Home / Mobile 375 (light)".
+
+Type Lab (`_includes/type-lab.html`, dev only) still tunes the shared type
+scale; its `DEFAULTS` in `assets/js/type-lab.js` and the fallbacks in
+`_sass/components/_type-lab.scss` match the values below. It does not cover the
+home page components.
 
 ## 1. Direction
 
-Editorial document × Apple Today-card hybrid.
+Editorial document, flat and quiet.
 
-- Generous whitespace, no decorative panels — content sits on a flat parchment
-  canvas separated by hairline rules and quiet section numbers.
-- Type and color do all the work. There are exactly **two** chromatic accents:
-  `--blue` for emphasis (links, key venues, "active" state) and the dark
-  charcoal `--tile-dark` reserved for inverted "now / focus" tiles.
-- Layout is column-based and dense: a 1080px shell with a 32px gutter; sections
-  separated by 1px hairlines, never by background color shifts.
-- Motion is restrained: 120ms color transitions, 150ms opacity/transform on
-  buttons, no parallax or large entrance animations.
+- White canvas, no shadows. Sections are separated by 1px hairlines. The only
+  tinted surfaces are the two Focus panels and the active filter pill.
+- One family (Wanted Sans) in three weights: 400 for text, 500 for meta, links
+  and titles, 600 for the hero name, the nav name and experience roles.
+- One accent, Cobalt (`--pf-blue`), for the active nav item, venues, honors,
+  "Present", the newest news item and interactive highlights.
+- One emphasis per line: in a news sentence the subject is ink 500 and the
+  venue is blue 400; nothing else is bold.
+- Line icons (2px stroke on a 24px grid, `currentColor`) from
+  `_includes/icon.html`.
+- Motion is restrained: 120 to 250ms color, opacity and height transitions.
+  The Focus loop has a runner dot that is hidden under
+  `prefers-reduced-motion`.
 
-## 2. Color Tokens
+## 2. Tokens
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--canvas` | `#FFFFFF` | Page background |
-| `--parchment` | `#F5F5F7` | Frosted nav, footer, portrait, thumbnails |
-| `--tile-dark` | `#1D1D1F` | Reserved for inverted/dark sections |
-| `--hairline` | `#E6E7EB` | Section dividers, list rules |
-| `--ink` | `#1D1D1F` | Primary text, headings |
-| `--ink-2` | `#2A2C32` | Body copy |
-| `--ink-3` | `#6B6E76` | Secondary copy, dates |
-| `--ink-4` | `#A1A4AB` | Captions, asides |
-| `--on-dark` | `#F5F5F7` | Text on dark sections |
-| `--on-dark-2` | `#B8B9BD` | Secondary text on dark sections |
-| `--blue` | `#0040FF` | Single accent: links, eyebrows, "now" tile |
-| `--blue-on-dark` | `#5C7CFF` | Accent variant on dark surfaces |
-| `--blue-soft` | `#E6EDFF` | Underline / hover wash |
+| `--pf-canvas` | `#FFFFFF` | Page background |
+| `--pf-parchment` | `#F5F5F7` | Footer, portrait and thumbnail tiles |
+| `--pf-hairline` | `#E6E7EB` | Section dividers, timeline lines |
+| `--pf-ink` | `#0A0A0A` | Names, titles, emphasis |
+| `--pf-ink-2` | `#2A2C32` | Body copy (intro, news) |
+| `--pf-ink-3` | `#6E6E6E` | Authors, descriptions, nav links |
+| `--pf-ink-4` | `#75757A` | Dates and labels (at least 4.5:1 on white) |
+| `--pf-blue` | `#2F58C9` | Cobalt accent |
+| `--pf-blue-soft` | `#EAEEF9` | Active filter pill, Contact hover |
+| `--pf-blue-on-dark` | `#9DB3F0` | Accent on dark surfaces |
 
-The legacy indigo palette (`--color-primary` etc.) is mapped onto these tokens
-so existing components keep working until they are migrated.
+Home-only tokens on `.pf-home`: `--h-hover #F6F7F9` (news row hover),
+`--h-dot #C9CBD1` (timeline dot), `--h-chip #F3F4F6` (idle pill),
+`--h-plan-bg #EEF2FC` and `--h-model-bg #F5F5F7` (Focus panels),
+`--h-line #B4B7BF` (inactive brain), `--h-grey #A9ACB4` (dashed loop arc).
 
-## 3. Typography
+| Role | Size / weight / line-height |
+| --- | --- |
+| Hero name `.pf-h1`, page title | 40px / 600 / 1.1, -0.025em, blue trailing period |
+| Eyebrow | 13px / 500, blue |
+| Intro `.pf-deck` | 17px / 400 / 1.6 |
+| Section title | 25px / 500 / 1.25, -0.02em |
+| Nav links | 16px / 400, grey; active blue |
+| Hero quick links | 15px / 500 / 1.3; group label 12.5px / 500 grey |
+| News sentence | 15px / 400 / 24px; newest item 16px / 500 ink |
+| News detail | 14px / 400 / 1.55 grey; links 13px / 500 blue |
+| News category | 13px / 500 with 14px icon; Paper and Honor blue |
+| Publication venue | 13px / 500 blue; "/ Long Oral" with honor icon |
+| Publication title | 17px / 500 / 1.4 |
+| Authors | 14px / 400 / 1.55 grey; own name ink 500 |
+| Focus term / description | 20px / 500; 15px / 400 / 1.6 |
+| Experience role / org / bullets | 16px / 600; 14px grey; 14.5px / 1.6 grey |
+| Dates | 14px / 400, tabular numbers, `--pf-ink-4` |
 
-- Family: **DM Sans** (Google Fonts, opsz 9–40, weights 300/400/500/600/700).
-  Fallback: `-apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif`.
-- Body: `15px / 1.55`, weight 400, `letter-spacing` neutral. Color `--ink`.
-- Hero `h1`: `clamp(56px, 8vw, 88px)`, weight 500, `line-height: 0.96`,
-  `letter-spacing: -0.05em`. Trailing blue period (`.`) is part of the lockup.
-- Section title `h2`: `36px`, weight 500, `letter-spacing: -0.04em`.
-- Section number eyebrow: `12px / 500 / blue`, format `— 02`.
-- Publication title: `17px / 500`, `letter-spacing: -0.025em`.
-- Body emphasis: `b` is `font-weight: 600` and bumps to `--ink`.
-- Numerals are tabular (`font-variant-numeric: tabular-nums`) in dates and
-  bylines so columns line up.
+## 3. Layout
 
-## 4. Layout
+- Shell: `.pf-main` max 1024px with 32px side padding (content box 960px).
+  Nav inner and footer inner use the same box.
+- Section order on the home page: Hero, News & notes, Featured research,
+  Focus, Experience. Sections use `padding: 40px 0` and a 20px gap under the
+  title.
+- Hero grid: text, quick links ("On this page" and "Elsewhere"), 148px 4:5
+  portrait, 48px gaps, bottoms aligned.
+- Timelines (News and Experience) share one rail: 128px right-aligned date,
+  28px track with the dot and a 1px line, then content. News adds a 104px
+  category column.
+- Featured research row: text column on the left, 232 by 148 thumbnail on the
+  right, 24px vertical padding, hairline between rows.
+- Focus: two panels (16px radius, 24px padding) with a 152px loop column
+  between them.
 
-- Page shell: `max-width: 1080px`, horizontal padding `32px` (16px on mobile).
-- Section vertical rhythm: `padding: 72px 0`, separated by a 1px `--hairline`.
-- Hero is `padding: 88px 0 72px`, two-column grid `1fr 220px` (collapses below
-  860px). Right column is a 4:5 portrait tile.
-- News / experience / focus / publications all share a strict
-  `grid-template-columns` schema rather than ad-hoc flex spacing:
-  - News: `80px 1fr`
-  - Publications: `140px 1fr auto`
-  - Focus: `200px 1fr`
-  - Experience: `200px 1fr 100px`
-- Mobile breakpoint at **860px** collapses every grid to a single column and
-  drops the secondary nav links (the brand and contact pill remain).
+## 4. Components
 
-## 5. Components
+- **Nav**: sticky, 52px. Name (15px / 600) left, links middle, outlined
+  "Contact" pill right.
+- **News**: filter pills (All, Paper, Honor, Career, Education) on the right of
+  the title. Entries come from `_data/news.yml` (date, category, text with
+  `<b>` subject and `.v` venue, detail, links; a link starting with `#` jumps
+  within the page). The newest entry is open with its detail. Other entries
+  show their detail on hover or keyboard focus, with a grey wash and a larger
+  blue dot. The list collapses to the newest entry plus three, a faded row and
+  a "Show all N" button.
+- **Featured research**: venue kicker, title, authors, links. The four newest
+  publications from `_projects`.
+- **Focus**: Agentic Robotics (cerebrum) then 3D/4D World Model
+  (cerebellum). Each panel has a side-view brain from `_includes/brain.html`
+  with its own region drawn in blue. Between the panels,
+  `_includes/focus-loop.html` draws a solid blue "plans" arc and a dashed grey
+  "predictions" arc. Hovering a panel thickens its arc and dims the other
+  panel.
+- **Experience**: entries from `_data/experience.yml` (dates, now, role, org,
+  bullets). Current positions get a blue dot and a blue "Present".
+- **Mobile section menu**: a round ink button fixed bottom right, shown once
+  the hero scrolls out of view. It opens a panel of section links and closes
+  on a link click or Escape.
+- **Behaviour**: `assets/js/home.js` runs the filter, collapse, Details
+  toggles, Focus hover state and the section menu.
+- **Footer**: parchment band with copyright, links and "Last updated".
 
-### Top nav
-- Sticky, `height: 52px`, `background: rgba(245,245,247,0.78)` with a 20px
-  `backdrop-filter: blur` and 1px hairline bottom.
-- Brand on the left in 16px / 600, blue period after the name.
-- Center: 13px / 400 nav links — `About`, `News`, `Publications`, `Focus`,
-  `Experience`. Active state derived from `IntersectionObserver` and rendered
-  in `--blue`.
-- Right: pill-shaped "Contact" CTA, blue background, white text.
-
-### Hero portrait
-- 4:5 aspect ratio, parchment background with a 135° hatched repeating
-  gradient (`rgba(29,29,31,0.045)` 1px every 11px) and a 28×28 blue square in
-  the top-right corner. Caption pill bottom-left.
-- Replaceable with a real photograph; portrait styling is a placeholder so the
-  layout reads even without an image.
-
-### Section header
-- `— NN` blue number + 36px title on the left, optional `--ink-4` aside on the
-  right (entry count, "most recent first", etc.).
-
-### News list
-- Two-column rows (`80px 1fr`), 7px vertical padding, no separators between
-  items. Date is `--ink-4` tabular; body uses `--ink-2` with `b` bumps to
-  `--ink` and `.blue` for emphasised venues.
-
-### Publications
-- Three-column rows: thumbnail, body, links. Hairline `border-top` between
-  rows; subtle `rgba(0,64,255,0.018)` hover wash on the entire row.
-- Thumbnail: 16:11 aspect, parchment with hatched overlay, `fig.NN` tag in
-  the top-left.
-- "Featured" variant: thumbnail background swaps to solid `--blue` with a
-  radial highlight; the paper short-name (e.g. CAMEO) prints in white at the
-  bottom-left.
-- Venue pill: 5px dot + venue text, `.hi` modifier flips it to `--blue` when
-  the venue is a marquee conference (`CVPR`, `Oral`, etc.).
-- Author byline: `--ink-3`, equal-contribution stars are `--ink-4`, the
-  author's own name (`.me`) is `--blue` / 600.
-- Links use the `↗` glyph, `--ink-3` → `--blue` on hover.
-
-### Focus
-- Three numbered rows. Left column is the label (22px / 500), right is a
-  one-paragraph description (`--ink-2`, 15px / 1.6).
-- Followed by a **Now card**: solid `--blue` rounded tile (`border-radius:
-  12px`, `padding: 24px 28px`), `/ Now` uppercase tag, single-sentence update,
-  trailing arrow link that nudges 3px right on hover.
-
-### Experience
-- Three columns: org / role+detail / time. Time uses `--ink-4`, with `now`
-  rendered in `--blue`.
-
-### Footer
-- Parchment background, single horizontal row: copyright, link cluster,
-  "Last updated" tag with a leading blue dot.
-
-### Sticky bottom CTA (optional)
-- Translates in once the user scrolls past the hero. Same frosted styling as
-  the top nav. Holds the current paper title + a quick "read" pill.
-
-## 6. Interaction
-
-- Smooth scroll on the root.
-- IntersectionObserver with `rootMargin: -30% 0px -65% 0px` toggles
-  `.active` on nav links as the corresponding section enters the viewport.
-- All hover transitions complete in ≤150ms; no easing more elaborate than
-  `ease`.
-
-## 7. Accessibility
-
-- Color contrast: `--ink` on `--canvas` ≥ 16:1; `--ink-3` on `--canvas` ≥ 5:1.
-  `--blue` on `--canvas` ≥ 7:1.
-- Focus visible state inherits the platform default (no custom outline
-  removal).
-- Section anchors (`#hero`, `#news`, `#publications`, `#focus`, `#experience`)
-  match the nav links and provide skip-target behavior.
-
-## 8. Responsive
+## 5. Responsive
 
 | Breakpoint | Behavior |
 | --- | --- |
-| `> 860px` | Full grid as described above. |
-| `≤ 860px` | Nav links hide (brand + Contact only). Hero collapses; portrait shrinks to 200px max. Pub / focus / experience rows go single-column. Now card stacks. |
-
-## 9. Migration notes
-
-- Single source for the about page is `_pages/about.md`, rendered through a
-  new `_layouts/portfolio.html` layout that bypasses the existing Bootstrap
-  chrome. The default layout (and its nav/footer) remains for blog posts and
-  project detail pages.
-- Publications continue to be authored as `_projects/*.md` with
-  `type: publication`. The about page consumes them via `site.projects` and
-  applies the new visual treatment.
-- Old SCSS in `_sass/pages/_about.scss` has been replaced wholesale; the
-  legacy `.about-card` / `.exp-group` classes are no longer used.
+| `≤ 860px` | Gutter 20px. Contact pill hidden. Portrait (96px) beside the name. "On this page" links hidden; external links in one row. Filter pills move under the title. Thumbnails 168px. Focus loop column 112px. Section menu button appears. Name 34px. |
+| `≤ 640px` | Focus panels stack and the loop turns vertical. Publication thumbnails 88px on the right. |
+| `≤ 560px` | Gutter 16px. Portrait 76px. News shows date over sentence, no category, no detail; collapses to three rows plus a faded row. Authors, links and experience bullets fold behind "Details". Name 30px, section titles 20px. Footer stacks. |
+| `≤ 360px` | Name in the nav hidden. |

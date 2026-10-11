@@ -1,6 +1,6 @@
 # jeonseonghu.github.io
 
-Personal academic blog for **Seonghu Jeon** (M.S. Student @ KAIST CVLAB). Built with Jekyll 4 on a customized Mediumish theme. Bilingual Korean/English support is handled with jekyll-polyglot and DeepL automation.
+Personal academic blog for **Seonghu Jeon** (Integrated M.S./Ph.D. Student @ KAIST CVLAB). Built with Jekyll 4 on a customized Mediumish theme. Bilingual Korean/English support is handled with jekyll-polyglot and DeepL automation.
 
 ## Quick Start
 

@@ -27,59 +27,59 @@ body.layout-portfolio.type-lab-active {
     }
 
     .pf-eyebrow {
-        font-size: var(--tl-eyebrow-size, 11.25px);
+        font-size: var(--tl-eyebrow-size, 13px);
         font-weight: var(--tl-eyebrow-weight, 500);
-        line-height: var(--tl-eyebrow-line, 1);
-        letter-spacing: var(--tl-eyebrow-tracking, -0.04em);
-        margin-bottom: var(--tl-eyebrow-bottom, 6px);
+        line-height: var(--tl-eyebrow-line, 1.4);
+        letter-spacing: var(--tl-eyebrow-tracking, 0em);
+        margin-bottom: var(--tl-eyebrow-bottom, 10px);
     }
 
     .pf-h1,
     .pf-page-h1 {
-        font-size: var(--tl-title-size, 33.75px);
+        font-size: var(--tl-title-size, 40px);
         font-weight: var(--tl-title-weight, 600);
-        line-height: var(--tl-title-line, 1.025);
-        letter-spacing: var(--tl-title-tracking, -0.01em);
-        margin-bottom: var(--tl-title-bottom, 12px);
+        line-height: var(--tl-title-line, 1.1);
+        letter-spacing: var(--tl-title-tracking, -0.025em);
+        margin-bottom: var(--tl-title-bottom, 16px);
     }
 
     .pf-deck,
     .pf-page-deck {
         font-family: var(--pf-sans);
-        font-size: var(--tl-deck-size, 14.5px);
-        font-weight: var(--tl-deck-weight, 300);
-        line-height: var(--tl-deck-line, 1.425);
-        letter-spacing: var(--tl-deck-tracking, 0em);
-        max-width: var(--tl-deck-measure, 800px);
-        margin-bottom: var(--tl-deck-bottom, 17px);
+        font-size: var(--tl-deck-size, 17px);
+        font-weight: var(--tl-deck-weight, 400);
+        line-height: var(--tl-deck-line, 1.6);
+        letter-spacing: var(--tl-deck-tracking, -0.01em);
+        max-width: var(--tl-deck-measure, 620px);
+        margin-bottom: var(--tl-deck-bottom, 24px);
     }
 
     .pf-sec-title {
         font-family: var(--pf-display);
-        font-size: var(--tl-section-title-size, 26.75px);
-        font-weight: var(--tl-section-title-weight, 500);
-        line-height: var(--tl-section-title-line, 1.05);
-        letter-spacing: var(--tl-section-title-tracking, -0.06em);
+        font-size: var(--tl-section-title-size, 22px);
+        font-weight: var(--tl-section-title-weight, 600);
+        line-height: var(--tl-section-title-line, 1.25);
+        letter-spacing: var(--tl-section-title-tracking, -0.02em);
     }
 
     .pf-sec-head {
-        margin-bottom: var(--tl-section-head-gap, 6px);
+        margin-bottom: var(--tl-section-head-gap, 20px);
     }
 
     .pf-hero {
-        padding-top: var(--tl-hero-top, 0px);
-        padding-bottom: var(--tl-hero-bottom, 31px);
-        column-gap: var(--tl-hero-column-gap, 12px);
+        padding-top: var(--tl-hero-top, 56px);
+        padding-bottom: var(--tl-hero-bottom, 44px);
+        column-gap: var(--tl-hero-column-gap, 48px);
     }
 
     .pf-page-hero {
-        padding-top: var(--tl-page-hero-top, 28px);
-        padding-bottom: var(--tl-page-hero-bottom, 24px);
+        padding-top: var(--tl-page-hero-top, 56px);
+        padding-bottom: var(--tl-page-hero-bottom, 36px);
     }
 
     .pf-sec {
-        padding-top: var(--tl-section-padding, 17px);
-        padding-bottom: var(--tl-section-padding, 17px);
+        padding-top: var(--tl-section-padding, 40px);
+        padding-bottom: var(--tl-section-padding, 40px);
     }
 
     .pf-sec.pf-sec--flush {
@@ -87,23 +87,23 @@ body.layout-portfolio.type-lab-active {
     }
 
     .pf-news-item {
-        padding-top: var(--tl-news-row-padding, 2px);
-        padding-bottom: var(--tl-news-row-padding, 2px);
+        padding-top: var(--tl-news-row-padding, 5px);
+        padding-bottom: var(--tl-news-row-padding, 5px);
     }
 
     .pf-pub {
-        padding-top: var(--tl-pub-row-padding, 8px);
-        padding-bottom: var(--tl-pub-row-padding, 8px);
+        padding-top: var(--tl-pub-row-padding, 20px);
+        padding-bottom: var(--tl-pub-row-padding, 20px);
     }
 
     .pf-focus-item {
-        padding-top: var(--tl-focus-row-padding, 4px);
-        padding-bottom: var(--tl-focus-row-padding, 4px);
+        padding-top: var(--tl-focus-row-padding, 16px);
+        padding-bottom: var(--tl-focus-row-padding, 16px);
     }
 
     .pf-exp-item {
-        padding-top: var(--tl-exp-row-padding, 4px);
-        padding-bottom: var(--tl-exp-row-padding, 4px);
+        padding-top: var(--tl-exp-row-padding, 16px);
+        padding-bottom: var(--tl-exp-row-padding, 16px);
     }
 
     .pf-news-body,
@@ -112,17 +112,17 @@ body.layout-portfolio.type-lab-active {
     .pf-exp-detail,
     .pf-proj-desc,
     .pf-blog-excerpt {
-        line-height: var(--tl-copy-line, 1.75);
+        line-height: var(--tl-copy-line, 1.6);
         letter-spacing: var(--tl-copy-tracking, -0.005em);
     }
 
     .pf-pub-body {
-        gap: var(--tl-pub-body-gap, 0px);
+        gap: var(--tl-pub-body-gap, 4px);
     }
 
     .pf-focus-desc,
     .pf-exp-detail {
-        margin-top: var(--tl-exp-detail-gap, 0px);
+        margin-top: var(--tl-exp-detail-gap, 6px);
     }
 }
 

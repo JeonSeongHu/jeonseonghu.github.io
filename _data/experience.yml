@@ -1,0 +1,33 @@
+# Experience timeline on the home page, newest first.
+# now: true draws a blue dot (current position).
+
+- dates: '2026.07 – <span class="pf-now-mark">Present</span>'
+  now: true
+  role: Research Intern
+  org: MAUM AI, WoRV Division, Future Intelligence Lab
+  bullets:
+    - Participating in Robotics Foundation Model development.
+
+- dates: '2026.03 – <span class="pf-now-mark">Present</span>'
+  now: true
+  role: Integrated M.S./Ph.D. Student
+  org: KAIST CVLAB
+  bullets:
+    - Advised by Prof. Seungryong Kim.
+    - M.S. from March 2026, integrated M.S./Ph.D. program from Spring 2027.
+    - Multi-view diffusion, geometric foundation models, 4D scene generation.
+
+- dates: '2023.12 – 2026.02'
+  role: Research Intern
+  org: CVLAB, Korea University → KAIST
+  bullets:
+    - Researched generative 3D/4D vision, multi-view diffusion, flow matching, and geometric foundation models.
+    - Built evaluation benchmarks and geometry-aware action models for motion transfer, visuomotor control, and embodied scene understanding.
+    - Transferred to KAIST with the supervisor in Aug 2024.
+
+- dates: '2022 – 2026'
+  role: 'B.S., Computer Science &amp; Engineering'
+  org: Korea University
+  bullets:
+    - Graduated with Great Honors (4.46 / 4.50).
+    - Coursework in vision, graphics, and deep learning.

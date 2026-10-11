@@ -52,7 +52,7 @@ lang: en
             <div class="pf-pub-body">
                 <div class="pf-pub-venue{% if hi %} is-hi{% endif %}">
                     <span class="pf-pub-pin"></span>{{ paper.venue }}
-                    {% if paper.oral %}<span class="pf-oral-badge">Long Oral</span>{% endif %}
+                    {% if paper.oral %}<span class="pf-oral-badge">{% include icon.html name="honor" size=13 %}Long Oral</span>{% endif %}
                 </div>
                 <h3 class="pf-pub-title"><a href="{{ paper.url | relative_url }}">{{ paper.title }}</a></h3>
                 {% if paper.full_title and paper.full_title != paper.title %}

@@ -1,0 +1,72 @@
+# News & notes on the home page, newest first.
+# The first entry is shown open (detail visible); the others open on hover.
+#
+#   date:      YYYY.MM
+#   category:  Paper | Honor | Career | Education  (filter pills + icon + dot color)
+#   text:      one sentence. Wrap the subject in <b>, a venue in <span class="v">.
+#   detail:    optional second line (paper title, role, ...)
+#   links:     optional list of {label, url}; url starting with "#" is an in-page jump
+
+- date: "2026.10"
+  category: Education
+  text: 'Moving to the <b>integrated M.S./Ph.D. program</b> at KAIST, starting Spring 2027.'
+  detail: 'KAIST CVLAB, advised by Prof. Seungryong Kim. M.S. since March 2026.'
+  links:
+    - { label: Experience, url: "#experience" }
+
+- date: "2026.09"
+  category: Paper
+  text: '<b>CSFM</b> was accepted to <span class="v">NeurIPS 2026</span>.'
+  detail: 'Better Source, Better Flow: Learning Condition-Dependent Source Distribution for Flow Matching'
+  links:
+    - { label: paper, url: "https://arxiv.org/abs/2602.05951" }
+    - { label: project, url: "https://junwankimm.github.io/CSFM/" }
+    - { label: code, url: "https://github.com/junwankimm/CSFM" }
+
+- date: "2026.08"
+  category: Paper
+  text: '<b>GAM</b> was accepted to <a class="v" href="https://eccv2026-3d-world-models.github.io/" target="_blank" rel="noopener">3DWM @ ECCV 2026</a>.'
+  detail: 'Geometric Action Model for Robot Policy Learning'
+  links:
+    - { label: paper, url: "https://arxiv.org/abs/2606.17046" }
+    - { label: project, url: "https://cvlab-kaist.github.io/Geometric-Action-Model/" }
+    - { label: code, url: "https://github.com/cvlab-kaist/Geometric-Action-Model" }
+
+- date: "2026.07"
+  category: Honor
+  text: '<b>GLD</b> was selected for a Long Oral Presentation at <span class="v">ECCV 2026</span>.'
+  detail: 'Repurposing Geometric Foundation Models for Multi-view Diffusion'
+  links:
+    - { label: paper, url: "https://arxiv.org/abs/2603.22275" }
+    - { label: project, url: "https://cvlab-kaist.github.io/GLD/" }
+    - { label: code, url: "https://github.com/cvlab-kaist/GLD/" }
+
+- date: "2026.07"
+  category: Career
+  text: "Joined <b>MAUM AI</b>'s WoRV Division, Future Intelligence Lab as a research intern for Robotics Foundation Model development."
+  detail: 'Research Intern, 2026.07 – Present.'
+  links:
+    - { label: Experience, url: "#experience" }
+
+- date: "2026.03"
+  category: Education
+  text: 'Joined <b>KAIST CVLAB</b> as an M.S. student under Prof. Seungryong Kim.'
+  detail: 'Multi-view diffusion, geometric foundation models, 4D scene generation.'
+  links:
+    - { label: Experience, url: "#experience" }
+
+- date: "2026.02"
+  category: Paper
+  text: '<b>CAMEO</b> accepted to <span class="v">CVPR 2026</span> for correspondence-attention alignment in multi-view diffusion.'
+  detail: 'CAMEO: Correspondence-Attention Alignment for Multi-View Diffusion Models'
+  links:
+    - { label: paper, url: "https://arxiv.org/abs/2512.03045" }
+    - { label: project, url: "https://cvlab-kaist.github.io/CAMEO/" }
+    - { label: code, url: "https://github.com/cvlab-kaist/CAMEO" }
+
+- date: "2026.02"
+  category: Education
+  text: 'Graduated from <b>Korea University</b>, B.S. in Computer Science &amp; Engineering, with Great Honors.'
+  detail: 'Great Honors, GPA 4.46 / 4.50.'
+  links:
+    - { label: Experience, url: "#experience" }

@@ -14,17 +14,22 @@ body.layout-portfolio {
     --pf-tile-dark:    #1D1D1F;
     --pf-hairline:     #E6E7EB;
     --pf-ink:          #0A0A0A;
-    --pf-ink-2:        #0A0A0A;
+    --pf-ink-2:        #2A2C32;
     --pf-ink-3:        #6E6E6E;
     --pf-ink-4:        #75757A; /* ≥4.5:1 on white so 12px meta text passes AA */
     --pf-on-dark:      #F5F5F7;
     --pf-on-dark-2:    #B8B9BD;
-    --pf-blue:         #3F5F9C;
-    --pf-blue-on-dark: #A9BAD9;
-    --pf-blue-soft:    #EEF3FA;
+    --pf-blue:         #2F58C9;
+    --pf-blue-on-dark: #9DB3F0;
+    --pf-blue-soft:    #EAEEF9;
     --pf-sans: "Wanted Sans", "Wanted Sans Variable", Paperlogy, "Pretendard Variable", "Pretendard", system-ui, sans-serif;
     --pf-display: "Wanted Sans", "Wanted Sans Variable", Paperlogy, "Pretendard Variable", "Pretendard", system-ui, sans-serif;
     --pf-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    /* Shared left rail: pub thumbnails, news dates, focus numbers and
+       experience dates all sit in this column so every section's body
+       text starts on the same vertical line. */
+    --pf-rail:     128px;
+    --pf-rail-gap: 28px;
 
     margin: 0;
     padding: 0;
@@ -33,8 +38,8 @@ body.layout-portfolio {
     /* Global `body { font-family: ... !important }` from base/global.scss has
        to be defeated. */
     font-family: var(--pf-sans) !important;
-    font-size: 15.5px;
-    line-height: 1.78;
+    font-size: 15px;
+    line-height: 1.6;
     letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -46,7 +51,7 @@ body.layout-portfolio {
 /* Reset for the layout - :where() keeps these at zero specificity so any
    .pf-* component class wins by source order without !important. */
 :where(body.layout-portfolio) ::selection {
-    background: rgba(63, 95, 156, 0.2);
+    background: rgba(47, 88, 201, 0.2);
     color: var(--pf-ink);
 }
 :where(body.layout-portfolio) :where(h1, h2, h3, h4, h5, h6, p) {
@@ -65,7 +70,7 @@ body.layout-portfolio :where(a, button, input, textarea, select, summary, [role=
     outline: none !important;
 }
 body.layout-portfolio :where(a, button, summary, [role="button"], [tabindex]):focus-visible {
-    outline: 1px solid rgba(63, 95, 156, 0.28);
+    outline: 1px solid rgba(47, 88, 201, 0.28);
     outline-offset: 4px;
     border-radius: 4px;
 }
@@ -92,6 +97,7 @@ body.layout-portfolio button {
 .pf-sec-num,
 .pf-sec-aside,
 .pf-news-date,
+.pf-exp-time,
 .pf-pub-venue,
 .pf-now-tag,
 .pf-project-meta-label,
@@ -102,7 +108,7 @@ body.layout-portfolio button {
 .pf-cv-skill-label,
 .pf-blog-date,
 .pf-blog-cat {
-    font-family: var(--pf-mono);
+    font-family: var(--pf-sans);
     font-variant-numeric: tabular-nums;
 }
 
@@ -117,7 +123,7 @@ body.layout-portfolio button {
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 .pf-nav-inner {
-    max-width: 1160px;
+    max-width: 1024px;
     margin: 0 auto;
     height: 52px;
     padding: 0 32px;
@@ -127,14 +133,16 @@ body.layout-portfolio button {
     gap: 16px;
 }
 .pf-name {
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     line-height: normal;
     color: var(--pf-ink);
     white-space: nowrap;
 }
 .pf-blue { color: var(--pf-blue); }
+/* Keeps hyphenated terms like "multi-view" from breaking at the hyphen. */
+.pf-nowrap { white-space: nowrap; }
 
 .pf-skip-link,
 .pf-sr-only {
@@ -168,12 +176,12 @@ body.layout-portfolio button {
 
 .pf-nav-links {
     display: flex;
-    gap: 16px;
-    font-size: 13px;
+    gap: 24px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
-    color: var(--pf-ink-2);
+    color: var(--pf-ink-3);
 
     a {
         /* Padding + negative margin widens the hit target without
@@ -183,10 +191,8 @@ body.layout-portfolio button {
         margin: -14px -6px;
         transition: color 0.12s ease;
 
-        &:hover,
-        &.is-active {
-            color: var(--pf-blue);
-        }
+        &:hover { color: var(--pf-ink); }
+        &.is-active { color: var(--pf-blue); }
     }
 }
 
@@ -194,11 +200,11 @@ body.layout-portfolio button {
     background: #fff;
     color: var(--pf-ink-2);
     border: 1px solid var(--pf-hairline);
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 12.5px;
+    font-weight: 500;
     letter-spacing: 0;
     line-height: normal;
-    padding: 5px 13px;
+    padding: 6px 14px;
     border-radius: 9999px;
     transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease, transform 0.12s ease;
 
@@ -213,52 +219,53 @@ body.layout-portfolio button {
 /* ============= Page shell ============= */
 .pf-main {
     width: 100%;
-    max-width: 1160px;
+    max-width: 1024px;
     margin: 0 auto;
     padding: 0 32px;
 }
 
 /* ============= Hero ============= */
 .pf-hero {
-    padding: 0 0 31px;
+    margin: 0;
+    padding: 56px 0 44px;
     display: grid;
-    grid-template-columns: 1fr 132px;
-    column-gap: 12px;
+    grid-template-columns: minmax(0, 1fr) 148px;
+    column-gap: 48px;
     align-items: end;
     border-bottom: 1px solid var(--pf-hairline);
     scroll-margin-top: 60px;
 }
 
 .pf-eyebrow {
-    font-size: 11.25px;
+    font-size: 13px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.4;
     color: var(--pf-blue);
-    letter-spacing: -0.04em;
-    margin-bottom: 6px;
+    letter-spacing: 0;
+    margin-bottom: 10px;
     display: block;
 }
 
 .pf-h1 {
     font-family: var(--pf-display);
-    font-size: 33.75px;
+    font-size: 40px;
     font-weight: 600;
-    line-height: 1.025;
-    letter-spacing: -0.01em;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
     color: var(--pf-ink);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     text-wrap: balance;
 }
 
 .pf-deck {
-    font-size: 14.5px;
-    font-weight: 300;
-    line-height: 1.425;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
     color: var(--pf-ink-2);
-    max-width: 800px;
+    max-width: 620px;
     text-wrap: pretty;
-    letter-spacing: 0;
-    margin-bottom: 17px;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
 
     b { color: var(--pf-ink); font-weight: 600; }
 
@@ -311,14 +318,14 @@ body.layout-portfolio button {
 .pf-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 22px;
+    gap: 10px 24px;
     align-items: baseline;
 }
 .pf-link {
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0;
-    color: var(--pf-ink-2);
+    color: var(--pf-ink);
     border-bottom: 1px solid var(--pf-ink-4);
     padding-bottom: 1px;
     display: inline-flex;
@@ -371,14 +378,15 @@ body.layout-portfolio button {
 
 /* ============= Section ============= */
 .pf-sec {
-    padding: 17px 0;
+    margin: 0;
+    padding: 40px 0;
     border-bottom: 1px solid var(--pf-hairline);
     scroll-margin-top: 60px;
 
     &:last-of-type { border-bottom: none; }
 }
 .pf-sec-head {
-    margin-bottom: 6px;
+    margin-bottom: 20px;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -404,11 +412,11 @@ body.layout-portfolio button {
 .pf-sec-title {
     display: block;
     font-family: var(--pf-display);
-    font-size: 26.75px;
+    font-size: 25px;
     font-weight: 500;
     color: var(--pf-ink);
-    letter-spacing: -0.06em;
-    line-height: 1.05;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
     text-align: left;
     font-style: normal;
     text-transform: none;
@@ -419,6 +427,25 @@ body.layout-portfolio button {
     color: var(--pf-ink-4);
     letter-spacing: 0;
 }
+.pf-sec-link {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--pf-ink-3);
+    white-space: nowrap;
+    transition: color 0.12s ease;
+
+    .pf-link-arrow {
+        display: inline-block;
+        transition: transform 0.15s ease;
+    }
+
+    &:hover { color: var(--pf-blue); }
+    &:hover .pf-link-arrow { transform: translateX(3px); }
+}
 
 /* ============= News ============= */
 .pf-news-list {
@@ -427,24 +454,23 @@ body.layout-portfolio button {
 }
 .pf-news-item {
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
-    gap: 20px;
-    padding: 2px 0;
-    font-size: 14.5px;
-    line-height: 1.5;
-    align-items: start;
+    grid-template-columns: var(--pf-rail) minmax(0, 1fr);
+    gap: var(--pf-rail-gap);
+    padding: 5px 0;
+    font-size: 15px;
+    line-height: 1.6;
+    align-items: baseline;
 }
 .pf-news-date {
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--pf-ink-4);
     letter-spacing: 0;
     font-variant-numeric: tabular-nums;
-    padding-top: 3px;
 }
 .pf-news-body {
     color: var(--pf-ink-2);
-    line-height: 1.75;
+    line-height: 1.6;
     letter-spacing: -0.005em;
     text-wrap: pretty;
 
@@ -474,30 +500,31 @@ body.layout-portfolio button {
 }
 .pf-pub {
     display: grid;
-    grid-template-columns: 140px 1fr auto;
-    gap: 28px;
-    padding: 8px 0;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) 232px;
+    grid-template-rows: auto 1fr;
+    column-gap: 48px;
+    row-gap: 10px;
+    padding: 24px 0;
+    align-items: start;
     border-top: 1px solid var(--pf-hairline);
-    transition: background 0.12s ease;
 
     &:first-child {
         border-top: none;
-        padding-top: 8px;
+        padding-top: 4px;
     }
-
-    &:hover {
-        background: rgba(63, 95, 156, 0.018);
-    }
+    &:last-child { padding-bottom: 0; }
 }
 
 .pf-pub-thumb {
-    aspect-ratio: 16 / 11;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    aspect-ratio: 232 / 148;
     background: var(--pf-parchment);
-    border-radius: 8px;
+    border-radius: 10px;
     position: relative;
     overflow: hidden;
     display: block;
+    transition: background 0.15s ease;
 
     /* Hatched placeholder pattern - fills the tile when no image is present.
        When an <img> is rendered, it covers this layer naturally. */
@@ -516,15 +543,24 @@ body.layout-portfolio button {
         );
     }
 
+    /* Teasers are wide figures (≈2:1) with white backgrounds. `contain`
+       keeps the whole figure instead of cropping its edges, and `multiply`
+       lets the white sit on the parchment tile so every thumbnail reads as
+       the same tile shape regardless of the figure's aspect ratio. */
     img {
         position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        top: 6%;
+        left: 6%;
+        width: 88%;
+        height: 88%;
+        object-fit: contain;
+        mix-blend-mode: multiply;
         z-index: 2;
     }
+
+    &:has(img)::before { display: none; }
 }
+.pf-pub:hover .pf-pub-thumb { background: #ECECEF; }
 .pf-pub-thumb-tag {
     position: absolute;
     top: 7px;
@@ -553,56 +589,51 @@ body.layout-portfolio button {
 .pf-pub-body {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    grid-column: 1;
+    grid-row: 1;
+    gap: 6px;
     min-width: 0;
 }
 .pf-pub-venue {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--pf-ink-3);
     letter-spacing: 0;
     display: flex;
     align-items: center;
-    gap: 7px;
+    flex-wrap: wrap;
+    gap: 4px 6px;
 
     &.is-hi { color: var(--pf-blue); }
 }
 .pf-pub-venue.is-hi {
-    font-family: var(--pf-sans);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0;
+    font-weight: 500;
 }
-.pf-pub-pin {
-    width: 5px;
-    height: 5px;
-    background: currentColor;
-    border-radius: 50%;
-    display: inline-block;
-}
+.pf-pub-pin { display: none; }
 .pf-oral-badge {
     display: inline-flex;
     align-items: center;
-    min-height: 18px;
-    margin-left: 6px;
-    padding: 2px 7px;
-    border-radius: 4px;
-    background: var(--pf-blue);
-    color: #fff;
+    gap: 4px;
+    color: var(--pf-blue);
     font-family: var(--pf-sans);
-    font-size: 9.5px;
-    font-weight: 700;
+    font-size: inherit;
+    font-weight: 500;
     font-style: normal;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    vertical-align: 1px;
+    letter-spacing: 0;
+    text-transform: none;
+
+    &::before {
+        content: "/";
+        margin: 0 2px 0 0;
+        color: #B9BBC2;
+        font-weight: 400;
+    }
 }
 .pf-pub-title {
-    font-size: 15.5px;
-    font-weight: 700;
-    line-height: 1.42;
-    letter-spacing: 0;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.012em;
     color: var(--pf-ink);
     text-wrap: pretty;
 
@@ -612,20 +643,23 @@ body.layout-portfolio button {
 .pf-pub-authors {
     font-size: 14px;
     color: var(--pf-ink-3);
-    line-height: 1.75;
+    line-height: 1.55;
     letter-spacing: -0.005em;
     text-wrap: pretty;
 
     .pf-pub-me {
-        color: var(--pf-blue);
+        color: var(--pf-ink);
         font-weight: 500;
     }
 }
 .pf-pub-links {
+    grid-column: 1;
+    grid-row: 2;
     display: flex;
-    gap: 12px;
-    font-size: 12.5px;
-    font-weight: 500;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    font-size: 13px;
+    font-weight: 400;
     flex-shrink: 0;
 
     a,
@@ -686,23 +720,22 @@ body.layout-portfolio button {
 .pf-focus-item,
 .pf-exp-item {
     display: grid;
-    grid-template-columns: 52px minmax(0, 1fr);
-    gap: 20px;
-    padding: 10px 0;
+    grid-template-columns: var(--pf-rail) minmax(0, 1fr);
+    gap: var(--pf-rail-gap);
+    padding: 16px 0;
     border-top: 1px solid var(--pf-hairline);
-    align-items: start;
+    align-items: baseline;
 
     &:first-child {
         border-top: none;
-        padding-top: 10px;
+        padding-top: 4px;
     }
 }
 .pf-focus-mid,
 .pf-exp-mid {
     min-width: 0;
 }
-.pf-focus-num,
-.pf-exp-index {
+.pf-focus-num {
     font-family: var(--pf-mono);
     font-size: 12px;
     font-weight: 500;
@@ -716,14 +749,15 @@ body.layout-portfolio button {
     display: block;
     font-family: var(--pf-sans);
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--pf-ink);
-    letter-spacing: 0;
-    line-height: 1.25;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
 }
 .pf-focus-desc,
 .pf-exp-detail {
-    margin: 4px 0 0;
+    max-width: 680px;
+    margin: 6px 0 0;
     font-size: 14.5px;
     color: var(--pf-ink-3);
     line-height: 1.6;
@@ -788,29 +822,30 @@ body.layout-portfolio button {
     display: flex;
     flex-direction: column;
 }
-.pf-exp-meta {
-    display: flex;
-    align-items: baseline;
-    gap: 10px 16px;
-    margin-top: 4px;
-    min-width: 0;
-}
 .pf-exp-org {
+    display: block;
+    margin-top: 2px;
     min-width: 0;
     color: var(--pf-ink-3);
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
 }
+/* Same treatment as .pf-news-date so the two date columns line up. */
 .pf-exp-time {
-    margin-left: auto;
-    font-size: 12.5px;
-    font-weight: 500;
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--pf-ink-4);
     line-height: 1.5;
     letter-spacing: 0;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
+}
+/* Focus: the term sits in the rail, so the description starts the row. */
+.pf-focus-item .pf-focus-desc {
+    margin-top: 0;
+    font-size: 15px;
 }
 .pf-now-mark { color: var(--pf-blue); }
 
@@ -820,15 +855,17 @@ body.layout-portfolio button {
     margin-top: 0;
     padding: 28px 32px 24px;
 }
+/* Matches .pf-main's content box (1024px minus 2 x 32px padding) so the
+   footer's left edge lines up with the page content. */
 .pf-foot-inner {
-    max-width: 1016px;
+    max-width: 960px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 24px;
     flex-wrap: wrap;
-    font-size: 12.5px;
+    font-size: 13px;
     color: var(--pf-ink-4);
     font-weight: 500;
     letter-spacing: 0;
@@ -848,6 +885,14 @@ body.layout-portfolio button {
 
 /* ============= Responsive ============= */
 @media (max-width: 860px) {
+    body.layout-portfolio {
+        --pf-rail: 96px;
+        --pf-rail-gap: 20px;
+    }
+    /* Nav, content and footer share one 20px gutter at this width. */
+    .pf-main { padding: 0 20px; }
+    .pf-foot { padding-left: 20px; padding-right: 20px; }
+
     .pf-nav-inner {
         height: 56px;
         padding: 0 20px;
@@ -886,7 +931,7 @@ body.layout-portfolio button {
         padding: 36px 0 44px;
     }
     .pf-portrait { max-width: 108px; }
-    .pf-h1 { font-size: 30.72px; }
+    .pf-h1 { font-size: 34px; }
 
     /* Keep the portrait beside the role line and name at tablet-width
        mobile sizes. The description and links then use the full width below,
@@ -926,10 +971,9 @@ body.layout-portfolio button {
     }
 
     .pf-pub {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: minmax(0, 1fr) 168px;
+        column-gap: 24px;
     }
-    .pf-pub-thumb { max-width: 220px; }
 
     .pf-focus-item,
     .pf-exp-item {
@@ -959,7 +1003,7 @@ body.layout-portfolio button {
         padding: 0 16px;
     }
     .pf-nav-inner {
-        padding: 0 14px;
+        padding: 0 16px;
         gap: 12px;
     }
     .pf-name { font-size: 12px; }
@@ -973,9 +1017,9 @@ body.layout-portfolio button {
         align-items: flex-start;
         gap: 12px;
     }
-    .pf-sec { padding: 40px 0; }
-    .pf-h1 { font-size: 28px; }
-    .pf-sec-title { font-size: 24px; }
+    .pf-sec { padding: 28px 0; }
+    .pf-h1 { font-size: 30px; }
+    .pf-sec-title { font-size: 20px; }
 
     .pf-hero {
         grid-template-columns: minmax(0, 1fr) 64px;
@@ -1003,8 +1047,8 @@ body.layout-portfolio button {
         grid-row: 3;
         margin-top: 24px;
         margin-bottom: 20px;
-        font-size: 15px;
-        line-height: 1.72;
+        font-size: 16px;
+        line-height: 1.6;
     }
     .pf-hero .pf-links {
         grid-column: 1 / -1;
@@ -1026,7 +1070,7 @@ body.layout-portfolio button {
         align-items: start;
     }
     .pf-news-date {
-        padding-top: 3px;
+        padding-top: 0;
     }
 }
 
@@ -1035,30 +1079,31 @@ body.layout-portfolio button {
    Mirrors the About hero typography but is single-column.
    ============================================================ */
 .pf-page-hero {
-    padding: 28px 0 24px;
+    margin: 0;
+    padding: 56px 0 36px;
     border-bottom: 1px solid var(--pf-hairline);
     scroll-margin-top: 60px;
 }
-.pf-page-hero--spacious { padding: 28px 0 24px; }
+.pf-page-hero--spacious { padding: 56px 0 36px; }
 .pf-page-h1 {
     font-family: var(--pf-display);
-    font-size: 33.75px;
+    font-size: 40px;
     font-weight: 600;
-    line-height: 1.025;
-    letter-spacing: -0.01em;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
     color: var(--pf-ink);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     text-wrap: balance;
 }
 .pf-page-deck {
-    font-size: 14.5px;
-    font-weight: 300;
-    line-height: 1.425;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
     color: var(--pf-ink-2);
-    max-width: 800px;
+    max-width: 620px;
     text-wrap: pretty;
-    letter-spacing: 0;
-    margin-bottom: 17px;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
 
     b { color: var(--pf-ink); font-weight: 600; }
     a {
@@ -1258,7 +1303,7 @@ body.layout-portfolio button {
 }
 .pf-proj-title {
     font-size: 15.5px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0;
     line-height: 1.42;
     color: var(--pf-ink);
@@ -1368,7 +1413,7 @@ body.layout-portfolio button {
 .pf-cv-what { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .pf-cv-name {
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--pf-ink);
     letter-spacing: 0;
     line-height: 1.35;
@@ -1434,7 +1479,7 @@ body.layout-portfolio button {
 .pf-cv-pub-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .pf-cv-pub-title {
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0;
     line-height: 1.42;
     color: var(--pf-ink);
@@ -1558,7 +1603,7 @@ body.layout-portfolio button {
     color: inherit;
     transition: background 0.12s ease;
 
-    &:hover { background: rgba(63, 95, 156, 0.018); }
+    &:hover { background: rgba(47, 88, 201, 0.018); }
     &:hover .pf-blog-title { color: var(--pf-blue); }
 }
 .pf-blog-meta {
@@ -1582,7 +1627,7 @@ body.layout-portfolio button {
 }
 .pf-blog-title {
     font-size: 15.5px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0;
     line-height: 1.42;
     color: var(--pf-ink);
@@ -1642,8 +1687,8 @@ body.layout-portfolio button {
 
     &:hover {
         color: var(--pf-blue);
-        border-color: rgba(63, 95, 156, 0.32);
-        background: rgba(63, 95, 156, 0.035);
+        border-color: rgba(47, 88, 201, 0.32);
+        background: rgba(47, 88, 201, 0.035);
     }
 }
 
@@ -1694,7 +1739,7 @@ body.layout-portfolio button {
     }
 
     &:hover {
-        background: rgba(63, 95, 156, 0.025);
+        background: rgba(47, 88, 201, 0.025);
     }
 
     &:hover::after {
@@ -1716,7 +1761,7 @@ body.layout-portfolio button {
 
 .pf-blog-column-title {
     font-size: 17px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.3;
     letter-spacing: 0;
 }
@@ -1729,7 +1774,7 @@ body.layout-portfolio button {
     height: 20px;
     padding: 0 6px;
     border-radius: 999px;
-    background: rgba(63, 95, 156, 0.08);
+    background: rgba(47, 88, 201, 0.08);
     color: var(--pf-blue);
     font-size: 11px;
     font-weight: 600;
@@ -2009,7 +2054,7 @@ body.layout-portfolio button {
         border-radius: 999px;
         transition: background 0.12s ease, border-color 0.12s ease;
 
-        &:hover { background: rgba(63, 95, 156, 0.06); border-color: var(--pf-blue); }
+        &:hover { background: rgba(47, 88, 201, 0.06); border-color: var(--pf-blue); }
     }
 }
 .pf-post-meta-divider {
@@ -2291,7 +2336,7 @@ body.layout-portfolio button {
 
     a:not(.pf-post-back):not(.pf-post-tag) {
         color: var(--pf-blue);
-        border-bottom: 1px solid rgba(63, 95, 156, 0.25);
+        border-bottom: 1px solid rgba(47, 88, 201, 0.25);
         transition: border-color 0.12s ease;
 
         &:hover { border-bottom-color: var(--pf-blue); }
@@ -2313,9 +2358,9 @@ body.layout-portfolio button {
 
     blockquote {
         padding: 14px 16px;
-        border: 1px solid rgba(63, 95, 156, 0.16);
+        border: 1px solid rgba(47, 88, 201, 0.16);
         border-radius: 6px;
-        background: rgba(63, 95, 156, 0.045);
+        background: rgba(47, 88, 201, 0.045);
         color: var(--pf-ink-2);
         font-style: normal;
 
@@ -2347,7 +2392,7 @@ body.layout-portfolio button {
 
     .ml-modeling-plot-card {
         overflow: hidden;
-        border: 1px solid rgba(63, 95, 156, 0.16);
+        border: 1px solid rgba(47, 88, 201, 0.16);
         border-radius: 8px;
         background: #fff;
     }
@@ -2358,8 +2403,8 @@ body.layout-portfolio button {
         align-items: center;
         gap: 14px;
         padding: 14px 16px;
-        border-bottom: 1px solid rgba(63, 95, 156, 0.12);
-        background: rgba(63, 95, 156, 0.035);
+        border-bottom: 1px solid rgba(47, 88, 201, 0.12);
+        background: rgba(47, 88, 201, 0.035);
 
         label,
         output {
@@ -2383,8 +2428,8 @@ body.layout-portfolio button {
     .ml-modeling-plot-note {
         margin: 0;
         padding: 10px 14px 12px;
-        border-top: 1px solid rgba(63, 95, 156, 0.12);
-        background: rgba(63, 95, 156, 0.035);
+        border-top: 1px solid rgba(47, 88, 201, 0.12);
+        background: rgba(47, 88, 201, 0.035);
         color: var(--pf-ink-3);
         font-size: 12.5px;
         line-height: 1.55;
@@ -2419,7 +2464,7 @@ body.layout-portfolio button {
             color: var(--pf-ink);
             border-bottom-color: var(--pf-ink-4);
         }
-        tr:hover td { background: rgba(63, 95, 156, 0.025); }
+        tr:hover td { background: rgba(47, 88, 201, 0.025); }
     }
 
     kbd {
@@ -2434,7 +2479,7 @@ body.layout-portfolio button {
     }
 
     mark {
-        background: rgba(63, 95, 156, 0.12);
+        background: rgba(47, 88, 201, 0.12);
         color: var(--pf-ink);
         padding: 0 3px;
         border-radius: 3px;
@@ -2461,7 +2506,7 @@ body.layout-portfolio button {
         border-radius: 999px;
         transition: color 0.12s ease, background 0.12s ease;
 
-        &:hover { color: var(--pf-blue); background: rgba(63, 95, 156, 0.06); }
+        &:hover { color: var(--pf-blue); background: rgba(47, 88, 201, 0.06); }
     }
 }
 
@@ -2488,7 +2533,7 @@ body.layout-portfolio button {
 
     &:hover {
         border-color: var(--pf-blue);
-        background: rgba(63, 95, 156, 0.025);
+        background: rgba(47, 88, 201, 0.025);
     }
     &:hover .pf-post-nav-title { color: var(--pf-blue); }
 }
@@ -2551,45 +2596,46 @@ body.layout-portfolio button {
     }
 
     .pf-pub {
-        grid-template-columns: clamp(88px, 28vw, 112px) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 88px;
         gap: 8px 14px;
-        padding: 18px 0;
+        padding: 16px 0;
         align-items: start;
     }
     .pf-pub:first-child { padding-top: 2px; }
     .pf-pub-thumb {
-        grid-column: 1;
-        grid-row: 1 / 3;
+        grid-column: 2;
+        grid-row: 1;
         width: 100%;
         max-width: none;
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 88 / 58;
+        border-radius: 8px;
     }
     .pf-pub-body {
-        grid-column: 2;
+        grid-column: 1;
         grid-row: 1;
         gap: 5px;
     }
     .pf-pub-venue {
         flex-wrap: wrap;
         gap: 5px;
-        font-size: 11.5px;
+        font-size: 12.5px;
     }
     .pf-pub-title {
-        font-size: 14.5px;
-        line-height: 1.38;
+        font-size: 15.5px;
+        line-height: 1.4;
         overflow-wrap: anywhere;
     }
     .pf-pub-authors {
-        font-size: 12.75px;
+        font-size: 13px;
         line-height: 1.5;
     }
     .pf-pub-fulltitle { font-size: 12.5px; }
     .pf-pub-links {
-        grid-column: 2;
+        grid-column: 1 / -1;
         grid-row: 2;
         align-self: end;
         flex-wrap: wrap;
-        gap: 2px 12px;
+        gap: 2px 14px;
         margin-top: 0;
 
         a {
@@ -2597,12 +2643,7 @@ body.layout-portfolio button {
             align-items: center;
         }
     }
-    .pf-oral-badge {
-        min-height: 17px;
-        margin-left: 2px;
-        padding: 2px 6px;
-        font-size: 8.5px;
-    }
+    .pf-oral-badge::before { margin: 0 3px 0 1px; }
 
     .pf-cv-pub {
         grid-template-columns: 26px minmax(0, 1fr);

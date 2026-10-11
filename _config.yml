@@ -1,7 +1,7 @@
 # Site
 name: "Seonghu Jeon"
 title: "Seonghu Jeon"
-description: "Seonghu Jeon — M.S. researcher at KAIST CVLAB working on 3D/4D vision, generative models, and robotics foundation models."
+description: "Seonghu Jeon — integrated M.S./Ph.D. student at KAIST CVLAB working on 3D/4D vision, generative models, and robotics foundation models."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 url: "https://jeonseonghu.github.io"
@@ -24,7 +24,7 @@ authors:
     email:
     web: https://jeonseonghu.github.io
     twitter:
-    description: "M.S. researcher at KAIST CVLAB — 3D/4D vision, generative models, robotics."
+    description: "Integrated M.S./Ph.D. student at KAIST CVLAB — 3D/4D vision, generative models, robotics."
 
 # Plugins
 plugins:
