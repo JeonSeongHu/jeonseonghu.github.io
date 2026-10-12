@@ -522,12 +522,13 @@ body.layout-portfolio button {
     grid-column: 2;
     grid-row: 1 / 3;
     aspect-ratio: 232 / 148;
-    background: var(--pf-parchment);
+    background: var(--pf-canvas);
+    border: 1px solid var(--pf-hairline);
     border-radius: 10px;
     position: relative;
     overflow: hidden;
     display: block;
-    transition: background 0.15s ease;
+    transition: border-color 0.15s ease;
 
     /* Hatched placeholder pattern - fills the tile when no image is present.
        When an <img> is rendered, it covers this layer naturally. */
@@ -546,16 +547,15 @@ body.layout-portfolio button {
         );
     }
 
-    /* Teasers are wide figures (≈2:1) with white backgrounds. `contain`
-       keeps the whole figure instead of cropping its edges, and `multiply`
-       lets the white sit on the parchment tile so every thumbnail reads as
-       the same tile shape regardless of the figure's aspect ratio. */
+    /* Teasers are wide figures (≈2:1), some with transparent backgrounds.
+       The tile is white with a hairline so those read as white, not grey;
+       `contain` keeps the whole figure instead of cropping its edges. */
     img {
         position: absolute;
-        top: 6%;
-        left: 6%;
-        width: 88%;
-        height: 88%;
+        top: 3%;
+        left: 3%;
+        width: 94%;
+        height: 94%;
         object-fit: contain;
         mix-blend-mode: multiply;
         z-index: 2;
@@ -563,7 +563,7 @@ body.layout-portfolio button {
 
     &:has(img)::before { display: none; }
 }
-.pf-pub:hover .pf-pub-thumb { background: #ECECEF; }
+.pf-pub:hover .pf-pub-thumb { border-color: #CFD1D6; }
 .pf-pub-thumb-tag {
     position: absolute;
     top: 7px;

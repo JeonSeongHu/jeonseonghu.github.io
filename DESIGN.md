@@ -34,7 +34,7 @@ Editorial document, flat and quiet.
 | Token | Value | Use |
 | --- | --- | --- |
 | `--pf-canvas` | `#FFFFFF` | Page background |
-| `--pf-parchment` | `#F5F5F7` | Footer, portrait and thumbnail tiles |
+| `--pf-parchment` | `#F5F5F7` | Footer and portrait tile |
 | `--pf-hairline` | `#E6E7EB` | Section dividers, timeline lines |
 | `--pf-ink` | `#0A0A0A` | Names, titles, emphasis |
 | `--pf-ink-2` | `#2A2C32` | Body copy (intro, news) |
@@ -82,7 +82,8 @@ opacity, 40% when their card is hovered.
   28px track with the dot and a 1px line, then content. News adds a 104px
   category column.
 - Featured research row: text column on the left, 232 by 148 thumbnail on the
-  right, 24px vertical padding, hairline between rows.
+  right, 24px vertical padding, hairline between rows. The thumbnail is a white
+  tile with a 1px hairline (darker on row hover); the figure fills 94% of it.
 - Focus: a brain drawing centred above three equal cards (16px gap, 14px
   radius, 20px by 22px padding). Lines run from each brain region to the top
   centre of its card.
