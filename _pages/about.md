@@ -38,7 +38,7 @@ lang: en
 		<h2 class="pf-sec-title">News &amp; notes</h2>
 		<div class="pf-pills" role="group" aria-label="Filter news by category">
 			<button type="button" class="pf-pill-f is-active" data-filter="all" aria-pressed="true">All</button>
-			{% assign cats = "Paper,Honor,Career,Education" | split: "," %}{% for cat in cats %}
+			{% assign cats = "Paper,Honor,Career,Education,Community" | split: "," %}{% for cat in cats %}
 			<button type="button" class="pf-pill-f" data-filter="{{ cat | downcase }}" aria-pressed="false">{{ cat }}</button>
 			{% endfor %}
 		</div>

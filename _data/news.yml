@@ -3,7 +3,7 @@
 #
 #   date:      YYYY.MM, or YYYY when the month is not on record (listed after that year's dated items).
 #              Entries are grouped by year on the page; rows show the month only.
-#   category:  Paper | Honor | Career | Education  (filter pills + icon + dot color)
+#   category:  Paper | Honor | Career | Education | Community  (filter pills + icon + dot color)
 #   text:      one sentence. Wrap the subject in <b>, a venue in <span class="v">.
 #   detail:    optional second line (paper title, role, ...)
 #   links:     optional list of {label, url}; url starting with "#" is an in-page jump
@@ -94,6 +94,10 @@
   links:
     - { label: Experience, url: "#experience" }
 
+- date: "2024.07"
+  category: Community
+  text: 'Started as DevRel Lead of <b>GDGoC KU</b>, Google Developer Groups on Campus at Korea University.'
+
 - date: "2024.04"
   category: Honor
   text: 'Received the merit-based <b>Sangah Scholarship</b>.'
@@ -101,6 +105,10 @@
 - date: "2024.02"
   category: Honor
   text: 'Received the merit-based <b>Woonhae Scholarship</b>.'
+
+- date: "2024.01"
+  category: Community
+  text: 'Started as President of <b>AIKU</b>, the Korea University AI Society.'
 
 - date: "2023.12"
   category: Career

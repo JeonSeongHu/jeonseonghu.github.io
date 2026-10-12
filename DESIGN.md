@@ -91,7 +91,7 @@ opacity, 40% when their card is hovered.
 
 - **Nav**: sticky, 52px. Name (15px / 600) left, links middle, outlined
   "Contact" pill right.
-- **News**: filter pills (All, Paper, Honor, Career, Education) on the right of
+- **News**: filter pills (All, Paper, Honor, Career, Education, Community) on the right of
   the title. Entries come from `_data/news.yml` (date, category, text with
   `<b>` subject and `.v` venue, detail, links; a link starting with `#` jumps
   within the page). The newest entry is open with its detail. Other entries
