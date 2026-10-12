@@ -1,0 +1,33 @@
+{%- comment -%}
+  Side view of a brain (facing left) in a 120 x 96 box, as SVG content without the
+  outer <svg>, so the Focus hub and the phone drawing can share it.
+  Three regions are tinted; CSS (.rg--plan / .rg--talk / .rg--predict) colours them:
+    plan     prefrontal cortex, front of the frontal lobe
+    talk     language areas: Broca (front end of the lateral sulcus), Wernicke
+             (back end), joined by the arcuate fasciculus (dotted)
+    predict  cerebellum
+  include.id: prefix for the clip-path id (must be unique per page).
+{%- endcomment -%}
+{%- assign cer = "M14 44 C 9.5 31, 17 14.5, 35 10 C 51 4.5, 75 4.5, 90 12 C 102 18, 108.5 30, 106 42 C 104.8 49.5, 98 54, 90 53 C 84 52.4, 78 54, 72 57.5 C 64 62.5, 50.5 64.5, 40.5 60.5 C 33.5 57.5, 31.5 50.5, 36 47 C 29.5 48.3, 19.5 49.5, 14 44 Z" -%}
+{%- assign cbl = "M75.5 60 C 78 54.5, 91.5 53, 99 57 C 104.5 60, 103 67.5, 94 69.8 C 87 71.6, 78.5 69.5, 76 64.8 C 75 63, 75 61.5, 75.5 60 Z" -%}
+<defs><clipPath id="{{ include.id }}-cer"><path d="{{ cer }}"/></clipPath></defs>
+<g class="br-base"><path d="{{ cbl }}"/><path d="{{ cer }}"/></g>
+<g class="rg rg--predict"><path d="{{ cbl }}"/></g>
+<g class="rg rg--plan"><path clip-path="url(#{{ include.id }}-cer)" d="M0 0 H44 C 42 13, 40.5 22, 37.5 30 C 35.5 35, 33 40, 31 46 L 0 46 Z"/></g>
+<g class="rg rg--talk">
+  <ellipse cx="41" cy="40" rx="5.2" ry="4"/>
+  <ellipse cx="66" cy="43.5" rx="5.8" ry="3.6" transform="rotate(-22 66 43.5)"/>
+  <path class="tract" d="M44 38.5 C 49.5 31.5, 57.8 31.5, 63.2 40"/>
+</g>
+<g class="br-line">
+  <path d="M62 58 C 61 66, 63 72, 64.5 78 C 65.3 82, 64.8 85, 64 88"/><path d="M72.5 60 C 71 67, 71 73, 71.5 78.5 C 71.8 82, 71.6 85, 71.2 88"/>
+  <path d="{{ cbl }}"/>
+  <path class="fold" d="M79 60.4 C 85.5 57.8, 93.5 58, 100 60.6"/><path class="fold" d="M78.6 64.6 C 85 62.7, 93.5 62.9, 100.8 65.1"/>
+  <path d="{{ cer }}"/>
+  <path class="fold" d="M36 47 C 46 44, 56.5 42.8, 67 37.5"/>
+  <path class="fold" d="M60 5.6 C 56.5 13, 61.5 19.5, 57 27 C 54.5 31.5, 57.5 35, 55.5 40"/>
+  <path class="fold" d="M47.5 7.2 C 44.5 14, 48.5 20.5, 44.5 28.5"/>
+  <path class="fold" d="M12.6 30 C 20.5 26.5, 29 25.5, 37 21"/>
+  <path class="fold" d="M73 7 C 70.5 13.5, 74 18.5, 79 21.5 C 84.5 24.5, 89.5 26.5, 94.5 31"/>
+  <path class="fold" d="M44.5 55.5 C 54 52.5, 64 50.5, 74 46.5"/>
+</g>

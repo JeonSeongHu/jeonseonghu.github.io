@@ -11,24 +11,12 @@ lang: en
 
 <div class="pf-home">
 
-<nav class="pf-toc" aria-label="On this page" data-toc>
-	<div class="pf-toc-inner">
-		<span class="pf-toc-label">On this page</span>
-		<ul class="pf-toc-list">
-			<li><a href="#news">News</a></li>
-			<li><a href="#publications">Research</a></li>
-			<li><a href="#focus">Focus</a></li>
-			<li><a href="#experience">Experience</a></li>
-		</ul>
-	</div>
-</nav>
-
 <section class="pf-hero" id="hero">
 	<div class="pf-hero-text">
 		<div class="pf-eyebrow">Integrated M.S./Ph.D. Student<span class="pf-eyebrow-sep">, </span><span class="pf-eyebrow-org">KAIST CVLAB</span></div>
 		<h1 class="pf-h1">Seonghu Jeon<span class="pf-blue">.</span></h1>
 		<p class="pf-deck">
-			I build geometry-aware generative models for 3D/4D vision and robot learning. My work connects <span class="pf-nowrap">multi-view</span> generation, geometric foundation models, and visuomotor policy learning.
+			I explore intelligence, aiming to connect agentic robotics, 3D/4D world modeling, and human-robot interaction. My work so far spans <span class="pf-nowrap">multi-view</span> generation, geometric foundation models, and visuomotor policy learning.
 		</p>
 	</div>
 	<nav class="pf-hero-nav" aria-label="Quick links">
@@ -55,27 +43,45 @@ lang: en
 			{% endfor %}
 		</div>
 	</header>
+	{% assign months = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec" | split: "," %}
+	{% assign years = news | group_by_exp: "n", "n.date | slice: 0, 4" %}
+	{% assign latest_done = false %}
 	<ol class="pf-ntl" data-news>
-		{% for n in news %}
-		{% assign cat = n.category | downcase %}
-		<li class="pf-nrow{% if forloop.first %} is-latest{% endif %}" data-cat="{{ cat }}">
-			<span class="pf-nrow-date">{{ n.date }}</span>
-			<span class="pf-nrow-track" aria-hidden="true"><i></i></span>
-			<span class="pf-nrow-cat pf-cat--{{ cat }}">{% include icon.html name=cat size=14 %}{{ n.category }}</span>
-			<div class="pf-nrow-body">
-				<p class="pf-nrow-text">{{ n.text }}</p>
-				{% if n.detail %}
-				<div class="pf-nrow-more"><div>
-					<p class="pf-nrow-detail">{{ n.detail }}</p>
-					{% if n.links %}<p class="pf-nrow-links">{% for l in n.links %}{% assign first = l.url | slice: 0 %}{% if first == "#" %}<a href="{{ l.url }}">{{ l.label }}<span class="pf-arr" aria-hidden="true">↓</span></a>{% else %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}<span class="pf-arr" aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</p>{% endif %}
-				</div></div>
-				{% endif %}
-			</div>
+		{% for y in years %}
+		<li class="pf-nyear{% if forloop.first %} is-open{% endif %}" data-year="{{ y.name }}">
+			<button type="button" class="pf-nyear-head" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="news-{{ y.name }}">
+				<span class="pf-nyear-year">{{ y.name }}</span>
+				<span class="pf-nyear-track" aria-hidden="true"><i></i></span>
+				<span class="pf-nyear-rule"><span class="pf-nyear-count" data-count>{{ y.size }} {% if y.size == 1 %}item{% else %}items{% endif %}</span>{% include icon.html name="chevron-down" size=16 %}</span>
+			</button>
+			<div class="pf-nyear-body" id="news-{{ y.name }}"><div>
+				<ol class="pf-nyear-list">
+					{% for n in y.items %}
+					{% assign cat = n.category | downcase %}
+					{% assign parts = n.date | split: "." %}
+					<li class="pf-nrow{% unless latest_done %} is-latest{% endunless %}" data-cat="{{ cat }}">
+						{% assign latest_done = true %}
+						<span class="pf-nrow-date">{% if parts.size > 1 %}{% assign mi = parts[1] | plus: 0 | minus: 1 %}<time datetime="{{ parts[0] }}-{{ parts[1] }}">{{ months[mi] }}</time>{% endif %}</span>
+						<span class="pf-nrow-track" aria-hidden="true"><i></i></span>
+						<span class="pf-nrow-cat pf-cat--{{ cat }}">{% include icon.html name=cat size=14 %}{{ n.category }}</span>
+						<div class="pf-nrow-body">
+							<p class="pf-nrow-text">{{ n.text }}</p>
+							{% if n.detail %}
+							<div class="pf-nrow-more"><div>
+								<p class="pf-nrow-detail">{{ n.detail }}</p>
+								{% if n.links %}<p class="pf-nrow-links">{% for l in n.links %}{% assign first = l.url | slice: 0 %}{% if first == "#" %}<a href="{{ l.url }}">{{ l.label }}<span class="pf-arr" aria-hidden="true">↓</span></a>{% else %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}<span class="pf-arr" aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</p>{% endif %}
+							</div></div>
+							{% endif %}
+						</div>
+					</li>
+					{% endfor %}
+				</ol>
+			</div></div>
 		</li>
 		{% endfor %}
 	</ol>
 	<div class="pf-ntoggle-row">
-		<button type="button" class="pf-ntoggle" data-news-toggle aria-expanded="false"><span data-label>Show all {{ news.size }}</span>{% include icon.html name="chevron-down" size=16 %}</button>
+		<button type="button" class="pf-ntoggle" data-news-toggle aria-expanded="false"><span data-label>Show all</span>{% include icon.html name="chevron-down" size=16 %}</button>
 	</div>
 </section>
 
@@ -127,17 +133,21 @@ lang: en
 	<header class="pf-hhead">
 		<h2 class="pf-sec-title">Focus</h2>
 	</header>
-	<div class="pf-focus" data-focus>
-		<div class="pf-fpanel pf-fpanel--plan" data-side="plan">
-			{% include brain.html part="cerebrum" %}
-			<h3 class="pf-fpanel-term">Agentic Robotics</h3>
-			<p class="pf-fpanel-desc"><b>Cerebrum:</b> planning what to do and in what order, and communicating with people.</p>
-		</div>
-		{% include focus-loop.html %}
-		<div class="pf-fpanel pf-fpanel--model" data-side="predict">
-			{% include brain.html part="cerebellum" %}
-			<h3 class="pf-fpanel-term">3D/4D World Model</h3>
-			<p class="pf-fpanel-desc"><b>Cerebellum:</b> geometric understanding and world modeling, for predicting the future and precise manipulation.</p>
+	<div class="pf-hub" data-focus>
+		{% include focus-hub.html %}
+		<div class="pf-hub-cards">
+			<div class="pf-hcard" data-side="plan">
+				<h3 class="pf-hcard-term">Agentic Robotics</h3>
+				<p class="pf-hcard-desc"><b>Prefrontal cortex:</b> planning what to do and in what order.</p>
+			</div>
+			<div class="pf-hcard" data-side="talk">
+				<h3 class="pf-hcard-term">Human-Robot Interaction</h3>
+				<p class="pf-hcard-desc"><b>Language areas:</b> communicating with people.</p>
+			</div>
+			<div class="pf-hcard" data-side="predict">
+				<h3 class="pf-hcard-term">3D/4D World Modeling</h3>
+				<p class="pf-hcard-desc"><b>Cerebellum:</b> geometric understanding and world modeling, for predicting the future and precise manipulation.</p>
+			</div>
 		</div>
 	</div>
 </section>

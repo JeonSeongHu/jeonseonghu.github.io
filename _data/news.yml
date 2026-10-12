@@ -1,7 +1,8 @@
 # News & notes on the home page, newest first.
 # The first entry is shown open (detail visible); the others open on hover.
 #
-#   date:      YYYY.MM
+#   date:      YYYY.MM, or YYYY when the month is not on record (listed after that year's dated items).
+#              Entries are grouped by year on the page; rows show the month only.
 #   category:  Paper | Honor | Career | Education  (filter pills + icon + dot color)
 #   text:      one sentence. Wrap the subject in <b>, a venue in <span class="v">.
 #   detail:    optional second line (paper title, role, ...)
@@ -70,3 +71,47 @@
   detail: 'Great Honors, GPA 4.46 / 4.50.'
   links:
     - { label: Experience, url: "#experience" }
+
+- date: "2025.07"
+  category: Paper
+  text: '<b>ReMoTE</b> was accepted to <span class="v">ITC-CSCC 2025</span> as an oral presentation.'
+  detail: 'ReMoTE: A Benchmark for Object Motion Transfer. First author.'
+  links:
+    - { label: paper, url: "https://ieeexplore.ieee.org/document/11137589" }
+
+- date: "2025.06"
+  category: Honor
+  text: 'Won <b>2nd Prize</b> at the <span class="v">IEIE Undergraduate AI Paper Competition</span> (AISP 2025).'
+  detail: 'Revisiting Flow-Conditioned Motion Transfer via Pseudo-Flow and Consecutive Local Attention'
+
+- date: "2024.09"
+  category: Honor
+  text: 'Received the <b>National Science and Technology Scholarship</b> from KOSAF.'
+
+- date: "2024.08"
+  category: Career
+  text: 'Moved to <b>KAIST CVLAB</b> with my supervisor, continuing as an undergraduate research intern.'
+  links:
+    - { label: Experience, url: "#experience" }
+
+- date: "2024.04"
+  category: Honor
+  text: 'Received the merit-based <b>Sangah Scholarship</b>.'
+
+- date: "2024.02"
+  category: Honor
+  text: 'Received the merit-based <b>Woonhae Scholarship</b>.'
+
+- date: "2023.12"
+  category: Career
+  text: 'Joined <b>CVLAB at Korea University</b> as an undergraduate research intern under Prof. Seungryong Kim.'
+  links:
+    - { label: Experience, url: "#experience" }
+
+- date: "2023.11"
+  category: Honor
+  text: 'Won <b>1st Prize</b> at the <span class="v">Korea-Yonsei University Datathon</span>.'
+
+- date: "2023.11"
+  category: Honor
+  text: 'Won the <b>Grand Prize</b> at <span class="v">InThon</span>, Korea University College of Informatics.'

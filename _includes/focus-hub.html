@@ -1,0 +1,28 @@
+{%- comment -%}
+  Focus: one brain ("Intelligence") with three tinted regions, each joined by a line
+  to the card below it. The wide drawing uses a 960 x 290 box that scales with the
+  section; the card centres sit at x = 155 / 480 / 805 for a 3-column grid with a
+  16px gap. Phones get the brain alone (.pf-hub-brain-sm) above stacked cards.
+  The brain is drawn at translate(330 4) scale(2.8), so a brain point (x, y) lands
+  at (330 + 2.8x, 4 + 2.8y):
+    plan     prefrontal centre (25, 27)        -> (400, 80)
+    talk     arcuate fasciculus apex (53.6, 33.4) -> (480, 98)
+    predict  cerebellum centre (89, 62)        -> (579, 178)
+{%- endcomment -%}
+<div class="pf-hub-figure" aria-hidden="true">
+  <span class="pf-hub-label">Intelligence</span>
+  <svg class="pf-hub-svg" viewBox="0 0 960 290" fill="none" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+    <g class="pf-hub-links">
+      <path class="lk lk--plan" d="M400 80 H 175 Q 155 80 155 100 V 290"/>
+      <path class="lk lk--talk" d="M480 98 V 290"/>
+      <path class="lk lk--predict" d="M579 178 H 785 Q 805 178 805 198 V 290"/>
+    </g>
+    <g class="pf-hub-brain" transform="translate(330 4) scale(2.8)">{% include focus-brain.html id="hub" %}</g>
+    <g class="pf-hub-dots">
+      <circle class="dot dot--plan" cx="400" cy="80" r="3.5"/>
+      <circle class="dot dot--talk" cx="480" cy="98" r="3.5"/>
+      <circle class="dot dot--predict" cx="579" cy="178" r="3.5"/>
+    </g>
+  </svg>
+  <svg class="pf-hub-brain-sm" viewBox="0 0 120 96" fill="none" stroke-linecap="round" stroke-linejoin="round" focusable="false">{% include focus-brain.html id="hubsm" %}</svg>
+</div>

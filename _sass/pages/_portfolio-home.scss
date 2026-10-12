@@ -2,10 +2,10 @@
    FILE: pages/_portfolio-home.scss
    PURPOSE: Home page (About) components added in the 2026-10 redesign:
             hero quick links, News timeline with filter pills and collapse,
-            Focus panels with brain drawings and the plans/predictions loop,
+            Focus hub (one brain, three regions, three cards),
             Experience timeline, mobile section menu.
    DEPENDS ON: tokens defined on body.layout-portfolio in pages/_about.scss
-   USED BY: _pages/about.md, _includes/{icon,brain,focus-loop}.html, assets/js/home.js
+   USED BY: _pages/about.md, _includes/{icon,focus-hub,focus-brain}.html, assets/js/home.js
    Figma: "Home / Desktop 1440 (v10)" and "Home / Mobile 375 (light)".
    ============================================ */
 
@@ -14,7 +14,6 @@
     --h-dot: #C9CBD1;
     --h-faint: #B9BBC2;
     --h-line: #B4B7BF;
-    --h-grey: #A9ACB4;
     --h-chip: #F3F4F6;
     --h-plan-bg: #EEF2FC;
     --h-model-bg: #F5F5F7;
@@ -272,20 +271,107 @@
     }
 }
 
-/* collapse (set by home.js) */
+/* filter (set by home.js) */
 .pf-nrow.is-hidden { display: none; }
-.pf-nrow.is-fade {
-    pointer-events: none;
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 90%);
-    mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 90%);
-}
 .pf-nrow.is-end .pf-nrow-track::after,
-.pf-nrow.is-fade .pf-nrow-track::after,
 .pf-xrow:last-child .pf-nrow-track::after { display: none; }
+
+/* ============= News: year groups (each opens and closes on its own) ============= */
+.pf-nyear {
+    list-style: none;
+
+    &[hidden] { display: none; }
+    & + & { margin-top: 2px; }
+}
+.pf-nyear-head {
+    display: grid;
+    grid-template-columns: 128px 28px minmax(0, 1fr);
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover .pf-nyear-rule,
+    &:hover .pf-nyear-rule .pf-icon { color: var(--pf-ink-2); }
+    &:hover .pf-nyear-track i { border-color: var(--pf-blue); }
+}
+.pf-nyear-year {
+    padding-right: 12px;
+    text-align: right;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 24px;
+    color: var(--pf-ink);
+    font-variant-numeric: tabular-nums;
+}
+.pf-nyear-track {
+    display: flex;
+    justify-content: center;
+
+    i {
+        width: 9px;
+        height: 9px;
+        border: 1.5px solid var(--h-dot);
+        border-radius: 50%;
+        background: var(--pf-canvas);
+        box-sizing: border-box;
+        transition: border-color 0.12s ease;
+    }
+}
+.pf-nyear-rule {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--pf-ink-4);
+    transition: color 0.12s ease;
+
+    &::before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--pf-hairline);
+    }
+    .pf-icon { color: var(--pf-ink-4); transition: transform 0.2s ease, color 0.12s ease; }
+}
+.pf-nyear.is-open .pf-nyear-rule .pf-icon { transform: rotate(180deg); }
+.pf-nyear-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+
+    /* room for the row hover wash, which reaches 12px past the row sides */
+    > div {
+        min-height: 0;
+        overflow: hidden;
+        margin: 0 -12px;
+        padding: 0 12px;
+        visibility: hidden;
+        transition: visibility 0s linear 0.25s;
+    }
+}
+.pf-nyear.is-open .pf-nyear-body {
+    grid-template-rows: 1fr;
+
+    > div { visibility: visible; transition: none; }
+}
+.pf-nyear-list {
+    margin: 0;
+    padding: 12px 0 8px;
+    list-style: none;
+}
+
 .pf-ntoggle-row {
     display: flex;
     justify-content: center;
-    padding-top: 6px;
+    padding-top: 10px;
 
     &[hidden] { display: none; }
 }
@@ -336,94 +422,83 @@
     &[aria-expanded="true"] .pf-icon { transform: rotate(180deg); }
 }
 
-/* ============= Focus: two panels joined by the loop ============= */
-.pf-focus {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 152px minmax(0, 1fr);
-    align-items: stretch;
-}
-.pf-fpanel {
-    --panel: var(--h-plan-bg);
+/* ============= Focus: one brain, three regions, three cards ============= */
+.pf-hub-figure {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 24px;
-    border-radius: 16px;
-    background: var(--panel);
-    transition: opacity 0.25s ease;
+    align-items: center;
+
+    .br-base path { fill: var(--pf-canvas); }
+    .br-line path { stroke: var(--h-line); stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+    .br-line .fold { stroke-width: 1.1px; }
+    .rg path:not(.tract), .rg ellipse { fill: rgba(47, 88, 201, 0.2); transition: fill 0.25s ease; }
+    .rg .tract {
+        fill: none;
+        stroke: var(--pf-blue);
+        stroke-width: 1.4px;
+        stroke-dasharray: 1 3.5;
+        vector-effect: non-scaling-stroke;
+        transition: stroke 0.25s ease;
+    }
+    .lk { stroke: var(--h-dot); stroke-width: 1px; vector-effect: non-scaling-stroke; transition: stroke 0.25s ease; }
+    .dot { fill: var(--pf-blue); transition: fill 0.25s ease; }
 }
-.pf-fpanel--model { --panel: var(--h-model-bg); }
-.pf-fpanel-term {
-    margin: 0;
-    font-size: 20px;
+.pf-hub-label {
+    margin-bottom: 2px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1.3;
-    letter-spacing: -0.02em;
+    color: var(--pf-blue);
+}
+.pf-hub-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pf-hub-brain-sm { display: none; }
+
+.pf-hub-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;                  /* the line ends in focus-hub.html assume 16px */
+}
+.pf-hcard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 22px 22px;
+    border-radius: 14px;
+    background: var(--h-model-bg);
+    transition: background 0.25s ease, opacity 0.25s ease;
+}
+.pf-hcard-term {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
     color: var(--pf-ink);
 }
-.pf-fpanel-desc {
+.pf-hcard-desc {
     margin: 0;
-    font-size: 15px;
+    font-size: 14.5px;
     line-height: 1.6;
     color: var(--pf-ink-3);
 
     b { font-weight: 500; color: var(--pf-ink-2); }
 }
-.pf-brain {
-    display: block;
-    width: 80px;
-    height: 64px;
 
-    .stem path { stroke: var(--h-line); stroke-width: 1.5; }
-    .shape { stroke-width: 2.3; }
-    .fold { stroke-width: 1.5; }
-    .on .shape { fill: #FFFFFF; stroke: var(--pf-blue); }
-    .on .fold { stroke: var(--pf-blue); }
-    .off .shape { fill: var(--panel); stroke: var(--h-line); }
-    .off .fold { stroke: var(--h-line); }
+/* hovering a card lights its region, line and dot; the rest go grey (home.js) */
+.pf-hub[data-active] {
+    .rg path:not(.tract), .rg ellipse { fill: #ECEDF0; }
+    .rg .tract { stroke: var(--h-line); }
+    .dot { fill: var(--h-line); }
+    .pf-hcard { opacity: 0.5; }
 }
-
-.pf-loop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-}
-.pf-loop-label {
-    font-size: 12px;
-    line-height: 1.4;
-    transition: opacity 0.25s ease, color 0.25s ease;
-}
-.pf-loop-label--plans { color: var(--pf-blue); font-weight: 500; }
-.pf-loop-label--pred { color: #8A8D95; }
-.pf-loop-svg--h { width: 128px; height: 72px; }
-.pf-loop-svg--v { display: none; width: 56px; height: 86px; }
-.pf-loop-svg {
-    overflow: visible;
-
-    .arc { fill: none; stroke-linecap: round; transition: stroke 0.25s ease, stroke-width 0.25s ease, opacity 0.25s ease; }
-    .arc--plans { stroke: var(--pf-blue); stroke-width: 1.75; }
-    .arc--pred { stroke: var(--h-grey); stroke-width: 1.5; stroke-dasharray: 1 5; }
-    .head, .end { transition: fill 0.25s ease, opacity 0.25s ease; }
-    .head--plans, .end--plans { fill: var(--pf-blue); }
-    .head--pred, .end--pred { fill: var(--h-grey); }
-    .runner { fill: var(--pf-blue); opacity: 0.85; }
-}
-.pf-focus[data-active="plan"] {
-    .pf-fpanel--model { opacity: 0.4; }
-    .arc--plans { stroke-width: 2.4; }
-    .arc--pred, .head--pred, .end--pred, .pf-loop-label--pred { opacity: 0.3; }
-}
-.pf-focus[data-active="predict"] {
-    .pf-fpanel--plan { opacity: 0.4; }
-    .arc--pred { stroke: var(--pf-blue); stroke-dasharray: none; stroke-width: 2.4; }
-    .head--pred, .end--pred { fill: var(--pf-blue); }
-    .arc--plans, .head--plans, .end--plans, .pf-loop-label--plans { opacity: 0.3; }
-    .pf-loop-label--pred { color: var(--pf-blue); font-weight: 500; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .pf-loop-svg .runner { display: none; }
+@each $k in plan, talk, predict {
+    .pf-hub[data-active="#{$k}"] {
+        .rg--#{$k} path:not(.tract), .rg--#{$k} ellipse { fill: rgba(47, 88, 201, 0.4); }
+        .rg--#{$k} .tract { stroke: var(--pf-blue); }
+        .lk--#{$k} { stroke: var(--pf-blue); }
+        .dot--#{$k} { fill: var(--pf-blue); }
+        .pf-hcard[data-side="#{$k}"] { opacity: 1; background: var(--h-plan-bg); }
+    }
 }
 
 /* ============= Experience timeline ============= */
@@ -476,58 +551,9 @@
     li + li { margin-top: 3px; }
 }
 
-/* ============= Section sidebar (wide screens) ============= */
-/* Sits in the left margin, outside the 960px content box, and follows the
-   reader down the page. Below 1264px the floating menu takes over. */
-.pf-toc { display: none; }
-@media (min-width: 1264px) {
-    .pf-home { position: relative; }
-    .pf-toc {
-        display: block;
-        position: absolute;
-        top: 56px;              /* level with the hero eyebrow */
-        bottom: 0;
-        right: 100%;
-        width: 92px;
-        margin-right: 32px;
-    }
-}
-.pf-toc-inner {
-    position: sticky;
-    top: 96px;
-}
-.pf-toc-label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 12.5px;
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--pf-ink-4);
-}
-.pf-toc-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-left: 1px solid var(--pf-hairline);
-
-    a {
-        display: block;
-        margin-left: -1px;
-        padding: 5px 0 5px 12px;
-        border-left: 2px solid transparent;
-        font-size: 14px;
-        line-height: 1.4;
-        color: var(--pf-ink-3);
-        transition: color 0.12s ease, border-color 0.12s ease;
-
-        &:hover { text-decoration: none; }  // colour comes from the global a:hover (accent)
-        &.is-active { color: var(--pf-blue); border-left-color: var(--pf-blue); }
-    }
-}
-
-/* ============= Floating section menu (below 1264px) ============= */
+/* ============= Floating section menu (tablet and phone) ============= */
 .pf-fab { display: none; }
-@media (max-width: 1263px) {
+@media (max-width: 860px) {
     .pf-fab {
         position: fixed;
         z-index: 90;
@@ -611,19 +637,15 @@
 
     .pf-hhead--row { flex-direction: column; align-items: flex-start; gap: 12px; }
 
-    .pf-focus { grid-template-columns: minmax(0, 1fr) 112px minmax(0, 1fr); }
-    .pf-fpanel { padding: 20px; }
-    .pf-loop-svg--h { width: 100px; height: 56px; }
+    .pf-hcard { padding: 18px; }
+    .pf-hcard-term { font-size: 17px; }
 }
 
-/* ============= Narrow: Focus panels stack, loop turns vertical ============= */
+/* ============= Narrow: brain alone, cards stacked ============= */
 @media (max-width: 640px) {
-    .pf-focus { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
-    .pf-loop { flex-direction: row; gap: 10px; padding: 4px 0; }
-    .pf-loop-svg--h { display: none; }
-    .pf-loop-svg--v { display: block; order: 1; }
-    .pf-loop-label--pred { order: 0; }
-    .pf-loop-label--plans { order: 2; }
+    .pf-hub-svg { display: none; }
+    .pf-hub-brain-sm { display: block; width: 200px; height: auto; margin: 4px 0 16px; }
+    .pf-hub-cards { grid-template-columns: minmax(0, 1fr); gap: 10px; }
 }
 
 /* ============= Phone: details stay folded ============= */
@@ -667,6 +689,11 @@
     .pf-nrow.is-latest .pf-nrow-text { font-size: 15px; line-height: 1.5; }
     .pf-nrow-more,
     .pf-nrow.is-latest .pf-nrow-more { display: none; }
+    /* year header: ring | year | rule */
+    .pf-nyear-head { grid-template-columns: 18px auto minmax(0, 1fr); column-gap: 6px; }
+    .pf-nyear-track { grid-column: 1; grid-row: 1; }
+    .pf-nyear-year { grid-column: 2; grid-row: 1; padding-right: 4px; text-align: left; }
+    .pf-nyear-rule { grid-column: 3; grid-row: 1; }
 
     /* Featured research: venue, title, thumbnail; Details opens authors and links */
     .pf-home .pf-pub { grid-template-columns: minmax(0, 1fr) 88px; row-gap: 5px; }
@@ -679,9 +706,6 @@
     .pf-home .pf-pub.is-open .pf-pub-more { display: flex; }
 
     /* Focus */
-    .pf-fpanel { padding: 20px; }
-    .pf-brain { width: 72px; height: 58px; }
-    .pf-fpanel-term { font-size: 19px; }
 
     /* Experience: dot | date over role; bullets behind Details */
     .pf-xrow {

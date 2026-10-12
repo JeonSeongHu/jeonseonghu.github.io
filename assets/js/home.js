@@ -1,46 +1,59 @@
-// Home page behaviour: News filter + collapse, mobile "Details" toggles,
+// Home page behaviour: News filter + year groups, mobile "Details" toggles,
 // Focus hover state, and the mobile section menu.
 (function () {
   'use strict';
 
-  var small = window.matchMedia('(max-width: 560px)');
-  function onChange(mq, fn) {
-    if (mq.addEventListener) mq.addEventListener('change', fn); else if (mq.addListener) mq.addListener(fn);
-  }
+  function slice(nodes) { return Array.prototype.slice.call(nodes); }
 
-  // ---------- News: category pills + "Show all" ----------
+  // ---------- News: category pills + year groups + "Show all" ----------
+  // Each year opens and closes on its own. With "All", only the newest year starts
+  // open; picking a category opens every year that has a match.
   var list = document.querySelector('[data-news]');
   if (list) {
-    var rows = Array.prototype.slice.call(list.querySelectorAll('.pf-nrow'));
+    var years = slice(list.querySelectorAll('.pf-nyear'));
     var toggle = document.querySelector('[data-news-toggle]');
     var label = toggle ? toggle.querySelector('[data-label]') : null;
-    var pills = Array.prototype.slice.call(document.querySelectorAll('.pf-pill-f'));
+    var pills = slice(document.querySelectorAll('.pf-pill-f'));
     var filter = 'all';
-    var expanded = false;
+    var open = [];
+
+    var reset = function () {
+      years.forEach(function (y, i) { open[i] = filter !== 'all' || i === 0; });
+    };
 
     var render = function () {
-      var visible = rows.filter(function (r) { return filter === 'all' || r.getAttribute('data-cat') === filter; });
-      var limit = small.matches ? 3 : 4;              // rows shown in full before the faded one
-      var collapse = !expanded && visible.length > limit + 1;
-      rows.forEach(function (r) {
-        r.classList.remove('is-hidden', 'is-fade', 'is-end');
-        if (visible.indexOf(r) < 0) r.classList.add('is-hidden');
-      });
-      if (collapse) {
-        visible.forEach(function (r, i) {
-          if (i === limit) r.classList.add('is-fade');
-          else if (i > limit) r.classList.add('is-hidden');
+      var shown = [];
+      years.forEach(function (y, i) {
+        var rows = slice(y.querySelectorAll('.pf-nrow'));
+        var vis = rows.filter(function (r) { return filter === 'all' || r.getAttribute('data-cat') === filter; });
+        rows.forEach(function (r) {
+          r.classList.toggle('is-hidden', vis.indexOf(r) < 0);
+          r.classList.remove('is-end');
         });
-      }
-      var shown = visible.filter(function (r) { return !r.classList.contains('is-hidden'); });
-      if (shown.length) shown[shown.length - 1].classList.add('is-end');
+        if (vis.length) {
+          vis[vis.length - 1].classList.add('is-end');
+          shown.push(i);
+        }
+        y.hidden = !vis.length;
+        var count = y.querySelector('[data-count]');
+        if (count) count.textContent = vis.length + (vis.length === 1 ? ' item' : ' items');
+        y.classList.toggle('is-open', !!open[i]);
+        y.querySelector('.pf-nyear-head').setAttribute('aria-expanded', String(!!open[i]));
+      });
       if (toggle) {
-        toggle.parentElement.hidden = visible.length <= limit + 1;
-        toggle.setAttribute('aria-expanded', String(expanded));
-        if (label) label.textContent = expanded ? 'Show less' : 'Show all ' + visible.length;
+        var allOpen = shown.every(function (i) { return open[i]; });
+        toggle.parentElement.hidden = shown.length < 2;
+        toggle.setAttribute('aria-expanded', String(allOpen));
+        if (label) label.textContent = allOpen ? 'Show less' : 'Show all';
       }
     };
 
+    years.forEach(function (y, i) {
+      y.querySelector('.pf-nyear-head').addEventListener('click', function () {
+        open[i] = !open[i];
+        render();
+      });
+    });
     pills.forEach(function (p) {
       p.addEventListener('click', function () {
         filter = p.getAttribute('data-filter');
@@ -49,20 +62,31 @@
           q.classList.toggle('is-active', on);
           q.setAttribute('aria-pressed', String(on));
         });
+        reset();
         render();
       });
     });
     if (toggle) {
       toggle.addEventListener('click', function () {
-        expanded = !expanded;
+        var collapsing = toggle.getAttribute('aria-expanded') === 'true';
+        if (collapsing) {
+          // back to only the first year that has a match
+          var first = true;
+          years.forEach(function (y, i) {
+            open[i] = !y.hidden && first;
+            if (!y.hidden) first = false;
+          });
+        } else {
+          years.forEach(function (y, i) { open[i] = true; });
+        }
         render();
-        if (!expanded) {
+        if (collapsing) {
           var sec = list.closest('section');
           if (sec && sec.getBoundingClientRect().top < 0) sec.scrollIntoView({ block: 'start' });
         }
       });
     }
-    onChange(small, render);
+    reset();
     render();
   }
 
@@ -78,35 +102,13 @@
     });
   });
 
-  // ---------- Focus: hovering a panel highlights its half of the loop ----------
+  // ---------- Focus: hovering a card highlights its brain region and line ----------
   var focus = document.querySelector('[data-focus]');
   if (focus) {
     Array.prototype.forEach.call(focus.querySelectorAll('[data-side]'), function (panel) {
       panel.addEventListener('mouseenter', function () { focus.setAttribute('data-active', panel.getAttribute('data-side')); });
       panel.addEventListener('mouseleave', function () { focus.removeAttribute('data-active'); });
     });
-  }
-
-  // ---------- Sidebar: highlight the section in view ----------
-  var toc = document.querySelector('[data-toc]');
-  if (toc) {
-    var tocLinks = Array.prototype.slice.call(toc.querySelectorAll('a'));
-    var tocSecs = tocLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-    var spy = function () {
-      var line = window.innerHeight * 0.35;
-      var idx = -1;
-      tocSecs.forEach(function (sec, i) { if (sec && sec.getBoundingClientRect().top <= line) idx = i; });
-      // the last section is short; mark it once the page bottom is reached
-      if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 2) idx = tocSecs.length - 1;
-      tocLinks.forEach(function (a, i) {
-        a.classList.toggle('is-active', i === idx);
-        if (i === idx) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
-      });
-    };
-    // scroll events already arrive at most once per frame; four rect reads are cheap
-    window.addEventListener('scroll', spy, { passive: true });
-    window.addEventListener('resize', spy);
-    spy();
   }
 
   // ---------- Floating section menu ----------
