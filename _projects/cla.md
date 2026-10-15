@@ -3,11 +3,11 @@ layout: project
 type: project
 title: "Revisiting Flow-Conditioned Motion Transfer via Pseudo-Flow and Consecutive Local Attention"
 short_title: "CLA"
-description: "A novel framework that redefines motion guidance in video diffusion by extracting 'pseudo-flow' from 2D attention layers, enabling more interpretable and robust motion transfer."
+description: "Consecutive Local Attention (CLA) extracts a pseudo optical flow from the 2D spatial attention of a UNet video diffusion model and uses it to guide zero-shot motion transfer. Best on three of four ReMoTE metrics."
 image: "/assets/images/projects/cla-figure.webp"
 authors: "Seonghu Jeon, Jinhyeok Choi, Junghyun Hwang, Seungryong Kim†"
-venue: "IEIE 2025 Undergraduate Paper Competition (Excellence Award)"
-date: 2025-12-01
+venue: "IEIE Undergraduate AI Paper Competition, AISP 2025 (Excellence Award)"
+date: 2025-06-01
 tags: ["Motion Transfer", "Video Generation", "Computer Vision", "Diffusion Models"]
 categories: ["Vision", "Generative Models"]
 link: ""
@@ -70,31 +70,49 @@ Finally, some subsequent approaches rely on 3D or spatio-temporal attention mech
 
 # Method
 
-To address these limitations, we propose extracting pseudo-flow representations that explicitly encode frame-to-frame displacement. The key insight is that even in 2D self-attention architectures without explicit temporal interaction, flow-like information can be induced through minimal structural modification.
+To address these limitations, we propose extracting pseudo-flow representations that explicitly encode frame-to-frame displacement. The key insight is that even in 2D self-attention architectures without explicit temporal interaction, flow-like information can be induced through minimal structural modification. We call the resulting attention **Consecutive Local Attention (CLA)**.
 
-We introduce temporal token shifting, which reconfigures attention computation so that queries from one frame attend to keys from the subsequent frame. This transforms attention scores into indicators of inter-frame correspondence.
+**Temporal token shifting.** For a video with *f* frames, CLA pairs the queries of frame *t* with the keys of frame *t*+1 inside an existing 2D spatial attention layer (*q′ₜ = qₜ*, *k′ₜ = kₜ₊₁*). Each attention score then measures how well a position in one frame matches a position in the next.
 
-Because attention naturally allows long-range interactions, this alone leads to noisy or diffuse correspondences. To counter this, we apply a local correspondence constraint, restricting attention to spatially nearby tokens and reflecting the physical assumption of limited inter-frame displacement.
+**Local correspondence constraint.** Objects move only a short distance between consecutive frames, so scores between positions more than *r* apart (L1 distance in the attention map) are masked to −∞. Without this mask, long-range matches make the flow noisy, especially in the background.
 
-Using these constrained attention weights, we compute expected target coordinates for each position and derive displacement vectors relative to original positions. This displacement field constitutes the proposed pseudo-flow, enabling direct and interpretable motion representation.
+**Pseudo-flow.** A softmax with temperature β turns the masked scores into weights *A*, and each position's displacement is the weighted average of the matched coordinates minus its own coordinate: *Δᵢ = Σⱼ Aᵢⱼ cⱼ − cᵢ*. The resulting displacement field is the pseudo-flow, and it is differentiable with respect to the latent.
 
 ---
 
 # Sampling
 
-Once pseudo-flow is defined, it can be used to guide diffusion sampling. Pseudo-flow is extracted from a reference video using the same mechanism, and a loss is defined between the reference flow and the flow computed from the generated video.
+Once pseudo-flow is defined, it can be used to guide diffusion sampling. The reference video is inverted with DDIM, and its pseudo-flow *Δ*ʳᵉᶠ is extracted with the same mechanism. Sampling starts from the inverted noise. At each early denoising step, the latent is updated by a few gradient steps on the L1 loss between *Δ*ʳᵉᶠ and the pseudo-flow of the video being generated, followed by the standard denoising update. This mirrors DMT's optimization-based sampling but replaces feature-residual alignment with direct flow alignment.
 
-At each diffusion step, the latent is updated through a small number of gradient descent steps to minimize this flow alignment loss, followed by the standard denoising update. This mirrors DMT’s optimization-based sampling structure but replaces feature residual alignment with direct flow alignment.
+We found that **50 steps of DDIM inversion** are enough instead of 1,000. The appearance still follows the new prompt without DMT's low-frequency initialization, and preprocessing becomes more than 20 times faster.
 
-Empirically, we find that short DDIM inversion schedules suffice for stable appearance editing, significantly improving computational efficiency.
+**Implementation.** We use Zeroscope as the backbone and extract pseudo-flow from all spatial self-attention layers of the last up-block. Across the model's attention layers, the last up-block gave the flow closest to the real motion; the down-blocks also followed the motion but were much noisier in the background. We set *r* = 3, β = 5.0, and optimize the latent with SGD (learning rate 0.5) during the first 10 of 50 denoising steps.
 
 ---
 
 # Experiments
 
-Evaluation is conducted using the ReMoTE benchmark. Compared with existing motion transfer methods, the proposed approach demonstrates strong motion alignment and structural consistency, particularly in intra-category settings.
+We compared CLA with three zero-shot motion transfer methods on the ReMoTE benchmark: DMT, MOFT, and MotionClone (MC). MotionClone uses AnimateDiff as its backbone and the others use Zeroscope. Every method generated 12-frame videos at 576×320.
 
-Visual inspection further confirms that the local correspondence constraint substantially reduces background noise in pseudo-flow maps and yields clearer object motion, highlighting the importance of locality in flow extraction.
+| Method | IQ ↑ Intra | IQ ↑ Cross | MFSym ↑ Intra | MFSym ↑ Cross | VMD ↓ Intra | VMD ↓ Cross | MLMF ↑ Intra | MLMF ↑ Cross |
+| :-- | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| DMT | **31.95** | **32.05** | 0.942 | 0.939 | 9,835 | 10,051 | 0.679 | 0.593 |
+| MOFT | 31.57 | 31.69 | 0.939 | 0.938 | 9,908 | **9,986** | 0.728 | 0.598 |
+| MC | 30.77 | 30.93 | 0.936 | 0.936 | 11,193 | 12,592 | 0.689 | **0.787** |
+| **CLA (ours)** | 31.11 | 31.34 | **0.948** | **0.949** | **8,802** | 12,064 | **0.779** | 0.667 |
+
+CLA scored best on MFSym in both settings and on VMD and MLMF in the intra-category setting, which makes it best on three of the four metrics. In the cross-category setting, VMD and MLMF fell behind, so keeping objects aligned when the target belongs to a different category remains hard. IQ (CLIPScore) was in the middle: in some videos, background details from the prompt were missing, for example in "A mouse scurrying between chair legs on a wooden floor."
+
+| Method | Preprocessing (s) | Generation (s) | Total (s) |
+| :-- | :--: | :--: | :--: |
+| DMT | 360.03 | 214.41 | 574.44 |
+| MOFT | 355.48 | 217.00 | 572.48 |
+| MC | 0 | 342.44 | 342.44 |
+| **CLA (ours)** | **20.14** | **186.10** | **206.24** |
+
+Time per sample, measured on one RTX 3090; CLA's generation ran on two RTX 3090s with FSDP. CLA uses 10 optimization steps against about 20 for DMT, and the 50-step inversion removes most of the preprocessing time.
+
+Visually, the local correspondence constraint substantially reduces background noise in the pseudo-flow maps and yields clearer object motion. In generated videos, the layout and motion of the reference carried over even when the object changed completely, as from a car to a lion or from a horse to a person.
 
 ---
 

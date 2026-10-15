@@ -3,11 +3,11 @@ layout: project
 type: project
 title: "Driving Practice: Optimizing Segmentation Models in Resource-Constrained Environments"
 short_title: "AIKU Driving Practice"
-description: "A practical study on improving semantic segmentation for autonomous driving under limited data and compute, focusing on architecture choices, coordinate-aware convolutions, and optimizer/schedule tuning."
-image: ""
+description: "Revisiting the AIKUTHON driving-scene segmentation task on 3,850 CARLA images: fixing the training pipeline, then comparing SegFormer, CoordConv, and three optimizers under limited compute."
+image: "/assets/images/projects/driving-practice-thumb.webp"
 authors: "Seonghu Jeon, Seohyun Park, Namseok Lee"
 venue: "AIKU (Korea University AI Society) Internal Project"
-date: 2026-01-09
+date: 2023-06-01
 tags: ["Semantic Segmentation", "Autonomous Driving", "Deep Learning", "Computer Vision"]
 categories: ["Vision"]
 link: ""
@@ -15,104 +15,53 @@ link: ""
 
 # Introduction
 
-Semantic segmentation is a core component of autonomous driving perception: it assigns a class label to every pixel (e.g., road, vehicle, pedestrian). Unlike image classification, segmentation requires both (1) high-level semantics and (2) precise spatial localization.
+Semantic segmentation assigns a class label to every pixel of a driving scene, such as road, vehicle, or pedestrian, so it needs both high-level semantics and precise localization.
 
-This project (“Driving Practice”) was conducted for the **AIKUTHON** competition, where participants built an end-to-end deep learning pipeline (data loading → training → evaluation) under **limited data and resources**. Our goal was to improve segmentation performance in this constrained setting through systematic debugging and targeted model/optimization choices.
+AIKUTHON, the hackathon of AIKU (Korea University AI Society), posed this task on **3,850 images captured in the CARLA driving simulator**, with limited compute. Our three-person team had unfinished business with it: some of us could not compete because we were running the event, and others failed to submit or scored low. "Driving Practice" revisited the task afterwards with one goal: reach a first-place score under the same resource limits.
 
----
+# Code review
 
-# Motivation
+Before adding any method, we audited the code we had used during the hackathon.
 
-In our first attempt at AIKUTHON, results were weaker than expected. The main issues were not only model capacity, but also basic pipeline reliability and training setup.
-
-We decided to revisit the entire workflow—starting from the dataset split and training loop—and then test a small set of techniques that are known to work well for segmentation in practice.
-
----
-
-# Code Review & Lessons Learned
-
-Before adding new methods, we audited our initial code and experiments.
-
-* **Dataset split**
-
-  * We fixed an issue where train/validation separation was not handled correctly, which made validation scores unreliable.
-
-* **Augmentation (small-data behavior)**
-
-  * Surprisingly, aggressive augmentations did not help in our setting.
-  * Keeping only **Random Crop** (required for DeepLab V3+ input size) produced more stable results, suggesting that heavy augmentation may have introduced noise the model could not resolve given the dataset size.
-
-* **Optimizer & training stability**
-
-  * We switched to **AdamW** and tuned the learning rate/schedule, which improved convergence stability.
-  * (Learning-rate values were not logged in this note; add them here if you have a run config.)
-
-* **Baseline**
-
-  * We used DeepLab V3+ (EfficientNet backbone) as a starting point.
-  * Some configurations (e.g., partially frozen backbones) underperformed and were dropped early.
-  * *(If you want this section to be more useful, add concrete run IDs + scores here.)*
-
----
+* **Dataset split.** Training and validation images were not separated correctly, so the validation scores could not be trusted. We fixed the split first.
+* **Augmentation.** Removing every augmentation except the random crop needed for the DeepLab V3+ input size gave the largest single improvement in our runs.
+* **Optimizer.** We switched to **AdamW** and raised the learning rate from 0.0001 to 0.01.
+* **Baseline.** DeepLab V3+ with an EfficientNet-b0 backbone scored 0.74; a frozen EfficientNet-b3 backbone scored 0.628, so we dropped it.
 
 # Methods
 
-We focused on four areas: architecture, spatial priors, optimization, and loss/scheduling.
+## 1. CoordConv
 
-## 1. CoordConv: adding explicit spatial signals
+Convolutions are poor at knowing where a pixel is. CoordConv (Liu et al., NeurIPS 2018) concatenates two extra channels holding each pixel's row and column coordinates, which adds position information at almost no cost. Driving scenes have strong position priors, with road at the bottom and sky at the top, so we added CoordConv to DeepLab V3+.
 
-Standard convolutions are translation-equivariant; without extra cues, the network does not explicitly see absolute position. In driving scenes, this can matter because objects often follow spatial priors (e.g., road near the bottom, sky near the top).
+## 2. SegFormer
 
-We implemented **CoordConv** by concatenating coordinate channels to features:
+SegFormer (Xie et al., NeurIPS 2021) is a transformer encoder with a lightweight all-MLP decoder that combines multi-scale features. It captures global context without a heavy decoder.
 
-* add normalized coordinate maps (x) and (y) (and optionally radius (r)) as extra channels
+## 3. Optimizers
 
-This provides a lightweight way to inject absolute position information.
+* **RAdam** multiplies Adam's update by a rectification term that keeps the variance of the adaptive learning rate consistent early in training.
+* **AdaBound** bounds each parameter's learning rate from above and below, tightening the bound over time so training behaves like Adam early and like SGD later.
+* **AdamW** decouples weight decay from the adaptive update, which restores the regularization that L2 loses under Adam. It worked best with cosine annealing.
 
-## 2. SegFormer: efficient global context
-
-We also evaluated **SegFormer**, a transformer-based segmentation model that produces multi-scale features with a lightweight decoder. In our setting, SegFormer was attractive because it can capture global context without a heavy, high-latency decoder.
-
-## 3. Optimizers (RAdam, AdaBound, AdamW)
-
-We compared three optimizers mainly for convergence behavior and final score.
-
-* **RAdam (Rectified Adam)**: often stabilizes early training when adaptive learning-rate variance is high.
-* **AdaBound**: constrains learning rates over time, aiming for Adam-like behavior early and SGD-like behavior later.
-* **AdamW**: decouples weight decay from the adaptive update, often improving generalization with modern architectures.
-
-## 4. Loss and learning-rate scheduling
-
-We used a hybrid loss combining BCE and Dice to balance pixel-wise classification with region overlap:
-
-[
-\mathcal{L} = \lambda,\mathcal{L}*{\text{BCE}} + (1-\lambda),\mathcal{L}*{\text{Dice}}
-]
-
-We also applied **CosineAnnealingLR** to smoothly decay the learning rate during training.
-
----
+All runs used a Dice-BCE loss (0.75 × BCE + 0.25 × Dice) and a CosineAnnealingLR schedule.
 
 # Results
 
-Across our experiments, **SegFormer + AdamW** was the most consistent setup.
+IoU after 2 epochs, for each model and optimizer:
 
-| Model Backbone              | Optimizer | IoU (2 Epochs) | Final IoU |
-| :-------------------------- | :-------- | :--------------: | :---------: |
-| **SegFormer**               | **AdamW** |     **0.749**    |  **0.763**  |
-| DeepLab V3+ (CoordConv)     | AdamW     |       0.717      |    0.749    |
-| DeepLab V3+ (Standard Conv) | AdamW     |       0.705      |    0.740    |
-| SegFormer                   | RAdam     |       0.738      |      -      |
-| SegFormer                   | AdaBound  |       0.654      |      -      |
+| Optimizer | SegFormer | DeepLab V3+ (CoordConv) | DeepLab V3+ (Conv) |
+| :-------- | :-------: | :---------------------: | :----------------: |
+| **AdamW** | **0.749** | 0.717 | 0.705 |
+| RAdam     | 0.738 | 0.696 | 0.695 |
+| AdaBound  | 0.654 | 0.518 | 0.519 |
 
-With additional iterations and submission-time tuning, we reached a best leaderboard score of **0.793**.
+Final IoU with AdamW: **SegFormer 0.763**, DeepLab V3+ with CoordConv 0.749, DeepLab V3+ with standard convolutions 0.740. CoordConv improved DeepLab V3+ under every optimizer except AdaBound, and SegFormer led in every row.
 
+![Label and prediction](/assets/images/projects/driving-practice-result.webp)
 
----
+Our best submission, made after the competition deadline, scored **0.793** on the leaderboard.
 
 # Conclusion
 
-This project reinforced a practical lesson for resource-constrained segmentation: performance gains often come from **pipeline correctness and disciplined tuning**, not only from choosing a larger model.
-
-In our setup, (1) fixing train/val separation, (2) simplifying augmentation, and (3) using **SegFormer + AdamW** with a cosine schedule produced the best overall results. Future work could explore larger SegFormer variants, stronger but controlled augmentations, and synthetic data strategies to improve robustness on rare edge cases.
-
+The largest single improvement came from fixing the pipeline, above all from dropping augmentation, before any new method was added. Among the models, SegFormer was ahead of DeepLab V3+ with every optimizer, and AdamW was the best optimizer for every model.

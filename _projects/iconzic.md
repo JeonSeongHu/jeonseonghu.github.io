@@ -3,8 +3,7 @@ layout: project
 type: project
 title: IConZIC (Image-Conditioned Zero-shot Image Captioning)
 short_title: IConZIC
-description: Proposed faster and stable caption generation utilizing Gibbs
-  sampling and Masked VLM for zero-shot image captioning.
+description: "Zero-shot image captioning that samples words with an image-conditioned masked VLM (ViLT) instead of text-only BERT, matching ConZIC's accuracy about four times faster. COSE461 (NLP) term project."
 authors: Seonghu Jeon, Jiwon Jeong, Byeongwoo Jeon, Seongmin Ko
 role: Project Lead, Idea reification, Experiments, Report
 image: /assets/images/projects/iconzic-image-conditioned-zero-shot-image-captioning/architecture.webp
@@ -33,13 +32,8 @@ However, we identified a fundamental structural inefficiency in ConZIC. Because 
 
 This creates an **initialization problem**:
 
-1. 
-**High Computational Cost:** Since the initial candidates are blind to the visual context, the model must generate a large number of candidates (high  value) to find relevant words.
-
-
+1. **High computational cost:** Since the initial candidates are blind to the visual context, the model must keep a large number of candidate words per position (a large top-*k*) to find relevant ones.
 2. **Sensitivity:** The model becomes highly sensitive to hyperparameter settings. Improper tuning often results in random word sequences or descriptions that ignore visual content.
-
-
 
 # **The Solution: IConZIC and Gibbs-ViLT**
 
@@ -52,14 +46,8 @@ Unlike BERT, ViLT is trained with an **Image-Conditioned Masked Language Modelin
 
 ![image-1766233660908.webp](/assets/images/posts/image-1766233660908.webp)
 
-* 
-**Visual-Aware Sampling:** Instead of starting with random guesses, IConZIC samples words from a distribution conditioned on the image from the very first step.
-
-
-* 
-**Refinement:** We retained the CLIP-guided scoring mechanism to ensure high image-text alignment, selecting the best tokens based on a weighted sum of the ViLT probability and CLIP score.
-
-
+* **Visual-aware sampling:** Instead of starting with random guesses, IConZIC samples words from a distribution conditioned on the image from the very first step.
+* **Refinement:** We retained the CLIP-guided scoring mechanism to ensure high image-text alignment, selecting the best token by a weighted sum of the ViLT probability and the CLIP score (step 6, weighted by α and β).
 
 This hypothesis was straightforward: if the model considers visual tokens from the start, we can generate accurate captions with significantly fewer candidates.
 
@@ -67,36 +55,30 @@ This hypothesis was straightforward: if the model considers visual tokens from t
 
 We evaluated IConZIC against ConZIC using the MSCOCO validation set, focusing on accuracy (CLIPScore), diversity, and generation time.
 
-**1. Efficiency and Speed**
+**1. Efficiency and speed**
 
-![image-1766233688363.webp](/assets/images/posts/image-1766233688363.webp)
+![Top-k candidate size: accuracy, diversity, and time](/assets/images/posts/image-1766233714512.webp)
 
-The most significant achievement was the reduction in computational cost. ConZIC typically requires a candidate size of  to achieve optimal performance. In contrast, IConZIC achieved comparable accuracy with just ****.
+Both models pick each word from the top-*k* candidates of their masked model (step 3 of the algorithm). ConZIC needs a large candidate set: its CLIP-S rises from 0.85 at *k* = 10 to 1.03 at *k* = 200, where generation takes 36.0 s per image.
 
-* By reducing the search space, our model proved to be approximately **four times faster** in generation time while maintaining high quality.
-
-
-* Accuracy nearly converged at , demonstrating that ViLT performs significantly better than BERT in image-conditioned sampling.
-
-
+* IConZIC reaches 1.01 at *k* = 20 in 9.2 s per image, about **four times faster** than ConZIC at *k* = 200 for nearly the same score.
+* IConZIC scores higher than ConZIC at every *k*, and its accuracy has nearly converged by *k* = 50 (1.04, against 1.05 at *k* = 100 and 200). At the same *k*, each IConZIC run is slightly slower (8.1 s against 6.8 s at *k* = 10), so the speed-up comes from needing a smaller *k*.
 
 **2. Robustness**
 
-![image-1766233714512.webp](/assets/images/posts/image-1766233714512.webp)
+![Weight α: accuracy and diversity](/assets/images/posts/image-1766233688363.webp)
 
-IConZIC demonstrated superior stability across different hyperparameter settings. Even with extreme values for the weighting parameter  (e.g., ), where ConZIC's performance collapsed, our model maintained decent accuracy.
+The weight α in step 6 balances the masked model's word probability against the CLIP score. As α grows, ConZIC's CLIP-S drops from 0.95 to 0.61 at α = 2.0, while IConZIC still keeps 0.75; at α = 0.2 the scores are 0.81 and 0.89.
 
-**3. Qualitative Performance on Out-of-Distribution Data**
+**3. Qualitative results on out-of-distribution images**
 
+![Captions on out-of-distribution images](/assets/images/posts/image-1766233850919.webp)
 
-![image-1766233850919.webp](/assets/images/posts/image-1766233850919.webp)
-
-
-We tested the model on images that differ significantly from standard photo datasets, such as Minecraft screenshots, anime art, and line drawings. While ConZIC often failed to capture key elements or generated hallucinations in these scenarios, IConZIC consistently produced relevant and grounded captions.
+We also captioned images that look unlike standard photo datasets, such as a Minecraft screenshot and Van Gogh's *The Starry Night*. ConZIC often produced broken sentences ("image of is large scale image from to."), while IConZIC's captions stayed closer to the image content ("image of night the view on the canvas paintings").
 
 # **Limitations and Trade-offs**
 
-It is important to note the trade-offs involved in this approach. Our experiments showed that IConZIC exhibits lower vocabulary diversity compared to ConZIC. This is attributed to the pre-training data: BERT is trained on vast, diverse internet text, whereas ViLT is trained on curated, human-annotated caption datasets. While this results in less varied vocabulary, the trade-off yields higher accuracy and relevance to the image content.
+It is important to note the trade-offs involved in this approach. Our experiments showed that IConZIC exhibits lower vocabulary diversity than ConZIC: at *k* = 200 it used 5,921 distinct words against ConZIC's 9,434. This is attributed to the pre-training data: BERT is trained on vast, diverse internet text, whereas ViLT is trained on curated, human-annotated caption datasets. While this results in less varied vocabulary, the trade-off yields higher accuracy and relevance to the image content.
 
 # **Conclusion**
 

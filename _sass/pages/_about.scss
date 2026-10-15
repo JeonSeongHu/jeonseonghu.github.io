@@ -1349,6 +1349,7 @@ body.layout-portfolio button {
     transition: color 0.12s ease;
 
     &:hover { color: var(--pf-blue); }
+    &.is-active { color: var(--pf-blue); font-weight: 500; }
     &:focus-visible {
         outline: 2px solid var(--pf-blue);
         outline-offset: 3px;

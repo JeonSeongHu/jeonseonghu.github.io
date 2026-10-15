@@ -37,7 +37,7 @@ lang: en
 <section class="pf-sec pf-sec--flush" id="projects">
     <div class="pf-proj-grid">
         {% for project in sorted_projects %}
-        <article class="pf-proj-card" data-tags="{% for category in project.categories %}{{ category | slugify }} {% endfor %}">
+        <article class="pf-proj-card" data-tags="{% for category in project.categories %}{{ category | slugify }} {% endfor %}{% for tag in project.tags %}{{ tag | slugify }} {% endfor %}">
             <a href="{{ project.url | relative_url }}" class="pf-proj-link">
                 <div class="pf-proj-thumb">
                     {% if project.image and project.image != "" %}
@@ -76,23 +76,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectCards = document.querySelectorAll('.pf-proj-card');
     const noProjectsMsg = document.getElementById('no-projects');
 
+    // filter is a category (pill at the top) or a tag (#tag on a card); data-tags holds both
+    function hasTag(card, filter) {
+        return (card.getAttribute('data-tags') || '').split(' ').indexOf(filter) !== -1;
+    }
+
     function applyFilter(filter) {
         const targetButton = document.querySelector(`.pf-filter-tag[data-filter="${filter}"]`);
-        if (targetButton) {
-        } else {
-            filter = 'all';
-        }
-        const activeButton = targetButton || document.querySelector('.pf-filter-tag[data-filter="all"]');
+        const known = filter === 'all' || targetButton || Array.prototype.some.call(projectCards, card => hasTag(card, filter));
+        if (!known) filter = 'all';
+        const activeButton = filter === 'all' ? document.querySelector('.pf-filter-tag[data-filter="all"]') : targetButton;
         filterButtons.forEach(btn => {
             const isActive = btn === activeButton;
             btn.classList.toggle('is-active', isActive);
             btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
+        document.querySelectorAll('.pf-proj-tag').forEach(tag => {
+            tag.classList.toggle('is-active', tag.getAttribute('data-tag') === filter);
+        });
 
         let visibleCount = 0;
         projectCards.forEach(card => {
-            const tags = card.getAttribute('data-tags') || '';
-            if (filter === 'all' || tags.split(' ').indexOf(filter) !== -1) {
+            if (filter === 'all' || hasTag(card, filter)) {
                 card.style.display = '';
                 visibleCount++;
             } else {
