@@ -37,7 +37,7 @@ Running Ver 1 surfaced two problems:
 
 Ver 2 dropped the preset images and generated every portrait from the user's photos. The upload page also stated clearly which photos work.
 
-![Ver 2 pipeline (faces mosaicked)](/assets/images/projects/horang-pipeline-v2.webp)
+![Ver 2 pipeline](/assets/images/projects/horang-pipeline-v2.webp)
 
 - **IP-Adapter** uses the photo itself as an image prompt, so face shape and build carry over without being described in text.
 - **Face preprocessing** with YOLO face detection, a face segmenter, and background filling keeps only the face. Without it, IP-Adapter also copied the background color and the pose of the source photo.
